@@ -1,0 +1,38 @@
+.container-fluid.temporal-style
+  .row
+    .col-md-12
+      ul.list-inline.list-unstyled
+        li
+          | ¿QUÉ TENGO QUE HACERLE A MI AUTO?
+  .row
+    .col-md-12
+      ul.list-inline.list-unstyled
+        li
+          | CONSULTA TUS MANTENCIONES
+
+        = form_tag results_home_path
+          li
+            = text_field('search', 'patente', placeholder:'Ingrese su Patente')
+          li
+            = text_field('search', 'kms', placeholder:'Ingrese kilometraje de su vehículo')
+          li
+            button.btn.btn-default type="submit"
+              |   VER MI PAUTA
+  .row
+    .col-md-12
+      ul.list-unstyled.list-inline
+        li
+          | HAZLO SIMPLE
+        li
+          | BUSCA
+        li
+          | COTIZA
+        li
+          | AGENDA
+        li
+          | REPARA
+  .row
+    .col-md-12
+      ul.list-inline.list-unstyled
+        li
+          | 2016

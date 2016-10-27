@@ -5,9 +5,9 @@
         li
           | Logo
         li
-          = text_field('search', 'patente', placeholder:'Ingrese su Patente')
+          = text_field('search', 'patente', placeholder:'Ingrese su Patente', value: session[:search]['patente'])
         li
-          = text_field('search', 'kms', placeholder:'Ingrese kilometraje de su vehículo')
+          = text_field('search', 'kms', placeholder:'Ingrese kilometraje de su vehículo', value: session[:search]['kms'])
         li
           button.btn.btn-default type="button"
             | Consultar
