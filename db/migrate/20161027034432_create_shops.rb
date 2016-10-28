@@ -9,8 +9,5 @@ class CreateShops < ActiveRecord::Migration[5.0]
 
     add_index :shops, [:name, :deleted], unique: true
     add_index :shops, [:rut, :deleted],  unique: true
-
-    add_index :shops, :rut, unique: true
-    add_index :shops, :name, unique: true
   end
 end

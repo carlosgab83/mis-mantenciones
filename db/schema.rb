@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027034515) do
+ActiveRecord::Schema.define(version: 20161028024521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attributes", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "deleted",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["name", "deleted"], name: "index_attributes_on_name_and_deleted", unique: true, using: :btree
+  end
+
+  create_table "attributes_products", force: :cascade do |t|
+    t.boolean  "deleted",      default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "attribute_id"
+    t.integer  "product_id"
+    t.index ["attribute_id"], name: "index_attributes_products_on_attribute_id", using: :btree
+    t.index ["product_id"], name: "index_attributes_products_on_product_id", using: :btree
+  end
 
   create_table "branches", force: :cascade do |t|
     t.string   "name"
@@ -31,6 +49,29 @@ ActiveRecord::Schema.define(version: 20161027034515) do
     t.index ["shop_id"], name: "index_branches_on_shop_id", using: :btree
   end
 
+  create_table "branches_manteinance_items", force: :cascade do |t|
+    t.integer  "manteinance_item_id"
+    t.integer  "pauta_id"
+    t.float    "full_price"
+    t.float    "promo_price"
+    t.float    "discount_percentage"
+    t.boolean  "deleted",             default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "branch_id"
+    t.index ["branch_id"], name: "index_branches_manteinance_items_on_branch_id", using: :btree
+  end
+
+  create_table "branches_promotions", force: :cascade do |t|
+    t.boolean  "deleted",      default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "branch_id"
+    t.integer  "promotion_id"
+    t.index ["branch_id"], name: "index_branches_promotions_on_branch_id", using: :btree
+    t.index ["promotion_id"], name: "index_branches_promotions_on_promotion_id", using: :btree
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.boolean  "deleted",    default: false
@@ -39,9 +80,46 @@ ActiveRecord::Schema.define(version: 20161027034515) do
     t.index ["name", "deleted"], name: "index_categories_on_name_and_deleted", unique: true, using: :btree
   end
 
+  create_table "clients", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "rut"
+    t.string   "rvm_id",                                  comment: "is the *patente* on the rvm table"
+    t.boolean  "deleted",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["email", "rvm_id", "deleted"], name: "index_clients_on_email_and_rvm_id_and_deleted", unique: true, using: :btree
+  end
+
   create_table "comuna", primary_key: "id_comuna", id: :integer, force: :cascade do |t|
     t.text    "desc_comuna",               null: false
     t.integer "estado_comuna", default: 1, null: false
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.date     "date"
+    t.float    "price"
+    t.boolean  "deleted",      default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "promotion_id"
+    t.integer  "client_id"
+    t.index ["client_id"], name: "index_coupons_on_client_id", using: :btree
+    t.index ["promotion_id"], name: "index_coupons_on_promotion_id", using: :btree
+  end
+
+  create_table "coupons_pautas", force: :cascade do |t|
+    t.float    "price"
+    t.date     "date"
+    t.integer  "pauta_id"
+    t.boolean  "deleted",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "branch_id"
+    t.integer  "client_id"
+    t.index ["branch_id"], name: "index_coupons_pautas_on_branch_id", using: :btree
+    t.index ["client_id"], name: "index_coupons_pautas_on_client_id", using: :btree
   end
 
 # Could not dump table "envios_mail_cliente" because of following StandardError
@@ -135,6 +213,41 @@ ActiveRecord::Schema.define(version: 20161027034515) do
     t.index ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
   end
 
+  create_table "products_vmes", force: :cascade do |t|
+    t.float    "vme_id"
+    t.boolean  "deleted",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "product_id"
+    t.index ["product_id"], name: "index_products_vmes_on_product_id", using: :btree
+  end
+
+  create_table "promotions", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.date     "from_date"
+    t.date     "to_date"
+    t.boolean  "status"
+    t.float    "full_price"
+    t.float    "promo_price"
+    t.float    "discount_percentage"
+    t.integer  "priority"
+    t.integer  "max_coupons"
+    t.boolean  "deleted",             default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["name", "deleted"], name: "index_promotions_on_name_and_deleted", unique: true, using: :btree
+  end
+
+  create_table "promotions_vmes", force: :cascade do |t|
+    t.float    "vme_id"
+    t.boolean  "deleted",      default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "promotion_id"
+    t.index ["promotion_id"], name: "index_promotions_vmes_on_promotion_id", using: :btree
+  end
+
   create_table "proveedor_item_mantencion", primary_key: ["id_pauta", "ide_rut", "suc_id", "id_item_mantencion"], force: :cascade do |t|
     t.integer "id_pauta",           null: false
     t.integer "ide_rut",            null: false
@@ -189,9 +302,7 @@ ActiveRecord::Schema.define(version: 20161027034515) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["name", "deleted"], name: "index_shops_on_name_and_deleted", unique: true, using: :btree
-    t.index ["name"], name: "index_shops_on_name", unique: true, using: :btree
     t.index ["rut", "deleted"], name: "index_shops_on_rut_and_deleted", unique: true, using: :btree
-    t.index ["rut"], name: "index_shops_on_rut", unique: true, using: :btree
   end
 
 # Could not dump table "solicitud_agendamiento" because of following StandardError
@@ -227,7 +338,20 @@ ActiveRecord::Schema.define(version: 20161027034515) do
     t.integer "vme_estado",         default: 1, null: false
   end
 
+  add_foreign_key "attributes_products", "attributes"
+  add_foreign_key "attributes_products", "products"
   add_foreign_key "branches", "shops"
+  add_foreign_key "branches_manteinance_items", "branches"
+  add_foreign_key "branches_manteinance_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
+  add_foreign_key "branches_manteinance_items", "pauta", column: "pauta_id", primary_key: "id_pauta"
+  add_foreign_key "branches_promotions", "branches"
+  add_foreign_key "branches_promotions", "promotions"
+  add_foreign_key "clients", "rvm", primary_key: "v_rvm"
+  add_foreign_key "coupons", "clients"
+  add_foreign_key "coupons", "promotions"
+  add_foreign_key "coupons_pautas", "branches"
+  add_foreign_key "coupons_pautas", "clients"
+  add_foreign_key "coupons_pautas", "pauta", column: "pauta_id", primary_key: "id_pauta"
   add_foreign_key "envios_mail_cliente", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_marca"
   add_foreign_key "envios_mail_cliente", "modelo", column: "id_modelo", primary_key: "id_modelo", name: "fk_modelo"
   add_foreign_key "envios_mail_cliente", "pauta", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta"
@@ -245,6 +369,10 @@ ActiveRecord::Schema.define(version: 20161027034515) do
   add_foreign_key "products", "categories"
   add_foreign_key "products", "product_brands"
   add_foreign_key "products", "product_types"
+  add_foreign_key "products_vmes", "products"
+  add_foreign_key "products_vmes", "vehiculo_modelo_especifico", column: "vme_id", primary_key: "vme_id"
+  add_foreign_key "promotions_vmes", "promotions"
+  add_foreign_key "promotions_vmes", "vehiculo_modelo_especifico", column: "vme_id", primary_key: "vme_id"
   add_foreign_key "proveedor_item_mantencion", "item_mantencion", column: "id_item_mantencion", primary_key: "id_item_mantencion", name: "fk_item_mantencion"
   add_foreign_key "proveedor_item_mantencion", "pauta_proveedor", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta_prov"
   add_foreign_key "proveedor_taller_sucursal", "comuna", column: "id_comuna", primary_key: "id_comuna", name: "fk_comuna"
