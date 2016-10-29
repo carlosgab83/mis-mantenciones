@@ -82,13 +82,15 @@ ActiveRecord::Schema.define(version: 20161028024521) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
+    t.string   "primary_last_name"
     t.string   "email"
     t.string   "phone"
     t.string   "rut"
-    t.string   "rvm_id",                                  comment: "is the *patente* on the rvm table"
-    t.boolean  "deleted",    default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "comune_id"
+    t.string   "rvm_id",                                         comment: "is the *patente* on the rvm table"
+    t.boolean  "deleted",           default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.index ["email", "rvm_id", "deleted"], name: "index_clients_on_email_and_rvm_id_and_deleted", unique: true, using: :btree
   end
 
@@ -346,6 +348,7 @@ ActiveRecord::Schema.define(version: 20161028024521) do
   add_foreign_key "branches_manteinance_items", "pauta", column: "pauta_id", primary_key: "id_pauta"
   add_foreign_key "branches_promotions", "branches"
   add_foreign_key "branches_promotions", "promotions"
+  add_foreign_key "clients", "comuna", column: "comune_id", primary_key: "id_comuna"
   add_foreign_key "clients", "rvm", primary_key: "v_rvm"
   add_foreign_key "coupons", "clients"
   add_foreign_key "coupons", "promotions"
