@@ -6,6 +6,6 @@ class CreateBranchesPromotions < ActiveRecord::Migration[5.0]
     end
 
     add_reference :branches_promotions, :branch,    foreign_key: true
-    add_reference :branches_promotions, :promotion, foreign_key: true
+    add_reference :branches_promotions, :promotion, foreign_key: true, null: false
   end
 end

@@ -5,7 +5,7 @@ class CreateAttributesProducts < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_reference :attributes_products, :attribute, foreign_key: true
-    add_reference :attributes_products, :product,   foreign_key: true
+    add_reference :attributes_products, :attribute, foreign_key: true, null: false
+    add_reference :attributes_products, :product,   foreign_key: true, null: false
   end
 end
