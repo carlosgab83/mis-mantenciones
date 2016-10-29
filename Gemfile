@@ -11,7 +11,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bower-rails', '~> 0.11.0'
 gem 'slim', '~> 3.0'
-gem "font-awesome-rails", '~> 4.6.3.0'
+gem 'font-awesome-rails', '~> 4.6.3.0'
+gem 'awesome_nested_set', '~> 3.1'
 
 group :development, :test do
   gem 'pry-byebug'
