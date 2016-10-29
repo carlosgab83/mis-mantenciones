@@ -14,6 +14,7 @@ gem 'slim', '~> 3.0'
 gem 'font-awesome-rails', '~> 4.6.3.0'
 gem 'awesome_nested_set', '~> 3.1'
 gem 'rails_admin', '~> 1.0'
+gem 'devise'
 
 group :development, :test do
   gem 'pry-byebug'
