@@ -1,12 +1,15 @@
 {
-  "lib": {
-    "name": "bower-rails generated lib assets",
-    "dependencies": {
-    }
-  },
-  "vendor": {
-    "name": "bower-rails generated vendor assets",
-    "dependencies": {
-    }
-  }
+  "name": "mis-mantenciones",
+  "homepage": "https://github.com/carlosgab83/mis-mantenciones",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ]
 }
