@@ -1,4 +1,4 @@
-RailsAdmin.config do |config|
+  RailsAdmin.config do |config|
 
   ### Popular gems integration
 
@@ -23,6 +23,8 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar true
 
+  RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::XlsUpload)
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
@@ -34,8 +36,17 @@ RailsAdmin.config do |config|
     delete
     show_in_app
 
+    ## Custom actions
+    root :xls_import do
+      register_instance_option :link_icon do
+          'icon-upload'
+        end
+    end
+    xls_upload
+
     ## With an audit adapter, you can add:
     # history_index
     # history_show
   end
+
 end
