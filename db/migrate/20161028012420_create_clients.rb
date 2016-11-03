@@ -13,7 +13,7 @@ class CreateClients < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :clients, [:email, :rvm_id, :deleted], unique: true
+    add_index :clients, [:email, :rvm_id], unique: true, name: :clients_business_index
 
     add_foreign_key :clients, :comuna, column: :comune_id, primary_key: "id_comuna", null: false
     add_foreign_key :clients, :rvm, column: :rvm_id, primary_key: "v_rvm"

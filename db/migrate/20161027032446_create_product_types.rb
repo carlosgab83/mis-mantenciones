@@ -6,6 +6,6 @@ class CreateProductTypes < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :product_types, [:name, :deleted], unique: true
+    add_index :product_types, [:name], unique: true, name: :product_types_business_index
   end
 end

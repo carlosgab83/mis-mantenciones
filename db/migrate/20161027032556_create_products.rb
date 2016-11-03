@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :products, [:name, :deleted], unique: true
+    add_index :products, [:name], unique: true, name: :products_business_index
 
     add_reference :products, :category,      foreign_key: true, null: false
     add_reference :products, :product_type,  foreign_key: true, null: false

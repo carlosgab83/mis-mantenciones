@@ -16,6 +16,6 @@ class CreatePromotions < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :promotions, [:name, :deleted], unique: true
+    add_index :promotions, [:name], unique: true, name: :promotions_business_index
   end
 end

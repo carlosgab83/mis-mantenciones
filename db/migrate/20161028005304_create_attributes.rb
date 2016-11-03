@@ -6,6 +6,6 @@ class CreateAttributes < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :attributes, [:name, :deleted], unique: true
+    add_index :attributes, [:name], unique: true, name: :attributes_business_index
   end
 end

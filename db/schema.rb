@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.boolean  "deleted",    default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["name", "deleted"], name: "index_attributes_on_name_and_deleted", unique: true, using: :btree
+    t.index ["name"], name: "attributes_business_index", unique: true, using: :btree
   end
 
   create_table "attributes_products", force: :cascade do |t|
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.datetime "updated_at",                   null: false
     t.integer  "attribute_id",                 null: false
     t.integer  "product_id",                   null: false
+    t.index ["attribute_id", "product_id"], name: "attributes_products_business_index", unique: true, using: :btree
     t.index ["attribute_id"], name: "index_attributes_products_on_attribute_id", using: :btree
     t.index ["product_id"], name: "index_attributes_products_on_product_id", using: :btree
   end
@@ -45,7 +46,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "shop_id",                       null: false
-    t.index ["name", "deleted"], name: "index_branches_on_name_and_deleted", unique: true, using: :btree
+    t.index ["name"], name: "branches_business_index", unique: true, using: :btree
     t.index ["shop_id"], name: "index_branches_on_shop_id", using: :btree
   end
 
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.datetime "updated_at",                          null: false
     t.integer  "branch_id",                           null: false
     t.index ["branch_id"], name: "index_branches_manteinance_items_on_branch_id", using: :btree
+    t.index ["manteinance_item_id", "pauta_id", "branch_id"], name: "branches_manteinance_items_business_index", unique: true, using: :btree
   end
 
   create_table "branches_products", force: :cascade do |t|
@@ -74,6 +76,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.datetime "updated_at",                 null: false
     t.integer  "branch_id",                  null: false
     t.integer  "product_id",                 null: false
+    t.index ["branch_id", "product_id"], name: "branches_products_business_index", unique: true, using: :btree
     t.index ["branch_id"], name: "index_branches_products_on_branch_id", using: :btree
     t.index ["product_id"], name: "index_branches_products_on_product_id", using: :btree
   end
@@ -84,6 +87,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.datetime "updated_at",                   null: false
     t.integer  "branch_id"
     t.integer  "promotion_id",                 null: false
+    t.index ["branch_id", "promotion_id"], name: "branches_promotions_business_index", unique: true, using: :btree
     t.index ["branch_id"], name: "index_branches_promotions_on_branch_id", using: :btree
     t.index ["promotion_id"], name: "index_branches_promotions_on_promotion_id", using: :btree
   end
@@ -98,7 +102,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.integer  "rgt",                            null: false
     t.integer  "depth",          default: 0,     null: false
     t.integer  "children_count", default: 0,     null: false
-    t.index ["name", "deleted"], name: "index_categories_on_name_and_deleted", unique: true, using: :btree
+    t.index ["name"], name: "categories_business_index", unique: true, using: :btree
   end
 
   create_table "clients", force: :cascade do |t|
@@ -112,7 +116,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.boolean  "deleted",           default: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-    t.index ["email", "rvm_id", "deleted"], name: "index_clients_on_email_and_rvm_id_and_deleted", unique: true, using: :btree
+    t.index ["email", "rvm_id"], name: "clients_business_index", unique: true, using: :btree
   end
 
   create_table "comuna", primary_key: "id_comuna", id: :integer, force: :cascade do |t|
@@ -211,7 +215,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.boolean  "deleted",    default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["name", "deleted"], name: "index_product_brands_on_name_and_deleted", unique: true, using: :btree
+    t.index ["name"], name: "product_brands_business_index", unique: true, using: :btree
   end
 
   create_table "product_types", force: :cascade do |t|
@@ -219,7 +223,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.boolean  "deleted",    default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["name", "deleted"], name: "index_product_types_on_name_and_deleted", unique: true, using: :btree
+    t.index ["name"], name: "product_types_business_index", unique: true, using: :btree
   end
 
   create_table "products", force: :cascade do |t|
@@ -231,7 +235,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.integer  "product_type_id",                  null: false
     t.integer  "product_brand_id",                 null: false
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
-    t.index ["name", "deleted"], name: "index_products_on_name_and_deleted", unique: true, using: :btree
+    t.index ["name"], name: "products_business_index", unique: true, using: :btree
     t.index ["product_brand_id"], name: "index_products_on_product_brand_id", using: :btree
     t.index ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
   end
@@ -242,6 +246,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "product_id",                 null: false
+    t.index ["product_id", "vme_id"], name: "products_vmes_business_index", unique: true, using: :btree
     t.index ["product_id"], name: "index_products_vmes_on_product_id", using: :btree
   end
 
@@ -259,7 +264,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.boolean  "deleted",             default: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["name", "deleted"], name: "index_promotions_on_name_and_deleted", unique: true, using: :btree
+    t.index ["name"], name: "promotions_business_index", unique: true, using: :btree
   end
 
   create_table "promotions_vmes", force: :cascade do |t|
@@ -268,6 +273,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "promotion_id",                 null: false
+    t.index ["promotion_id", "vme_id"], name: "promotions_vmes_business_index", unique: true, using: :btree
     t.index ["promotion_id"], name: "index_promotions_vmes_on_promotion_id", using: :btree
   end
 
@@ -324,8 +330,8 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.boolean  "deleted",    default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["name", "deleted"], name: "index_shops_on_name_and_deleted", unique: true, using: :btree
-    t.index ["rut", "deleted"], name: "index_shops_on_rut_and_deleted", unique: true, using: :btree
+    t.index ["name"], name: "shops_business_index", unique: true, using: :btree
+    t.index ["rut"], name: "index_shops_on_rut", unique: true, using: :btree
   end
 
 # Could not dump table "solicitud_agendamiento" because of following StandardError

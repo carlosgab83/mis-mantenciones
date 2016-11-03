@@ -7,5 +7,7 @@ class CreateAttributesProducts < ActiveRecord::Migration[5.0]
 
     add_reference :attributes_products, :attribute, foreign_key: true, null: false
     add_reference :attributes_products, :product,   foreign_key: true, null: false
+
+    add_index :attributes_products, [:attribute_id, :product_id], unique: true, name: :attributes_products_business_index
   end
 end

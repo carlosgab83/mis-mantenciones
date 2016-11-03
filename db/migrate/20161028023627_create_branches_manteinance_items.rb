@@ -14,5 +14,8 @@ class CreateBranchesManteinanceItems < ActiveRecord::Migration[5.0]
     add_reference :branches_manteinance_items, :branch,    foreign_key: true, null: false
     add_foreign_key :branches_manteinance_items, :item_mantencion, column: :manteinance_item_id, primary_key: :id_item_mantencion
     add_foreign_key :branches_manteinance_items, :pauta, column: :pauta_id, primary_key: :id_pauta
+
+    add_index :branches_manteinance_items, [:manteinance_item_id, :pauta_id, :branch_id], unique: true, name: :branches_manteinance_items_business_index
+
   end
 end

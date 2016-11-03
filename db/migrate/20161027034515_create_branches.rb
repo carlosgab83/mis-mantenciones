@@ -13,7 +13,7 @@ class CreateBranches < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :branches, [:name, :deleted], unique: true
+    add_index :branches, [:name], unique: true, name: :branches_business_index
 
     add_reference :branches, :shop, foreign_key: true, null: false
   end

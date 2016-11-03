@@ -6,6 +6,6 @@ class CreateProductBrands < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :product_brands, [:name, :deleted], unique: true
+    add_index :product_brands, [:name], unique: true, name: :product_brands_business_index
   end
 end
