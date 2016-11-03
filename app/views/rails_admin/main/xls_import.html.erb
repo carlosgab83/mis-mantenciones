@@ -1,0 +1,10 @@
+<%= form_tag xls_upload_path, multipart: true %>
+  <ul>
+    <li>
+      <%= file_field('xls_import', 'file', placeholder:'Ingrese el archivo')%>
+      <button class='btn btn-default' type="submit">
+        Cargar
+      </button>
+    </li>
+  </ul>
+</form>

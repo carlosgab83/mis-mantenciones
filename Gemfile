@@ -11,10 +11,19 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bower-rails', '~> 0.11.0'
 gem 'slim', '~> 3.0'
-gem "font-awesome-rails", '~> 4.6.3.0'
+gem 'font-awesome-rails', '~> 4.6.3.0'
+gem 'awesome_nested_set', '~> 3.1'
+gem 'rails_admin', '~> 1.0'
+gem 'rails_admin-i18n'
+gem 'devise'
+gem 'roo', '~> 2.5.0'
 
 group :development, :test do
   gem 'pry-byebug'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails', '~> 4.7'
+  gem 'ffaker', '~> 2.2'
+  gem 'shoulda', '~> 3.5'
 end
 
 group :development do
