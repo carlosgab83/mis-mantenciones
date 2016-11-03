@@ -1,0 +1,4 @@
+class BranchesPromotion < ApplicationRecord
+  belongs_to :branch
+  belongs_to :promotion
+end
