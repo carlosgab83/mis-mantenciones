@@ -1,0 +1,389 @@
+@import 'colors';
+@import 'helpers';
+@import 'resets';
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Exo+2:300i,400i,700i');
+
+// Layout Variables
+$header-height: 90px;
+$footer-height: 90px;
+
+//////////////////////////////////////////////////////////
+// General Styles
+//////////////////////////////////////////////////////////
+
+body {
+	white-space: normal;
+	line-height: 1.4;
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 300;
+	padding-top: $header-height;
+	min-width: 320px;
+}
+label {font-weight: 300;}
+strong, b, .alert-link, .badge {font-weight: 700;}
+dt {font-weight:700;}
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 300;
+}
+
+// Anchors
+a {
+	text-decoration: none;
+	outline: none !important;
+	-moz-outline-style: none !important;
+	-webkit-outline-style: none !important;
+	&:hover, &:active, &:focus {
+		cursor: pointer;
+		text-decoration: none;
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Animation
+//////////////////////////////////////////////////////////
+
+a,
+button,
+.btn,
+input,
+select,
+textarea {
+	@include transition(all 0.3s ease-in-out);
+}
+
+//////////////////////////////////////////////////////////
+// Bootstrap Reset
+//////////////////////////////////////////////////////////
+
+.well, .breadcrumb {
+	box-shadow: none;
+	border: none;
+}
+.alert {
+	border-radius: 0;
+	border: none;
+	text-align: center;
+	margin-bottom: 0;
+	strong {
+		font-weight: 400;
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Special Buttons
+//////////////////////////////////////////////////////////
+
+.btn {
+	font-weight: 400;
+	&:not(.btn-link) {
+		text-transform: uppercase;
+		font-size: 90%;
+		border-color: rgba($dark-color, 0.1);
+		box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+		&:hover, &:active, &:focus {
+			border-color: rgba($dark-color, 0.2);
+			box-shadow: none;
+		}
+	}
+	&.btn-ghost {
+		box-shadow: none!important;
+	}
+	&.btn-link {
+		color: $main-color;
+		font-weight: 300;
+		&:hover, &:active, &:focus {
+			color: darken($main-color, 10%);
+		}
+	}
+}
+
+// CTA
+.btn.btn-cta {
+	color: $dark-color;
+	background-color: $side-color;
+	&:hover, &:active, &:focus {
+		color: $dark-color;
+		background-color: daken($side-color,10%);
+	}
+	&.btn-ghost {
+		color: $side-color;
+		border-color: $side-color;
+		background: transparent;
+		&:hover, &:active, &:focus {
+			color: $dark-color;
+			background-color: $side-color;
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Forms
+//////////////////////////////////////////////////////////
+
+// Placeholders
+.placeholder {
+	color: rgba($dark-color, 0.6);
+	font-style: italic!important;
+	font-weight: 300;
+	text-shadow: none;
+}
+::-webkit-input-placeholder {
+	@extend .placeholder;
+}
+:-moz-placeholder {
+	@extend .placeholder;
+}
+::-moz-placeholder {
+	@extend .placeholder;
+}
+:-ms-input-placeholder {
+	@extend .placeholder;
+}
+
+// Checkbox
+.checkbox {
+	display: inline-block;
+	position: relative;
+	margin-top: 0;
+	margin-bottom: 15px;
+	input[type="checkbox"] {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		visibility: hidden;
+		+ label {
+			padding-left: 0;
+			font-weight: 300;
+			color: $light-color;
+			&:before, &:after {
+				width: 30px;
+				height: 30px;
+				padding: 4px;
+				border-radius: 50%;
+				display: inline-block;
+				vertical-align: middle;
+				line-height: 22px;
+				@include transition(all 0.2s ease-out);
+			}
+			&:before {
+				font-family: 'Pe-icon-7-stroke';
+				content: '\e66c';
+				position: relative;
+				margin-right: 5px;
+				font-size: 150%;
+				opacity: 0;
+				text-align: center;
+				text-indent: -1px;
+				z-index: 2;
+			}
+			&:after {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 1;
+				background: $side-color;
+				border: 1px solid darken($side-color,5%);
+			}
+		}
+		&:checked + label {
+			color: $main-color;
+			&:before {
+				opacity: 1;
+				content: '\e66c';
+				color: $back-color;
+			}
+			&:after {
+				background-color: $main-color;
+				border-color: $main-color;
+			}
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Layout
+//////////////////////////////////////////////////////////
+
+body {
+	> #wrapper {
+		display: table;
+		height: 100%;
+		width: 100%;
+		margin-bottom: -$footer-height;
+		padding-bottom: $footer-height;
+		.container {
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Header
+//////////////////////////////////////////////////////////
+
+#header {
+	height: $header-height;
+	padding: 20px 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	&:after {
+		@extend .bottom-triangle;
+		border-color: rgba($dark-color,0.9) transparent transparent transparent;
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Titles
+//////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////
+// Slick Carousels
+//////////////////////////////////////////////////////////
+
+.multiple-slider,
+.multiple-products-slider {
+	display: block;
+	padding: 0 45px;
+	.single-product {
+		float: left;
+		height: 100%;
+		min-height: 1px;
+		text-align: center;
+		display: block;
+	}
+}
+
+.slick-arrow {
+	background-image: none;
+	color: $dark-color;
+	text-shadow: none;
+	border: none;
+	background-color: transparent;
+	opacity: 0.5;
+	padding: 0;
+	position: absolute;
+	top: 50%;
+	margin-top: -22px;
+	z-index: 100;
+	> span[class^="pe"] {
+		font-size: 42px;
+		border-radius: 50%;
+		@include transition(all 0.6s ease-in-out);
+	}
+	&.right {right: 0;}
+	&.left  {left: 0;}
+	&:hover, &:active {
+		opacity: 0.8;
+		> span[class^="pe"] {
+			background-color: darken($side-color,3%);
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Footer
+//////////////////////////////////////////////////////////
+
+#footer {
+	min-height: $footer-height;
+	padding: 30px 0;
+	position: relative;
+	&:before {
+		@extend .upper-triangle;
+		border-color: transparent transparent rgba($dark-color,0.9) transparent;
+	}
+	h6 {
+		font-weight: 700;
+		@media #{$xs}{margin: 15px 0 5px;}
+	}
+	ul, p {
+		font-size: 90%;
+		a {
+			display: inline-block;
+			width: 100%;
+			padding:1px 0;
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Modal
+//////////////////////////////////////////////////////////
+
+.modal {
+	top:60px;
+	.modal-content {
+		border-radius: 0;
+		.modal-header {
+			border: none;
+			.close {
+				> span[class^="pe"] {
+					font-size: 125%;
+				}
+			}
+		}
+		.modal-content {
+			box-shadow: none;
+			border: none;
+		}
+	}
+}
+.modal-backdrop {
+	&.in {
+		opacity: 0.6;
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Skin
+//////////////////////////////////////////////////////////
+
+// General
+body {
+	color: $dark-color;
+	background-color: $back-color;
+}
+hr {border-top-color: $side-color;}
+a {
+	color: $main-color;
+	&:hover, &:active, &:focus {
+		color: darken($main-color, 10%);
+	}
+}
+// Selection
+::-moz-selection {
+	background: $main-color;
+	color: $back-color;
+}
+::selection {
+	background: $main-color;
+	color: $back-color;
+}
+// Layout
+#footer, #header {
+	background-color: rgba($dark-color,0.9);
+	color: $light-color;
+	a {
+		color: $light-color;
+		&:hover, &:active, &:focus {
+			color: $main-color;
+		}
+	}
+}
+// Modal
+.modal {
+	.modal-content {
+		box-shadow: 5px 5px 0 rgba($dark-color,0.2);
+	}
+}
+.modal-backdrop {
+	background-color: $dark-color;
+}

@@ -1,0 +1,89 @@
+//////////////////////////////////////////////////////////
+// HTML Resets
+//////////////////////////////////////////////////////////
+html,body,form,fieldset,h1,h2,h3,h4,h5,h6,p,pre,ul,ol,dl,hr {cursor: default;}
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,
+dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,
+hgroup,menu,nav,section,summary,time,mark,audio,video {
+	outline: 0;
+	vertical-align: baseline;
+	background: transparent;
+}
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+body {
+	white-space: normal;
+	line-height: 1.4;
+}
+blockquote, q {
+	quotes: none;
+	&:before, &:after {
+		content: '';
+		content: none;
+	}
+}
+del {text-decoration: line-through;}
+abbr[title],
+dfn[title] {
+	border-bottom: 1px dotted;
+	cursor: help;
+}
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	margin: 1em 0;
+	padding: 0;
+}
+p {
+	margin-top: 0;
+	margin-bottom: 1.4em;
+}
+table {width: 100%;}
+input,
+select {vertical-align: middle;}
+textarea {
+	-webkit-resize: vertical;
+	-moz-resize: vertical;
+	resize: vertical;
+}
+dl {font-size:90%;}
+dt {
+	float:left;
+	margin-bottom:5px;
+	margin-right:5px;
+}
+dd {margin-bottom:5px;}
+
+*:focus {
+	outline: none!important;
+}
+a::-moz-focus-inner,
+button::-moz-focus-inner,
+input[type="text"]::-moz-focus-inner,
+input[type="password"]::-moz-focus-inner {
+	border: 0;
+	outline: none!important;
+}
+input[type="text"].focused,
+input[type="password"].focused,
+select.focused,
+textarea.focused {outline: 0 none;}
+
+//////////////////////////////////////////////////////////
+// CSS Helpers
+//////////////////////////////////////////////////////////
+.clear {clear: both;}
+.display-none {display: none;}
+.float-none {float: none;}
+.show {visibility: visible;}
+.hidden {visibility: hidden;}
+.small {font-size:80%;}
+.big {font-size:120%;}
+.relative {position: relative;}
+.absolute {position: absolute;}
