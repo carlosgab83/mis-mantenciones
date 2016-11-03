@@ -1,0 +1,14 @@
+header#header
+  .container
+    .row
+      .col-md-12
+        ul.list-inline.list-unstyled
+          li
+            | Logo
+          li
+            = text_field('search', 'patente', class: 'form-control', placeholder:'Ingrese su Patente', value: session[:search]['patente'])
+          li
+            = text_field('search', 'kms', class: 'form-control', placeholder:'Ingrese kilometraje de su vehículo', value: session[:search]['kms'])
+          li
+            button.btn.btn-cta.btn-ghost type="button"
+              | Consultar

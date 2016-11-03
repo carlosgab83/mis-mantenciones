@@ -1,115 +1,104 @@
-.container-fluid.temporal-style
-  .row
-    .col-md-12
-      ul.list-inline.list-unstyled
-        li
-          | Logo
-        li
-          = text_field('search', 'patente', placeholder:'Ingrese su Patente', value: session[:search]['patente'])
-        li
-          = text_field('search', 'kms', placeholder:'Ingrese kilometraje de su vehículo', value: session[:search]['kms'])
-        li
-          button.btn.btn-default type="button"
-            | Consultar
-  .row
-    .col-md-12
-      table.temporal-table-style
-        tr
-          td
-            | Mantenciones de tun Honda Civic
-          td
-            | Motor
-          td
-            | Transmisión
-          td
-            | Frenos
-          td
-            | Neumáticos
-          td
-            | Lubricación
-          td
-            | Amortigüación
-          td
-            | Eléctrico
-        tr
-          td
-            | 1.800 kms
-          td
-            | 0
-          td
-            | 0
-          td
-            | 2
-          td
-            | 1
-          td
-            | 3
-          td
-            | 0
-          td
-            | 0
-        tr
-          td
-            | * estas mantenciones son solo de referencia de acuerdo al kilometraje y modelo de tu auto
-          td colspan='7' align='center'
-            button.btn.btn-default type="button"
-              | Consultar
+= render 'shared/header'
 
+#wrapper
+  #main
+    .container
+      .row
+        .col-md-12
+          table.temporal-table-style
+            tr
+              td
+                | Mantenciones de tun Honda Civic
+              td
+                | Motor
+              td
+                | Transmisión
+              td
+                | Frenos
+              td
+                | Neumáticos
+              td
+                | Lubricación
+              td
+                | Amortigüación
+              td
+                | Eléctrico
+            tr
+              td
+                | 1.800 kms
+              td
+                | 0
+              td
+                | 0
+              td
+                | 2
+              td
+                | 1
+              td
+                | 3
+              td
+                | 0
+              td
+                | 0
+            tr
+              td
+                | * estas mantenciones son solo de referencia de acuerdo al kilometraje y modelo de tu auto
+              td colspan='7' align='center'
+                button.btn.btn-cta type="button"
+                  | Consultar
+      
+      .row
+        .col-md-12
+          ul.list-inline.list-unstyled
+            li
+              | Promociones
 
-      ul.list-inline.list-unstyled
-        li
-          | Promociones
+          ul.list-inline.list-unstyled
+            li
+              | Ver todas
+      .row
+        .col-md-12
+          ul.list-unstyled.list-inline
+            li
+              .one-promo
+                | Cambio de aceite y filtro
+            li
+              .one-promo
+                | Nuevo hona Civic
+            li
+              .one-promo
+                | Regulación y chequeo de frenos
 
-      ul.list-inline.list-unstyled
-        li
-          | Ver todas
-  .row
-    .col-md-12
-      ul.list-unstyled.list-inline
-        li
-          .one-promo
-            | Cambio de aceite y filtro
-        li
-          .one-promo
-            | Nuevo hona Civic
-        li
-          .one-promo
-            | Regulación y chequeo de frenos
+      .row
+        .col-md-12
+          ul.list-inline.list-unstyled
+            li
+              | Encuentra el repuesto o pieza que buscas
+            li
+              | Piezas y repuestos
 
-  .row
-    .col-md-12
-      ul.list-inline.list-unstyled
-        li
-          | Encuentra el repuesto o pieza que buscas
-        li
-          | Piezas y repuestos
+          ul.list-inline.list-unstyled
+            li
+              | Neumáticos
+            li
+              | Filtros
+            li
+              | Carburador
+            li
+              | Espejos
+            li
+              | Bujías
+            li
+              | Batería
+            li
+              | Luces
 
-      ul.list-inline.list-unstyled
-        li
-          | Neumáticos
-        li
-          | Filtros
-        li
-          | Carburador
-        li
-          | Espejos
-        li
-          | Bujías
-        li
-          | Batería
-        li
-          | Luces
+          ul.list-inline.list-unstyled
+            li
+              | Img carrusel product1
+            li
+              | Img carrusel product2
+            li
+              | Img carrusel product3
 
-      ul.list-inline.list-unstyled
-        li
-          | Img carrusel product1
-        li
-          | Img carrusel product2
-        li
-          | Img carrusel product3
-
-  .row
-    .col-md-12
-      ul.list-inline.list-unstyled
-        li
-          | 2016
+= render 'shared/footer'
