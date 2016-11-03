@@ -22,7 +22,7 @@ module RailsAdmin
 
         register_instance_option :controller do
           proc do
-            if params[:xls_import][:file].blank?
+            if params[:xls_import].nil? or params[:xls_import][:file].blank?
               flash[:alert] = "Por favor selecciona un archivo, recuerda que el nombre del mismo debe ser el de la tabla a importar"
               redirect_to :xls_import
             else
