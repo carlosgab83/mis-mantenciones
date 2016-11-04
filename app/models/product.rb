@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  self.table_name="products"
   belongs_to :product_type
   belongs_to :category
   belongs_to :product_brand

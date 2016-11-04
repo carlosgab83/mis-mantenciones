@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029204902) do
+ActiveRecord::Schema.define(version: 20161104011843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.index ["email", "rvm_id"], name: "clients_business_index", unique: true, using: :btree
   end
 
-  create_table "comuna", primary_key: "id_comuna", id: :integer, force: :cascade do |t|
+  create_table "comuna", primary_key: "id_comuna", id: :integer, default: -> { "nextval('id_comuna_seq'::regclass)" }, force: :cascade do |t|
     t.text    "desc_comuna",               null: false
     t.integer "estado_comuna", default: 1, null: false
   end
@@ -196,9 +196,11 @@ ActiveRecord::Schema.define(version: 20161029204902) do
     t.text    "url_logo"
   end
 
-  create_table "pauta_detalle", primary_key: ["id_pauta", "id_item_mantencion"], force: :cascade do |t|
-    t.integer "id_pauta",           null: false
-    t.integer "id_item_mantencion", null: false
+  create_table "pauta_detalle", force: :cascade do |t|
+    t.integer  "id_pauta",           null: false
+    t.integer  "id_item_mantencion", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pauta_proveedor", primary_key: ["id_pauta", "ide_rut", "suc_id"], force: :cascade do |t|
