@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104011843) do
+ActiveRecord::Schema.define(version: 20161105184325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20161104011843) do
     t.index ["email", "rvm_id"], name: "clients_business_index", unique: true, using: :btree
   end
 
-  create_table "comuna", primary_key: "id_comuna", id: :integer, default: -> { "nextval('id_comuna_seq'::regclass)" }, force: :cascade do |t|
+  create_table "comuna", primary_key: "id_comuna", id: :integer, force: :cascade do |t|
     t.text    "desc_comuna",               null: false
     t.integer "estado_comuna", default: 1, null: false
   end
@@ -143,8 +143,10 @@ ActiveRecord::Schema.define(version: 20161104011843) do
 #   Unknown type 'time with time zone' for column 'hora_ingreso'
 
   create_table "item_mantencion", primary_key: "id_item_mantencion", id: :integer, force: :cascade do |t|
-    t.text    "desc_mantencion", null: false
-    t.integer "id_tipo_seccion", null: false
+    t.text    "desc_mantencion",                 null: false
+    t.integer "id_tipo_seccion",                 null: false
+    t.boolean "deleted",         default: false
+    t.index ["desc_mantencion", "id_tipo_seccion"], name: "item_mantencion_business_index", unique: true, using: :btree
     t.index ["id_tipo_seccion"], name: "idx_item_seccion", using: :btree
   end
 
@@ -189,18 +191,23 @@ ActiveRecord::Schema.define(version: 20161104011843) do
   end
 
   create_table "pauta", primary_key: "id_pauta", id: :integer, force: :cascade do |t|
-    t.text    "pauta_descripcion", null: false
-    t.integer "kilometraje",       null: false
+    t.text    "pauta_descripcion",                 null: false
+    t.integer "kilometraje",                       null: false
     t.integer "id_marca"
     t.integer "id_modelo"
     t.text    "url_logo"
+    t.float   "vme_id"
+    t.boolean "deleted",           default: false
+    t.index ["id_marca", "id_modelo", "vme_id", "kilometraje"], name: "pauta_business_index", unique: true, using: :btree
   end
 
   create_table "pauta_detalle", force: :cascade do |t|
-    t.integer  "id_pauta",           null: false
-    t.integer  "id_item_mantencion", null: false
+    t.integer  "id_pauta",                           null: false
+    t.integer  "id_item_mantencion",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "deleted",            default: false
+    t.index ["id_pauta", "id_item_mantencion"], name: "pauta_detalle_business_index", unique: true, using: :btree
   end
 
   create_table "pauta_proveedor", primary_key: ["id_pauta", "ide_rut", "suc_id"], force: :cascade do |t|
@@ -326,6 +333,15 @@ ActiveRecord::Schema.define(version: 20161104011843) do
     t.index ["v_rvm"], name: "index_v_rvm", using: :btree
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+    t.index ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+  end
+
   create_table "shops", force: :cascade do |t|
     t.string   "name",                       null: false
     t.string   "rut",                        null: false
@@ -414,6 +430,7 @@ ActiveRecord::Schema.define(version: 20161104011843) do
   add_foreign_key "modelo", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_marca"
   add_foreign_key "pauta", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_id_marca"
   add_foreign_key "pauta", "modelo", column: "id_modelo", primary_key: "id_modelo", name: "fk_id_modelo"
+  add_foreign_key "pauta", "vehiculo_modelo_especifico", column: "vme_id", primary_key: "vme_id"
   add_foreign_key "pauta_detalle", "item_mantencion", column: "id_item_mantencion", primary_key: "id_item_mantencion", name: "fk_item_mantencion"
   add_foreign_key "pauta_detalle", "pauta", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta"
   add_foreign_key "pauta_proveedor", "pauta", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta"

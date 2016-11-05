@@ -17,6 +17,7 @@ gem 'rails_admin', '~> 1.0'
 gem 'rails_admin-i18n'
 gem 'devise'
 gem 'roo', '~> 2.5.0'
+gem 'activerecord-session_store'
 
 group :development, :test do
   gem 'pry-byebug'
