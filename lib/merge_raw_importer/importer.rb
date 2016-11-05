@@ -45,15 +45,18 @@ module MergeRawImporter
 
     def extract_columns
       cols = {}
+      sql = "SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '#{table_name}'"
+      db_cols = {}
+      ActiveRecord::Base.connection.execute(sql).to_a.each{|column| db_cols[column['column_name']] = column['data_type']}
+
       xlsx.sheet(0).row(1).each do |field|
-        cols[field.to_sym] = table_name.singularize.camelize.constantize.column_for_attribute(field).type
+        cols[field.to_sym] = db_cols[field]
       end
 
-      if table_name.singularize.camelize.constantize.column_for_attribute('created_at').type.present?
+      if db_cols['created_at'].present?
         cols[:created_at] = :datetime
         cols[:updated_at] = :datetime
       end
-
       self.columns = cols
     end
 
