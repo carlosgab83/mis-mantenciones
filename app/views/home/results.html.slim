@@ -1,104 +1,143 @@
 = render 'shared/header'
 
 #wrapper
-  #main
+  section#section-guideline
     .container
       .row
         .col-md-12
-          table.temporal-table-style
-            tr
-              td
-                | Mantenciones de tun Honda Civic
-              td
-                | Motor
-              td
-                | Transmisión
-              td
-                | Frenos
-              td
-                | Neumáticos
-              td
-                | Lubricación
-              td
-                | Amortigüación
-              td
-                | Eléctrico
-            tr
-              td
-                | 1.800 kms
-              td
-                | 0
-              td
-                | 0
-              td
-                | 2
-              td
-                | 1
-              td
-                | 3
-              td
-                | 0
-              td
-                | 0
-            tr
-              td
-                | * estas mantenciones son solo de referencia de acuerdo al kilometraje y modelo de tu auto
-              td colspan='7' align='center'
-                button.btn.btn-cta type="button"
-                  | Consultar
-      
+          ul#guideline-list
+            li
+              .inner-cell
+                h2
+                  | Mantenciones para tu <em>Honda Civic 2002</em>
+              .inner-cell
+                span.lead 1.800 kms
+            li
+              a.disabled
+                .inner-cell
+                  span.flaticon-motor
+                  | Motor
+                .inner-cell
+                  span.badge 0
+            li
+              a.disabled
+                .inner-cell
+                  span.flaticon-transmision
+                  | Transmisión
+                .inner-cell
+                  span.badge 0
+            li
+              a
+                .inner-cell
+                  span.flaticon-brake-disk
+                  | Frenos
+                .inner-cell
+                  span.badge 2
+            li
+              a
+                .inner-cell
+                  span.flaticon-wheel
+                  | Neumáticos
+                .inner-cell
+                  span.badge 1
+            li
+              a
+                .inner-cell
+                  span.flaticon-oil
+                  | Lubricación
+                .inner-cell
+                  span.badge 3
+            li
+              a.disabled
+                .inner-cell
+                  span.flaticon-shock-absorber
+                  | Amortigüación
+                .inner-cell
+                  span.badge 0
+            li
+              a.disabled
+                .inner-cell
+                  span.flaticon-battery
+                  | Eléctrico
+                .inner-cell
+                  span.badge 0
+            li
+              a.disabled
+                .inner-cell
+                  span.flaticon-car-search
+                  | Otro
+                .inner-cell
+                  span.badge 0
+          .blah
+            .disclamer-text
+              .small * estas mantenciones son solo de referencia de acuerdo al kilometraje y modelo de tu auto
+            .button-holder
+              button.btn.btn-cta type="button"
+                | Consultar
+
+  section#section-promos
+    .container
       .row
         .col-md-12
-          ul.list-inline.list-unstyled
-            li
-              | Promociones
-
-          ul.list-inline.list-unstyled
-            li
-              | Ver todas
+          h2
+            | Promociones
       .row
         .col-md-12
-          ul.list-unstyled.list-inline
-            li
-              .one-promo
-                | Cambio de aceite y filtro
-            li
-              .one-promo
-                | Nuevo hona Civic
-            li
-              .one-promo
-                | Regulación y chequeo de frenos
+          #promo-carousel
+            .single-promo
+              | Cambio de aceite y filtro
+            .single-promo
+              | Nuevo hona Civic
+            .single-promo
+              | Regulación y chequeo de frenos
+            .single-promo
+              | 4ta promo
+            .single-promo
+              | Otra promo en posición 5
+            .single-promo
+              | La última promo
 
       .row
+        .col-md-12.text-center
+          a.btn.btn-link Ver todas
+
+
+  section#section-parts
+    .container
+      .row
         .col-md-12
-          ul.list-inline.list-unstyled
+          h2
+            | Piezas y repuestos
+          ul#part-list
             li
-              | Encuentra el repuesto o pieza que buscas
+              a title='Neumáticos' Neumáticos
             li
-              | Piezas y repuestos
+              a title='Filtros' Filtros
+            li
+              a title='Carburador' Carburador
+            li
+              a title='Espejos' Espejos
+            li
+              a title='Bujías' Bujías
+            li
+              a title='Batería' Batería
+            li
+              a title='Luces' Luces
+            li
+              a title='Otros' Otros
 
-          ul.list-inline.list-unstyled
-            li
-              | Neumáticos
-            li
-              | Filtros
-            li
-              | Carburador
-            li
-              | Espejos
-            li
-              | Bujías
-            li
-              | Batería
-            li
-              | Luces
-
-          ul.list-inline.list-unstyled
-            li
+          #parts-carousel
+            .single-part
               | Img carrusel product1
-            li
+            .single-part
               | Img carrusel product2
-            li
+            .single-part
               | Img carrusel product3
+              .single-part
+              | Img carrusel product4
+            .single-part
+              | Img carrusel product5
+            .single-part
+              | Img carrusel product6
 
 = render 'shared/footer'
