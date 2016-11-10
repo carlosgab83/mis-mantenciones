@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110022307) do
+ActiveRecord::Schema.define(version: 20161110023707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,9 +147,12 @@ ActiveRecord::Schema.define(version: 20161110022307) do
 #   Unknown type 'time with time zone' for column 'hora_ingreso'
 
   create_table "item_mantencion", primary_key: "id_item_mantencion", id: :integer, force: :cascade do |t|
-    t.text    "desc_mantencion",                 null: false
-    t.integer "id_tipo_seccion",                 null: false
-    t.boolean "deleted",         default: false
+    t.text    "desc_mantencion",                        null: false
+    t.integer "id_tipo_seccion",                        null: false
+    t.boolean "deleted",                default: false
+    t.boolean "double_traction"
+    t.boolean "diesel_engine"
+    t.boolean "automatic_transmission"
     t.index ["desc_mantencion", "id_tipo_seccion"], name: "item_mantencion_business_index", unique: true, using: :btree
     t.index ["id_tipo_seccion"], name: "idx_item_seccion", using: :btree
   end
