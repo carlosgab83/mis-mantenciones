@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161105184325) do
+ActiveRecord::Schema.define(version: 20161110022307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,17 +35,21 @@ ActiveRecord::Schema.define(version: 20161105184325) do
   end
 
   create_table "branches", force: :cascade do |t|
-    t.string   "name",                          null: false
+    t.string   "name",                           null: false
     t.string   "phone1"
     t.string   "phone2"
     t.string   "address"
-    t.boolean  "will_contact",                  null: false
+    t.boolean  "will_contact",                   null: false
     t.string   "booking_url"
     t.string   "scraper_model"
-    t.boolean  "deleted",       default: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "shop_id",                       null: false
+    t.boolean  "deleted",        default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "shop_id",                        null: false
+    t.integer  "commune_id"
+    t.string   "street_address"
+    t.string   "number_address"
+    t.string   "ref_address"
     t.index ["name"], name: "branches_business_index", unique: true, using: :btree
     t.index ["shop_id"], name: "index_branches_on_shop_id", using: :btree
   end
@@ -405,6 +409,7 @@ ActiveRecord::Schema.define(version: 20161105184325) do
 
   add_foreign_key "attributes_products", "attributes"
   add_foreign_key "attributes_products", "products"
+  add_foreign_key "branches", "comuna", column: "commune_id", primary_key: "id_comuna"
   add_foreign_key "branches", "shops"
   add_foreign_key "branches_manteinance_items", "branches"
   add_foreign_key "branches_manteinance_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
