@@ -84,18 +84,46 @@
       .row
         .col-md-12
           #promo-carousel
-            .single-promo
-              | Cambio de aceite y filtro
-            .single-promo
-              | Nuevo hona Civic
-            .single-promo
-              | Regulación y chequeo de frenos
-            .single-promo
-              | 4ta promo
-            .single-promo
-              | Otra promo en posición 5
-            .single-promo
-              | La última promo
+            a.single-promo
+              .promo-image
+                = image_tag("promo-image.jpg", :alt => "promo") 
+                span.promo-image-text Cambio de aceite y filtro
+              .promo-description
+                h6 $88.888
+                span.changed $99.999
+            a.single-promo
+              .promo-image
+                = image_tag("promo-image.jpg", :alt => "promo")
+              .promo-description
+                h6 Nuevo Honda Civic
+                span Cotizar
+            a.single-promo
+              .promo-image
+                = image_tag("promo-image.jpg", :alt => "promo")
+                span.promo-image-text Texto de la promo
+              .promo-description
+                h6 $77.990
+                span $79.990
+            a.single-promo
+              .promo-image
+                = image_tag("promo-image.jpg", :alt => "promo")
+              .promo-description
+                h6 $49.990
+                span $59.990
+            a.single-promo
+              .promo-image
+                = image_tag("promo-image.jpg", :alt => "promo")
+                span.promo-image-text Texto de la promo
+              .promo-description
+                h6 $49.990
+                span $59.990
+            a.single-promo
+              .promo-image
+                = image_tag("promo-image.jpg", :alt => "promo")
+                span.promo-image-text Texto de la promo
+              .promo-description
+                h6 $49.990
+                span $59.990
 
       .row
         .col-md-12.text-center
@@ -110,34 +138,78 @@
             | Piezas y repuestos
           ul#part-list
             li
-              a title='Neumáticos' Neumáticos
+              a.active title='Neumáticos' style='background-image:url(  #{image_url("part-image.jpg")} );'
+                span Neumáticos
             li
-              a title='Filtros' Filtros
+              a title='Filtros' style='background-image:url(  #{image_url("part-image.jpg")} );'
+                span Filtros
             li
-              a title='Carburador' Carburador
+              a title='Carburador' style='background-image:url(  #{image_url("part-image.jpg")} );'
+                span Carburador
             li
-              a title='Espejos' Espejos
+              a title='Espejos' style='background-image:url(  #{image_url("part-image.jpg")} );'
+                span Espejos
             li
-              a title='Bujías' Bujías
+              a title='Bujías' style='background-image:url(  #{image_url("part-image.jpg")} );'
+                span Bujías
             li
-              a title='Batería' Batería
+              a title='Batería' style='background-image:url(  #{image_url("part-image.jpg")} );'
+                span Batería
             li
-              a title='Luces' Luces
+              a title='Luces' style='background-image:url(  #{image_url("part-image.jpg")} );'
+                span Luces
             li
-              a title='Otros' Otros
+              a title='Otros' style='background-image:url(  #{image_url("part-image.jpg")} );'
+                span Otros
 
           #parts-carousel
-            .single-part
-              | Img carrusel product1
-            .single-part
-              | Img carrusel product2
-            .single-part
-              | Img carrusel product3
-              .single-part
-              | Img carrusel product4
-            .single-part
-              | Img carrusel product5
-            .single-part
-              | Img carrusel product6
+            a.single-part
+              .single-part-image
+                = image_tag("part-image.jpg", :alt => "part")
+              .single-part-text
+                span.brand Michellin
+                span Agilis 51 215/60 R16c 6pr
+                strong desde
+                strong.price $159.990
+            a.single-part
+              .single-part-image
+                = image_tag("part-image.jpg", :alt => "part")
+              .single-part-text
+                span.brand Marca
+                span Detalle modelo
+                strong desde
+                strong.price $000.000
+            a.single-part
+              .single-part-image
+                = image_tag("part-image.jpg", :alt => "part")
+              .single-part-text
+                span.brand Marca
+                span Detalle modelo
+                strong desde
+                strong.price $000.000
+            a.single-part
+              .single-part-image
+                = image_tag("part-image.jpg", :alt => "part")
+              .single-part-text
+                span.brand Marca
+                span Detalle modelo
+                strong desde
+                strong.price $000.000
+            a.single-part
+              .single-part-image
+                = image_tag("part-image.jpg", :alt => "part")
+              .single-part-text
+                span.brand Marca
+                span Detalle modelo
+                strong desde
+                strong.price $000.000
+            a.single-part
+              .single-part-image
+                = image_tag("part-image.jpg", :alt => "part")
+              .single-part-text
+                span.brand Marca
+                span Detalle modelo
+                strong desde
+                strong.price $000.000
 
 = render 'shared/footer'
