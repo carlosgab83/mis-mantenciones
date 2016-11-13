@@ -12,9 +12,11 @@ module MatrixImporter
       def verify_all_manteinance_items_presents!
         all_manteinance_items_ids = []
         page_count = 0
+        first_name = nil
         xlsx.each_with_pagename do |name, sheet|
-          page_count +=1
           next if name == Common::Constants::VMES_SHEET_NAME
+          first_name ||= name
+          page_count +=1
           manteinance_items_rows = []
           manteinance_items_ids = []
           sheet.each_with_index do |row, i|
@@ -24,7 +26,7 @@ module MatrixImporter
             manteinance_items_rows << row[2..-1]
           end
 
-          verify_all_manteinance_items_with_at_least_one_price!(manteinance_items_rows, name) if page_count == 1
+          verify_all_manteinance_items_with_at_least_one_price!(manteinance_items_rows, name) if first_name.split('-').first == name.split('-').first
 
           self.manteinance_items = ManteinanceItem.where(id_item_mantencion: manteinance_items_ids).to_a
           db_manteinance_items_ids = manteinance_items.pluck(:id_item_mantencion).uniq
