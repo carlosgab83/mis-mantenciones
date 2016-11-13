@@ -1,0 +1,82 @@
+//////////////////////////////////////////////////////////
+// Media Query Helpers
+//////////////////////////////////////////////////////////
+
+$lg: '(min-width: 1200px)';
+$md: '(min-width: 992px) and (max-width: 1199px)';
+$osm: '(min-width: 992px)';
+$sm: '(min-width: 769px) and (max-width: 991px)';
+$usm: '(max-width: 991px)';
+$oxs: '(min-width: 769px)';
+$xs: '(max-width: 768px)';
+$xxs: '(max-width: 480px)';
+$xxxs: '(max-width: 320px)';
+
+//////////////////////////////////////////////////////////
+// Mixins
+//////////////////////////////////////////////////////////
+
+// Transition Mixin
+@mixin transition($args...) {
+	-webkit-transition: $args;
+	-moz-transition: $args;
+	-ms-transition: $args;
+	-o-transition: $args;
+	transition: $args;
+}
+
+// Transform Mixin
+@mixin transform($args...) {
+	-webkit-transform: $args;
+	-moz-transform: $args;
+	-ms-transform: $args;
+	-o-transform: $args;
+	transform: $args;
+}
+
+// Transform Origin Mixin
+@mixin transform-origin($args...) {
+	-webkit-transform-origin: $args;
+	-moz-transform-origin: $args;
+	-ms-transform-origin: $args;
+	-o-transform-origin: $args;
+	transform-origin: $args;
+}
+
+// Border Radius Mixin
+@mixin radius($args...) {
+	-webkit-border-radius: $args;
+	-moz-border-radius: $args;
+	border-radius: $args;
+}
+
+//////////////////////////////////////////////////////////
+// Extended Classes
+//////////////////////////////////////////////////////////
+
+// Triangle
+.half-triangle {
+	position: absolute;
+	content: '';
+	width: 0;
+	height: 0;
+	left: 0;
+	border-style: solid;
+}
+.upper-triangle {
+	@extend .half-triangle;
+	bottom: 100%;
+	border-width: 0 0 30px 100vw ;
+}
+.bottom-triangle {
+	@extend .half-triangle;
+	top: 100%;
+	border-width: 30px 100vw 0 0;
+}
+
+// place holder
+.placeholder {
+	font-style: italic!important;
+	font-weight: 300;
+	text-shadow: none;
+}

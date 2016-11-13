@@ -1,0 +1,328 @@
+@import 'colors';
+@import 'helpers';
+@import 'resets';
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Exo+2:300');
+@import url('https://fonts.googleapis.com/css?family=Exo:700');
+
+// Layout Variables
+$header-height: 80px;
+$footer-height: 80px;
+
+//////////////////////////////////////////////////////////
+// General Styles
+//////////////////////////////////////////////////////////
+html, body {
+	overflow-x: hidden;
+}
+body {
+	white-space: normal;
+	line-height: 1.4;
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 300;
+	min-width: 320px;
+}
+label {font-weight: 300;}
+h1, h2, dt {
+	font-family: 'Exo', sans-serif;
+	font-weight: 700;
+	font-style: italic;
+}
+h3, h4, h5, h6 {font-weight: 300;}
+h1, h2, h3, h4, h5, h6 {margin-top: 0;}
+// Anchors
+a {
+	text-decoration: none;
+	outline: none !important;
+	-moz-outline-style: none !important;
+	-webkit-outline-style: none !important;
+	&:hover, &:active, &:focus {
+		cursor: pointer;
+		text-decoration: none;
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Animation
+//////////////////////////////////////////////////////////
+
+a,
+button,
+.btn,
+input,
+select,
+textarea {
+	@include transition(all 0.3s ease-in-out);
+}
+
+//////////////////////////////////////////////////////////
+// Bootstrap Reset
+//////////////////////////////////////////////////////////
+
+.well, .breadcrumb {
+	box-shadow: none;
+	border: none;
+}
+.alert-link, .badge {font-weight: 300;}
+.alert {
+	border-radius: 0;
+	border: none;
+	text-align: center;
+	margin-bottom: 0;
+	strong {
+		font-weight: 400;
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Special Buttons
+//////////////////////////////////////////////////////////
+
+.btn {
+	font-weight: 400;
+	font-style: italic;
+	&:not(.btn-link) {
+		text-transform: uppercase;
+		font-size: 90%;
+		&:hover, &:active, &:focus {
+			box-shadow: none;
+		}
+	}
+	&.btn-ghost {
+		box-shadow: none!important;
+	}
+	&.btn-link {
+		font-weight: 300;
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Forms
+//////////////////////////////////////////////////////////
+
+// Checkbox
+.checkbox {
+	display: inline-block;
+	position: relative;
+	margin-top: 0;
+	margin-bottom: 15px;
+	input[type="checkbox"] {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		visibility: hidden;
+		+ label {
+			padding-left: 0;
+			font-weight: 300;
+			color: $light-color;
+			&:before, &:after {
+				width: 30px;
+				height: 30px;
+				padding: 4px;
+				border-radius: 50%;
+				display: inline-block;
+				vertical-align: middle;
+				line-height: 22px;
+				@include transition(all 0.2s ease-out);
+			}
+			&:before {
+				font-family: 'Pe-icon-7-stroke';
+				content: '\e66c';
+				position: relative;
+				margin-right: 5px;
+				font-size: 150%;
+				opacity: 0;
+				text-align: center;
+				text-indent: -1px;
+				z-index: 2;
+			}
+			&:after {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 1;
+				background: $side-color;
+				border: 1px solid darken($side-color,5%);
+			}
+		}
+		&:checked + label {
+			color: $main-color;
+			&:before {
+				opacity: 1;
+				content: '\e66c';
+				color: $back-color;
+			}
+			&:after {
+				background-color: $main-color;
+				border-color: $main-color;
+			}
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Layout
+//////////////////////////////////////////////////////////
+
+body {
+	> #wrapper {
+		display: table;
+		height: 100%;
+		width: 100%;
+		margin-bottom: -$footer-height;
+		padding-bottom: $footer-height;
+		.container {
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Header
+//////////////////////////////////////////////////////////
+
+#header {
+	min-height: $header-height;
+	padding: 20px 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 2;
+	&:after {@extend .bottom-triangle;}
+	div.text-right[class*='col-'] {
+		@media #{$xs}{
+			text-align: center;
+		}
+	}
+	.form-group {
+		padding: 0 10px;
+		&:last-child {padding-right: 0;}
+		@media #{$xs}{
+			display: inline-block;
+			vertical-align: top;
+		}
+		.form-control {
+			padding-left: 0;
+			padding-right: 0;
+			border-width: 0 0 1px 0;
+			max-width: 120px;
+			&:focus {
+				box-shadow: none;
+			}
+			&#search_kms {
+				text-align: right;
+			}
+		}
+	}
+	.input-group {
+		max-width: 120px;
+		.input-group-addon {
+			background-color: transparent;
+			padding-left: 5px;
+			padding-right: 0;
+			border-width: 0 0 1px 0;
+			opacity: 0.7;
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Titles
+//////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////
+// Slick Carousels
+//////////////////////////////////////////////////////////
+
+.multiple-slider,
+.multiple-products-slider {
+	display: block;
+	padding: 0 45px;
+	.single-product {
+		float: left;
+		height: 100%;
+		min-height: 1px;
+		text-align: center;
+		display: block;
+	}
+}
+
+.slick-arrow {
+	background-image: none;
+	text-shadow: none;
+	border: none;
+	background-color: transparent;
+	opacity: 0.5;
+	padding: 0;
+	position: absolute;
+	top: 50%;
+	margin-top: -22px;
+	z-index: 100;
+	> span[class^="fa"] {
+		font-size: 36px;
+		border-radius: 50%;
+		@include transition(all 0.6s ease-in-out);
+	}
+	&.right {right: 0;}
+	&.left  {left: 0;}
+	&:hover, &:active {
+		opacity: 0.8;
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Footer
+//////////////////////////////////////////////////////////
+
+#footer {
+	min-height: $footer-height;
+	padding: 25px 0;
+	position: relative;
+	&:before {@extend .upper-triangle;}
+	h6 {
+		font-weight: 700;
+		@media #{$xs}{margin: 15px 0 5px;}
+	}
+	ul, p {
+		font-size: 90%;
+		a {
+			display: inline-block;
+			width: 100%;
+			padding:1px 0;
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Modal
+//////////////////////////////////////////////////////////
+
+.modal {
+	top:60px;
+	.modal-content {
+		border-radius: 0;
+		.modal-header {
+			border: none;
+			.close {
+				> span[class^="pe"] {
+					font-size: 125%;
+				}
+			}
+		}
+		.modal-content {
+			box-shadow: none;
+			border: none;
+		}
+	}
+}
+.modal-backdrop {
+	&.in {
+		opacity: 0.6;
+	}
+}
