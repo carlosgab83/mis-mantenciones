@@ -6,6 +6,8 @@ class Pauta < ApplicationRecord
   has_many :manteinance_items, through: :pauta_details
   belongs_to :vme
 
+  default_scope {where(deleted: false)}
+
   def destroy
     self.deleted = true
     save
