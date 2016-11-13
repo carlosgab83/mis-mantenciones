@@ -25,4 +25,8 @@ es:
       xls_import:
         menu: "Importar xls"
         breadcrumb: "Importar xls"
-        title: "Importa un archivo xlsx"
+        title: "Importador simple xlsx por tabla"
+      xls_matrix_import:
+        menu: "Importar Matriz xls"
+        breadcrumb: "Importar Matriz xls"
+        title: "Importador xlsx de matriz de pautas y sucursales"

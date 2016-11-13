@@ -1,4 +1,3 @@
-
 module MergeRawImporter
   class Importer
     require 'roo'
