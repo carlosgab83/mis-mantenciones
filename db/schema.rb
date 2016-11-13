@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110023707) do
+ActiveRecord::Schema.define(version: 20161112142220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,7 +197,7 @@ ActiveRecord::Schema.define(version: 20161110023707) do
     t.integer "modelo_estado",      default: 1, null: false
   end
 
-  create_table "pauta", primary_key: "id_pauta", id: :integer, force: :cascade do |t|
+  create_table "pauta", primary_key: "id_pauta", force: :cascade do |t|
     t.text    "pauta_descripcion",                 null: false
     t.integer "kilometraje",                       null: false
     t.integer "id_marca"
@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(version: 20161110023707) do
     t.text    "url_logo"
     t.float   "vme_id"
     t.boolean "deleted",           default: false
-    t.index ["id_marca", "id_modelo", "vme_id", "kilometraje"], name: "pauta_business_index", unique: true, using: :btree
+    t.index ["id_pauta", "id_marca", "id_modelo", "vme_id", "kilometraje"], name: "pauta_business_index", unique: true, using: :btree
   end
 
   create_table "pauta_detalle", force: :cascade do |t|
