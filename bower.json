@@ -3,7 +3,8 @@
   "dependencies": {
     "jquery": "~2.1.3",
     "jquery-ujs": "~1.0.3",
-    "bootstrap-sass": "~3.3.4"
+    "slick-carousel": "^1.6.0",
+    "bootstrap-sass":   "~3.3.4"
   },
   "name": "mis-mantenciones",
   "homepage": "https://github.com/carlosgab83/mis-mantenciones",
@@ -15,10 +16,8 @@
     "node_modules",
     "bower_components",
     "vendor/assets/components",
+    "vendor/assets/bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "slick-carousel": "^1.6.0"
-  }
+  ]
 }
