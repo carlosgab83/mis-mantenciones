@@ -1,3 +1,8 @@
+require 'matrix_importer/managers/vme_sheet_manager'
+require 'matrix_importer/managers/branch_sheet_manager'
+require 'matrix_importer/managers/pauta_manager'
+require 'matrix_importer/managers/manteinance_item_manager'
+
 module MatrixImporter
   class Importer
     require 'roo'
