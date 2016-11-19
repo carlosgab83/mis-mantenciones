@@ -37,7 +37,8 @@
     delete
     show_in_app
 
-    ## Custom actions
+    ###########################
+    ### CUSTOM ACTIONS ########
     root :xls_matrix_import do
       register_instance_option :link_icon do
           'icon-upload'
@@ -52,12 +53,17 @@
     end
     xls_upload
 
-    # Awesome nested set
+    ###########################
+    ### AWESOME NESTED SET ####
+
     nested_set do
       visible do
          bindings[:abstract_model].model_name
       end
     end
+
+    ###########################
+    ### CHANGE VIEWS ##########
 
     config.model 'Category' do
       list do
