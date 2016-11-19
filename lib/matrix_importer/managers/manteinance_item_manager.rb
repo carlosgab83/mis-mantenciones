@@ -1,3 +1,5 @@
+require 'matrix_importer/common/constants'
+
 module MatrixImporter
   module Managers
     class ManteinanceItemManager
