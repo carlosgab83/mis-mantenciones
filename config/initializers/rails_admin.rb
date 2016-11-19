@@ -52,6 +52,42 @@
     end
     xls_upload
 
+    # Awesome nested set
+    nested_set do
+      visible do
+         bindings[:abstract_model].model_name
+      end
+    end
+
+    config.model 'Category' do
+      list do
+        field :name
+      end
+
+      edit do
+        field :name
+      end
+    end
+
+    config.model 'AttributesProduct' do
+      list do
+        field :product_attribute
+        field :product
+        field :value
+        field :deleted
+      end
+    end
+
+    config.model 'AttributesPromotion' do
+      list do
+        field :promotion_attribute
+        field :promotion
+        field :value
+        field :deleted
+      end
+    end
+
+
     ## With an audit adapter, you can add:
     # history_index
     # history_show
