@@ -9,65 +9,65 @@
             li
               .inner-cell
                 h2
-                  | Mantenciones para tu <em>Honda Civic 2002</em>
+                  | Mantenciones para tu <em>#{@vehicle.brand_name} #{@vehicle.model_name} #{@vehicle.manufacturing_year}</em>
               .inner-cell
-                span.lead 1.800 kms
+                span.lead #{number_to_currency(@pauta.kilometraje, precision: 0, format:"%n")} kms
             li
-              a.disabled
+              a class='#{manteinance_item_status_class(@pauta.engine_manteinance_items)}'
                 .inner-cell
                   span.flaticon-motor
                   | Motor
                 .inner-cell
-                  span.badge 0
+                  span.badge #{@pauta.engine_manteinance_items.count}
             li
-              a.disabled
+              a class='#{manteinance_item_status_class(@pauta.transmission_manteinance_items)}'
                 .inner-cell
                   span.flaticon-transmision
                   | Transmisión
                 .inner-cell
-                  span.badge 0
+                  span.badge #{@pauta.transmission_manteinance_items.count}
             li
-              a
+              a class='#{manteinance_item_status_class(@pauta.brake_manteinance_items)}'
                 .inner-cell
                   span.flaticon-brake-disk
                   | Frenos
                 .inner-cell
-                  span.badge 2
+                  span.badge #{@pauta.brake_manteinance_items.count}
             li
-              a
+              a class='#{manteinance_item_status_class(@pauta.tyres_manteinance_items)}'
                 .inner-cell
                   span.flaticon-wheel
                   | Neumáticos
                 .inner-cell
-                  span.badge 1
+                  span.badge #{@pauta.tyres_manteinance_items.count}
             li
-              a
+              a class='#{manteinance_item_status_class(@pauta.direction_manteinance_items)}'
                 .inner-cell
                   span.flaticon-oil
                   | Lubricación
                 .inner-cell
-                  span.badge 3
+                  span.badge #{@pauta.direction_manteinance_items.count}
             li
-              a.disabled
+              a class='#{manteinance_item_status_class(@pauta.suspension_manteinance_items)}'
                 .inner-cell
                   span.flaticon-shock-absorber
                   | Amortigüación
                 .inner-cell
-                  span.badge 0
+                  span.badge #{@pauta.suspension_manteinance_items.count}
             li
-              a.disabled
+              a class='#{manteinance_item_status_class(@pauta.electric_manteinance_items)}'
                 .inner-cell
                   span.flaticon-battery
                   | Eléctrico
                 .inner-cell
-                  span.badge 0
+                  span.badge #{@pauta.electric_manteinance_items.count}
             li
-              a.disabled
+              a class='#{manteinance_item_status_class(@pauta.other_manteinance_items)}'
                 .inner-cell
                   span.flaticon-car-search
                   | Otro
                 .inner-cell
-                  span.badge 0
+                  span.badge #{@pauta.other_manteinance_items.count}
           .blah
             .disclamer-text
               .small * estas mantenciones son solo de referencia de acuerdo al kilometraje y modelo de tu auto
@@ -86,7 +86,7 @@
           #promo-carousel
             a.single-promo
               .promo-image
-                = image_tag("promo-image.jpg", :alt => "promo") 
+                = image_tag("promo-image.jpg", :alt => "promo")
                 span.promo-image-text Cambio de aceite y filtro
               .promo-description
                 h6 $88.888

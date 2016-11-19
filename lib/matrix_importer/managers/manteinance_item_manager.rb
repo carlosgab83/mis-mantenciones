@@ -1,3 +1,5 @@
+require 'matrix_importer/common/constants'
+
 module MatrixImporter
   module Managers
     class ManteinanceItemManager
@@ -63,8 +65,9 @@ module MatrixImporter
             next
           end
           manteinance_items_array << {id: row[0].to_i, full_price: row[km_index].to_f.round(2)} if row[km_index].present? and row[0].present?
-          if row[0].nil? # Estoy en la fila del porcentaje de descuento
+          if row[0].blank? # Estoy en la fila del porcentaje de descuento
             discount_percentage = row[km_index].to_f.round(2)
+            break
           end
         end
         manteinance_items_array.collect do |hash|

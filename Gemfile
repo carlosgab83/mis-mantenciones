@@ -19,6 +19,7 @@ gem 'devise'
 gem 'roo', '~> 2.5.0'
 gem 'activerecord-session_store'
 gem 'activerecord-import', '~> 0.16'
+gem 'rails_admin_nested_set', '~> 0.5'
 
 group :development, :test do
   gem 'pry-byebug'
