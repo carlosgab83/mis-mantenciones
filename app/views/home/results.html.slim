@@ -11,7 +11,7 @@
                 h2
                   | Mantenciones para tu <em>#{@vehicle.brand_name} #{@vehicle.model_name} #{@vehicle.manufacturing_year}</em>
               .inner-cell
-                span.lead #{number_to_currency(@pauta.kilometraje, precision: 0, format:"%n")} kms
+                span.lead #{@pauta.name)}
             li
               a class='#{manteinance_item_status_class(@pauta.engine_manteinance_items)}'
                 .inner-cell

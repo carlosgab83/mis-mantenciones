@@ -3,4 +3,6 @@ class ManteinanceItem < ApplicationRecord
   self.primary_key = :id_item_mantencion
 
   belongs_to :section_type, foreign_key: :id_tipo_seccion
+
+  include ManteinanceItemSerializer
 end

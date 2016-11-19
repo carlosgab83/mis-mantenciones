@@ -8,6 +8,9 @@ class Pauta < ApplicationRecord
 
   default_scope {where(deleted: [false, nil])}
 
+  include ActionView::Helpers::NumberHelper
+  include PautaSerializer
+
   def destroy
     self.deleted = true
     save
@@ -15,6 +18,14 @@ class Pauta < ApplicationRecord
 
   def is_generic?
     vme_id.nil?
+  end
+
+  def name
+    "#{pauta_descripcion} #{humanize_kms} kms"
+  end
+
+  def humanize_kms
+    number_to_currency(kilometraje, precision: 0,  delimiter: '.', format:"%n")
   end
 
   def engine_manteinance_items
