@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119165550) do
+ActiveRecord::Schema.define(version: 20161120180330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -295,8 +295,8 @@ ActiveRecord::Schema.define(version: 20161119165550) do
     t.date     "from_date"
     t.date     "to_date"
     t.boolean  "status",                              null: false
-    t.float    "full_price",                          null: false
-    t.float    "promo_price",                         null: false
+    t.float    "full_price"
+    t.float    "promo_price"
     t.float    "discount_percentage"
     t.integer  "priority",                            null: false
     t.integer  "max_coupons"
