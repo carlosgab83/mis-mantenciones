@@ -1,0 +1,21 @@
+h3
+  | Product
+ul
+    li
+      = @product.name
+    li
+      = @product.product_brand.name
+    | Attributes
+    ul
+      - @product.attributes_products.each do |ap|
+        li
+          = "#{ap.product_attribute.name}: #{ap.value}"
+    | Branches
+    ul
+      - @product.branches_products.each do |bp|
+        li
+          = "#{bp.branch.name}"
+        li
+          = "Price: #{bp.price}"
+
+

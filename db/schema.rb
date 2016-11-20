@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120180330) do
+ActiveRecord::Schema.define(version: 20161120201809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20161120180330) do
   end
 
   create_table "branches_products", force: :cascade do |t|
-    t.float    "price",                      null: false
+    t.float    "price"
     t.date     "from_date"
     t.date     "to_date"
     t.boolean  "status",                     null: false
@@ -257,26 +257,16 @@ ActiveRecord::Schema.define(version: 20161120180330) do
     t.index ["name"], name: "product_brands_business_index", unique: true, using: :btree
   end
 
-  create_table "product_types", force: :cascade do |t|
-    t.string   "name",                       null: false
-    t.boolean  "deleted",    default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.index ["name"], name: "product_types_business_index", unique: true, using: :btree
-  end
-
   create_table "products", force: :cascade do |t|
     t.string   "name",                             null: false
     t.boolean  "deleted",          default: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "category_id",                      null: false
-    t.integer  "product_type_id",                  null: false
     t.integer  "product_brand_id",                 null: false
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["name"], name: "products_business_index", unique: true, using: :btree
     t.index ["product_brand_id"], name: "index_products_on_product_brand_id", using: :btree
-    t.index ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
   end
 
   create_table "products_vmes", force: :cascade do |t|
@@ -474,7 +464,6 @@ ActiveRecord::Schema.define(version: 20161120180330) do
   add_foreign_key "pauta_proveedor", "proveedor_taller_sucursal", column: "ide_rut", primary_key: "ide_rut", name: "fk_proveedor_sucursal"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "product_brands"
-  add_foreign_key "products", "product_types"
   add_foreign_key "products_vmes", "products"
   add_foreign_key "products_vmes", "vehiculo_modelo_especifico", column: "vme_id", primary_key: "vme_id"
   add_foreign_key "promotions", "categories"

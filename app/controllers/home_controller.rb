@@ -21,10 +21,11 @@ class HomeController < ApplicationController
 
     begin
       @vehicle = VehicleFinder.new(SearchVehicleForm.new(session[:search])).call
+      # If not vehicle found, @vehicle.vme is nil
       @pauta   = PautaFinder.new(vehicle: @vehicle).call
       session[:vehicle] = @vehicle
       @promotions = CarouselPromotionsFinder.new(vehicle: session[:vehicle]).call
-      # Include here Promotions and Products
+      @products   = CarouselProductsFinder.new(vehicle: session[:vehicle]).call
     rescue AppExceptions::PautaNotFound => e
       puts e.message
       puts e.backtrace

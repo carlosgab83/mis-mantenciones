@@ -16,11 +16,15 @@ class CarouselPromotionsFinder < BaseService
   end
 
   def get_promotions
-    Promotion.availables.actives.with_stock.not_deleted
+    promotions = Promotion.availables.actives.with_stock.not_deleted
     .includes(:branches, :category)
     .joins(:promotions_vmes)
-    .where("(promotions_vmes.vme_id in (?) or promotions_vmes.vme_id IS NULL)", params[:vehicle].vme.try(:vme_id))
     .order("promotions.created_at desc, promotions.promo_price asc")
+    if params[:vehicle].present? and params[:vehicle].vme.present?
+      promotions = promotions.where("(promotions_vmes.vme_id in (?) or promotions_vmes.vme_id IS NULL)", params[:vehicle].vme.vme_id)
+    else
+      promotions = promotions.where("promotions_vmes.vme_id IS NULL")
+    end
   end
 
   def get_category_array

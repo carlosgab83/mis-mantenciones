@@ -124,53 +124,9 @@
                 span Otros
 
           #parts-carousel
-            a.single-part
-              .single-part-image
-                = image_tag("part-image.jpg", :alt => "part")
-              .single-part-text
-                span.brand Michellin
-                span Agilis 51 215/60 R16c 6pr
-                strong desde
-                strong.price $159.990
-            a.single-part
-              .single-part-image
-                = image_tag("part-image.jpg", :alt => "part")
-              .single-part-text
-                span.brand Marca
-                span Detalle modelo
-                strong desde
-                strong.price $000.000
-            a.single-part
-              .single-part-image
-                = image_tag("part-image.jpg", :alt => "part")
-              .single-part-text
-                span.brand Marca
-                span Detalle modelo
-                strong desde
-                strong.price $000.000
-            a.single-part
-              .single-part-image
-                = image_tag("part-image.jpg", :alt => "part")
-              .single-part-text
-                span.brand Marca
-                span Detalle modelo
-                strong desde
-                strong.price $000.000
-            a.single-part
-              .single-part-image
-                = image_tag("part-image.jpg", :alt => "part")
-              .single-part-text
-                span.brand Marca
-                span Detalle modelo
-                strong desde
-                strong.price $000.000
-            a.single-part
-              .single-part-image
-                = image_tag("part-image.jpg", :alt => "part")
-              .single-part-text
-                span.brand Marca
-                span Detalle modelo
-                strong desde
-                strong.price $000.000
+            - @products.each do |product|
+              - from_price = product.branches_products.map{|bp| bp.price }.compact.try(:min)
+              - next if from_price.nil?
+              = render 'carousel_product', product: product, from_price: from_price
 
 = render 'shared/footer'

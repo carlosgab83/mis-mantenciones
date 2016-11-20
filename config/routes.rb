@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :promotions, only: [:index, :show]
 
   resources :coupons, only: [:create], defaults: {format: :json}
+
+  resources :products, only: [:show]
 end
