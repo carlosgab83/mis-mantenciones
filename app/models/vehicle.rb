@@ -2,6 +2,7 @@
 class Vehicle
 
   attr_reader :rvm_brand, :rvm_model, :manufacturing_year, :brand_id, :model_id, :engine_serial, :chassis_serial, :patent, :kms, :found
+  attr_accessor :vme
 
   # Input is onw row of db view v_rvm_vehiculo
   def initialize(v_rvm_vehiculo, patent, kms)

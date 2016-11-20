@@ -1,6 +1,5 @@
 class ManteinanceCouponsController < ApplicationController
   protect_from_forgery with: :exception
-  skip_before_filter  :verify_authenticity_token
 
   # GET /manteinance_coupons/new?manteinance_coupon[id_pauta]=476
   def new

@@ -67,7 +67,9 @@
 
     config.model 'Category' do
       list do
+        field :id
         field :name
+        field :parent
       end
 
       edit do

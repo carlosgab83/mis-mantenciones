@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :manteinance_coupons, only: [:new, :create], defaults: {format: :json}
 
   resources :clients, only: [:create], defaults: {format: :json}
+
+  resources :promotions, only: [:index, :show]
 end

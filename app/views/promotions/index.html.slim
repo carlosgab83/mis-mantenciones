@@ -1,0 +1,27 @@
+h3
+  | Categories
+ul
+  - @categories.each do |category|
+    li
+      = category.name
+
+
+h3
+  | Promotions
+ul
+  - @promotions.each do |promotion|
+    li
+      = promotion.name
+    ul
+      li
+        = promotion.description
+      li
+        = promotion.promo_price
+      li
+        = promotion.full_price
+      | Attributes
+      ul
+        - promotion.attributes_promotions.each do |ap|
+          li
+            = "#{ap.promotion_attribute.name}: #{ap.value}"
+

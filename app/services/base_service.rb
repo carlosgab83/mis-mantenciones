@@ -2,7 +2,7 @@ class BaseService
 
   attr_reader :params
 
-  def initialize(params)
+  def initialize(params = {})
     self.params = params
   end
 
