@@ -1,4 +1,4 @@
-class CreateManteinanceCouponsItem < ApplicationRecord
+class ManteinanceCouponsItem < ApplicationRecord
   belongs_to :manteinance_coupon
   belongs_to :manteinance_item
 

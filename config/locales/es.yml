@@ -32,3 +32,6 @@ es:
         title: "Importador xlsx de matriz de pautas y sucursales"
   home:
     pauta_not_found: "No pudimos hayar unapauta para tu vehículo, sin embargo siempre estamos actualizando nuestros registros, muy pronto tendremos más información para ti"
+
+  general:
+    error: "No se pudo completar la operación, por favor inténtelo más tarde"
