@@ -9,5 +9,6 @@ class Promotion < ApplicationRecord
 
   scope :availables, -> {where("? between from_date and to_date", Date.today)}
   scope :actives, -> {where("status = true")}
+  scope :with_stock, -> {where("max_coupons IS NULL or max_coupons >= 1")}
   scope :not_deleted, -> {where(deleted: [false, nil])}
 end

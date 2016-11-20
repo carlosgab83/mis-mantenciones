@@ -16,7 +16,7 @@ class CarouselPromotionsFinder < BaseService
   end
 
   def get_promotions
-    Promotion.availables.actives.not_deleted
+    Promotion.availables.actives.with_stock.not_deleted
     .includes(:branches, :category)
     .joins(:promotions_vmes)
     .where("(promotions_vmes.vme_id in (?) or promotions_vmes.vme_id IS NULL)", params[:vehicle].vme.try(:vme_id))
