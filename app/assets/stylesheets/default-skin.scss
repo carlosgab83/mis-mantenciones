@@ -46,10 +46,11 @@ a {
 // Button
 .btn.btn-cta {
 	color: $dark-color;
-	background-color: $side-color;
+	background-color: lighten(desaturate($side-color,10%), 10%);
 	&:hover, &:active, &:focus {
 		color: $dark-color;
-		background-color: daken($side-color,10%);
+		background-color: daken(saturate($side-color,20%),20%);
+		box-shadow: 0 0 20px rgba($side-color,0.9);
 	}
 	&.btn-ghost {
 		color: $side-color;
@@ -73,6 +74,15 @@ a {
 		color: $main-color;
 		&:hover, &:active, &:focus {
 			color: darken($main-color, 10%);
+		}
+	}
+	&.btn-ghost {
+		color: $main-color;
+		border-color: $main-color;
+		background: transparent;
+		&:hover, &:active, &:focus {
+			color: $light-color;
+			background-color: $main-color;
 		}
 	}
 }
@@ -104,15 +114,53 @@ a {
 		}
 	}
 }
+
 // Home
+#home-upper {
+	background-image: url(guideline-background.jpg);
+	&:after {
+		background: $main-color;
+		background: rgba($main-color,0.93);
+		background: -moz-linear-gradient(left, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		box-shadow: inset 0 0 200px rgba(darken($main-color,10%),0.4);
+	}
+	color: $back-color;
+}
+#home-middle {
+	background-color: $dark-color;
+	&:before {border-color: transparent transparent $dark-color transparent;}
+	&:after {border-color: $dark-color transparent transparent transparent;}
+	.form-control {color: $back-color;}
+	.input-group {
+		.input-group-addon {
+			color: $back-color;
+		}
+	}
+	.form-control, .input-group-addon {
+		border-color: $back-color;
+		border-color: rgba($back-color,0.5);
+	}
+}
+#home-bottom {
+	background-image: url(guideline-background.jpg);
+	&:after {
+		background: $light-color;
+		background: rgba($light-color,0.94);
+	}
+}
+
+// Dashboard
 section#section-guideline {
 	background-image: url(guideline-background.jpg);
 	&:after {
 		background: $main-color;
 		background: rgba($main-color,0.93);
-		background: -moz-linear-gradient(left, rgba(lighten($main-color,10%),0.93) 0%, rgba(darken($main-color,10%),0.93) 100%); /* FF3.6-15 */
-		background: -webkit-linear-gradient(left, rgba(lighten($main-color,10%),0.93) 0%,rgba(darken($main-color,10%),0.93) 100%); /* Chrome10-25,Safari5.1-6 */
-		background: linear-gradient(to right, rgba(lighten($main-color,10%),0.93) 0%,rgba(darken($main-color,10%),0.93) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		background: -moz-linear-gradient(left, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		box-shadow: inset 0 0 200px rgba(darken($main-color,10%),0.4);
 	}
 	color: $back-color;
 	#guideline-list {
@@ -131,6 +179,10 @@ section#section-guideline {
 				}
 			}
 		}
+		.popover {
+			color: $dark-color;
+			box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+		}
 	}
 }
 section#section-promos {
@@ -142,7 +194,7 @@ section#section-parts {
 	background-image: url(guideline-background.jpg);
 	&:after {
 		background: $light-color;
-		background: rgba($light-color,0.93);
+		background: rgba($light-color,0.94);
 	}
 	#part-list {
 		li {
@@ -170,15 +222,101 @@ section#section-parts {
 		color: $dark-color;
 	}
 	&:hover, &:active, &:focus {
-		box-shadow: 0 2px 0 rgba($dark-color,0.2);
+		box-shadow: 3px 3px 0 rgba($dark-color,0.2);
 	}
 }
+.single-promo {
+	&:hover, &:active, &:focus {
+		.promo-image {
+			box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+		}
+	}
+}
+
 // Modal
 .modal {
+	.modal-header {
+		background-color: $dark-color;
+		color: $light-color;
+		.close {
+			color: $light-color;
+			text-shadow: none;
+			padding: 5px;
+			width: 30px;
+			height: 30px;
+			line-height: 20px;
+			text-align: center;
+		}
+		.btn {
+			color: $light-color;
+			&.active {
+				color: $side-color;
+			}
+		}
+	}
 	.modal-content {
 		box-shadow: 5px 5px 0 rgba($dark-color,0.2);
+	}
+	.modal-footer {
+		background-color: $light-color;
+		.form-control {
+			background-color: $back-color
+		}
 	}
 }
 .modal-backdrop {
 	background-color: $dark-color;
+}
+#quote-modal {
+	.modal-selector {
+		background-color: lighten($dark-color, 10%);
+		color: $light-color;
+	}
+	.modal-body {
+		.quote-selector {
+			> ul {
+				> li {
+					border-color: darken($light-color, 10%);
+					a {
+						color: $dark-color;
+						&:hover, &:active, &:focus {
+							background-color: $light-color;
+						}
+					}
+					&.active a {
+						color: darken($main-color,4%);
+						background-color: $light-color;
+					}
+				}
+			}
+		}
+		.quote-detail {
+			background-color: $light-color;
+			ul > li {
+				color: darken($main-color,4%);
+			}
+		}
+	}
+}
+
+// Toggle filter
+.toggle-filter {
+	border-color: $light-color;
+	box-shadow: inset 0 0 10px rgba($dark-color,0.5);
+	input[type="checkbox"] {
+		& + span {
+			background-color: $light-color;
+			color: $dark-color;
+		}
+		&:checked {
+			& + span {
+				background-color: transparent;
+				color: $light-color;
+				& + span {
+					background-color: $light-color;
+					color: $dark-color;
+				}
+			}
+		}
+	} 
 }
