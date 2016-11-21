@@ -8,12 +8,12 @@ header#header
         form.form-inline
           .form-group
             label.sr-only for="exampleInputName2" Patente
-            = text_field('search', 'patente', class: 'form-control', placeholder:'Ingrese su Patente', value: session[:search]['patente'])
+            = text_field('search', 'patente', class: 'form-control', placeholder:'Patente', value: session[:search]['patente'])
 
           .form-group
             label.sr-only for="exampleInputEmail2" Kilometraje
             .input-group
-              = text_field('search', 'kms', class: 'form-control', placeholder:'Ingrese el kilometraje', value: session[:search]['kms'])
+              = text_field('search', 'kms', class: 'form-control', placeholder:'Kilometraje', value: session[:search]['kms'])
               .input-group-addon kms
           
           .form-group
