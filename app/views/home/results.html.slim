@@ -27,24 +27,24 @@
                 .inner-cell
                   span.badge 0
             li
-              a
+              a data-toggle="popover" data-trigger="hover" data-content="Some content testing text" data-placement="bottom"
                 .inner-cell
                   span.flaticon-brake-disk
                   | Frenos
                 .inner-cell
                   span.badge 2
             li
-              a
+              a data-toggle="popover" data-trigger="hover" data-content="Some content" data-placement="bottom"
                 .inner-cell
                   span.flaticon-wheel
                   | Neumáticos
                 .inner-cell
                   span.badge 1
             li
-              a
+              a data-toggle="popover" data-trigger="hover" data-content="Some content" data-placement="bottom"
                 .inner-cell
-                  span.flaticon-oil
-                  | Lubricación
+                  span.flaticon-steering-wheel
+                  | Dirección
                 .inner-cell
                   span.badge 3
             li
@@ -68,12 +68,12 @@
                   | Otro
                 .inner-cell
                   span.badge 0
-          .blah
+          .quote
             .disclamer-text
               .small * estas mantenciones son solo de referencia de acuerdo al kilometraje y modelo de tu auto
             .button-holder
-              button.btn.btn-cta type="button"
-                | Consultar
+              button.btn.btn-cta type="button" data-toggle="modal" data-target="#quote-modal"
+                | Cotizar estas mantenciones
 
   section#section-promos
     .container
@@ -138,28 +138,28 @@
             | Piezas y repuestos
           ul#part-list
             li
-              a.active title='Neumáticos' style='background-image:url(  #{image_url("part-image.jpg")} );'
+              a.active title='Neumáticos' style='background-image:url(  #{image_url("part-sample.jpg")} );'
                 span Neumáticos
             li
-              a title='Filtros' style='background-image:url(  #{image_url("part-image.jpg")} );'
+              a title='Filtros' style='background-image:url(  #{image_url("part-sample.jpg")} );'
                 span Filtros
             li
-              a title='Carburador' style='background-image:url(  #{image_url("part-image.jpg")} );'
+              a title='Carburador' style='background-image:url(  #{image_url("part-sample.jpg")} );'
                 span Carburador
             li
-              a title='Espejos' style='background-image:url(  #{image_url("part-image.jpg")} );'
+              a title='Espejos' style='background-image:url(  #{image_url("part-sample.jpg")} );'
                 span Espejos
             li
-              a title='Bujías' style='background-image:url(  #{image_url("part-image.jpg")} );'
+              a title='Bujías' style='background-image:url(  #{image_url("part-sample.jpg")} );'
                 span Bujías
             li
-              a title='Batería' style='background-image:url(  #{image_url("part-image.jpg")} );'
+              a title='Batería' style='background-image:url(  #{image_url("part-sample.jpg")} );'
                 span Batería
             li
-              a title='Luces' style='background-image:url(  #{image_url("part-image.jpg")} );'
+              a title='Luces' style='background-image:url(  #{image_url("part-sample.jpg")} );'
                 span Luces
             li
-              a title='Otros' style='background-image:url(  #{image_url("part-image.jpg")} );'
+              a title='Otros' style='background-image:url(  #{image_url("part-sample.jpg")} );'
                 span Otros
 
           #parts-carousel
@@ -213,3 +213,7 @@
                 strong.price $000.000
 
 = render 'shared/footer'
+
+= render 'shared/quote'
+
+= render 'shared/contact'
