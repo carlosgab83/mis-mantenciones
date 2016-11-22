@@ -9,65 +9,65 @@
             li
               .inner-cell
                 h2
-                  | Mantenciones para tu <em>Honda Civic 2002</em>
+                  | Mantenciones para tu <em>#{@vehicle.brand_name} #{@vehicle.model_name} #{@vehicle.manufacturing_year}</em>
               .inner-cell
-                span.lead 1.800 kms
+                span.lead #{@pauta.name}
             li
-              a.disabled
+              a class='#{manteinance_item_status_class(@pauta.engine_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="Some content testing text" data-placement="bottom"
                 .inner-cell
                   span.flaticon-motor
                   | Motor
                 .inner-cell
-                  span.badge 0
+                  span.badge #{@pauta.engine_manteinance_items.count}
             li
-              a.disabled
+              a class='#{manteinance_item_status_class(@pauta.transmission_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="Some content testing text" data-placement="bottom"
                 .inner-cell
                   span.flaticon-transmision
                   | Transmisión
                 .inner-cell
-                  span.badge 0
+                  span.badge #{@pauta.transmission_manteinance_items.count}
             li
-              a data-toggle="popover" data-trigger="hover" data-content="Some content testing text" data-placement="bottom"
+              a class='#{manteinance_item_status_class(@pauta.brake_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="Some content testing text" data-placement="bottom"
                 .inner-cell
                   span.flaticon-brake-disk
                   | Frenos
                 .inner-cell
-                  span.badge 2
+                  span.badge #{@pauta.brake_manteinance_items.count}
             li
-              a data-toggle="popover" data-trigger="hover" data-content="Some content" data-placement="bottom"
+              a class='#{manteinance_item_status_class(@pauta.tyres_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="Some content" data-placement="bottom"
                 .inner-cell
                   span.flaticon-wheel
                   | Neumáticos
                 .inner-cell
-                  span.badge 1
+                  span.badge #{@pauta.tyres_manteinance_items.count}
             li
-              a data-toggle="popover" data-trigger="hover" data-content="Some content" data-placement="bottom"
+              a class='#{manteinance_item_status_class(@pauta.direction_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="Some content" data-placement="bottom"
                 .inner-cell
                   span.flaticon-steering-wheel
                   | Dirección
                 .inner-cell
-                  span.badge 3
+                  span.badge #{@pauta.direction_manteinance_items.count}
             li
-              a.disabled
+              a class='#{manteinance_item_status_class(@pauta.suspension_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="Some content testing text" data-placement="bottom"
                 .inner-cell
                   span.flaticon-shock-absorber
                   | Amortigüación
                 .inner-cell
-                  span.badge 0
+                  span.badge #{@pauta.suspension_manteinance_items.count}
             li
-              a.disabled
+              a class='#{manteinance_item_status_class(@pauta.electric_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="Some content testing text" data-placement="bottom"
                 .inner-cell
                   span.flaticon-battery
                   | Eléctrico
                 .inner-cell
-                  span.badge 0
+                  span.badge #{@pauta.electric_manteinance_items.count}
             li
-              a.disabled
+              a class='#{manteinance_item_status_class(@pauta.other_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="Some content testing text" data-placement="bottom"
                 .inner-cell
                   span.flaticon-car-search
                   | Otro
                 .inner-cell
-                  span.badge 0
+                  span.badge #{@pauta.other_manteinance_items.count}
           .quote
             .disclamer-text
               .small * estas mantenciones son solo de referencia de acuerdo al kilometraje y modelo de tu auto
@@ -84,51 +84,12 @@
       .row
         .col-md-12
           #promo-carousel
-            a.single-promo
-              .promo-image
-                = image_tag("promo-image.jpg", :alt => "promo") 
-                span.promo-image-text Cambio de aceite y filtro
-              .promo-description
-                h6 $88.888
-                span.changed $99.999
-            a.single-promo
-              .promo-image
-                = image_tag("promo-image.jpg", :alt => "promo")
-              .promo-description
-                h6 Nuevo Honda Civic
-                span Cotizar
-            a.single-promo
-              .promo-image
-                = image_tag("promo-image.jpg", :alt => "promo")
-                span.promo-image-text Texto de la promo
-              .promo-description
-                h6 $77.990
-                span $79.990
-            a.single-promo
-              .promo-image
-                = image_tag("promo-image.jpg", :alt => "promo")
-              .promo-description
-                h6 $49.990
-                span $59.990
-            a.single-promo
-              .promo-image
-                = image_tag("promo-image.jpg", :alt => "promo")
-                span.promo-image-text Texto de la promo
-              .promo-description
-                h6 $49.990
-                span $59.990
-            a.single-promo
-              .promo-image
-                = image_tag("promo-image.jpg", :alt => "promo")
-                span.promo-image-text Texto de la promo
-              .promo-description
-                h6 $49.990
-                span $59.990
-
+            - @promotions.each do |promotion|
+              = render 'carousel_promotion', promotion: promotion
       .row
         .col-md-12.text-center
-          a.btn.btn-link Ver todas
-
+          = link_to promotions_path do
+            .btn.btn-link Ver todas
 
   section#section-parts
     .container
@@ -163,54 +124,10 @@
                 span Otros
 
           #parts-carousel
-            a.single-part
-              .single-part-image
-                = image_tag("part-image.jpg", :alt => "part")
-              .single-part-text
-                span.brand Michellin
-                span Agilis 51 215/60 R16c 6pr
-                strong desde
-                strong.price $159.990
-            a.single-part
-              .single-part-image
-                = image_tag("part-image.jpg", :alt => "part")
-              .single-part-text
-                span.brand Marca
-                span Detalle modelo
-                strong desde
-                strong.price $000.000
-            a.single-part
-              .single-part-image
-                = image_tag("part-image.jpg", :alt => "part")
-              .single-part-text
-                span.brand Marca
-                span Detalle modelo
-                strong desde
-                strong.price $000.000
-            a.single-part
-              .single-part-image
-                = image_tag("part-image.jpg", :alt => "part")
-              .single-part-text
-                span.brand Marca
-                span Detalle modelo
-                strong desde
-                strong.price $000.000
-            a.single-part
-              .single-part-image
-                = image_tag("part-image.jpg", :alt => "part")
-              .single-part-text
-                span.brand Marca
-                span Detalle modelo
-                strong desde
-                strong.price $000.000
-            a.single-part
-              .single-part-image
-                = image_tag("part-image.jpg", :alt => "part")
-              .single-part-text
-                span.brand Marca
-                span Detalle modelo
-                strong desde
-                strong.price $000.000
+            - @products.each do |product|
+              - from_price = product.branches_products.map{|bp| bp.price }.compact.try(:min)
+              - next if from_price.nil?
+              = render 'carousel_product', product: product, from_price: from_price
 
 = render 'shared/footer'
 

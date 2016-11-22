@@ -1,0 +1,17 @@
+h3
+  | Promotion
+ul
+    li
+      = @promotion.name
+    li
+      = @promotion.description
+    li
+      = @promotion.promo_price
+    li
+      = @promotion.full_price
+    | Attributes
+    ul
+      - @promotion.attributes_promotions.each do |ap|
+        li
+          = "#{ap.promotion_attribute.name}: #{ap.value}"
+

@@ -10,21 +10,21 @@
         .col-sm-12
           .row
             .col-sm-12.col-md-4
-              h3 
-                | CONSULTA TUS 
+              h3
+                | CONSULTA TUS
                 br
                 | MANTENCIONES
             .col-sm-12.col-md-8
               = form_tag results_home_path, class: 'form-inline'
                 .form-group
-                  = text_field('search', 'patente', class: 'form-control', placeholder:'Ingrese su Patente')
+                  = text_field('search', 'patent', class: 'form-control', placeholder:'Patente')
                 .form-group
                   .input-group
-                    = text_field('search', 'kms', class: 'form-control', placeholder:'Kilometraje de su vehículo')
+                    = text_field('search', 'kms', class: 'form-control', placeholder:'Kilometraje')
                     .input-group-addon kms
                 .form-group
                   button.btn.btn-cta type="submit" Ver mi pauta
-  #home-bottom 
+  #home-bottom
     .container
       .row
         .col-md-12
@@ -35,7 +35,7 @@
               ul.list-unstyled.list-inline
                 li
                   i.fa.fa-search
-                  | Busca 
+                  | Busca
                   br
                   | Talleres
                 li
@@ -45,12 +45,12 @@
                   | Mantenciones
                 li
                   i.fa.fa-calendar
-                  | Agenda 
+                  | Agenda
                   br
                   | tu Atención
                 li
                   i.fa.fa-wrench
-                  | Compra 
+                  | Compra
                   br
                   | Repuestos
 

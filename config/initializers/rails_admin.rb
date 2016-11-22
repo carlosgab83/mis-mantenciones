@@ -37,7 +37,8 @@
     delete
     show_in_app
 
-    ## Custom actions
+    ###########################
+    ### CUSTOM ACTIONS ########
     root :xls_matrix_import do
       register_instance_option :link_icon do
           'icon-upload'
@@ -51,6 +52,49 @@
         end
     end
     xls_upload
+
+    ###########################
+    ### AWESOME NESTED SET ####
+
+    nested_set do
+      visible do
+         bindings[:abstract_model].model_name
+      end
+    end
+
+    ###########################
+    ### CHANGE VIEWS ##########
+
+    config.model 'Category' do
+      list do
+        field :id
+        field :name
+        field :parent
+      end
+
+      edit do
+        field :name
+      end
+    end
+
+    config.model 'AttributesProduct' do
+      list do
+        field :product_attribute
+        field :product
+        field :value
+        field :deleted
+      end
+    end
+
+    config.model 'AttributesPromotion' do
+      list do
+        field :promotion_attribute
+        field :promotion
+        field :value
+        field :deleted
+      end
+    end
+
 
     ## With an audit adapter, you can add:
     # history_index

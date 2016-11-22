@@ -1,0 +1,55 @@
+a.single-promo href="#{promotion_path(promotion)}"
+  - if promotion.promo_price.present?
+    .promo-image
+      = image_tag("promo-image.jpg", :alt => "promo")
+      span.promo-image-text #{promotion.name}
+    .promo-description
+      h6 #{number_to_currency(promotion.promo_price, precision: 0,  delimiter: '.')}
+      span.changed #{number_to_currency(promotion.full_price, precision: 0,  delimiter: '.')}
+  - else
+    .promo-image
+      = image_tag("promo-image.jpg", :alt => "promo")
+    .promo-description
+      h6 #{promotion.name}
+      span Cotizar
+
+/a.single-promo
+  .promo-image
+    = image_tag("promo-image.jpg", :alt => "promo")
+    span.promo-image-text Cambio de aceite y filtro
+  .promo-description
+    h6 $88.888
+    span.changed $99.999
+/a.single-promo
+  .promo-image
+    = image_tag("promo-image.jpg", :alt => "promo")
+  .promo-description
+    h6 Nuevo Honda Civic
+    span Cotizar
+/a.single-promo
+  .promo-image
+    = image_tag("promo-image.jpg", :alt => "promo")
+    span.promo-image-text Texto de la promo
+  .promo-description
+    h6 $77.990
+    span $79.990
+/a.single-promo
+  .promo-image
+    = image_tag("promo-image.jpg", :alt => "promo")
+  .promo-description
+    h6 $49.990
+    span $59.990
+/a.single-promo
+  .promo-image
+    = image_tag("promo-image.jpg", :alt => "promo")
+    span.promo-image-text Texto de la promo
+  .promo-description
+    h6 $49.990
+    span $59.990
+/a.single-promo
+  .promo-image
+    = image_tag("promo-image.jpg", :alt => "promo")
+    span.promo-image-text Texto de la promo
+  .promo-description
+    h6 $49.990
+    span $59.990
