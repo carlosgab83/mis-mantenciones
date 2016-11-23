@@ -72,8 +72,9 @@
             .disclamer-text
               .small * estas mantenciones son solo de referencia de acuerdo al kilometraje y modelo de tu auto
             .button-holder
-              button.btn.btn-cta type="button" data-toggle="modal" data-target="#quote-modal"
-                | Cotizar estas mantenciones
+              = link_to new_manteinance_coupon_path(manteinance_coupon: {id_pauta: @pauta.id_pauta}), remote: true
+                button.btn.btn-cta type="button"
+                  | Cotizar estas mantenciones
 
   section#section-promos
     .container
@@ -131,6 +132,6 @@
 
 = render 'shared/footer'
 
-= render 'shared/quote'
+#quote-modal.modal.fade role="dialog"
 
 = render 'shared/contact'

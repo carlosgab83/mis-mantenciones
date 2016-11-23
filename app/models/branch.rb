@@ -1,5 +1,6 @@
 class Branch < ApplicationRecord
   belongs_to :shop
+  belongs_to :comune
   has_many :branches_products
   has_many :products, through: :branches_products
   has_many :branches_manteinance_items
@@ -18,5 +19,13 @@ class Branch < ApplicationRecord
   # Loads an obj that stores all manteinance_items offered by this branch for this pauta
   def branch_pauta(pauta)
     BranchPauta.new(branch: self, pauta: pauta).load
+  end
+
+  def promo_price(pauta)
+    branch_pauta(pauta).promo_price
+  end
+
+  def full_price(pauta)
+    branch_pauta(pauta).full_price
   end
 end

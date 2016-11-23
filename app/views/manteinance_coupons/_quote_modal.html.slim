@@ -1,0 +1,31 @@
+.modal-dialog.modal-lg
+  .modal-content
+    .modal-header
+      button type="button" class="close" data-dismiss="modal" x
+      h5.modal-title
+        i.fa.fa-sort-amount-asc
+        | Ordernar por
+      .btn-group role="group" data-toggle="buttons"
+        label.btn.btn-link.active type="button"
+          input type="radio" name="quote-filter"
+          span opción 1
+        label.btn.btn-link type="button"
+          input type="radio" name="quote-filter"
+          span opción 2
+        label.btn.btn-link type="button"
+          input type="radio" name="quote-filter"
+          span opción 3
+    .modal-selector
+      = similar_pautas_toggle_filters
+    .modal-body
+      .quote-selector
+        = branches
+      .quote-detail
+        .button-holder
+          .row
+            .col-sm-5.col-md-6
+              .btn.btn-cta.btn-block data-dismiss="modal" data-toggle="modal" href="#contact-modal" Agendar
+            .col-sm-7.col-md-6
+              .btn.btn-ghost.btn-block data-dismiss="modal" data-toggle="modal" href="#contact-modal" Obtener ticket
+        ul.list-unstyled
+          = branch_manteinance_items_for_first_listing_branch

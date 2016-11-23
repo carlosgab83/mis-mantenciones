@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'search' => 'home#search', as: :search_home
   match 'results' => 'home#results', as: :results_home, via: [:get, :post]
 
-  resources :manteinance_coupons, only: [:new, :create], defaults: {format: :json}
+  resources :manteinance_coupons, only: [:new, :create]
 
   resources :clients, only: [:create], defaults: {format: :json}
 

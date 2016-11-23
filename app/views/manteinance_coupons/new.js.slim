@@ -1,0 +1,16 @@
+|
+  $('#quote-modal').html( "#{escape_javascript(render('quote_modal'))}" );
+
+  $('.quote-selector > ul > li > a').click(function(event) {
+    $('.quote-selector > ul > li').removeClass('active');
+    $(this).parent('li').addClass('active');
+    var toppadding = $(this).height();
+    $('.quote-selector > ul').css({'margin-top':toppadding});
+  });
+
+  $( window ).resize(function() {
+    var toppadding = $('.quote-selector > ul > li.active > a').height();
+    $('.quote-selector > ul').css({'margin-top':toppadding});
+  });
+
+  $('#quote-modal').modal('show')

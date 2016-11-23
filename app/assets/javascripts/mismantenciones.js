@@ -1,6 +1,6 @@
 $(document).ready(function(){
   // Popover Init
-  $('[data-toggle="popover"]').popover(); 
+  $('[data-toggle="popover"]').popover();
   // Sliders
   $('#promo-carousel, #parts-carousel').slick({
     dots: false,
@@ -30,18 +30,8 @@ $(document).ready(function(){
     ]
   });
 
-  $('.quote-selector > ul > li > a').click(function(event) {
-    $('.quote-selector > ul > li').removeClass('active');
-    $(this).parent('li').addClass('active');
-    var toppadding = $(this).height();
-    $('.quote-selector > ul').css({'margin-top':toppadding});
-  });
   $('#quote-modal').on('shown.bs.modal', function () {
     var toppadding = $('.quote-selector > ul > li.active > a').height();
     $('.quote-selector > ul').css({'margin-top':toppadding});
   });
-});
-$( window ).resize(function() {
-  var toppadding = $('.quote-selector > ul > li.active > a').height();
-  $('.quote-selector > ul').css({'margin-top':toppadding});
 });
