@@ -2,7 +2,7 @@
   .modal-content
     .modal-header
       button type="button" class="close" data-dismiss="modal" x
-      h4.modal-title Estamos listos
+      h4.modal-title Estamos listos #{Client.find(@context_params[:client_id]).name}
     .modal-body
       - branch = Branch.includes(:shop).where(id: @context_params[:branch_id]).first
       - pauta  = Pauta.where(id_pauta: @context_params[:id_pauta]).first
