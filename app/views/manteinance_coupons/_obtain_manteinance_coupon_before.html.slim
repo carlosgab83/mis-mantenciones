@@ -1,0 +1,14 @@
+- branch = Branch.includes(:shop).where(id: params[:branch_id]).first
+- pauta  = Pauta.where(id_pauta: params[:id_pauta]).first
+- branch_pauta = branch.branch_pauta(pauta)
+.text-center.text-primary
+  .what Estás obteinendo un ticket para una mantención de los #{mismantenciones_number_to_km(pauta.kilometraje)} kms en
+  .how-much
+    strong #{branch.shop.name}
+    | &nbsp;sucursal&nbsp;
+    strong #{branch.name}
+    | &nbsp;por&nbsp;
+    strong.value #{mismantenciones_number_to_currency(branch_pauta.promo_price) }
+  .for-what
+    | para tu
+    em #{vehicle_text(session[:vehicle], pauta)}

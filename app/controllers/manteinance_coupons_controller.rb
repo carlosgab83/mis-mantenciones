@@ -1,5 +1,5 @@
 class ManteinanceCouponsController < ApplicationController
-  protect_from_forgery with: :exception
+  #protect_from_forgery with: :exception
 
   # GET /manteinance_coupons/new?manteinance_coupon[id_pauta]=476
   def new
@@ -18,7 +18,10 @@ class ManteinanceCouponsController < ApplicationController
     if create_manteinance_coupon_params
       @manteinance_coupon = ManteinanceCouponsCreator.new(create_manteinance_coupon_params).call
       if @manteinance_coupon
-        render json: manteinance_coupon, status: 201
+        respond_to do |format|
+          format.js {render(:create, status: :ok)}
+          return
+        end
       else
         render json: {error: I18n.t('general.error')}, status: 422
       end
@@ -33,6 +36,6 @@ class ManteinanceCouponsController < ApplicationController
   end
 
   def create_manteinance_coupon_params
-    params.require(:manteinance_coupon).permit(:id_pauta, :branch_id, :client_id)
+    params.require(:manteinance_coupon).permit(:pauta_id, :branch_id, :client_id)
   end
 end

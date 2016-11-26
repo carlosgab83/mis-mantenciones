@@ -4,7 +4,7 @@ ul
     li
       = @promotion.name
     li
-      = @promotion.description
+      = @promotion.description.html_safe
     li
       = @promotion.promo_price
     li

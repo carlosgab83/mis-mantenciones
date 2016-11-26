@@ -3,6 +3,7 @@ class ClientsController < ApplicationController
 
     def new
       @client = Client.new
+      session[:last_context] = params
       respond_to do |format|
         format.js { params[:partial] ? render(:new, status: :ok) : render( head :error)}
         return
@@ -13,7 +14,10 @@ class ClientsController < ApplicationController
     if create_client_params
       client = ClientCreator.new(create_client_params.merge({rvm_id: session[:vehicle].try(:patent)})).call
       if client
-        render json: client, status: 201
+        @context_params = session[:last_context]
+        @context_params[:client_id] = client.id
+        session[:last_context] = nil
+        render partial: params[:success_partial]
       else
         render json: {error: I18n.t('general.error')}, status: 422
       end

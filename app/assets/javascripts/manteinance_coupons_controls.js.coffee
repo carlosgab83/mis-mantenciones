@@ -73,6 +73,8 @@ manteinanceCouponsControls.sortBranches = (optionalClickedElement = null) ->
 
   $('.manteinance_coupon-branches li a')[0].click()
 
+  manteinanceCouponsControls.updateBookingButton()
+
 #############################################################################
 
 manteinanceCouponsControls.sortByMostComplete = () ->
@@ -95,37 +97,30 @@ manteinanceCouponsControls.sortByBestPrice = () ->
 
 #############################################################################
 
-manteinanceCouponsControls.obtainManteinanceCoupon = (clientInformation = null) ->
-  # If no client information was passed, then invoke to clientsControls.register_client
-  if clientInformation == null
-    clientsControls.registerClient(manteinanceCouponsControls.obtainManteinanceCoupon)
-  else
-    params = {}
-    params['partial'] = '/manteinance_coupons/obtain_manteinance_coupon'
-    params['client_id'] = clientInformation['id']
-    params['branch_id'] = manteinanceCouponsControls.activeBranch().data('branch_id')
-    params['id_pauta'] = manteinanceCouponsControls.alternativesList['pauta']['id']
-    url = "/clients/new";
-    method ="POST";
-    success_function = ->
-    generalControls.sendAjax(params, url, success_function, method);
+manteinanceCouponsControls.obtainManteinanceCoupon = () ->
+  params = {}
+  params['partial'] = '/manteinance_coupons/obtain_manteinance_coupon_before'
+  params['success_partial'] = '/manteinance_coupons/obtain_manteinance_coupon_done'
+  params['branch_id'] = manteinanceCouponsControls.activeBranch().data('branch_id')
+  params['id_pauta'] = manteinanceCouponsControls.alternativesList['pauta']['id']
+  url = "/clients/new";
+  method ="GET";
+  success_function = ->
+  generalControls.sendAjax(params, url, success_function, method);
+
 #############################################################################
+
 manteinanceCouponsControls.bookManteinanceCoupon = (clientInformation = null) ->
-  # If no client information was passed, then invoke to clientsControls.register_client
-  if clientInformation == null
-    params = {}
-    params['partial'] = '/manteinance_coupons/book_manteinance_coupon'
-    params['success_partial'] = '/manteinance_coupons/book_manteinance_coupon_done'
-    params['branch_id'] = manteinanceCouponsControls.activeBranch().data('branch_id')
-    params['id_pauta'] = manteinanceCouponsControls.alternativesList['pauta']['id']
-    url = "/clients/new";
-    method ="GET";
-    success_function = ->
-    generalControls.sendAjax(params, url, success_function, method);
-  #  clientsControls.registerClient(manteinanceCouponsControls.bookManteinanceCoupon)
-  #else
-  #  url = manteinanceCouponsControls.activeBranch.data('booking-url');
-  #  console.log('its gone...')
+  params = {}
+  params['partial'] = '/manteinance_coupons/book_manteinance_coupon_before'
+  params['success_partial'] = '/manteinance_coupons/book_manteinance_coupon_done'
+  params['branch_id'] = manteinanceCouponsControls.activeBranch().data('branch_id')
+  params['id_pauta'] = manteinanceCouponsControls.alternativesList['pauta']['id']
+  url = "/clients/new";
+  method ="GET";
+  success_function = ->
+  generalControls.sendAjax(params, url, success_function, method);
+
 #############################################################################
 
 manteinanceCouponsControls.findBranch = (branchId) ->
@@ -137,5 +132,13 @@ manteinanceCouponsControls.findBranch = (branchId) ->
 
 manteinanceCouponsControls.activeBranch = () ->
   $('.manteinance_coupon-branches > li.active > a')
+
+#############################################################################
+
+manteinanceCouponsControls.updateBookingButton = () ->
+  if manteinanceCouponsControls.activeBranch().data('booking-url') != ''
+    $('#book-manteinance-copupon').show()
+  else
+    $('#book-manteinance-copupon').hide()
 
 #############################################################################

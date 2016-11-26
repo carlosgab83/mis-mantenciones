@@ -1,0 +1,27 @@
+.modal-dialog.modal-lg
+  .modal-content
+    .modal-header
+      button type="button" class="close" data-dismiss="modal" x
+      h4.modal-title Estamos listos
+    .modal-body
+      - branch = Branch.includes(:shop).where(id: @context_params[:branch_id]).first
+      - pauta  = Pauta.where(id_pauta: @context_params[:id_pauta]).first
+      - client_id  = @context_params[:client_id]
+      - branch_pauta = branch.branch_pauta(pauta)
+      .text-center.text-primary
+        .what Ahora puedes generar tu cupón de mantención
+        .for-what
+          | de tu
+          em #{vehicle_text(session[:vehicle], pauta)}
+        .how-much
+          strong en #{branch.shop.name}
+          | &nbsp;sucursal&nbsp;
+          strong #{branch.name}
+    .modal-footer
+      - manteinance_coupon = ManteinanceCoupon.new
+      = simple_form_for manteinance_coupon, remote: true do |f|
+        = f.input :pauta_id, input_html: {value: pauta.id_pauta}, as: :hidden
+        = f.input :client_id, input_html: {value: client_id}, as: :hidden
+        = f.input :branch_id, input_html: {value: branch.id}, as: :hidden
+        .row
+          button.btn.btn-cta.btn-block type="submit" Obtener Cupon

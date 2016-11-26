@@ -8,6 +8,7 @@
     var toppadding = $(this).height();
     $('.quote-selector > ul').css({'margin-top':toppadding});
     manteinanceCouponsControls.drawItemsForBranch(this);
+    manteinanceCouponsControls.updateBookingButton();
   });
 
   $( window ).resize(function() {
@@ -27,6 +28,9 @@
 
   // It sets to js variable the whole list object with pauta, similar_pautas, branches with manteinance_items, etc...
   manteinanceCouponsControls.alternativesList = #{raw @manteinance_alternatives_list.to_builder.target!};
+
+  // Hide book button by default. On sortBranches function can be show depending on active branch
+  $('#book-manteinance-copupon').hide();
 
   // Sorts view
   manteinanceCouponsControls.sortBranches();

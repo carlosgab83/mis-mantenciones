@@ -1,13 +1,13 @@
 class ManteinanceCouponsCreator < BaseService
 
   def call
-    pauta = Pauta.where(id_pauta: params[:id_pauta]).first
+    pauta = Pauta.where(id_pauta: params[:pauta_id]).first
     branch_pauta = Branch.where(id: params[:branch_id]).first.branch_pauta(pauta).load
 
     manteinance_coupon = nil
     ActiveRecord::Base.transaction do
       manteinance_coupon = ManteinanceCoupon.create(
-        pauta_id: params[:id_pauta],
+        pauta_id: params[:pauta_id],
         branch_id: params[:branch_id],
         client_id: params[:client_id],
         date: Date.today,
