@@ -1,0 +1,11 @@
+h5.modal-title
+  i.fa.fa-sort-amount-asc
+  | Ordernar por
+.btn-group.sort-buttons role="group" data-toggle="buttons"
+  - default_active = (@manteinance_alternatives_list.active_sorting_button.nil? ? 'active' : '')
+  label.btn.btn-link type="button" class='#{default_active}' class='#{@manteinance_alternatives_list.active_sorting_button == 'most_complete' ? 'active' : ''}'
+    input type="radio" name="quote-filter" value="most_complete"
+    span Servicio más completo
+  label.btn.btn-link type="button" class='#{@manteinance_alternatives_list.active_sorting_button == 'best_price' ? 'active' : ''}'
+    input type="radio" name="quote-filter" value="best_price"
+    span Mejor precio

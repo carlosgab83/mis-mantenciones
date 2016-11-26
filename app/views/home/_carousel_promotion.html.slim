@@ -4,8 +4,8 @@ a.single-promo href="#{promotion_path(promotion)}"
       = image_tag("promo-image.jpg", :alt => "promo")
       span.promo-image-text #{promotion.name}
     .promo-description
-      h6 #{number_to_currency(promotion.promo_price, precision: 0,  delimiter: '.')}
-      span.changed #{number_to_currency(promotion.full_price, precision: 0,  delimiter: '.')}
+      h6 #{mismantenciones_number_to_currency(promotion.promo_price)}
+      span.changed #{mismantenciones_number_to_currency(promotion.full_price)}
   - else
     .promo-image
       = image_tag("promo-image.jpg", :alt => "promo")

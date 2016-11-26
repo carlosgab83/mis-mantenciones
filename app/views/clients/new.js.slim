@@ -1,0 +1,18 @@
+|
+  $('#contact-modal').html( "#{escape_javascript(render('contact_modal'))}" );
+
+  // Contact submit button logic
+  $('#contact-submit').click(function(event) {
+    clientsControls.createClient(this);
+  });
+  debugger;
+  $("#client-contact-form").validate({
+    debug: true,
+    rules: {
+    "client[name]": {required: true},
+    "client[parimary_last_name]": {required: true},
+    "client[email]": {required: true, email: true}
+    }
+  });
+
+  $('#contact-modal').modal('show')

@@ -1,0 +1,18 @@
+- if show_traction
+  label.toggle-filter
+    em Tracción
+    = check_box_tag 'double_traction', @manteinance_alternatives_list.pauta.double_traction, @manteinance_alternatives_list.pauta.double_traction
+    span Simple
+    span 4 x 4
+- if show_engine
+  label.toggle-filter
+    em Combustible
+    = check_box_tag 'diesel_engine',@manteinance_alternatives_list.pauta.diesel_engine, @manteinance_alternatives_list.pauta.diesel_engine
+    span Bencina
+    span Diesel
+- if show_transmission
+  label.toggle-filter
+    em Caja de cambios
+    = check_box_tag 'automatic_transmission',@manteinance_alternatives_list.pauta.automatic_transmission, @manteinance_alternatives_list.pauta.automatic_transmission
+    span Mecánica
+    span Automática

@@ -4,7 +4,9 @@ class ManteinanceCouponsController < ApplicationController
   # GET /manteinance_coupons/new?manteinance_coupon[id_pauta]=476
   def new
     if new_manteinance_coupon_params
-      @manteinance_alternatives_list = ManteinanceAlternativesListComposer.new(new_manteinance_coupon_params).call
+      composer = ManteinanceAlternativesListComposer.new(new_manteinance_coupon_params)
+      composer.active_sorting_button = params[:active_sorting_button]
+      @manteinance_alternatives_list = composer.call
       respond_to do |format|
         format.js { @manteinance_alternatives_list ? render(:new, status: :ok) : render( head :error)}
         return
@@ -26,6 +28,7 @@ class ManteinanceCouponsController < ApplicationController
   private
 
   def new_manteinance_coupon_params
+    params.permit('active_sorting_button')
     params.require(:manteinance_coupon).permit(:id_pauta)
   end
 

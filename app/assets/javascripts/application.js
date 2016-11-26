@@ -16,4 +16,5 @@
 //= require bootstrap-sass/assets/javascripts/bootstrap-sprockets
 //= require slick.min
 //= require mismantenciones
+//= require jquery-validation
 //= require_tree .

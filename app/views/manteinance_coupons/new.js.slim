@@ -1,16 +1,44 @@
 |
   $('#quote-modal').html( "#{escape_javascript(render('quote_modal'))}" );
 
-  $('.quote-selector > ul > li > a').click(function(event) {
+  // List item logic
+  $('.manteinance_coupon-branches > li > a').click(function(event) {
     $('.quote-selector > ul > li').removeClass('active');
     $(this).parent('li').addClass('active');
     var toppadding = $(this).height();
     $('.quote-selector > ul').css({'margin-top':toppadding});
+    manteinanceCouponsControls.drawItemsForBranch(this);
   });
 
   $( window ).resize(function() {
-    var toppadding = $('.quote-selector > ul > li.active > a').height();
+    var toppadding = $('.manteinance_coupon-branches > li.active > a').height();
     $('.quote-selector > ul').css({'margin-top':toppadding});
+  });
+
+  // Filters logic - looks in backend for similar pautas
+  $('.modal-selector > label > input').click(function(event) {
+    manteinanceCouponsControls.similarPauta(this);
+  });
+
+  // Sort logic
+  $('.modal-header > .sort-buttons > label').click(function(event) {
+    manteinanceCouponsControls.sortBranches(this);
+  });
+
+  // It sets to js variable the whole list object with pauta, similar_pautas, branches with manteinance_items, etc...
+  manteinanceCouponsControls.alternativesList = #{raw @manteinance_alternatives_list.to_builder.target!};
+
+  // Sorts view
+  manteinanceCouponsControls.sortBranches();
+
+  // Book manteinance coupon button logic
+  $('#book-manteinance-copupon').click(function(event) {
+    manteinanceCouponsControls.bookManteinanceCoupon();
+  });
+
+  // Obtain manteinance coupon button logic
+  $('#obtain-manteinance-coupon').click(function(event) {
+    manteinanceCouponsControls.obtainManteinanceCoupon();
   });
 
   $('#quote-modal').modal('show')
