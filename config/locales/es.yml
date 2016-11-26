@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 es:
+  date:
+    formats:
+      long: "%Y-%m-%d"
   admin:
     actions:
       xls_import:

@@ -1,0 +1,2 @@
+- pauta.manteinance_items.each do |mi|
+  li data-id='#{mi.id}' class='#{"active" if branch.branches_manteinance_items_by_pauta(pauta).map{|bmi| bmi.manteinance_item_id}.include?(mi.id_item_mantencion)}' #{mi.desc_mantencion}

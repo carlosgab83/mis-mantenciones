@@ -1,0 +1,11 @@
+|
+  $('#contact-modal').modal('hide')
+
+  $('#book-manteinance-coupon-done-modal').html( "#{escape_javascript(render('/manteinance_coupons/book_manteinance_coupon_done_modal'))}" );
+
+  // Configure this modal must hide after click booking button
+  $('#booking-url').click(function(event) {
+    $('#book-manteinance-coupon-done-modal').modal('hide')
+  });
+
+  $('#book-manteinance-coupon-done-modal').modal('show')

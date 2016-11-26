@@ -5,7 +5,7 @@ a.single-part href="#{product_path(product)}"
     span.brand #{product.product_brand.name}
     span #{product.model_attribute_value}
     strong desde
-    strong.price #{number_to_currency(from_price, precision: 0,  delimiter: '.')}
+    strong.price #{mismantenciones_number_to_currency(from_price)}
 
 /a.single-part
   .single-part-image

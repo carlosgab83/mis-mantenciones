@@ -1,0 +1,17 @@
+.modal-dialog.modal-lg
+  .modal-content
+    .modal-header
+      button type="button" class="close" data-dismiss="modal" x
+      h4.modal-title Felicitaciones #{@manteinance_coupon.client.name}
+    .modal-body
+      .text-center.text-primary
+        .what Tu número de cupon es: #{@manteinance_coupon.id} para la #{@manteinance_coupon.pauta.name}
+        .for-what
+          | de tu
+          em #{vehicle_text(session[:vehicle], @manteinance_coupon.pauta)}
+        .how-much
+          strong en #{@manteinance_coupon.branch.shop.name}
+          | &nbsp;sucursal&nbsp;
+          strong #{@manteinance_coupon.branch.name}
+    .modal-footer
+      .row
