@@ -1,35 +1,31 @@
-= render 'shared/header'
+= render 'shared/header_dummy'
 
-#wrapper
-  .container
-    .row
-      .col-md-12
+#wrapper.catalog
+  .inner
+    .container
+      .row
+        .col-sm-12
+          h1 
+            strong Promotions
 
-        h3
-          | Categories
-        ul
-          - @categories.each do |category|
-            li
-              = category.name
-
-
-        h3
-          | Promotions
-        ul
-          - @promotions.each do |promotion|
-            li
-              = promotion.name
-            ul
+        .col-sm-3
+          h3 Categories
+          ul.categories-list
+            - @categories.each do |category|
               li
-                = promotion.description
+                a
+                  = category.name
+
+        .col-sm-9
+          ul.promo-list
+            - @promotions.each do |promotion|
               li
-                = promotion.promo_price
-              li
-                = promotion.full_price
-              | Attributes
-              ul
-                - promotion.attributes_promotions.each do |ap|
-                  li
-                    = "#{ap.promotion_attribute.name}: #{ap.value}"
+                a href="/"
+                  .promo-image style='background-image:url(#{image_url("promo-image.jpg")});'
+                  .promo-description
+                    h6 = promotion.name
+                    p = truncate(promotion.description, :length => 120, :omission => '... ') 
+                    span.promo-price = promotion.promo_price
+                    span.full-price = promotion.full_price
 
 = render 'shared/footer'

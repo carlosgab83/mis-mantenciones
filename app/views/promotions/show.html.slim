@@ -1,25 +1,38 @@
-= render 'shared/header'
+= render 'shared/header_dummy'
 
-#wrapper
-  .container
-    .row
-      .col-md-12
+#wrapper.catalog
+  .inner
+    .container
+      .row
+        .col-sm-12
+          h2
+            strong Nombre del Proveedor 
+            span = @promotion.name
 
-        h3
-          | Promotion
-        ul
-          li
-            = @promotion.name
-          li
-            = @promotion.description.html_safe
-          li
-            = @promotion.promo_price
-          li
-            = @promotion.full_price
-          | Attributes
-          ul
+      .row
+        .col-sm-5.col-sm-push-7.col-md-4.col-md-push-8
+
+          .promo-prices
+            span.promo-price = @promotion.promo_price
+            span.full-price = @promotion.full_price
+          
+          a.btn.btn-cta.btn-lg.btn-block Comprar
+          
+          ul.promo-conditions
             - @promotion.attributes_promotions.each do |ap|
               li
-          = "#{ap.promotion_attribute.name}: #{ap.value}"
+                strong = "#{ap.promotion_attribute.name}: "
+                span = "#{ap.value}"
+
+        .col-sm-7.col-sm-pull-5.col-md-8.col-md-pull-4
+          .promo-image
+            = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
+
+      .row
+        .col.sm-7.col-md-8
+          .promo-description
+            h4 
+              strong Descripción
+            p = @promotion.description.html_safe
 
 = render 'shared/footer'
