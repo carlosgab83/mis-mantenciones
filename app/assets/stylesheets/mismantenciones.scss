@@ -173,6 +173,7 @@ body {
 		width: 100%;
 		margin-bottom: -$footer-height;
 		padding-bottom: $footer-height;
+		position: relative;
 		.container {
 			padding-top: 15px;
 			padding-bottom: 15px;
@@ -191,7 +192,7 @@ body {
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 2;
+	z-index: 3;
 	&:after {@extend .bottom-triangle;}
 	div.text-right[class*='col-'] {
 		@media #{$xs}{
@@ -267,7 +268,7 @@ body {
 	position: absolute;
 	top: 50%;
 	margin-top: -23px;
-	z-index: 100;
+	z-index: 1;
 	> span[class^="fa"] {
 		font-size: 32px;
 		@include transition(all 0.6s ease-in-out);
