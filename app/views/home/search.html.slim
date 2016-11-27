@@ -15,12 +15,12 @@
                 br
                 | MANTENCIONES
             .col-sm-12.col-md-8
-              = form_tag results_home_path, class: 'form-inline'
+              = form_tag results_home_path, class: 'form-inline search-patent'
                 .form-group
-                  = text_field('search', 'patent', class: 'form-control', placeholder:'Patente')
+                  = text_field('search', 'patent', class: 'form-control', placeholder:'Patente', maxlength: 6)
                 .form-group
                   .input-group
-                    = text_field('search', 'kms', class: 'form-control', placeholder:'Kilometraje')
+                    = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Kilometraje', maxlength: 8)
                     .input-group-addon kms
                 .form-group
                   button.btn.btn-cta type="submit" Ver mi pauta

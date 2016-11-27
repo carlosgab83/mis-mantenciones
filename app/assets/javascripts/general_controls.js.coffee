@@ -2,14 +2,14 @@
 window.generalControls ?= {}
 
 generalControls.ready = ->
+  generalControls.defaultValidations()
   generalControls.hideLoadingEffect()
   $(document).ajaxStart ->
     generalControls.showLoadingEffect()
   $(document).ajaxSuccess ->
     generalControls.hideLoadingEffect()
-  $(document).ajaxError ->
+  $(document).ajaxSuccess ->
     generalControls.hideLoadingEffect()
-
 
 $(document).ready(generalControls.ready)
 $(document).on('pasge:load', generalControls.ready)
@@ -37,3 +37,19 @@ generalControls.showLoadingEffect = () ->
 generalControls.hideLoadingEffect = () ->
   $('.loader').hide();
   $('body').removeClass('loading-time');
+
+#############################################################################
+
+generalControls.defaultValidations = () ->
+  $(".numeric").lazzynumeric({aSep: ".", aDec: ",", vMin: "0", vMax: "99999999"})
+  $(".search-patent").validate({
+    debug: true,
+    onsubmit: true,
+    errorPlacement: (error, element) ->,
+    errorClass: 'notExistentClass',
+    rules: {
+      "search[patent]": {required: true, minlength: 6, maxlength: 6}
+    },
+    submitHandler: (form) ->
+      form.submit()
+  });

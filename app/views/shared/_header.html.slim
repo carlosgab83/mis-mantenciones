@@ -5,14 +5,14 @@ header#header
 
 
       .col-xs-12.col-sm-8.col-md-7.col-lg-6.text-right
-        form.form-inline
+        form.form-inline.search-patent
           .form-group
             label.sr-only for="exampleInputName2" Patente
-            = text_field('search', 'patent', class: 'form-control', placeholder:'Patente', value: @vehicle.patent)
+            = text_field('search', 'patent', class: 'form-control', placeholder:'Patente', value: @vehicle.patent, maxlength: 6)
           .form-group
             label.sr-only for="exampleInputEmail2" Kilometraje
             .input-group
-              = text_field('search', 'kms', class: 'form-control', placeholder:'Kilometraje', value: @vehicle.kms)
+              = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Kilometraje', value: @vehicle.kms, maxlength: 8)
               .input-group-addon kms
 
           .form-group
