@@ -8,9 +8,7 @@
 section#section-guideline,
 section#section-parts {
 	position: relative;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
+	@extend .cover-background;
 	&:after {
 		content: '';
 		position: absolute;

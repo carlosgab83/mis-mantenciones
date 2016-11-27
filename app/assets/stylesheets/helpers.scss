@@ -81,3 +81,10 @@ $xxxs: '(max-width: 320px)';
 	font-weight: 300;
 	text-shadow: none;
 }
+
+// cover background
+.cover-background {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}

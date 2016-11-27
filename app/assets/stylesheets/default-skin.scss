@@ -45,7 +45,7 @@ a {
 }
 // Button
 .btn.btn-cta {
-	color: $dark-color;
+	color: darken($main-color,5%);
 	background-color: lighten(desaturate($side-color,10%), 10%);
 	&:hover, &:active, &:focus {
 		color: $dark-color;
@@ -232,7 +232,51 @@ section#section-parts {
 		}
 	}
 }
-
+// Catalog
+.catalog {
+	background-color: $light-color;
+}
+// Promo
+.catalog {
+	span.full-price {color: $main-color;}
+	.promo-list {
+		> li {
+			a {
+				background-color: $back-color;
+				color: $back-color;
+				h6 {color: $dark-color;}
+				&:hover, &:active, &:focus {
+					box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+				}
+			}
+		}
+	}
+}
+// Product
+.catalog {
+	.product-table {
+		tr {
+			&:first-child, &.active {
+				> td {
+					background-color: rgba($back-color,0.6);
+					color: $main-color;
+					.btn.btn-ghost {
+						color: darken($main-color,5%);
+						background-color: lighten(desaturate($side-color,10%), 10%);
+						box-shadow: 3px 3px 0 rgba($dark-color,0.2)!important;
+						border-color: rgba($dark-color, 0.1);
+						&:hover, &:active, &:focus {
+							color: $dark-color;
+							background-color: daken(saturate($side-color,20%),20%);
+							box-shadow: 0 0 20px rgba($side-color,0.9)!important;
+							border-color: rgba($dark-color, 0.2);
+						}
+					}
+				}
+			}
+		}
+	}
+}
 // Modal
 .modal {
 	.modal-header {

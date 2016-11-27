@@ -79,7 +79,8 @@ textarea {
 //////////////////////////////////////////////////////////
 
 .btn {
-	font-weight: 400;
+	font-family: 'Exo', sans-serif;
+	font-weight: bold;
 	font-style: italic;
 	&:not(.btn-link) {
 		text-transform: uppercase;
@@ -90,9 +91,11 @@ textarea {
 	}
 	&.btn-ghost {
 		box-shadow: none!important;
+		font-family: 'Exo 2', sans-serif;
 	}
 	&.btn-link {
 		font-weight: 300;
+		font-family: 'Exo 2', sans-serif;
 	}
 }
 
