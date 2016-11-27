@@ -1,17 +1,25 @@
-h3
-  | Promotion
-ul
-    li
-      = @promotion.name
-    li
-      = @promotion.description.html_safe
-    li
-      = @promotion.promo_price
-    li
-      = @promotion.full_price
-    | Attributes
-    ul
-      - @promotion.attributes_promotions.each do |ap|
-        li
+= render 'shared/header'
+
+#wrapper
+  .container
+    .row
+      .col-md-12
+
+        h3
+          | Promotion
+        ul
+          li
+            = @promotion.name
+          li
+            = @promotion.description.html_safe
+          li
+            = @promotion.promo_price
+          li
+            = @promotion.full_price
+          | Attributes
+          ul
+            - @promotion.attributes_promotions.each do |ap|
+              li
           = "#{ap.promotion_attribute.name}: #{ap.value}"
 
+= render 'shared/footer'
