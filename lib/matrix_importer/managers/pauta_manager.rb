@@ -22,8 +22,8 @@ module MatrixImporter
             db_pautas_kms = vme.pautas.where(variants).map{|pauta|pauta.kilometraje}.sort
             # Hay que validar si: en kms hay mas registros que en db, se deben agregar
             #                 si: en db hay registros que no estan en kms, se deben eliminar de db
-            self.pautas += create_new_vme_pautas(vme, xls_kms, db_pautas_kms, branch_id, variants, variants_str)
             self.pautas += update_existing_pautas(vme, xls_kms, db_pautas_kms, branch_id, variants, variants_str)
+            self.pautas += create_new_vme_pautas(vme, xls_kms, db_pautas_kms, branch_id, variants, variants_str)
             destroy_old_vme_pautas(vme, xls_kms, db_pautas_kms, all_xls_variants)
           end
         end
