@@ -57,6 +57,7 @@ $xxxs: '(max-width: 320px)';
 // Triangle
 .half-triangle {
 	position: absolute;
+	z-index: auto;
 	content: '';
 	width: 0;
 	height: 0;
@@ -79,4 +80,11 @@ $xxxs: '(max-width: 320px)';
 	font-style: italic!important;
 	font-weight: 300;
 	text-shadow: none;
+}
+
+// cover background
+.cover-background {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 }

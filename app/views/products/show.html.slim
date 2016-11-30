@@ -1,21 +1,42 @@
-h3
-  | Product
-ul
-    li
-      = @product.name
-    li
-      = @product.product_brand.name
-    | Attributes
-    ul
-      - @product.attributes_products.each do |ap|
-        li
-          = "#{ap.product_attribute.name}: #{ap.value}"
-    | Branches
-    ul
-      - @product.branches_products.each do |bp|
-        li
-          = "#{bp.branch.name}"
-        li
-          = "Price: #{bp.price}"
+= render 'shared/header_dummy'
 
+#wrapper.catalog
+  .inner
+    .container
+      .row
+        .col-sm-12
+          h2
+            strong = @product.product_brand.name 
+            span = @product.name
+      .row
+        .col-sm-6
+          .product-image
+            = image_tag("part-image.jpg", :alt => "part", :class => "img-responsive")
+        .col-sm-6
+          .product-description
+            ul
+              - @product.attributes_products.each do |ap|
+                li
+                  strong = "#{ap.product_attribute.name}: "
+                  span = "#{ap.value}"
+            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis lacus eget ante ullamcorper mattis. Sed aliquam ex id nibh tristique, id efficitur diam malesuada. Suspendisse nec velit a ante condimentum elementum mattis ut felis. Maecenas varius ultricies urna, sed efficitur nisi porttitor eget.
+      .row
+        .col-sm-12
+          .product-table
+            table.table.table-bordered
+              thead
+                tr
+                  th Nombre
+                  th Precio
+                  th
+              tbody
+                - @product.branches_products.each do |bp|
+                  tr
+                    td.branch-name
+                      = "#{bp.branch.name}"
+                    td.branch-price
+                      = "#{bp.price}"
+                    td.branch-action
+                      a.btn.btn-ghost comprar
 
+= render 'shared/footer'

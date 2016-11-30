@@ -1,0 +1,211 @@
+@import 'helpers';
+
+//////////////////////////////////////////////////////////
+// Catalog
+//////////////////////////////////////////////////////////
+.catalog {
+	.inner {
+		height: auto;
+		padding: 90px 0;
+		padding-top: 140px;
+		h1,h2,h3 {
+			opacity: 0.6;
+			font-style: italic;
+			font-family: 'Exo 2', sans-serif;
+			strong {
+				font-family: 'Exo', sans-serif;
+				display: inline-block;
+				margin-right: 10px;
+			}
+		}
+	}
+	span.promo-price {
+		display: inline-block;
+		width: 100%;
+		opacity: 0.6;
+		text-decoration: line-through;
+		text-align: right;
+	}
+	span.full-price {
+		display: inline-block;
+		width: 100%;
+		font-size: 145%;
+		font-weight: bold;
+		font-family: 'Exo', sans-serif;
+		text-align: right;
+	}
+	.btn-cta {
+		margin: 5px 0;
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Promo index
+//////////////////////////////////////////////////////////
+.catalog {
+	// Menú
+	.categories-list {
+		list-style: none;
+		padding-left: 0;
+		margin: 15px 0;
+		> li {
+			> a {
+				display: inline-block;
+				width: 100%;
+				padding: 4px 0;
+			}
+		}
+	}
+	// Promos
+	.promo-list {
+		list-style: none;
+		padding-left: 0;
+		> li {
+			margin-bottom: 15px;
+			a {
+				display: table;
+				table-layout: fixed;
+				width: 100%;
+				padding-left: 0;
+				> h4, h5, h6, p {cursor: pointer;}
+				.promo-image {
+					width: 40%;
+					@extend .cover-background;
+				}
+				.promo-image, .promo-description {
+					display: table-cell;
+					@media #{$xxs}{
+						display: inline-block;
+						width: 100%;
+						min-height: 100px;
+					}
+				}
+				.promo-description {
+					padding: 20px;
+					font-style: italic;
+					> h6 {
+						font-family: 'Exo', sans-serif;
+						font-weight: bold;
+						font-size: 135%;
+						opacity: 0.6;
+					}
+				}
+			}
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Promo Datail
+//////////////////////////////////////////////////////////
+
+.catalog {
+	.promo-prices {
+		span.promo-price, span.full-price {
+			@media #{$xs}{
+				text-align: left;
+			}
+		}
+	}
+	.promo-conditions {
+		list-style: none;
+		padding-left: 0;
+		margin: 25px 0;
+		text-align: right;
+		@media #{$xs}{
+			text-align: left;
+		}
+		li {
+			margin-bottom: 5px;
+		}
+	}
+	.promo-image {
+		position: relative;
+		margin: 20px 0;
+		@media #{$xs}{
+			height: 200px;
+			.img-responsive {
+				max-height: 100%;
+				margin: 0 auto;
+			}
+		}
+	}
+	.promo-description {
+		h1, h2, h3, h4, h5, h6, strong {
+			opacity: 0.6;
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Product Datail
+//////////////////////////////////////////////////////////
+
+.catalog {
+	.product-image {
+		position: relative;
+		margin: 20px 0;
+		@media #{$xs}{
+			height: 200px;
+			.img-responsive {
+				max-height: 100%;
+				margin: 0 auto;
+			}
+		}
+	}
+	.product-description {
+		text-align: right;
+		@media #{$xs}{
+			text-align: left;
+		}
+		ul {
+			list-style: none;
+			padding-left: 0;
+			margin: 20px 0;
+			li {
+				margin-bottom: 5px;
+			}	
+		}
+		h1, h2, h3, h4, h5, h6 {
+			opacity: 0.6;
+		}
+	}
+	.product-table {
+		.table {
+			margin: 20px 0;
+			width: 100%;
+			table-layout: fixed;
+			th, td {
+				border-right: none;
+				border-left: none;
+				vertical-align: middle;
+				text-align: right;
+				&:first-child {text-align: left;}
+			}
+			th {
+				text-transform: uppercase;
+				font-size: 80%;
+				border-bottom-width: 1px;
+			}
+			td {
+				padding: 12px 8px;
+				font-style: italic;
+				opacity: 0.8;
+				&:first-child {
+					font-size: 115%;
+					opacity: 1;
+				}
+				&:last-child {
+					opacity: 1;
+				}
+			}
+			tr {
+				&:first-child, &.active {
+					> td.branch-price {
+						font-family: 'Exo', sans-serif;
+					}
+				}
+			}
+		}
+	}
+}

@@ -8,9 +8,7 @@
 #home-upper,
 #home-bottom {
 	position: relative;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
+	@extend .cover-background;
 	&:after {
 		content: '';
 		position: absolute;
