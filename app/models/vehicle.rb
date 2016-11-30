@@ -25,14 +25,14 @@ class Vehicle
 
   def brand_name
     if brand_id.present?
-      Brand.find(brand_id).descripcion.try(:downcase).try(:camelize)
+      Brand.find(brand_id).descripcion.try(:upcase)
     else
       "Vehículo"
     end
   end
 
   def model_name
-    rvm_model.try(:downcase).try(:camelize)
+    rvm_model.try(:upcase)
     # if model_id.present?
     #   Model.find(model_id).modelo_descripcion.try(:downcase).try(:camelize)
     # else

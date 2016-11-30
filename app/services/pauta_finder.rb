@@ -18,6 +18,7 @@ class PautaFinder < BaseService
       end
     end
 
+
     # Error because not even there is generic pauta
     if vme_id.nil? and winning_index.nil?
       raise AppExceptions::PautaNotFound
