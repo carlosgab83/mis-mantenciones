@@ -1,0 +1,7 @@
+- promotion = Promotion.where(id: params[:promotion_id]).first
+.text-center.text-primary
+  .what Estás comprando la promoción #{promotion.name} disponible en
+  .how-much
+    strong #{promotion.shops_details}
+    | &nbsp;por&nbsp;
+    strong.value #{mismantenciones_number_to_currency(promotion.promo_price) }

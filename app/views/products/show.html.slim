@@ -1,4 +1,4 @@
-= render 'shared/header_dummy'
+= render 'shared/header'
 
 #wrapper.catalog
   .inner
@@ -6,7 +6,7 @@
       .row
         .col-sm-12
           h2
-            strong = @product.product_brand.name 
+            strong = @product.product_brand.name
             span = @product.name
       .row
         .col-sm-6
@@ -28,15 +28,15 @@
                 tr
                   th Nombre
                   th Precio
-                  th
+                  /th
               tbody
-                - @product.branches_products.each do |bp|
+                - @product.branches_products.sort{|a,b| a.price <=> b.price}.each do |bp|
                   tr
                     td.branch-name
                       = "#{bp.branch.name}"
                     td.branch-price
-                      = "#{bp.price}"
-                    td.branch-action
-                      a.btn.btn-ghost comprar
+                      = "#{mismantenciones_number_to_currency(bp.price)}"
+                    /td.branch-action
+                      /a.btn.btn-ghost comprar
 
 = render 'shared/footer'

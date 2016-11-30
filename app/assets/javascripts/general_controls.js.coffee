@@ -8,7 +8,7 @@ generalControls.ready = ->
     generalControls.showLoadingEffect()
   $(document).ajaxSuccess ->
     generalControls.hideLoadingEffect()
-  $(document).ajaxSuccess ->
+  $(document).ajaxComplete ->
     generalControls.hideLoadingEffect()
 
 $(document).ready(generalControls.ready)

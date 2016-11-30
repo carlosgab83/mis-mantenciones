@@ -1,7 +1,7 @@
 class ProductDetail < BaseService
 
   def call
-    Product.includes(:branches, :category, :product_attributes).where(id: params[:id]).first
+    product = Product.includes(:branches, :category, :product_attributes, :branches_products).where(id: params[:id]).first
   end
 
   private

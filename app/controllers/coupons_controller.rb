@@ -4,9 +4,12 @@ class CouponsController < ApplicationController
 
   def create
     if coupon_params
-      coupon = CouponsCreator.new(coupon_params).call
-      if coupon
-        render json: coupon, status: 201
+      @coupon = CouponsCreator.new(coupon_params).call
+      if @coupon
+        respond_to do |format|
+          format.js {render(:create, status: :ok)}
+          return
+        end
       else
         render json: {error: I18n.t('general.error')}, status: 422
       end

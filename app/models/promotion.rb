@@ -11,4 +11,10 @@ class Promotion < ApplicationRecord
   scope :actives, -> {where("status = true")}
   scope :with_stock, -> {where("max_coupons IS NULL or max_coupons >= 1")}
   scope :not_deleted, -> {where(deleted: [false, nil])}
+
+  def shops_details
+    branches.collect do |b|
+      "#{b.shop.name} (#{b.name})"
+    end.join(', ')
+  end
 end

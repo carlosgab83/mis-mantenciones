@@ -1,4 +1,4 @@
-= render 'shared/header_dummy'
+= render 'shared/header'
 
 #wrapper.catalog
   .inner
@@ -6,18 +6,18 @@
       .row
         .col-sm-12
           h2
-            strong Nombre del Proveedor 
+            strong #{@promotion.branches.first.shop.name}
             span = @promotion.name
 
       .row
         .col-sm-5.col-sm-push-7.col-md-4.col-md-push-8
 
           .promo-prices
-            span.promo-price = @promotion.promo_price
-            span.full-price = @promotion.full_price
-          
-          a.btn.btn-cta.btn-lg.btn-block Comprar
-          
+            span.promo-price = mismantenciones_number_to_currency(@promotion.promo_price)
+            span.full-price = mismantenciones_number_to_currency(@promotion.full_price)
+
+          a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' Comprar
+
           ul.promo-conditions
             - @promotion.attributes_promotions.each do |ap|
               li
@@ -31,8 +31,14 @@
       .row
         .col.sm-7.col-md-8
           .promo-description
-            h4 
+            h4
               strong Descripción
             p = @promotion.description.html_safe
 
 = render 'shared/footer'
+
+javascript:
+  // Buy promotion
+  $('#buy-promotion').click(function(event) {
+    couponsControls.buyPromotion(this);
+  });

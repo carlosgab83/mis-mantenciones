@@ -27,7 +27,9 @@
   RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::XlsMatrixUpload)
 
   config.actions do
-    dashboard                     # mandatory
+    dashboard do
+      statistics false
+    end
     index                         # mandatory
     new
     export
@@ -92,6 +94,30 @@
         field :promotion
         field :value
         field :deleted
+      end
+    end
+
+    config.model 'Product' do
+      edit do
+        field :name
+        field :product_brand
+        field :deleted
+        field :category
+        field :branches
+      end
+    end
+
+    config.model 'Branch' do
+      edit do
+        field :name
+        field :phone1
+        field :phone2
+        field :address
+        field :will_contact
+        field :booking_url
+        field :scraper_model
+        field :deleted
+        field :shop
       end
     end
 

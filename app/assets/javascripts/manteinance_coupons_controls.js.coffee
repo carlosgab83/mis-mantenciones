@@ -100,7 +100,7 @@ manteinanceCouponsControls.sortByBestPrice = () ->
 manteinanceCouponsControls.obtainManteinanceCoupon = () ->
   params = {}
   params['partial'] = '/manteinance_coupons/obtain_manteinance_coupon_before'
-  params['success_partial'] = '/manteinance_coupons/obtain_manteinance_coupon_done'
+  params['success_partial'] = '/manteinance_coupons/obtain_manteinance_coupon_client_registered'
   params['branch_id'] = manteinanceCouponsControls.activeBranch().data('branch_id')
   params['id_pauta'] = manteinanceCouponsControls.alternativesList['pauta']['id']
   url = "/clients/new";
@@ -113,7 +113,7 @@ manteinanceCouponsControls.obtainManteinanceCoupon = () ->
 manteinanceCouponsControls.bookManteinanceCoupon = (clientInformation = null) ->
   params = {}
   params['partial'] = '/manteinance_coupons/book_manteinance_coupon_before'
-  params['success_partial'] = '/manteinance_coupons/book_manteinance_coupon_done'
+  params['success_partial'] = '/manteinance_coupons/book_manteinance_coupon_client_registered'
   params['branch_id'] = manteinanceCouponsControls.activeBranch().data('branch_id')
   params['id_pauta'] = manteinanceCouponsControls.alternativesList['pauta']['id']
   url = "/clients/new";

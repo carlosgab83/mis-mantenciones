@@ -1,0 +1,14 @@
+.modal-dialog.modal-lg
+  .modal-content
+    .modal-header
+      button type="button" class="close" data-dismiss="modal" x
+      h4.modal-title Felicitaciones #{@coupon.client.name}
+    .modal-body
+      .text-center.text-primary
+        .what Tu número de cupon es: #{@coupon.id} para la promoción #{@coupon.promotion.name}
+        .how-much
+          strong en #{@coupon.promotion.shops_details}
+          | &nbsp;porl&nbsp;
+          strong #{mismantenciones_number_to_currency(@coupon.price)}
+    .modal-footer
+      .row
