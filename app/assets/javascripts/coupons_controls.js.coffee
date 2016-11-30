@@ -12,7 +12,7 @@ $(document).on('page:load', couponsControls.ready)
 couponsControls.buyPromotion = (promotionAnchorElement) ->
   params = {}
   params['partial'] = '/coupons/obtain_coupon_before'
-  params['success_partial'] = '/coupons/obtain_coupon_done'
+  params['success_partial'] = '/coupons/obtain_coupon_client_registered'
   params['promotion_id'] = $(promotionAnchorElement).data('id')
   url = "/clients/new";
   method ="GET";

@@ -28,7 +28,7 @@
                 tr
                   th Nombre
                   th Precio
-                  th
+                  /th
               tbody
                 - @product.branches_products.sort{|a,b| a.price <=> b.price}.each do |bp|
                   tr
@@ -36,7 +36,7 @@
                       = "#{bp.branch.name}"
                     td.branch-price
                       = "#{mismantenciones_number_to_currency(bp.price)}"
-                    td.branch-action
-                      a.btn.btn-ghost comprar
+                    /td.branch-action
+                      /a.btn.btn-ghost comprar
 
 = render 'shared/footer'

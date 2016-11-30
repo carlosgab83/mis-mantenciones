@@ -34,9 +34,4 @@ $(document).ready(function(){
     var toppadding = $('.quote-selector > ul > li.active > a').height();
     $('.quote-selector > ul').css({'margin-top':toppadding});
   });
-
-  // Buy promotion
-  $('#buy-promotion').click(function(event) {
-    couponsControls.buyPromotion(this);
-  });
 });

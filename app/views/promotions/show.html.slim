@@ -36,3 +36,9 @@
             p = @promotion.description.html_safe
 
 = render 'shared/footer'
+
+javascript:
+  // Buy promotion
+  $('#buy-promotion').click(function(event) {
+    couponsControls.buyPromotion(this);
+  });
