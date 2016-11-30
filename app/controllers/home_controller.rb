@@ -7,7 +7,6 @@ class HomeController < ApplicationController
   # Testing patente: BLDR68
   def results
     session[:search] = {} if session[:search].nil?
-
     if params[:search].present?
       session[:search]['patent'] = params[:search][:patent]
       session[:search]['kms']    = params[:search][:kms]

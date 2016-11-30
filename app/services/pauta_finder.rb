@@ -9,7 +9,7 @@ class PautaFinder < BaseService
 
   # Finds closest pauta for fhis vme and km looking on all pautas for thar vme_id
   def closest_pauta(vme_id, km)
-    closest_diff = 1000000
+    closest_diff = 9999999999
     winning_index = nil
     (pautas = Pauta.where(vme_id: vme_id)).each_with_index do |pauta, i|
       if (current_diff = (km - pauta.kilometraje).abs) < closest_diff
@@ -17,6 +17,7 @@ class PautaFinder < BaseService
         winning_index = i
       end
     end
+
 
     # Error because not even there is generic pauta
     if vme_id.nil? and winning_index.nil?

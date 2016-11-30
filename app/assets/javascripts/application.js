@@ -17,4 +17,6 @@
 //= require slick.min
 //= require mismantenciones
 //= require jquery-validation
+//= require jquery-lazzynumeric-1.2/js/autoNumeric
+//= require jquery-lazzynumeric-1.2/js/jquery.lazzynumeric.min
 //= require_tree .

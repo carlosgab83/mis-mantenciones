@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120201809) do
+ActiveRecord::Schema.define(version: 20161128232733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -229,6 +229,7 @@ ActiveRecord::Schema.define(version: 20161120201809) do
     t.boolean "diesel_engine"
     t.boolean "double_traction"
     t.boolean "automatic_transmission"
+    t.index ["kilometraje", "vme_id", "diesel_engine", "double_traction", "automatic_transmission"], name: "pauta_business_index", unique: true, using: :btree
   end
 
   create_table "pauta_detalle", force: :cascade do |t|
