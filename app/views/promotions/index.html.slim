@@ -1,20 +1,23 @@
-= render 'shared/header_dummy'
+= render 'shared/header'
 
 #wrapper.catalog
   .inner
     .container
       .row
         .col-sm-12
-          h1 
+          h1
             strong Promotions
 
         .col-sm-3
           h3 Categories
           ul.categories-list
+            li
+              a
+               = link_to "Ver todas", promotions_path
             - @categories.each do |category|
               li
                 a
-                  = category.name
+                  = link_to category.name, promotions_path(category_id: category.id)
 
         .col-sm-9
           ul.promo-list
@@ -24,8 +27,8 @@
                   .promo-image style='background-image:url(#{image_url("promo-image.jpg")});'
                   .promo-description
                     h6 = promotion.name
-                    p = truncate(promotion.description, :length => 120, :omission => '... ') 
-                    span.promo-price = promotion.promo_price
-                    span.full-price = promotion.full_price
+                    p = truncate(promotion.preview_text, :length => 120, :omission => '... ')
+                    span.promo-price = mismantenciones_number_to_currency(promotion.promo_price)
+                    span.full-price = mismantenciones_number_to_currency(promotion.full_price)
 
 = render 'shared/footer'

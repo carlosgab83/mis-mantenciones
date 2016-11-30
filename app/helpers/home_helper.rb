@@ -6,6 +6,6 @@ module HomeHelper
   def manteinance_items_list(manteinance_items)
     manteinance_items.collect do |manteinance_item|
       manteinance_item.desc_mantencion
-    end.join(', ')
+    end.join('<br/>')
   end
 end
