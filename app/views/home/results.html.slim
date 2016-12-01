@@ -72,9 +72,10 @@
             .disclamer-text
               .small * estas mantenciones son solo de referencia de acuerdo al kilometraje y modelo de tu auto
             .button-holder
-              = link_to new_manteinance_coupon_path(manteinance_coupon: {id_pauta: @pauta.id_pauta}), remote: true
-                button.btn.btn-cta type="button"
-                  | Cotizar estas mantenciones
+              - if @pauta.has_branches?
+                = link_to new_manteinance_coupon_path(manteinance_coupon: {id_pauta: @pauta.id_pauta}), remote: true
+                  button.btn.btn-cta type="button"
+                    | Cotizar estas mantenciones
 
   section#section-promos
     .container

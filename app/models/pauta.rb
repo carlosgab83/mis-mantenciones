@@ -60,6 +60,10 @@ class Pauta < ApplicationRecord
     @other_manteinance_items ||= manteinance_items_joins('OTROS')
   end
 
+  def has_branches?
+    Branch.ids_for_pauta(self).any?
+  end
+
   private
 
   def manteinance_items_joins(section_type_name)

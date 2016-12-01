@@ -8,9 +8,13 @@ class Branch < ApplicationRecord
   include BranchSerializer
 
   scope :for_pauta, -> (pauta) do
-    branches_ids  = BranchesManteinanceItem.where(pauta: pauta).pluck(:branch_id).uniq
-    includes(:shop).where(id: branches_ids)
+    includes(:shop).where(id: ids_for_pauta(pauta))
   end
+
+  scope :ids_for_pauta, -> (pauta) do
+    branches_ids  = BranchesManteinanceItem.where(pauta: pauta).pluck(:branch_id).uniq
+  end
+
 
   def branches_manteinance_items_by_pauta(pauta)
     branches_manteinance_items.includes(manteinance_item: :section_type).where(pauta: pauta)
