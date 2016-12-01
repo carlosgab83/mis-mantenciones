@@ -17,7 +17,7 @@ class ManteinanceCouponsController < ApplicationController
   def create
     if create_manteinance_coupon_params
       @manteinance_coupon = ManteinanceCouponsCreator.new(create_manteinance_coupon_params).call
-      if @manteinance_coupon
+      if @manteinance_coupon.valid?
         ManteinanceCouponsNotifier.new(manteinance_coupon: @manteinance_coupon, vehicle: session[:vehicle]).call
         respond_to do |format|
           format.js {render(:create, status: :ok)}

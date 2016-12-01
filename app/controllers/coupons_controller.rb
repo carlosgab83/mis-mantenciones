@@ -5,7 +5,7 @@ class CouponsController < ApplicationController
   def create
     if coupon_params
       @coupon = CouponsCreator.new(coupon_params).call
-      if @coupon
+      if @coupon.valid?
         CouponsNotifier.new(coupon: @coupon).call
         respond_to do |format|
           format.js {render(:create, status: :ok)}
