@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130014710) do
+ActiveRecord::Schema.define(version: 20161201022918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20161130014710) do
     t.string   "street_address"
     t.string   "number_address"
     t.string   "ref_address"
+    t.string   "email"
     t.index ["name"], name: "branches_business_index", unique: true, using: :btree
     t.index ["shop_id"], name: "index_branches_on_shop_id", using: :btree
   end
@@ -372,6 +373,7 @@ ActiveRecord::Schema.define(version: 20161130014710) do
     t.boolean  "deleted",    default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "email"
     t.index ["name"], name: "shops_business_index", unique: true, using: :btree
     t.index ["rut"], name: "index_shops_on_rut", unique: true, using: :btree
   end

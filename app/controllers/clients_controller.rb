@@ -2,7 +2,7 @@ class ClientsController < ApplicationController
   protect_from_forgery with: :exception
 
     def new
-      @client = Client.new
+      @client = session[:client] || Client.new
       session[:last_context] = params
       respond_to do |format|
         format.js { params[:partial] ? render(:new, status: :ok) : render( head :error)}
@@ -17,11 +17,16 @@ class ClientsController < ApplicationController
         @context_params = session[:last_context]
         @context_params[:client_id] = client.id
         session[:last_context] = nil
+        session[:client] = client
         render partial: params[:success_partial]
       else
         render json: {error: I18n.t('general.error')}, status: 422
       end
     end
+  end
+
+  def update
+    create
   end
 
   private

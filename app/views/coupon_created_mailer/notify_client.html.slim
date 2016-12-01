@@ -1,0 +1,9 @@
+= @coupon.client.name
+| Has adquirido una promoción:
+= @coupon.date
+| por
+= number_to_currency(@coupon.price, precision: 0,  delimiter: '.')
+| canjeable en
+- @coupon.promotion.branches.each do |branch|
+  = "#{branch.shop.name} (#{branch.name}), #{branch.address}."
+

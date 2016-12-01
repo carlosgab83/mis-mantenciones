@@ -28,6 +28,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.7'
   gem 'ffaker', '~> 2.2'
   gem 'shoulda', '~> 3.5'
+  gem 'letter_opener'
 end
 
 group :staging do
