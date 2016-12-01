@@ -6,6 +6,7 @@ class CouponsController < ApplicationController
     if coupon_params
       @coupon = CouponsCreator.new(coupon_params).call
       if @coupon
+        CouponsNotifier.new(coupon: @coupon).call
         respond_to do |format|
           format.js {render(:create, status: :ok)}
           return

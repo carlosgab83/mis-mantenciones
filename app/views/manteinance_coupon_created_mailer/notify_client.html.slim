@@ -1,0 +1,16 @@
+= @manteinance_coupon.client.name
+Has adquirido una mantención el día
+= @manteinance_coupon.date
+en
+= "#{@manteinance_coupon.branch.shop.name} (#{@manteinance_coupon.branch.name}), #{@manteinance_coupon.branch.address}."
+para tu
+= "#{@vehicle_brand}"
+= "#{@vehicle_model}"
+/= (@manteinance_coupon.pauta.diesel_engine? ? : "Diesel" : "Bencinero")
+/= (@manteinance_coupon.pauta.double_traction? ? : "Doble tracción" : "")
+/= (@manteinance_coupon.pauta.automatic_transmission? ? : "Diesel" : "Mecánico")
+el dia
+= @manteinance_coupon.date
+por
+= number_to_currency(@manteinance_coupon.price, precision: 0,  delimiter: '.')
+

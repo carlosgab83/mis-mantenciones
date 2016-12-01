@@ -1,0 +1,16 @@
+| Cliente:
+= "Nombre: #{@coupon.client.name} #{@coupon.client.primary_last_name}"
+= "Rut: #{@coupon.client.rut}"
+= "Email: #{@coupon.client.email}"
+= "Teléfono: #{@coupon.client.phone}"
+= "Comuna: #{@coupon.client.comune.desc_comuna}"
+
+| Promoción:
+= "#{@coupon.promotion.name}"
+
+| Fecha:
+= @coupon.date
+
+| Precio:
+= number_to_currency(@coupon.price, precision: 0,  delimiter: '.')
+
