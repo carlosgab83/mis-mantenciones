@@ -26,7 +26,7 @@
 
         .col-sm-7.col-sm-pull-5.col-md-8.col-md-pull-4
           .promo-image
-            = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
+            = image_tag(@promotion.image_url || "promo-image.jpg", :alt => "promo", :class => "img-responsive")
 
       .row
         .col.sm-7.col-md-8
