@@ -114,9 +114,7 @@ class ReplaceFncRvmHomoModeloGPostgresqlFunction < ActiveRecord::Migration[5.0]
                     RETURN v_mod_id;
               END;$BODY$
         LANGUAGE plpgsql VOLATILE
-        COST 100;
-      ALTER FUNCTION public.fnc_rvm_homo_modelo_g(integer, text)
-        OWNER TO cgochoa;"
+        COST 100;"
   end
 
   def down
@@ -235,8 +233,6 @@ class ReplaceFncRvmHomoModeloGPostgresqlFunction < ActiveRecord::Migration[5.0]
               END;$BODY$
         LANGUAGE plpgsql VOLATILE
         COST 100;
-      ALTER FUNCTION public.fnc_rvm_homo_modelo_g(integer, text)
-        OWNER TO cgochoa;
     "
   end
 end
