@@ -61,11 +61,11 @@ Rails.application.configure do
   # SMTP settings for mailgun
   ActionMailer::Base.smtp_settings = {
     :port           => 587,
-    :address        => "smtp.gmail.com",
-    :domain         => "gmail.com",
+    :address        => "smtp.mandrillapp.com",
+    :domain         => "mismantenciones.com",
     :user_name      => ENV['MAILER_USER'],
     :password       => ENV['MAILER_PASSWORD'],
-    authentication:       :plain,
+    authentication:       :login,
     enable_starttls_auto: true
   }
 

@@ -30,15 +30,15 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.delivery_method = :letter_opener
-  # config.action_mailer.delivery_method = :smtp
+  #   config.action_mailer.delivery_method = :smtp
   # # SMTP settings for mailgun
   # ActionMailer::Base.smtp_settings = {
   #   :port           => 587,
-  #   :address        => "smtp.gmail.com",
-  #   :domain         => "gmail.com",
-  #   :user_name      => "XXXXXXXX",
-  #   :password       => "XXXXXX",
-  #   authentication:       :plain,
+  #   :address        => "smtp.mandrillapp.com",
+  #   :domain         => "mismantenciones.com",
+  #   :user_name      => "",
+  #   :password       => "",
+  #   authentication:       :login,
   #   enable_starttls_auto: true
   # }
 
