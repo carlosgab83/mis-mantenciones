@@ -41,7 +41,7 @@ generalControls.hideLoadingEffect = () ->
 #############################################################################
 
 generalControls.defaultValidations = () ->
-  $(".numeric").lazzynumeric({aSep: ".", aDec: ",", vMin: "0", vMax: "99999999"})
+  $(".numeric").lazzynumeric({aSep: ".", aDec: ",", vMin: "0", vMax: "999999"})
   $(".search-patent").validate({
     debug: true,
     onsubmit: true,
