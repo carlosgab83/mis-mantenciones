@@ -5,7 +5,9 @@ class HomeController < ApplicationController
     session[:client] = nil
   end
 
-  # Testing patente: BLDR68
+  # Testing patente: BLDR68 # PASSAT
+  # Testing patente: RK1478 # GOLF
+  # Testing patente: BYKP82 # BORA
   def results
     session[:search] = {} if session[:search].nil?
     if params[:search].present?

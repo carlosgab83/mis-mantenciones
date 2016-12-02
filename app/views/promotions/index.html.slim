@@ -24,7 +24,7 @@
             - @promotions.each do |promotion|
               li
                 = link_to promotion do
-                  .promo-image style='background-image:url(#{image_url("promo-image.jpg")});'
+                  .promo-image style='background-image:url(#{image_url(promotion.image_url || "promo-image.jpg")});'
                   .promo-description
                     h6 = promotion.name
                     p = truncate(promotion.preview_text, :length => 120, :omission => '... ')
