@@ -9,14 +9,13 @@
             strong Promotions
 
         .col-sm-3
-          h3 Categories
-          ul.categories-list
-            li
-              a
-               = link_to "Ver todas", promotions_path
-            - @categories.each do |category|
+          = link_to (content_tag(:h3, 'Categorías')), '#collapse-list', :class => 'collapse-button', 'data-toggle' => 'collapse', :role => 'button'
+          #collapse-list.collapse
+            ul.categories-list
               li
-                a
+                = link_to "Ver todas", promotions_path
+              - @categories.each do |category|
+                li
                   = link_to category.name, promotions_path(category_id: category.id)
 
         .col-sm-9
@@ -25,6 +24,8 @@
               li
                 = link_to promotion do
                   .promo-image style='background-image:url(#{image_url(promotion.image_url || "promo-image.jpg")});'
+                    // si hay logo de la empresa
+                    = image_tag("brand-sample.jpg", :alt => "Empresa", :class => "brand-logo")
                   .promo-description
                     h6 = promotion.name
                     p = truncate(promotion.preview_text, :length => 120, :omission => '... ')
