@@ -11,27 +11,27 @@
           h5.text-left Completa tus datos para asegurar tu atención
       = simple_form_for @client, remote: true do |f|
         .row
-          .col-sm-6.col.md-4.col-lg-3
+          .col-sm-6.col.md-4
             .form-group
               label.sr-only for="name" Nombre
               = f.input :name, label: false, placeholder:'Nombre', error: ''
-          .col-sm-6.col.md-4.col-lg-3
+          .col-sm-6.col.md-4
             .form-group
               label.sr-only for="name" Apellido
               = f.input :primary_last_name, label: false, placeholder:'Apellido', error: ''
-          .col-sm-6.col.md-4.col-lg-3
+          .col-sm-6.col.md-4
             .form-group
               label.sr-only for="email" Correo
               = f.input :email, label: false, placeholder:'Correo', error: ''
-          .col-sm-6.col.md-4.col-lg-3
+          .col-sm-6.col.md-4
             .form-group
               label.sr-only for="phone" Rut
               = f.input :rut, label: false, placeholder:'Rut ej: 12345678-9', error: ''
-          .col-sm-6.col.md-4.col-lg-3
+          .col-sm-6.col.md-4
             .form-group
               label.sr-only for="phone" Teléfono
               = f.input :phone, label: false, placeholder:'Teléfono ej: 959945632', error: ''
-          .col-sm-6.col.md-4.col-lg-3
+          .col-sm-6.col.md-4
             .form-group
               label.sr-only for="county" Comuna
               = f.input :comune_id, collection: Comune.all.map{|c|[c.desc_comuna, c.id_comuna]}, label: false, placeholder: 'Comuna', error: ''
