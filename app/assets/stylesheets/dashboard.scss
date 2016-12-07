@@ -56,6 +56,7 @@ section#section-guideline {
 	.lead {
 		display: inline-block;
 		margin-bottom: 0;
+		font-size: 19px;
 		@media #{$usm} {margin-bottom: 15px;}
 	}
 	.small {
@@ -164,7 +165,7 @@ section#section-guideline {
 		width: 100%;
 		.disclamer-text {
 			display: table-cell;
-			width: 27%;
+			width: 24%;
 			text-align: right;
 		}
 		.button-holder {
@@ -311,6 +312,12 @@ section#section-parts {
 			left: 0;
 			padding: 10px;
 			text-align: center;
+		}
+		.brand-logo {
+			position: absolute;
+			z-index: 1;
+			top: 20px;
+			right: 0;
 		}
 	}
 	.promo-description {

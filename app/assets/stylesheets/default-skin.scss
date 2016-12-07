@@ -8,7 +8,7 @@
 // General
 body {
 	color: $dark-color;
-	background-color: $back-color;
+	background: $light-color;
 }
 hr {border-top-color: $side-color;}
 a {
@@ -201,6 +201,7 @@ section#section-parts {
 			a {
 				border-color: $dark-color;
 				color: $dark-color;
+				background-color: $back-color;
 			}
 		}
 	}
@@ -238,6 +239,25 @@ section#section-parts {
 }
 // Promo
 .catalog {
+	.collapse-button {
+		color: lighten($dark-color,15%);
+		&:hover, &:active, &:focus {
+			color: lighten($dark-color,15%);
+		}
+		@media #{$xs}{
+			border-color: lighten($dark-color,25%);
+			&:hover, &:active, &:focus {
+				background-color: lighten($dark-color,25%);;
+				color: $light-color;
+			}
+		}
+	}
+	#collapse-list {
+		background-color: $light-color;
+		@media #{$xs}{
+			box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+		}
+	}
 	span.full-price {color: $main-color;}
 	.promo-list {
 		> li {

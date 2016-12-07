@@ -60,6 +60,16 @@
 	}
 	.form-group {
 		margin-right: 15px;
+		width: 30%;
+		@media #{$xs}{
+			width: 100%;
+		}
+		.form-control, .input-group {
+			width: 100%;
+		}
+		#search_kms {
+			text-align: right;
+		}
 	}
 	.form-control {
 		border-width: 0 0 1px 0;

@@ -1,6 +1,8 @@
 a.single-promo href="#{promotion_path(promotion)}"
   - if promotion.promo_price.present?
     .promo-image
+      // si hay logo de la empresa
+      = image_tag("brand-sample.jpg", :alt => "Empresa", :class => "brand-logo")
       = image_tag(promotion.image_url || "promo-image.jpg", :alt => "promo")
       span.promo-image-text #{promotion.name}
     .promo-description
@@ -12,44 +14,3 @@ a.single-promo href="#{promotion_path(promotion)}"
     .promo-description
       h6 #{promotion.name}
       span Cotizar
-
-/a.single-promo
-  .promo-image
-    = image_tag("promo-image.jpg", :alt => "promo")
-    span.promo-image-text Cambio de aceite y filtro
-  .promo-description
-    h6 $88.888
-    span.changed $99.999
-/a.single-promo
-  .promo-image
-    = image_tag("promo-image.jpg", :alt => "promo")
-  .promo-description
-    h6 Nuevo Honda Civic
-    span Cotizar
-/a.single-promo
-  .promo-image
-    = image_tag("promo-image.jpg", :alt => "promo")
-    span.promo-image-text Texto de la promo
-  .promo-description
-    h6 $77.990
-    span $79.990
-/a.single-promo
-  .promo-image
-    = image_tag("promo-image.jpg", :alt => "promo")
-  .promo-description
-    h6 $49.990
-    span $59.990
-/a.single-promo
-  .promo-image
-    = image_tag("promo-image.jpg", :alt => "promo")
-    span.promo-image-text Texto de la promo
-  .promo-description
-    h6 $49.990
-    span $59.990
-/a.single-promo
-  .promo-image
-    = image_tag("promo-image.jpg", :alt => "promo")
-    span.promo-image-text Texto de la promo
-  .promo-description
-    h6 $49.990
-    span $59.990
