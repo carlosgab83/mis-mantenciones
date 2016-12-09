@@ -2,7 +2,7 @@ a.single-promo href="#{promotion_path(promotion)}"
   - if promotion.promo_price.present?
     .promo-image
       // si hay logo de la empresa
-      = image_tag("brand-sample.jpg", :alt => "Empresa", :class => "brand-logo")
+      /= image_tag("brand-sample.jpg", :alt => "Empresa", :class => "brand-logo")
       = image_tag(promotion.image_url || "promo-image.jpg", :alt => "promo")
       span.promo-image-text #{promotion.name}
     .promo-description

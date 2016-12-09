@@ -1,7 +1,8 @@
 .text-left.text-primary
   = check_box_tag('accept_terms', class:'accept-terms-check')
+  | He leido y acepto los
   = link_to root_path, target: :blank do
-    = 'Acepto los Términos y Condiciones'
+    = ' Términos y Condiciones'
 
 javascript:
   $("##{form_id}").validate({
