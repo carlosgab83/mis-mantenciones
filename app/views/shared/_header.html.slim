@@ -8,7 +8,7 @@ header#header
         = form_tag(:results_home, method: :post, class: 'form-inline search-patent') do
           .form-group
             label.sr-only for="exampleInputName2" Patente
-            = text_field('search', 'patent', class: 'form-control', placeholder:'Patente', value: session[:vehicle].try(:patent), maxlength: 6)
+            = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Patente', value: session[:vehicle].try(:patent), maxlength: 6)
           .form-group
             label.sr-only for="exampleInputEmail2" Kilometraje
             .input-group

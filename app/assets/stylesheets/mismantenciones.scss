@@ -217,6 +217,9 @@ body {
 			&:focus {
 				box-shadow: none;
 			}
+			&#search_patent {
+				text-align: right;
+			}
 			&#search_kms {
 				text-align: right;
 			}

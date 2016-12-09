@@ -1,7 +1,6 @@
 .modal-dialog.modal-lg
   .modal-content
     .modal-header
-      button type="button" class="close" data-dismiss="modal" x
       h4.modal-title Estamos listos
     .modal-body
       - promotion = Promotion.where(id: @context_params[:promotion_id]).first
@@ -17,5 +16,6 @@
         = f.input :promotion_id, input_html: {value: promotion.id}, as: :hidden
         = f.input :client_id, input_html: {value: client_id}, as: :hidden
         = f.input :price, input_html: {value: promotion.promo_price}, as: :hidden
+        = render 'shared/accept_terms_check', form_id: 'new_coupon'
         .row
-          button.btn.btn-cta.btn-block type="submit" Obtener Cupon
+          button.btn.btn-cta.btn-block type="submit" Confirmar

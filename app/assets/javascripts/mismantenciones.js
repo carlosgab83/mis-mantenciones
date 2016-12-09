@@ -34,4 +34,10 @@ $(document).ready(function(){
     var toppadding = $('.quote-selector > ul > li.active > a').height();
     $('.quote-selector > ul').css({'margin-top':toppadding});
   });
+
+  $('.input-capital').on('input', function(evt) {
+    $(this).val(function (_, val) {
+      return val.toUpperCase();
+    });
+  });
 });

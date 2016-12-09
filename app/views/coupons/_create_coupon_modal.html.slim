@@ -1,7 +1,6 @@
 .modal-dialog.modal-lg
   .modal-content
     .modal-header
-      button type="button" class="close" data-dismiss="modal" x
       h4.modal-title Felicitaciones #{@coupon.client.name}
     .modal-body
       .text-center.text-primary
@@ -12,3 +11,4 @@
           strong #{mismantenciones_number_to_currency(@coupon.price)}
     .modal-footer
       .row
+          button.btn.btn-cta.btn-block#modal-done-button type="submit" Listo, continúa en mismantenciones.com

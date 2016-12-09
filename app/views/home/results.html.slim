@@ -9,7 +9,7 @@
             li
               .inner-cell
                 h2
-                  | Mantenciones para tu <em>#{@vehicle.brand_name} #{@vehicle.model_name} #{@vehicle.manufacturing_year}</em>
+                  | Las Mantenciones para tu <em>#{@vehicle.brand_name} #{@vehicle.model_name} #{@vehicle.manufacturing_year}</em>
               .inner-cell
                 span.lead #{@pauta.name}
             li
@@ -51,38 +51,38 @@
               a class='#{manteinance_item_status_class(@pauta.suspension_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.suspension_manteinance_items)}" data-placement="bottom" data-html="true"
                 .inner-cell
                   span.flaticon-shock-absorber
-                  | Amortigüación
+                  | Suspención
                 .inner-cell
                   span.badge #{@pauta.suspension_manteinance_items.count}
             li
               a class='#{manteinance_item_status_class(@pauta.electric_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.electric_manteinance_items)}" data-placement="bottom" data-html="true"
                 .inner-cell
                   span.flaticon-battery
-                  | Eléctrico
+                  | Sist. Eléctrico
                 .inner-cell
                   span.badge #{@pauta.electric_manteinance_items.count}
             li
               a class='#{manteinance_item_status_class(@pauta.other_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.other_manteinance_items)}" data-placement="bottom" data-html="true"
                 .inner-cell
                   span.flaticon-car-search
-                  | Otro
+                  | Otros
                 .inner-cell
                   span.badge #{@pauta.other_manteinance_items.count}
           .quote
             .disclamer-text
-              .small * estas mantenciones son solo de referencia de acuerdo al kilometraje y modelo de tu auto
+              .small * Estas mantenciones son solo de referencia de acuerdo al kilometraje y modelo de tu auto
             .button-holder
               - if @pauta.has_branches?
                 = link_to new_manteinance_coupon_path(manteinance_coupon: {id_pauta: @pauta.id_pauta}), remote: true
                   button.btn.btn-cta type="button"
-                    | Cotizar estas mantenciones
+                    | Cotiza estas mantenciones
 
   section#section-promos
     .container
       .row
         .col-md-12
           h2
-            | Promociones
+            | Tus Promociones y Servicios
       .row
         .col-md-12
           #promo-carousel
