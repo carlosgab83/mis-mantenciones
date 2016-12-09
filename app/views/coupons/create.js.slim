@@ -1,6 +1,10 @@
 |
-  $('#obtain-coupon-client-registered-modal').modal('hide');
+  //$('#obtain-coupon-client-registered-modal').modal('hide');
 
-  $('#create-coupon-modal').html( "#{escape_javascript(render('create_coupon_modal'))}" );
+  $('#obtain-coupon-client-registered-modal').html( "#{escape_javascript(render('create_coupon_modal'))}" );
 
-  $('#create-coupon-modal').modal('show');
+  $('#modal-done-button').click(function() {
+    $(this).closest('.modal').modal('hide');
+  });
+
+  //$('#create-coupon-modal').modal('show');

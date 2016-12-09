@@ -1,0 +1,13 @@
+.text-left.text-primary
+  = check_box_tag('accept_terms', class:'accept-terms-check')
+  = link_to root_path, target: :blank do
+    = 'Acepto los Términos y Condiciones'
+
+javascript:
+  $("##{form_id}").validate({
+    debug: true,
+    errorPlacement: function(error, element) { },
+    rules: {
+    "accept_terms": {required: true}
+    }
+  });

@@ -13,14 +13,14 @@ class ClientsController < ApplicationController
     def create
     if create_client_params
       client = ClientCreator.new(create_client_params.merge({rvm_id: session[:vehicle].try(:patent)})).call
-      if client
+      if client.valid?
         @context_params = session[:last_context]
         @context_params[:client_id] = client.id
         session[:last_context] = nil
         session[:client] = client
         render partial: params[:success_partial]
       else
-        render json: {error: I18n.t('general.error')}, status: 422
+        render action: :fail, status: 422
       end
     end
   end

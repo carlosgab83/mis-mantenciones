@@ -16,7 +16,7 @@
             span.promo-price = mismantenciones_number_to_currency(@promotion.promo_price)
             span.full-price = mismantenciones_number_to_currency(@promotion.full_price)
 
-          a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' Comprar
+          a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' Solicita más información
 
           ul.promo-conditions
             - @promotion.attributes_promotions.each do |ap|

@@ -11,19 +11,19 @@
           .row
             .col-sm-12.col-md-4
               h3
-                | CONSULTA TUS&nbsp;
+                | REVISA LAS MANTENCIONES&nbsp;
                 br
-                | MANTENCIONES
+                | PARA TU AUTO O MOTO
             .col-sm-12.col-md-8
               = form_tag results_home_path, class: 'form-inline search-patent'
                 .form-group
-                  = text_field('search', 'patent', class: 'form-control', placeholder:'Patente', maxlength: 6)
+                  = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Tu Patente', maxlength: 6)
                 .form-group
                   .input-group
-                    = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Kilometraje', maxlength: 8)
+                    = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Tu Kilometraje', maxlength: 8)
                     .input-group-addon kms
                 .form-group
-                  button.btn.btn-cta.btn-block type="submit" Ver mi pauta
+                  button.btn.btn-cta.btn-block type="submit" Comenzar
   #home-bottom
     .container
       .row
@@ -53,5 +53,10 @@
                   | Compra
                   br
                   | Repuestos
+                li
+                  i.fa.fa-wrench
+                  | Obtén
+                  br
+                  | Promociones
 
 = render 'shared/footer'

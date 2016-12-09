@@ -23,5 +23,6 @@
         = f.input :pauta_id, input_html: {value: pauta.id_pauta}, as: :hidden
         = f.input :client_id, input_html: {value: client_id}, as: :hidden
         = f.input :branch_id, input_html: {value: branch.id}, as: :hidden
+        = render 'shared/accept_terms_check', form_id: 'new_manteinance_coupon'
         .row
           button.btn.btn-cta.btn-block type="submit" Obtener Cupon
