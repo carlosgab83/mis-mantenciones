@@ -51,7 +51,7 @@
               a class='#{manteinance_item_status_class(@pauta.suspension_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.suspension_manteinance_items)}" data-placement="bottom" data-html="true"
                 .inner-cell
                   span.flaticon-shock-absorber
-                  | Suspención
+                  | Suspensión
                 .inner-cell
                   span.badge #{@pauta.suspension_manteinance_items.count}
             li
@@ -70,7 +70,7 @@
                   span.badge #{@pauta.other_manteinance_items.count}
           .quote
             .disclamer-text
-              .small * Estas mantenciones son solo de referencia de acuerdo al kilometraje y modelo de tu auto
+              .small * Estas actividades son solo de referencia de acuerdo al kilometraje y modelo de tu auto
             .button-holder
               - if @pauta.has_branches?
                 = link_to new_manteinance_coupon_path(manteinance_coupon: {id_pauta: @pauta.id_pauta}), remote: true
