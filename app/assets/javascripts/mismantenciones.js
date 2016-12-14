@@ -40,4 +40,32 @@ $(document).ready(function(){
       return val.toUpperCase();
     });
   });
+
+  confirmBackspaceNavigations();
+
 });
+
+function confirmBackspaceNavigations () {
+  // http://stackoverflow.com/a/22949859/2407309
+  var backspaceIsPressed = false
+  $(document).keydown(function(event){
+    if (event.which == 8) {
+      backspaceIsPressed = true
+    }
+  })
+  $(document).keyup(function(event){
+    if (event.which == 8) {
+      backspaceIsPressed = false
+    }
+  })
+  $(window).on('beforeunload', function(){
+    if (backspaceIsPressed) {
+      backspaceIsPressed = false
+      return "Are you sure you want to leave this page?"
+    }
+  })
+}
+
+$( document ).on('turbolinks:load', function() {
+
+})
