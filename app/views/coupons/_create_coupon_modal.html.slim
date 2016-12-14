@@ -4,11 +4,14 @@
       h4.modal-title Felicitaciones #{@coupon.client.name}
     .modal-body
       .text-center.text-primary
-        .what Tu número de cupon es: #{@coupon.id} para la promoción #{@coupon.promotion.name}
-        .how-much
-          strong en #{@coupon.promotion.shops_details}
-          | &nbsp;porl&nbsp;
-          strong #{mismantenciones_number_to_currency(@coupon.price)}
+        - if @coupon.promotion.category.vehicle?
+          .what Te enviaremos un correo electrónico para que puedas contactar a un vendedor que responderá todas tus preguntas
+        - else
+          .what Tu número de cupon es: #{@coupon.id} para la promoción #{@coupon.promotion.name}
+          .how-much
+            strong en #{@coupon.promotion.shops_details}
+            | &nbsp;porl&nbsp;
+            strong #{mismantenciones_number_to_currency(@coupon.price)}
     .modal-footer
       .row
-          button.btn.btn-cta.btn-block#modal-done-button type="submit" Listo, continúa en mismantenciones.com
+          button.btn.btn-cta.btn-block#modal-done-button type="submit" Listo, continúar viendo mismantenciones.com
