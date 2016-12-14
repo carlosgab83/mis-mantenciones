@@ -6,8 +6,8 @@
       .row
         .col-sm-12
           h2
+            span = "#{@promotion.name} en "
             strong #{@promotion.branches.first.shop.name}
-            span = @promotion.name
 
       .row
         .col-sm-5.col-sm-push-7.col-md-4.col-md-push-8
