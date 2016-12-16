@@ -12,6 +12,8 @@ class Category < ApplicationRecord
     })
   end
 
+  # TO DO: Refactor following logic to apply texts: Maybe move to a module and send texts to locales.
+
   def vehicle?
     root.name == 'Vehículo'
   end

@@ -33,7 +33,12 @@
               = f.input :comune_id, collection: Comune.all.map{|c|[c.desc_comuna, c.id_comuna]}, label: false, prompt: 'Comuna', error:''
           .col-sm-8.col.md-4
             .form-group
-              = render 'shared/accept_terms_check', form_id: 'new_client'
+              .text-left.text-primary
+                = f.check_box(:accept_terms, class:'accept-terms-check')
+                | He leído y acepto los
+                = link_to root_path, target: :blank do
+                  = ' Términos y Condiciones'
+
           .col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
             = hidden_field_tag('success_partial', params[:success_partial])
             = hidden_field_tag('partial', params[:partial])

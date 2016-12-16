@@ -142,3 +142,11 @@ manteinanceCouponsControls.updateBookingButton = () ->
     $('#book-manteinance-copupon').hide()
 
 #############################################################################
+
+manteinanceCouponsControls.updateObtainManteinanceCouponButton = () ->
+  if manteinanceCouponsControls.activeBranch().data('booking-url') != ''
+    $('#obtain-manteinance-coupon').hide()
+  else
+    $('#obtain-manteinance-coupon').show()
+
+#############################################################################
