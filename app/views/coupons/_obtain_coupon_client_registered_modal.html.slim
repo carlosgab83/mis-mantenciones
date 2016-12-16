@@ -4,7 +4,7 @@
       h4.modal-title #{image_tag('logo-mm.png')}
     .modal-body
       - promotion = Promotion.where(id: @context_params[:promotion_id]).first
-      - client_id  = @context_params[:client_id].png
+      - client_id  = @context_params[:client_id]
       .text-center.text-primary
         .what #{promotion.category.promotion_confirmed_text} #{promotion.name}
         .how-much
