@@ -32,3 +32,32 @@
 .tooltip-separator{
   line-height: 200%;
 }
+
+h4.modal-title img{
+  width: 25%;
+}
+
+input.accept-terms-check.error {
+ -webkit-animation-duration: 1s;
+ animation-duration: 1s;
+ -webkit-animation-fill-mode: both;
+ animation-fill-mode: both;
+ -webkit-animation-name: flash;
+ animation-name: flash;
+}
+@-webkit-keyframes flash {
+ 0%, 50%, 100% {
+ opacity: 1;
+ }
+25%, 75% {
+ opacity: 0;
+ }
+}
+@keyframes flash {
+ 0%, 50%, 100% {
+ opacity: 1;
+ }
+25%, 75% {
+ opacity: 0;
+ }
+}

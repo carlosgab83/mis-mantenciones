@@ -20,7 +20,8 @@ class ManteinanceCouponsController < ApplicationController
       if @manteinance_coupon.valid?
         ManteinanceCouponsNotifier.new(manteinance_coupon: @manteinance_coupon, vehicle: session[:vehicle]).call
         respond_to do |format|
-          format.js {render(:create, status: :ok)}
+          format.js {render(:create, status: :ok)} # For Obtain coupon option
+          format.html {render(:create, status: :ok)} # For Book option
           return
         end
       else

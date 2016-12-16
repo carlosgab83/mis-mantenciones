@@ -2,14 +2,14 @@
   .modal-content
     .modal-header
       button type="button" class="close" data-dismiss="modal" x
-      h4.modal-title Ingresa tus datos
+      h4.modal-title #{image_tag('logo-mm')}
     .modal-body
       = render(params[:partial])
     .modal-footer
       .row
         .col-sm-12
           h5.text-left Completa tus datos para asegurar tu atención
-      = simple_form_for @client, remote: true do |f|
+      = simple_form_for @client, html: {id:'register_client'}, remote: true do |f|
         .row
           .col-sm-6.col.md-4
             .form-group
@@ -22,11 +22,7 @@
           .col-sm-6.col.md-4
             .form-group
               label.sr-only for="email" Correo
-              = f.input :email, label: false, placeholder:'Correo', error: ''
-          .col-sm-6.col.md-4
-            .form-group
-              label.sr-only for="phone" Rut
-              = f.input :rut, label: false, placeholder:'Rut ej: 12345678-9', error: ''
+              = f.input :email, label: false, placeholder:'Correo electrónico', error: ''
           .col-sm-6.col.md-4
             .form-group
               label.sr-only for="phone" Teléfono
@@ -34,8 +30,17 @@
           .col-sm-6.col.md-4
             .form-group
               label.sr-only for="county" Comuna
-              = f.input :comune_id, collection: Comune.all.map{|c|[c.desc_comuna, c.id_comuna]}, label: false, placeholder: 'Comuna', error: ''
+              = f.input :comune_id, collection: Comune.all.map{|c|[c.desc_comuna, c.id_comuna]}, label: false, prompt: 'Comuna', error:''
+          .col-sm-8.col.md-4
+            .form-group
+              .text-left.text-primary
+                = f.check_box(:accept_terms, class:'accept-terms-check')
+                | He leído y acepto los
+                = link_to root_path, target: :blank do
+                  = ' Términos y Condiciones'
+
           .col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
             = hidden_field_tag('success_partial', params[:success_partial])
             = hidden_field_tag('partial', params[:partial])
+
             button#contact-submit.btn.btn-cta.btn-block type="submit" Enviar

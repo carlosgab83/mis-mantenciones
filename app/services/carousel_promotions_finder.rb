@@ -6,7 +6,7 @@ class CarouselPromotionsFinder < BaseService
   PROMOTIONS_TO_SHOW_IN_CAROUSEL = 20
 
   def call
-    carousel_promotions(get_promotions, get_category_array)
+    carousel_promotions(get_promotions_with_vmes + get_promotions_without_vmes, get_category_array)
   end
 
   private
@@ -15,16 +15,24 @@ class CarouselPromotionsFinder < BaseService
     Carousel::Selector.new(size: PROMOTIONS_TO_SHOW_IN_CAROUSEL, objects: promotions, categories: category_circular_array).items
   end
 
-  def get_promotions
+  def get_promotions_base
     promotions = Promotion.availables.actives.with_stock.not_deleted
     .includes(:branches, :category)
     .joins(:promotions_vmes)
-    .order("promotions.created_at desc, promotions.promo_price asc")
+    .order("promotions.priority desc, promotions.promo_price asc, promotions.created_at desc")
+    .limit(PROMOTIONS_TO_SHOW_IN_CAROUSEL)
+  end
+
+  def get_promotions_with_vmes
+    promotions = []
     if params[:vehicle].present? and params[:vehicle].vme.present?
-      promotions = promotions.where("(promotions_vmes.vme_id in (?) or promotions_vmes.vme_id IS NULL)", params[:vehicle].vme.vme_id)
-    else
-      promotions = promotions.where("promotions_vmes.vme_id IS NULL")
+      promotions = get_promotions_base.where("(promotions_vmes.vme_id in (?))", params[:vehicle].vme.vme_id).to_a
     end
+    promotions
+  end
+
+  def get_promotions_without_vmes
+    promotions = get_promotions_base.where("promotions_vmes.vme_id IS NULL").to_a
   end
 
   def get_category_array

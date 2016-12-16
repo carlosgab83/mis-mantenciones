@@ -1,6 +1,6 @@
-- promotion = Promotion.where(id: params[:promotion_id]).first
+- promotion = Promotion.includes(:category).where(id: params[:promotion_id]).first
 .text-center.text-primary
-  .what Estás solicitando un cupon para #{promotion.name}, disponible en
+  .what #{promotion.category.promotion_before_registration_text} #{promotion.name}, disponible en
   .how-much
     strong #{promotion.shops_details}
     | &nbsp;por&nbsp;

@@ -4,3 +4,8 @@
   $('#create-manteinance-coupon-modal').html( "#{escape_javascript(render('create_manteinance_coupon_modal'))}" );
 
   $('#create-manteinance-coupon-modal').modal('show');
+
+  $('#modal-done-button').click(function() {
+    $(this).closest('.modal').modal('hide');
+    window.location = "/results";
+  });

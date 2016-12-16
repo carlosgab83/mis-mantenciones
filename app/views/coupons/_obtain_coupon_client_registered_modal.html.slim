@@ -1,12 +1,12 @@
 .modal-dialog.modal-lg
   .modal-content
     .modal-header
-      h4.modal-title Estamos listos
+      h4.modal-title #{image_tag('logo-mm')}
     .modal-body
       - promotion = Promotion.where(id: @context_params[:promotion_id]).first
       - client_id  = @context_params[:client_id]
       .text-center.text-primary
-        .what Ahora puedes generar tu cupón para tu #{promotion.name}
+        .what #{promotion.category.promotion_confirmed_text} #{promotion.name}
         .how-much
           strong &nbsp;por #{mismantenciones_number_to_currency(promotion.promo_price)}
           strong &nbsp;en #{promotion.shops_details}&nbsp;
@@ -16,6 +16,6 @@
         = f.input :promotion_id, input_html: {value: promotion.id}, as: :hidden
         = f.input :client_id, input_html: {value: client_id}, as: :hidden
         = f.input :price, input_html: {value: promotion.promo_price}, as: :hidden
-        = render 'shared/accept_terms_check', form_id: 'new_coupon'
+        = hidden_field_tag('promotion_category', promotion.category.root.name)
         .row
           button.btn.btn-cta.btn-block type="submit" Confirmar

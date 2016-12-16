@@ -12,7 +12,7 @@ generalControls.ready = ->
     generalControls.hideLoadingEffect()
 
 $(document).ready(generalControls.ready)
-$(document).on('pasge:load', generalControls.ready)
+$(document).on('page:load', generalControls.ready)
 
 ############################################################################
 
@@ -48,7 +48,7 @@ generalControls.defaultValidations = () ->
     errorPlacement: (error, element) ->,
     errorClass: 'notExistentClass',
     rules: {
-      "search[patent]": {required: true, minlength: 6, maxlength: 6}
+      "search[patent]": {required: true, minlength: 5, maxlength: 6}
     },
     submitHandler: (form) ->
       form.submit()
