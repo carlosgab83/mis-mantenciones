@@ -21,7 +21,8 @@ gem 'roo', '~> 2.5.0'
 gem 'activerecord-session_store'
 gem 'activerecord-import', '~> 0.16'
 gem 'rails_admin_nested_set', '~> 0.5'
-gem 'simple_form'
+gem 'simple_form', '~> 3.3'
+gem 'friendly_id', '~> 5.1.0'
 
 group :development, :test do
   gem 'pry-byebug'

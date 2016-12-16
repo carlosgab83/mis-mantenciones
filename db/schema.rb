@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202043533) do
+ActiveRecord::Schema.define(version: 20161216233825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -266,9 +266,11 @@ ActiveRecord::Schema.define(version: 20161202043533) do
     t.datetime "updated_at",                       null: false
     t.integer  "category_id",                      null: false
     t.integer  "product_brand_id",                 null: false
+    t.string   "slug"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["name"], name: "products_business_index", unique: true, using: :btree
     t.index ["product_brand_id"], name: "index_products_on_product_brand_id", using: :btree
+    t.index ["slug"], name: "index_products_on_slug", using: :btree
   end
 
   create_table "products_vmes", force: :cascade do |t|
@@ -298,8 +300,10 @@ ActiveRecord::Schema.define(version: 20161202043533) do
     t.integer  "category_id",                         null: false
     t.text     "preview_text"
     t.string   "image_url"
+    t.string   "slug"
     t.index ["category_id"], name: "index_promotions_on_category_id", using: :btree
     t.index ["name"], name: "promotions_business_index", unique: true, using: :btree
+    t.index ["slug"], name: "index_promotions_on_slug", using: :btree
   end
 
   create_table "promotions_vmes", force: :cascade do |t|
