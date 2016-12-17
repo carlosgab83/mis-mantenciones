@@ -19,7 +19,7 @@ class Vehicle
       self.found = true
     end
 
-    self.patent = patent
+    self.patent = adjust(patent)
     self.kms = kms.to_i
   end
 
@@ -41,4 +41,18 @@ class Vehicle
   end
 
   attr_writer :rvm_brand, :rvm_model, :manufacturing_year, :brand_id, :model_id, :engine_serial, :chassis_serial, :patent, :kms, :found
+
+  private
+
+  # For Motorcycles, if patent has 5 characters, one '0' must be inserted after last letter
+  # It assumes that patent has 5 or 6 characters. Not other option
+  def adjust(patent)
+    return patent unless patent.length < 6
+    i = first_number_index(patent)
+    "#{patent[0..(i-1)]}0#{patent[i..-1]}"
+  end
+
+  def first_number_index(patent)
+    patent.index(/[0123456789]/)
+  end
 end
