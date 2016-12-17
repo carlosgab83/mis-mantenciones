@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  extend  FriendlyId
+
   belongs_to :product_type
   belongs_to :category
   belongs_to :product_brand
@@ -10,6 +12,9 @@ class Product < ApplicationRecord
   has_many :vmes, through: :products_vmes
 
   scope :not_deleted, -> {where(deleted: [false, nil])}
+
+  # Use friendly id based on name
+  friendly_id :name, use: :slugged
 
   def model_attribute_value
     product_model_attribute = Attribute.where(name: 'Modelo').first

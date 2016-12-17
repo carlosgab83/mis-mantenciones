@@ -1,7 +1,7 @@
 class PromotionDetail < BaseService
 
   def call
-    Promotion.includes(:branches, :category, :promotion_attributes).where(id: params[:id]).first
+    Promotion.includes(:branches, :category, :promotion_attributes).friendly.find(params[:id])
   end
 
   private

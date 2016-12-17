@@ -1,4 +1,6 @@
 class Promotion < ApplicationRecord
+  extend  FriendlyId
+
   belongs_to :category
   has_many :branches_promotions
   has_many :branches, through: :branches_promotions
@@ -12,9 +14,13 @@ class Promotion < ApplicationRecord
   scope :with_stock, -> {where("max_coupons IS NULL or max_coupons >= 1")}
   scope :not_deleted, -> {where(deleted: [false, nil])}
 
+  # Use friendly id based on name
+  friendly_id :name, use: :slugged
+
   def shops_details
     branches.collect do |b|
       "#{b.shop.name} (#{b.name})"
     end.join(', ')
   end
+
 end
