@@ -5,10 +5,9 @@
     .container
       .row
         .col-sm-12
-          h2
+          h1
             span = "#{@promotion.name} en "
             strong #{@promotion.branches.first.shop.name}
-
       .row
         .col-sm-5.col-sm-push-7.col-md-4.col-md-push-8
 
@@ -26,7 +25,7 @@
 
         .col-sm-7.col-sm-pull-5.col-md-8.col-md-pull-4
           .promo-image
-            = image_tag(@promotion.image_url || "promo-image.jpg", :alt => "promo", :class => "img-responsive")
+            = image_tag(@promotion.image_url || "promo-image.jpg", :alt => @promotion.name, :class => "img-responsive")
 
       .row
         .col.sm-7.col-md-8

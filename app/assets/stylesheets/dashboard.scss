@@ -26,8 +26,8 @@ section#section-parts {
 // Guideline
 section#section-guideline {
 	min-height: 200px;
-	padding: 90px 0;
-	padding-top: 160px;
+	padding: 80px 0;
+	padding-top: 150px;
 	h2 {
 		font-size: 140%;
 		margin: 0;
@@ -56,7 +56,8 @@ section#section-guideline {
 	.lead {
 		display: inline-block;
 		margin-bottom: 0;
-		font-size: 19px;
+		font-size: 17px;
+		padding: 5px 0;
 		@media #{$usm} {margin-bottom: 15px;}
 	}
 	.small {
@@ -117,10 +118,17 @@ section#section-guideline {
 			.popover {
 				font-family: 'Exo 2', sans-serif;
 				z-index: 100;
+				font-size: 90%;
 				ul, ol {
 					list-style: none;
 					margin-bottom: 0;
 					padding-left: 0;
+				}
+				.popover-content {
+					line-height: 1.3em;
+					.tooltip-separator {
+						line-height: 230%;
+					}
 				}
 			}
 			@media #{$xs} {
@@ -188,7 +196,7 @@ section#section-guideline {
 // Promos
 section#section-promos {
 	min-height: 200px;
-	padding: 50px 0;
+	padding: 40px 0;
 	position: relative;
 	z-index: 1;
 	&:before {@extend .upper-triangle;}
@@ -203,7 +211,7 @@ section#section-promos {
 // Part
 section#section-parts {
 	min-height: 200px;
-	padding: 80px 0;
+	padding: 70px 0;
 	h2 {
 		text-align: right;
 	}
@@ -378,8 +386,11 @@ section#section-parts {
 		}
 	}
 	.modal-selector {
-		padding: 15px;
+		padding: 0 15px;
 		text-align: center;
+		.toggle-filter {
+			margin: 15px 5px 34px;
+		}
 	}
 	.modal-body {
 		display: table;
@@ -388,10 +399,13 @@ section#section-parts {
 		padding: 0;
 		.quote-selector, .quote-detail {
 			display: table-cell;
-			width: 50%;
+			@media #{$xs}{display: table;}
 		}
 		.quote-selector {
 			position: relative;
+			width: 40%;
+			@media #{$sm}{width: 50%;}
+			@media #{$xs}{width: 100%;}
 			> ul {
 				margin-bottom: 0;
 				margin-top: 62px;
@@ -423,7 +437,7 @@ section#section-parts {
 						width: 100%;
 						> div {
 							display: table-cell;
-							padding: 10px 6px;
+							padding: 8px 6px;
 							min-height: 58px;
 							vertical-align: middle;
 							&.prices {
@@ -463,18 +477,41 @@ section#section-parts {
 			}
 		}
 		.quote-detail {
+			width: 60%;
+			@media #{$sm}{width: 50%;}
+			@media #{$xs}{width: 100%;}
 			padding: 15px 25px;
 			vertical-align: top;
 			.button-holder {
 				margin-bottom: 15px;
-				.btn {margin-right: 10px;}
+				text-align: center;
+				.btn {
+					display: inline-block;
+					width: 46%;
+					margin: 0 2%;
+					font-size: 85%;
+					padding-left: 5px;
+					padding-right: 5px;
+				}
 			}
 			.list-unstyled {
 				margin-bottom: 0;
+				@media #{$lg}{
+					-webkit-column-count: 2;
+					-moz-column-count: 2;
+					column-count: 2;
+					-webkit-column-gap: 20px;
+					-moz-column-gap: 20px;
+					column-gap: 20px;
+				}
 				> li {
+					-webkit-column-break-inside: avoid;
+					page-break-inside: avoid;
+					break-inside: avoid-column;
+					display:table; 
 					position: relative;
 					line-height: 1.2em;
-					padding: 8px 0 8px 20px;
+					padding: 5px 0 5px 20px;
 					opacity: 0.5;
 					@include transition(all 0.6s ease-in-out);
 					&.active {
@@ -485,7 +522,7 @@ section#section-parts {
 					}
 					&:before {
 						position: absolute;
-						top: 8px;
+						top: 5px;
 						left: 0;
 						display: inline-block;
 						font-family: 'FontAwesome';

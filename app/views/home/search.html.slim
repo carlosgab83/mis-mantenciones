@@ -3,7 +3,9 @@
     .container
       .row
         .col-sm-12
-          h1 ¿QUÉ TENGO QUE HACERLE A MI AUTO?
+          h1
+            = image_tag("logo-mm.png", :alt => "Mis Mantenciones", :class => "img-logo")
+          //h1 ¿QUÉ TENGO QUE HACERLE A MI AUTO?
   #home-middle
     .container
       .row
@@ -29,9 +31,9 @@
       .row
         .col-md-12
           .row
-            .col-sm-12.col-md-4
+            .col-sm-12.col-md-3
               h3 Hazlo Simple
-            .col-sm-12.col-md-8
+            .col-sm-12.col-md-9
               ul.list-unstyled.list-inline
                 li
                   i.fa.fa-search
@@ -54,7 +56,7 @@
                   br
                   | Repuestos
                 li
-                  i.fa.fa-wrench
+                  i.fa.fa-tag
                   | Obtén
                   br
                   | Promociones

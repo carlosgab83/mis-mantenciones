@@ -5,13 +5,13 @@
     .container
       .row
         .col-sm-12
-          h2
+          h1
             strong = @product.product_brand.name
             span = @product.name
       .row
         .col-sm-6
           .product-image
-            = image_tag("part-image.jpg", :alt => "part", :class => "img-responsive")
+            = image_tag("part-image.jpg", :alt => @product.product_brand.name+" "+@product.name, :class => "img-responsive")
         .col-sm-6
           .product-description
             ul

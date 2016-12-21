@@ -91,7 +91,6 @@ textarea {
 	}
 	&.btn-ghost {
 		box-shadow: none!important;
-		font-family: 'Exo 2', sans-serif;
 	}
 	&.btn-link {
 		font-weight: 300;
@@ -196,13 +195,33 @@ body {
 	left: 0;
 	width: 100%;
 	z-index: 3;
+	@media #{$xs}{
+		padding-bottom: 0;
+	}
 	&:after {@extend .bottom-triangle;}
 	div.text-right[class*='col-'] {
 		@media #{$xs}{
 			text-align: center;
 		}
 	}
+	#logo {
+		display: inline-block;
+		max-width: 300px;
+		margin: 6px 0;
+		@media #{$xs}{
+			width: 100%;
+			text-align: center;
+			margin-top: 0;
+			margin-bottom: 14px;
+			max-width: none;
+			img {
+				display: inline-block;
+				max-width: 260px;
+			}
+		}
+	}
 	.form-group {
+		width: 33%;
 		padding: 0 10px;
 		&:last-child {padding-right: 0;}
 		@media #{$xs}{
@@ -213,20 +232,20 @@ body {
 			padding-left: 0;
 			padding-right: 0;
 			border-width: 0 0 1px 0;
-			max-width: 120px;
+			width: 100%;
 			&:focus {
 				box-shadow: none;
 			}
 			&#search_patent {
-				text-align: right;
+				text-align: center;
 			}
 			&#search_kms {
-				text-align: right;
+				text-align: center;
 			}
 		}
 	}
 	.input-group {
-		max-width: 120px;
+		width: 100%;
 		.input-group-addon {
 			background-color: transparent;
 			padding-left: 5px;

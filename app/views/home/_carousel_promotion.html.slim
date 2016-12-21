@@ -1,9 +1,9 @@
-a.single-promo href="#{promotion_path(promotion)}"
+a.single-promo href="#{promotion_path(promotion)}" title="#{promotion.name}"
   - if promotion.promo_price.present?
     .promo-image
       // si hay logo de la empresa
       /= image_tag("brand-sample.jpg", :alt => "Empresa", :class => "brand-logo")
-      = image_tag(promotion.image_url || "promo-image.jpg", :alt => "promo")
+      = image_tag(promotion.image_url || "promo-image.jpg", :alt => promotion.name)
       span.promo-image-text #{promotion.name}
     .promo-description
       h6 #{mismantenciones_number_to_currency(promotion.promo_price)}
