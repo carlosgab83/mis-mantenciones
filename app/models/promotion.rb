@@ -1,5 +1,7 @@
 class Promotion < ApplicationRecord
   extend  FriendlyId
+  extend PromotionsSerializer
+  include PromotionSerializer
 
   belongs_to :category
   has_many :branches_promotions

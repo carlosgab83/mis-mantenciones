@@ -4,4 +4,6 @@ class Client < ApplicationRecord
   belongs_to :comune
 
   attr_accessor :accept_terms
+
+  include ClientSerializer
 end

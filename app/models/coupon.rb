@@ -3,4 +3,6 @@ class Coupon < ApplicationRecord
 
   belongs_to :promotion
   belongs_to :client
+
+  include CouponSerializer
 end
