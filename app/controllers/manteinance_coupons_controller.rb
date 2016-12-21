@@ -7,6 +7,7 @@ class ManteinanceCouponsController < ApplicationController
       composer = ManteinanceAlternativesListComposer.new(new_manteinance_coupon_params)
       composer.active_sorting_button = params[:active_sorting_button]
       @manteinance_alternatives_list = composer.call
+      EventTracker::OpenQuoteManteinanceCoupon.new(controller: self, vehicle: session[:vehicle], pauta: @manteinance_alternatives_list.pauta).track
       respond_to do |format|
         format.js { @manteinance_alternatives_list ? render(:new, status: :ok) : render( head :error)}
         return

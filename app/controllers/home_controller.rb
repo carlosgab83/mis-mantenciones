@@ -28,6 +28,8 @@ class HomeController < ApplicationController
       session[:vehicle] = @vehicle
       @promotions = CarouselPromotionsFinder.new(vehicle: session[:vehicle]).call
       @products   = CarouselProductsFinder.new(vehicle: session[:vehicle]).call
+
+      EventTracker::SearchPatent.new(controller: self, vehicle: @vehicle, pauta: @pauta, promotions: @promotions, products: @products).track
     rescue AppExceptions::PautaNotFound => e
       puts e.message
       puts e.backtrace

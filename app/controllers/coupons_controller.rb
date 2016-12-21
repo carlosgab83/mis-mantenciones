@@ -7,6 +7,7 @@ class CouponsController < ApplicationController
       @coupon = CouponsCreator.new(coupon_params).call
       if @coupon.valid?
         CouponsNotifier.new(coupon: @coupon).call
+        EventTracker::ConfirmPromotion.new(controller: self, client: session[:client], vehicle: session[:vehicle], coupon: @coupon).track
         respond_to do |format|
           format.js {render(:create, status: :ok)}
           return

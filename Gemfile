@@ -23,6 +23,7 @@ gem 'activerecord-import', '~> 0.16'
 gem 'rails_admin_nested_set', '~> 0.5'
 gem 'simple_form', '~> 3.3'
 gem 'friendly_id', '~> 5.1.0'
+gem 'mixpanel-ruby', '~>2.2'
 
 group :development, :test do
   gem 'pry-byebug'

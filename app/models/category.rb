@@ -1,6 +1,8 @@
 class Category < ApplicationRecord
   acts_as_nested_set
 
+  include CategorySerializer
+
   rails_admin do
     nested_set({
         max_depth: 15,

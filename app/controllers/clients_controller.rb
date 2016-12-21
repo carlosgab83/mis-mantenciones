@@ -18,6 +18,7 @@ class ClientsController < ApplicationController
         @context_params[:client_id] = client.id
         session[:last_context] = nil
         session[:client] = client
+        EventTracker::RegisterAsClient.new(controller: self, vehicle: session[:vehicle], client: client, by: params[:success_partial]).track
         render partial: params[:success_partial]
       else
         render action: :fail, status: 422

@@ -1,9 +1,11 @@
 # encoding: utf-8
 class Vehicle
 
-  attr_reader :rvm_brand, :rvm_model, :manufacturing_year, :brand_id, :model_id, :engine_serial, :chassis_serial, :patent, :kms, :found
+  attr_reader :rvm_brand, :rvm_model, :manufacturing_year, :brand_id, :model_id,
+              :engine_serial, :chassis_serial, :patent, :kms, :found, :table_model_name, :table_brand_name
   attr_accessor :vme
 
+  include VehicleSerializer
   # Input is onw row of db view v_rvm_vehiculo
   def initialize(v_rvm_vehiculo, patent, kms)
     self.found = false
@@ -17,6 +19,8 @@ class Vehicle
       self.engine_serial = v_rvm_vehiculo[:v_motor]
       self.chassis_serial = v_rvm_vehiculo[:v_chassis]
       self.found = true
+      self.table_brand_name = Brand.find_by(id_marca: brand_id).try(:descripcion)
+      self.table_model_name = Model.find_by(id_modelo: model_id).try(:modelo_descripcion)
     end
 
     self.patent = adjust(patent)
@@ -40,7 +44,8 @@ class Vehicle
     # end
   end
 
-  attr_writer :rvm_brand, :rvm_model, :manufacturing_year, :brand_id, :model_id, :engine_serial, :chassis_serial, :patent, :kms, :found
+  attr_writer :rvm_brand, :rvm_model, :manufacturing_year, :brand_id, :model_id,
+              :engine_serial, :chassis_serial, :patent, :kms, :found, :table_model_name, :table_brand_name
 
   private
 

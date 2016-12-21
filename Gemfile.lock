@@ -119,6 +119,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
+    mixpanel-ruby (2.2.0)
     multi_json (1.12.1)
     nested_form (0.3.2)
     nio4r (1.2.1)
@@ -282,6 +283,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   listen (~> 3.0.5)
+  mixpanel-ruby (~> 2.2)
   pg
   pry-byebug
   puma (~> 3.0)

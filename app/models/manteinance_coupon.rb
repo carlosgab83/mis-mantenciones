@@ -4,4 +4,6 @@ class ManteinanceCoupon < ApplicationRecord
   belongs_to :pauta
   belongs_to :client
   belongs_to :branch
+
+  include ManteinanceCouponSerializer
 end

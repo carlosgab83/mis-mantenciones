@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
-  extend  FriendlyId
+  extend FriendlyId
+  extend ProductsSerializer
+  include ProductSerializer
 
   belongs_to :product_type
   belongs_to :category
