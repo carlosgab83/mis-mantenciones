@@ -1,6 +1,6 @@
 a.single-part href="#{product_path(product)}"
   .single-part-image
-    = image_tag("part-image.jpg", :alt => "part")
+    = image_tag("part-image.jpg", :alt => product.product_brand.name + " " + product.model_attribute_value)
   .single-part-text
     span.brand #{product.product_brand.name}
     span #{product.model_attribute_value}
