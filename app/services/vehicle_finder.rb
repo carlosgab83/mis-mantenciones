@@ -22,9 +22,12 @@ class VehicleFinder < BaseService
   #         - "PASSAT"   => ["PASSAT"]
   #          - "TDI 2.0" => ["TDI", "2.0"]
   #          - "2.0 FSI" => ["2.0", "FSI"]
+  #          - "2.0 FSI AUT" => ["2.0", "FSI", "AUT"]
   # Then, winning is: "2.0 FSI" because intersection.size with Vehicle model is 2 (the maximum)-
   # If intersection.size == 0, then winnin_index gonna be 0, then first vme will be winner.
   # this is goog because the first vme always is the generic vme
+  # In addition, if the intersection size is the same, the most percentage row of the word that
+  # was intersected is the winning
   def closest_vme(vehicle)
     max_percentage = 0
     winning_index = 0
