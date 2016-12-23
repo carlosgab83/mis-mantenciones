@@ -24,6 +24,7 @@ gem 'rails_admin_nested_set', '~> 0.5'
 gem 'simple_form', '~> 3.3'
 gem 'friendly_id', '~> 5.1.0'
 gem 'mixpanel-ruby', '~>2.2'
+gem 'mechanize', '~>2.7'
 
 group :development, :test do
   gem 'pry-byebug'
