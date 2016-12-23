@@ -14,6 +14,7 @@ class VehicleFinder < BaseService
       from v_rvm_vehiculo where v_rvm= ?", params.patent])
   end
 
+  # ALROGITHM REWROTE: MUST TO REWRITE THIS DESCRIPTION
   # Comparing the vehicle model string vs table vehiculo_modelo_especifico model string:
   # e.g.
   #    Vehicle model: "PASSAT FSI 2.0 TIPTRONIC" => ["PASSAT", "FSI", "2.0", "TIPTRONIC"]
@@ -25,12 +26,18 @@ class VehicleFinder < BaseService
   # If intersection.size == 0, then winnin_index gonna be 0, then first vme will be winner.
   # this is goog because the first vme always is the generic vme
   def closest_vme(vehicle)
-    max_size = 0
+    max_percentage = 0
     winning_index = 0
+    vehicle_splitted = vehicle.rvm_model.try(:split, ' ') || []
+    vehicle_splitted.delete((vehicle.table_model_name || '').strip)
+
     (vmes = Vme.where(id_modelo: vehicle.model_id).order(:vme_id)).each_with_index do |vme, i|
-      if (size = (vme.vme_mod_especifico.split(' ') & vehicle.rvm_model.split(' ')).size) >= max_size
+      vme_splitted = vme.vme_mod_especifico.split(' ')
+      quantity = (vme_splitted & vehicle_splitted).size
+      percentage = quantity.to_f / vme_splitted.size
+      if percentage > max_percentage
         winning_index = i
-        max_size = size
+        max_percentage = percentage
       end
     end
 
