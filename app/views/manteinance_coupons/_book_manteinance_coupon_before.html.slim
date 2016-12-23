@@ -8,8 +8,8 @@
     strong #{branch.shop.name}
     | &nbsp;sucursal&nbsp;
     strong #{branch.name}
-    | &nbsp;por&nbsp;
+    | &nbsp;por un costo de&nbsp;
     strong.value #{mismantenciones_number_to_currency(branch_pauta.promo_price) }
   .for-what
-    | para tu
+    | para tu&nbsp;
     em #{vehicle_text(session[:vehicle], pauta)}

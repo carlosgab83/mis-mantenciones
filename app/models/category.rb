@@ -41,9 +41,9 @@ class Category < ApplicationRecord
   def promotion_before_registration_text
     case vehicle?
     when true
-      'Estás solicitando información para'
+      'Estás solicitando información de'
     else
-      'Ingresa tus datos para generar tu Cupón'
+      'Te enviaremos un Cupón de Descuento para el servicio'
     end
   end
 
@@ -52,7 +52,7 @@ class Category < ApplicationRecord
     when true
       'Que ponemos aqui'
     else
-      'Ya puedes generar tu cupón para tu'
+      'Confirma para generar tu Cupón de Descuento por el servicio'
     end
   end
 end

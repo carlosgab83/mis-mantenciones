@@ -3,5 +3,6 @@
   .what #{promotion.category.promotion_before_registration_text} #{promotion.name}, disponible en
   .how-much
     strong #{promotion.shops_details}
-    | &nbsp;por&nbsp;
+  | &nbsp;y pagarás un valor final de&nbsp;
+  .how-much
     strong.value #{mismantenciones_number_to_currency(promotion.promo_price) }

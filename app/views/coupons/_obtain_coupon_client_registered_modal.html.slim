@@ -8,7 +8,7 @@
       .text-center.text-primary
         .what #{promotion.category.promotion_confirmed_text} #{promotion.name}
         .how-much
-          strong &nbsp;por #{mismantenciones_number_to_currency(promotion.promo_price)}
+          strong &nbsp;por un valor final de #{mismantenciones_number_to_currency(promotion.promo_price)}
           strong &nbsp;en #{promotion.shops_details}&nbsp;
     .modal-footer
       - coupon = Coupon.new
