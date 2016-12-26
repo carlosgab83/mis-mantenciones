@@ -33,7 +33,6 @@ class VehicleFinder < BaseService
     winning_index = 0
     vehicle_splitted = vehicle.rvm_model.try(:split, ' ') || []
     vehicle_splitted.delete((vehicle.table_model_name || '').strip)
-
     (vmes = Vme.where(id_modelo: vehicle.model_id).order(:vme_id)).each_with_index do |vme, i|
       vme_splitted = vme.vme_mod_especifico.split(' ')
       quantity = (vme_splitted & vehicle_splitted).size

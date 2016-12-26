@@ -3,7 +3,8 @@ header#header
     .row
       .col-xs-12.col-sm-6.col-lg-7
         figure#logo
-          = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive")
+          = link_to :root do
+            = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive")
 
       .col-xs-12.col-sm-6.col-lg-5.text-right
         = form_tag(:results_home, method: :post, class: 'form-inline search-patent') do

@@ -5,7 +5,7 @@
     .modal-body
       .text-center.text-primary
         - if @coupon.promotion.category.vehicle?
-          .what Te enviaremos un correo electrónico para que puedas contactar a un vendedor que responderá todas tus preguntas
+          .what Te enviaremos un correo electrónico con más información de este modelo
         - else
           .what Tu número de cupon es: #{@coupon.id} para la promoción #{@coupon.promotion.name}
           .how-much
