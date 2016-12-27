@@ -1,8 +1,9 @@
 class VehicleFinder < BaseService
 
   def call
-    row = (execute query params.patent).first
-    vehicle = Vehicle.new(row, params.patent, params.kms)
+    patent = adjust(params.patent)
+    row = (execute query patent).first
+    vehicle = Vehicle.new(row, patent, params.kms)
     vehicle.vme = closest_vme(vehicle)
     vehicle
   end
@@ -11,7 +12,7 @@ class VehicleFinder < BaseService
 
   def query(patent)
     query = ActiveRecordHelper.sanitize_sql(["select v_marca, v_modelo, v_ano_fab, v_cod_marca, v_cod_modelo, v_motor, v_chasis, v_cod_tveh
-      from v_rvm_vehiculo where v_rvm= ?", params.patent])
+      from v_rvm_vehiculo where v_rvm= ?", patent])
   end
 
   # ALROGITHM REWROTE: MUST TO REWRITE THIS DESCRIPTION
@@ -44,5 +45,17 @@ class VehicleFinder < BaseService
     end
 
     return vmes[winning_index]
+  end
+
+  # For Motorcycles, if patent has 5 characters, one '0' must be inserted after last letter
+  # It assumes that patent has 5 or 6 characters. Not other option
+  def adjust(patent)
+    return patent unless patent.length < 6
+    i = first_number_index(patent)
+    "#{patent[0..(i-1)]}0#{patent[i..-1]}"
+  end
+
+  def first_number_index(patent)
+    patent.index(/[0123456789]/)
   end
 end

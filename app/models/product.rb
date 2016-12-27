@@ -15,13 +15,22 @@ class Product < ApplicationRecord
 
   scope :not_deleted, -> {where(deleted: [false, nil])}
 
+  rails_admin do
+    nested_set({
+        max_depth: 15,
+        toggle_fields: [:enabled],
+        thumbnail_fields: [:image, :cover],
+        thumbnail_size: :thumb,
+        thumbnail_gem: :paperclip#, # or :carrierwave
+        #scopes: [:deleted, :disabled] # filter nodes by scope
+    })
+  end
+
   # Use friendly id based on name
   friendly_id :name, use: :slugged
 
   def model_attribute_value
-    product_model_attribute = Attribute.where(name: 'Modelo').first
-    return nil if product_model_attribute.nil?
-    attributes_products.where(attribute_id: product_model_attribute.id).first.try(:value)
+    name
   end
 end
 

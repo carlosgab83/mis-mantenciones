@@ -18,7 +18,7 @@
               - @product.attributes_products.each do |ap|
                 li
                   strong = "#{ap.product_attribute.name}: "
-                  span = "#{ap.value}"
+                  span = "#{ap.value}".html_safe
       .row
         .col-sm-12
           .product-table
@@ -32,7 +32,8 @@
                 - @product.branches_products.sort{|a,b| a.cached_price <=> b.cached_price}.each do |bp|
                   tr
                     td.branch-name
-                      = "#{bp.branch.name}"
+                      = link_to bp.url do
+                        = "#{bp.branch.name}"
                     td.branch-price
                       = "#{mismantenciones_number_to_currency(bp.cached_price)}"
                     /td.branch-action

@@ -14,7 +14,11 @@ class PromotionsController < ApplicationController
 
   def show
     @promotion = PromotionDetail.new(params).call
-    EventTracker::OpenPromotion.new(controller: self, client: session[:client], vehicle: session[:vehicle], promotion: @promotion).track
+    if @promotion
+      EventTracker::OpenPromotion.new(controller: self, client: session[:client], vehicle: session[:vehicle], promotion: @promotion).track
+    else
+      redirect_to :promotions
+    end
   end
 
   private
