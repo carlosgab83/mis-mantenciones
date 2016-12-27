@@ -104,8 +104,16 @@
         field :name
         field :product_brand
         field :deleted
+        field :status
         field :category
         field :branches
+      end
+
+      list do
+        field :id
+        field :name
+        field :category
+        field :status
       end
     end
 

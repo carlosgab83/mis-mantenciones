@@ -29,7 +29,7 @@
                   th Precio
                   /th
               tbody
-                - @product.branches_products.sort{|a,b| a.cached_price <=> b.cached_price}.each do |bp|
+                - @product.branches_products.with_url.sort{|a,b| a.cached_price <=> b.cached_price}.each do |bp|
                   tr
                     td.branch-name
                       = link_to bp.url, target: '_blank' do
