@@ -107,6 +107,7 @@
         field :status
         field :category
         field :branches
+        field :image_url
       end
 
       list do

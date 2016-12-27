@@ -11,7 +11,7 @@
       .row
         .col-sm-6
           .product-image
-            = image_tag("part-image.jpg", :alt => @product.product_brand.name+" "+@product.name, :class => "img-responsive")
+            = image_tag(@product.image_url || "part-image.jpg", :alt => @product.product_brand.name+" "+@product.name, :class => "img-responsive")
         .col-sm-6
           .product-description
             ul
