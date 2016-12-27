@@ -1,6 +1,9 @@
 |
   $('#quote-modal').html( "#{escape_javascript(render('quote_modal'))}" );
 
+  manteinanceCouponsControls.updateBookingButton();
+  manteinanceCouponsControls.updateObtainManteinanceCouponButton();
+
   // List item logic
   $('.manteinance_coupon-branches > li > a').click(function(event) {
     $('.quote-selector > ul > li').removeClass('active');

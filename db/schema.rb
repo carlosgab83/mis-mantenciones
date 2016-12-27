@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216233825) do
+ActiveRecord::Schema.define(version: 20161227042350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -267,6 +267,8 @@ ActiveRecord::Schema.define(version: 20161216233825) do
     t.integer  "category_id",                      null: false
     t.integer  "product_brand_id",                 null: false
     t.string   "slug"
+    t.boolean  "status"
+    t.string   "image_url"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["name"], name: "products_business_index", unique: true, using: :btree
     t.index ["product_brand_id"], name: "index_products_on_product_brand_id", using: :btree
@@ -379,6 +381,7 @@ ActiveRecord::Schema.define(version: 20161216233825) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "email"
+    t.boolean  "status",     default: false
     t.index ["name"], name: "shops_business_index", unique: true, using: :btree
     t.index ["rut"], name: "index_shops_on_rut", unique: true, using: :btree
   end
@@ -397,6 +400,12 @@ ActiveRecord::Schema.define(version: 20161216233825) do
 
 # Could not dump table "solicitud_encuesta" because of following StandardError
 #   Unknown type 'time with time zone' for column 'hora_encuesta'
+
+  create_table "system_settings", force: :cascade do |t|
+    t.integer  "product_scraping_caching_minutes", null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
 
   create_table "tipo_seccion", primary_key: "id_tiposeccion", id: :integer, force: :cascade do |t|
     t.text    "descripcion",                     null: false

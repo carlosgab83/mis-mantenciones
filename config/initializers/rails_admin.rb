@@ -31,7 +31,9 @@
       statistics false
     end
     index                         # mandatory
-    new
+    new do
+      except ['SystemSetting']
+    end
     export
     bulk_delete
     show
@@ -102,8 +104,17 @@
         field :name
         field :product_brand
         field :deleted
+        field :status
         field :category
         field :branches
+        field :image_url
+      end
+
+      list do
+        field :id
+        field :name
+        field :category
+        field :status
       end
     end
 
@@ -121,6 +132,14 @@
       end
     end
 
+    config.model 'Shop' do
+      list do
+        field :id
+        field :name
+        field :rut
+        field :status
+      end
+    end
 
     ## With an audit adapter, you can add:
     # history_index

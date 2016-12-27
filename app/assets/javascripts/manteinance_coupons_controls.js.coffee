@@ -136,7 +136,7 @@ manteinanceCouponsControls.activeBranch = () ->
 #############################################################################
 
 manteinanceCouponsControls.updateBookingButton = () ->
-  if manteinanceCouponsControls.activeBranch().data('booking-url') != ''
+  if manteinanceCouponsControls.activeBranch().data('booking-url') != '' && manteinanceCouponsControls.alternativesList['branches'].length > 0
     $('#book-manteinance-copupon').show()
   else
     $('#book-manteinance-copupon').hide()
@@ -144,7 +144,7 @@ manteinanceCouponsControls.updateBookingButton = () ->
 #############################################################################
 
 manteinanceCouponsControls.updateObtainManteinanceCouponButton = () ->
-  if manteinanceCouponsControls.activeBranch().data('booking-url') != ''
+  if manteinanceCouponsControls.activeBranch().data('booking-url') != '' && manteinanceCouponsControls.alternativesList['branches'].length > 0
     $('#obtain-manteinance-coupon').hide()
   else
     $('#obtain-manteinance-coupon').show()

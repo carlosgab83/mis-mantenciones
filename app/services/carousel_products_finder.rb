@@ -16,7 +16,7 @@ class CarouselProductsFinder < BaseService
   end
 
   def get_products_base
-    products = Product.not_deleted
+    products = Product.actives.not_deleted
     .includes(:branches, :category)
     .joins(:products_vmes)
     .order("products.created_at desc")

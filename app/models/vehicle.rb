@@ -31,7 +31,7 @@ class Vehicle
     if rvm_brand.present?
       rvm_brand
     else
-      "Vehículo"
+      "vehículo"
     end
   end
 

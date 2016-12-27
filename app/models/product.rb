@@ -13,6 +13,7 @@ class Product < ApplicationRecord
   has_many :products_vmes
   has_many :vmes, through: :products_vmes
 
+  scope :actives, -> {where("status is true")}
   scope :not_deleted, -> {where(deleted: [false, nil])}
 
   rails_admin do
