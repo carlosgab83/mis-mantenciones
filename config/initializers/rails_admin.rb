@@ -121,6 +121,15 @@
       end
     end
 
+    config.model 'Shop' do
+      list do
+        field :id
+        field :name
+        field :rut
+        field :status
+      end
+    end
+
 
     ## With an audit adapter, you can add:
     # history_index
