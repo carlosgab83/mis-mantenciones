@@ -21,4 +21,10 @@ Rails.application.routes.draw do
   resources :coupons, only: [:create]
 
   resources :products, only: [:show]
+
+  resources :branches_products do
+    member do
+      get :open_url
+    end
+  end
 end
