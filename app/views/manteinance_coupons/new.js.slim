@@ -1,8 +1,6 @@
 |
   $('#quote-modal').html( "#{escape_javascript(render('quote_modal'))}" );
 
-  manteinanceCouponsControls.updateBookingButton();
-  manteinanceCouponsControls.updateObtainManteinanceCouponButton();
 
   // List item logic
   $('.manteinance_coupon-branches > li > a').click(function(event) {
@@ -32,6 +30,10 @@
 
   // It sets to js variable the whole list object with pauta, similar_pautas, branches with manteinance_items, etc...
   manteinanceCouponsControls.alternativesList = #{raw @manteinance_alternatives_list.to_builder.target!};
+
+  // Hide or show buttons depending if any branches is in the list
+  manteinanceCouponsControls.updateBookingButton();
+  manteinanceCouponsControls.updateObtainManteinanceCouponButton();
 
   // Hide book button by default. On sortBranches function can be show depending on active branch
   $('#book-manteinance-copupon').hide();
