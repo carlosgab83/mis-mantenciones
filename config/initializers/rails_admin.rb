@@ -31,7 +31,9 @@
       statistics false
     end
     index                         # mandatory
-    new
+    new do
+      except ['SystemSetting']
+    end
     export
     bulk_delete
     show
@@ -129,7 +131,6 @@
         field :status
       end
     end
-
 
     ## With an audit adapter, you can add:
     # history_index
