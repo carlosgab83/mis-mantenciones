@@ -9,10 +9,10 @@
             strong = @product.product_brand.name
             span = @product.name
       .row
-        .col-sm-6
+        .col-sm-5.col-sm-push-7
           .product-image
             = image_tag(@product.image_url || "part-image.jpg", :alt => @product.product_brand.name+" "+@product.name, :class => "img-responsive")
-        .col-sm-6
+        .col-sm-7.col-sm-pull-5
           .product-description
             ul
               - @product.attributes_products.each do |ap|
