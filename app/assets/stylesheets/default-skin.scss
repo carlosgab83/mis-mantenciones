@@ -258,7 +258,7 @@ section#section-parts {
 			box-shadow: 3px 3px 0 rgba($dark-color,0.2);
 		}
 	}
-	span.full-price {color: $main-color;}
+	span.promo-price {color: $main-color;}
 	.promo-list {
 		> li {
 			a {
@@ -274,6 +274,10 @@ section#section-parts {
 }
 // Product
 .catalog {
+	.product-image {
+		background-color: $back-color;
+		border-color: darken($light-color,5%);
+	}
 	.product-table {
 		tr {
 			&:first-child, &.active {
