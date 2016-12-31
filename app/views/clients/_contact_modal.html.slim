@@ -31,9 +31,9 @@
             .form-group
               label.sr-only for="county" Comuna
               = f.input :comune_id, collection: Comune.all.map{|c|[c.desc_comuna, c.id_comuna]}, label: false, prompt: 'Comuna', error:''
-          .col-sm-8.col.md-4
+          .col-sm-6.col.md-4
             .form-group
-              .text-left.text-primary
+              .text-left
                 = f.check_box(:accept_terms, class:'accept-terms-check')
                 | He leído y acepto los
                 = link_to root_path, target: :blank do
