@@ -13,56 +13,56 @@
               .inner-cell
                 span.lead #{@pauta.name}
             li
-              a class='#{manteinance_item_status_class(@pauta.engine_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.engine_manteinance_items)}" data-placement="bottom" data-html="true"
+              a class='#{manteinance_item_status_class(@pauta.engine_manteinance_items)}' data-toggle="popover" data-trigger="focus" data-content="#{manteinance_items_list(@pauta.engine_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-motor
                   | Motor
                 .inner-cell
                   span.badge #{@pauta.engine_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.transmission_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.transmission_manteinance_items)}" data-placement="bottom" data-html="true"
+              a class='#{manteinance_item_status_class(@pauta.transmission_manteinance_items)}' data-toggle="popover" data-trigger="focus" data-content="#{manteinance_items_list(@pauta.transmission_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-transmision
                   | Transmisión
                 .inner-cell
                   span.badge #{@pauta.transmission_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.brake_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.brake_manteinance_items)}" data-placement="bottom" data-html="true"
+              a class='#{manteinance_item_status_class(@pauta.brake_manteinance_items)}' data-toggle="popover" data-trigger="focus" data-content="#{manteinance_items_list(@pauta.brake_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-brake-disk
                   | Frenos
                 .inner-cell
                   span.badge #{@pauta.brake_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.tyres_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.tyres_manteinance_items)}" data-placement="bottom" data-html="true"
+              a class='#{manteinance_item_status_class(@pauta.tyres_manteinance_items)}' data-toggle="popover" data-trigger="focus" data-content="#{manteinance_items_list(@pauta.tyres_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-wheel
                   | Neumáticos
                 .inner-cell
                   span.badge #{@pauta.tyres_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.direction_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.direction_manteinance_items)}" data-placement="bottom" data-html="true"
+              a class='#{manteinance_item_status_class(@pauta.direction_manteinance_items)}' data-toggle="popover" data-trigger="focus" data-content="#{manteinance_items_list(@pauta.direction_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-steering-wheel
                   | Dirección
                 .inner-cell
                   span.badge #{@pauta.direction_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.suspension_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.suspension_manteinance_items)}" data-placement="bottom" data-html="true"
+              a class='#{manteinance_item_status_class(@pauta.suspension_manteinance_items)}' data-toggle="popover" data-trigger="focus" data-content="#{manteinance_items_list(@pauta.suspension_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-shock-absorber
                   | Suspensión
                 .inner-cell
                   span.badge #{@pauta.suspension_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.electric_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.electric_manteinance_items)}" data-placement="bottom" data-html="true"
+              a class='#{manteinance_item_status_class(@pauta.electric_manteinance_items)}' data-toggle="popover" data-trigger="focus" data-content="#{manteinance_items_list(@pauta.electric_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-battery
                   | Sist. Eléctrico
                 .inner-cell
                   span.badge #{@pauta.electric_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.other_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.other_manteinance_items)}" data-placement="bottom" data-html="true"
+              a class='#{manteinance_item_status_class(@pauta.other_manteinance_items)}' data-toggle="popover" data-trigger="focus" data-content="#{manteinance_items_list(@pauta.other_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-car-search
                   | Otros
@@ -101,29 +101,14 @@
             | Piezas y repuestos
           ul#part-list
             li
-              a.active title='Neumáticos' style='background-image:url(  #{image_url("part-sample.jpg")} );'
+              a.active title='Neumáticos' style='background-image:url(  #{image_url("part-tires.jpg")} );'
                 span Neumáticos
             li
-              a title='Filtros' style='background-image:url(  #{image_url("part-sample.jpg")} );'
-                span Filtros
+              a title='Baterías' style='background-image:url(  #{image_url("part-battery.jpg")} );'
+                span Baterías
             li
-              a title='Carburador' style='background-image:url(  #{image_url("part-sample.jpg")} );'
-                span Carburador
-            li
-              a title='Espejos' style='background-image:url(  #{image_url("part-sample.jpg")} );'
-                span Espejos
-            li
-              a title='Bujías' style='background-image:url(  #{image_url("part-sample.jpg")} );'
-                span Bujías
-            li
-              a title='Batería' style='background-image:url(  #{image_url("part-sample.jpg")} );'
-                span Batería
-            li
-              a title='Luces' style='background-image:url(  #{image_url("part-sample.jpg")} );'
-                span Luces
-            li
-              a title='Otros' style='background-image:url(  #{image_url("part-sample.jpg")} );'
-                span Otros
+              a title='Accesorios' style='background-image:url(  #{image_url("part-accessories.jpg")} );'
+                span Accesorios
 
           #parts-carousel
             - @products.each do |product|

@@ -26,14 +26,14 @@
 			position: relative;
 		}
 	}
-	span.promo-price {
+	span.full-price {
 		display: inline-block;
 		width: 100%;
 		opacity: 0.6;
 		text-decoration: line-through;
 		text-align: right;
 	}
-	span.full-price {
+	span.promo-price {
 		display: inline-block;
 		width: 100%;
 		font-size: 145%;
@@ -224,6 +224,11 @@
 	.product-image {
 		position: relative;
 		margin: 20px 0;
+		text-align: center;
+		border: 1px solid;
+		.img-responsive {
+			display: inline-block;
+		}
 		@media #{$xs}{
 			height: 200px;
 			.img-responsive {
@@ -233,7 +238,7 @@
 		}
 	}
 	.product-description {
-		text-align: right;
+		text-align: left;
 		@media #{$xs}{
 			text-align: left;
 		}

@@ -350,6 +350,9 @@ section#section-parts {
 		float: left;
 		&.single-part-image {
 			padding: 10px;
+			img {
+				max-height: 145px;
+			}
 		}
 		&.single-part-text {
 			padding: 10px;
@@ -536,12 +539,26 @@ section#section-parts {
 }
 
 // Contact Modal
-#contact-modal {
+.modal {
 	.modal-body {
 		font-size: 120%;
-		padding: 45px 15px;
+		padding: 45px;
+		@media #{$xs} {padding: 45px 15px;}
 		.how-much {font-size: 130%;}
 		.value {font-family: 'Exo', sans-serif;}
+		.what, .how-much, .for-what {
+			display: inline;
+			padding-right: 5px;
+			width: auto;
+		}
+	}
+	.modal-footer {
+		form {
+			input[type="checkbox"] {
+				margin-top: 0;
+				margin-right: 5px;
+			}
+		}
 	}
 }
 
