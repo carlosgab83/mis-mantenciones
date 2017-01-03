@@ -26,8 +26,10 @@ section#section-parts {
 // Guideline
 section#section-guideline {
 	min-height: 200px;
-	padding: 80px 0;
-	padding-top: 150px;
+	padding: 150px 0 80px;
+	@media #{$xxs} {
+		padding: 130px 0 50px;
+	}
 	h2 {
 		font-size: 140%;
 		margin: 0;
@@ -51,6 +53,7 @@ section#section-guideline {
 			width: 100%;
 			font-size: 140%;
 			@media #{$sm} {width: auto;}
+			@media #{$xs} {font-size: 120%;}
 		}
 	}
 	.lead {
@@ -59,6 +62,7 @@ section#section-guideline {
 		font-size: 17px;
 		padding: 5px 0;
 		@media #{$usm} {margin-bottom: 15px;}
+		@media #{$xs} {padding-top: 0;}
 	}
 	.small {
 		opacity: 0.8;
@@ -199,6 +203,7 @@ section#section-promos {
 	padding: 40px 0;
 	position: relative;
 	z-index: 1;
+	@media #{$xxs} {padding: 35px 0 25px;}
 	&:before {@extend .upper-triangle;}
 	&:after {@extend .bottom-triangle;}
 	h2 {
@@ -212,8 +217,10 @@ section#section-promos {
 section#section-parts {
 	min-height: 200px;
 	padding: 70px 0;
+	@media #{$xxs} {padding: 50px 0;}
 	h2 {
 		text-align: right;
+		@media #{$xxs} {text-align: center;}
 	}
 	#part-list {
 		list-style: none;
@@ -245,7 +252,7 @@ section#section-parts {
 				background-position: center;
 				background-size: cover;
 				@media #{$xs} {font-size: 85%;}
-				@media #{$xxs} {font-size: 70%;}
+				@media #{$xxs} {font-size: 80%;}
 				> span {
 					left: 0;
 					position: absolute;
@@ -348,6 +355,10 @@ section#section-parts {
 	> div {
 		width: 50%;
 		float: left;
+		@media #{$xxs}{
+			&:first-child {width: 40%;}
+			&:last-child {width: 60%;}
+		}
 		&.single-part-image {
 			padding: 10px;
 			img {
@@ -363,7 +374,19 @@ section#section-parts {
 				&.brand, &.price {
 					font-size: 135%;
 					margin: 5px 0;
+					@media #{$md}{font-size: 120%;}
+					@media #{$sm}{font-size: 120%;}
+					@media #{$xxs}{font-size: 110%;}
 				}
+			}
+			> strong:nth-of-type(1) {
+				margin-top: 40px;
+				font-style: italic;
+			}
+			> *:last-child {
+				font-family: "Exo",sans-serif;
+				font-style: italic;
+				font-weight: 700;
 			}
 		}
 	}
@@ -507,6 +530,22 @@ section#section-parts {
 					-moz-column-gap: 20px;
 					column-gap: 20px;
 				}
+				@media #{$xs}{
+					-webkit-column-count: 2;
+					-moz-column-count: 2;
+					column-count: 2;
+					-webkit-column-gap: 20px;
+					-moz-column-gap: 20px;
+					column-gap: 20px;
+				}
+				@media #{$xxs}{
+					-webkit-column-count: auto;
+					-moz-column-count: auto;
+					column-count: auto;
+					-webkit-column-gap: normal;
+					-moz-column-gap: normal;
+					column-gap: normal;
+				}
 				> li {
 					-webkit-column-break-inside: avoid;
 					page-break-inside: avoid;
@@ -516,6 +555,8 @@ section#section-parts {
 					line-height: 1.2em;
 					padding: 5px 0 5px 20px;
 					opacity: 0.5;
+					font-size: 14px;
+					@media #{$xxs}{font-size: 13px;}
 					@include transition(all 0.6s ease-in-out);
 					&.active {
 						opacity: 1;
