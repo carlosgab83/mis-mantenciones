@@ -438,6 +438,7 @@ section#section-parts {
 				overflow-x: hidden;
 				overflow-y: auto;
 				max-height: 500px;
+				@media #{$xs}{max-height: 127px;}
 				> li {
 					border-bottom: 1px solid;
 					display: table;
