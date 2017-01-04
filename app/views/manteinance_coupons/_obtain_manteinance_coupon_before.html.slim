@@ -3,7 +3,7 @@
 - branch_pauta = branch.branch_pauta(pauta)
 - EventTracker::ObtainManteinanceCoupon.new(controller: controller, vehicle: session[:vehicle], pauta: pauta, branch: branch).track
 .text-center.text-primary
-  .what Estás obteinendo un ticket para una mantención de los #{mismantenciones_number_to_km(pauta.kilometraje)} kms en
+  .what Estás obteinendo un ticket para la mantención de los #{mismantenciones_number_to_km(pauta.kilometraje)} kms en
   .how-much
     strong #{branch.shop.name}
     | &nbsp;sucursal&nbsp;
@@ -11,5 +11,5 @@
     | &nbsp;por&nbsp;
     strong.value #{mismantenciones_number_to_currency(branch_pauta.promo_price) }
   .for-what
-    | para tu
+    | para tu&nbsp;
     em #{vehicle_text(session[:vehicle], pauta)}
