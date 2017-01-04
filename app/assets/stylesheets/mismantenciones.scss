@@ -175,6 +175,10 @@ body {
 		width: 100%;
 		margin-bottom: -$footer-height;
 		padding-bottom: $footer-height;
+		@media #{$xs}{
+			margin-bottom: -$footer-height + 30;
+			padding-bottom: $footer-height - 30;
+		}
 		position: relative;
 		.container {
 			padding-top: 15px;
@@ -198,6 +202,9 @@ body {
 	@media #{$xs}{
 		padding-bottom: 0;
 	}
+	@media #{$xxs}{
+		padding-top: 10px;
+	}
 	&:after {@extend .bottom-triangle;}
 	div.text-right[class*='col-'] {
 		@media #{$xs}{
@@ -219,6 +226,12 @@ body {
 				max-width: 260px;
 			}
 		}
+		@media #{$xxs}{
+			margin-bottom: 10px;
+			img {
+				max-width: 190px;
+			}
+		}
 	}
 	.form-group {
 		width: 33%;
@@ -228,6 +241,7 @@ body {
 			display: inline-block;
 			vertical-align: top;
 		}
+		@media #{$xxs}{margin-bottom: 5px;}
 		.form-control {
 			padding-left: 0;
 			padding-right: 0;
@@ -312,6 +326,10 @@ body {
 #footer {
 	min-height: $footer-height;
 	padding: 25px 0;
+	@media #{$xs}{
+		padding: 20px 0 10px;
+		min-height: $footer-height - 30;
+	}
 	position: relative;
 	&:before {@extend .upper-triangle;}
 	h6 {

@@ -226,13 +226,7 @@ section#section-parts {
 		box-shadow: 3px 3px 0 rgba($dark-color,0.2);
 	}
 }
-.single-promo {
-	&:hover, &:active, &:focus {
-		.promo-image {
-			box-shadow: 3px 3px 0 rgba($dark-color,0.2);
-		}
-	}
-}
+
 // Catalog
 .catalog {
 	background-color: $light-color;
