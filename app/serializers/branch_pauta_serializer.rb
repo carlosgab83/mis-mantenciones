@@ -7,7 +7,7 @@ module BranchPautaSerializer
       json.promo_price              promo_price
       json.full_price               full_price
       json.discount_percentage      discount_percentage
-      json.branch_manteinance_items branches_manteinance_items.map{|bmi| bmi.to_builder.attributes!}
+      json.branch_manteinance_items enabled_branches_manteinance_items.map{|bmi| bmi.to_builder.attributes!}
     end
   end
 end

@@ -28,6 +28,10 @@ class BranchPauta
     full_price / promo_price
   end
 
+  def enabled_branches_manteinance_items
+    branches_manteinance_items.where.not(promo_price: -1)
+  end
+
   private
 
   attr_writer :pauta, :branch, :branches_manteinance_items, :promo_price, :full_price

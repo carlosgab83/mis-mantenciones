@@ -108,6 +108,7 @@
         field :category
         field :branches
         field :image_url
+        field :slug
       end
 
       list do

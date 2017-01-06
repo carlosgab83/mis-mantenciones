@@ -27,7 +27,7 @@ class ManteinanceCouponsCreator < BaseService
   end
 
   def create_manteinance_coupon_items(manteinance_coupon, branch_pauta)
-    manteinance_coupon_items = branch_pauta.branches_manteinance_items.collect do |bmi|
+    manteinance_coupon_items = branch_pauta.enabled_branches_manteinance_items.collect do |bmi|
       ManteinanceCouponsItem.new(
         manteinance_coupon_id: manteinance_coupon.id,
         manteinance_item_id: bmi.manteinance_item_id,
