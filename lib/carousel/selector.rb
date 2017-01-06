@@ -19,7 +19,11 @@ module Carousel
         item = next_item(category_id, begin_search_index)
         objects_to_return << item
       end
-      objects_to_return.uniq.compact
+      objects_to_return = objects_to_return.uniq.compact
+      if objects_to_return.size < size
+        objects_to_return = append_left_objects(objects_to_return)
+      end
+      objects_to_return
     end
 
     private
@@ -52,6 +56,11 @@ module Carousel
 
     def category_roots(category_id)
       roots[category_id] ||= Category.find(category_id).root.id
+    end
+
+    def append_left_objects(objects_to_return)
+      posible_append_objects = objects - objects_to_return
+      objects_to_return + posible_append_objects[0..(size-objects_to_return.size)]
     end
 
   end
