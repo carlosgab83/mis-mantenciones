@@ -9,7 +9,9 @@ footer#footer
       .col-xs-6.col-sm-6.col-md-4.text-right
         ul.list-inline
           li
-            | 2016
+            | Boosted By 
+            = link_to "http://www.acid.cl/", :class => "acid", :target => "_blank" do
+              = image_tag("acidlabs-logo.png", :alt => "Acid Labs")
 
 .loader
   = image_tag "spinner.gif" , class: "loading-image"
