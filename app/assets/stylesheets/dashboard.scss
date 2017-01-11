@@ -88,8 +88,8 @@ section#section-guideline {
 				display: inline-block;
 				width: 100%;
 				font-style: italic;
-				//ojo
 				position: relative;
+				&:hover, &:focus, &:active {z-index: 1000;}
 				&.disabled {
 					opacity: 0.5;
 					cursor: not-allowed;
@@ -140,11 +140,17 @@ section#section-guideline {
 				width: 100%;
 				h2 {position: relative;}
 				a {
+					width: 200px;
 					.inner-cell {
 						display: inline-block;
-						width: 50%;
-						&:first-child {text-align: right;}
-						&:last-child {text-align: left;}
+						&:first-child {
+							width: 70%;
+							text-align: right;
+						}
+						&:last-child {
+							width: 30%;
+							text-align: left;
+						}
 						> span[class^="flaticon-"] {
 							display: inline-block;
 							font-size: 21px;
@@ -355,17 +361,23 @@ section#section-parts {
 	> div {
 		width: 50%;
 		float: left;
-		@media #{$xxs}{
-			&:first-child {width: 40%;}
-			&:last-child {width: 60%;}
-		}
 		&.single-part-image {
+			@media #{$lg}{width: 124px;}
+			@media #{$md}{width: 106px;}
+			@media #{$sm}{width: 118px;}
+			@media #{$xs}{width: 124px;}
+			@media #{$xxs}{width: 67px;}
 			padding: 10px;
 			img {
 				max-height: 145px;
 			}
 		}
 		&.single-part-text {
+			@media #{$lg}{width: calc(100% - 124px);}
+			@media #{$md}{width: calc(100% - 106px);}
+			@media #{$sm}{width: calc(100% - 118px);}
+			@media #{$xs}{width: calc(100% - 124px);}
+			@media #{$xxs}{width: calc(100% - 67px);}
 			padding: 10px;
 			line-height: 1.2em;
 			> span, strong {
@@ -380,7 +392,7 @@ section#section-parts {
 				}
 			}
 			> strong:nth-of-type(1) {
-				margin-top: 40px;
+				margin-top: 15px;
 				font-style: italic;
 			}
 			> *:last-child {
@@ -462,6 +474,7 @@ section#section-parts {
 					a {
 						display: table-row;
 						width: 100%;
+
 						> div {
 							display: table-cell;
 							padding: 8px 6px;
