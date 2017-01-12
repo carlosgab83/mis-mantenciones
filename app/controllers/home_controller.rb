@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-  protect_from_forgery with: :exception
 
   def search
     session[:client] = nil
