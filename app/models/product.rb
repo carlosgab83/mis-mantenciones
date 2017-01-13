@@ -16,6 +16,11 @@ class Product < ApplicationRecord
   scope :actives, -> {where("status is true")}
   scope :not_deleted, -> {where(deleted: [false, nil])}
 
+  def branches_products_with_prices
+    non_price_value = 9999999999
+    branches_products.with_url.sort{|a,b| (a.cached_price || non_price_value) <=> (b.cached_price || non_price_value) }
+  end
+
   rails_admin do
     nested_set({
         max_depth: 15,

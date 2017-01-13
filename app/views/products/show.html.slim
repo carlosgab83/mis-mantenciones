@@ -29,13 +29,13 @@
                   th Precio
                   /th
               tbody
-                - @product.branches_products.with_url.sort{|a,b| a.cached_price <=> b.cached_price}.each do |bp|
+                - @product.branches_products_with_prices.each do |bp|
                   tr
                     td.branch-name
                       = link_to open_url_branches_product_path(bp), target: '_blank' do
                         = "#{bp.branch.name}"
                     td.branch-price
-                      = "#{mismantenciones_number_to_currency(bp.cached_price)}"
+                      = "#{mismantenciones_number_to_currency(bp.cached_price) || '-'}"
                     /td.branch-action
                       /a.btn.btn-ghost comprar
 
