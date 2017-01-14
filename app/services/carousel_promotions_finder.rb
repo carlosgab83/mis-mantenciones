@@ -36,7 +36,7 @@ class CarouselPromotionsFinder < BaseService
   end
 
   def get_category_array
-     [Category.roots.where(name: 'Producto').first, Category.roots.where(name: 'Vehículo').first, Category.roots.where(name: 'Servicio').first]
+     [Category.roots.where(name: 'Productos').first, Category.roots.where(name: 'Vehículos').first, Category.roots.where(name: 'Servicios').first]
   end
 
 end

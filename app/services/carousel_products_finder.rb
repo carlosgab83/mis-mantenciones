@@ -36,7 +36,7 @@ class CarouselProductsFinder < BaseService
   end
 
   def get_category_array
-     [Category.roots.where(name: 'Producto').first]
+     [Category.roots.where(name: 'Productos').first]
   end
 
 end
