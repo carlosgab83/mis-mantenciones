@@ -90,20 +90,26 @@ module MatrixImporter
         (pautas_to_update = Pauta.where(vme_id: vme.id, kilometraje: (xls_kms & db_pautas_kms)).where(variants)).each do |pauta|
           sheet = branch_sheet_manager.sheet(branch_id, variants_str)
           new_manteinance_items = manteinance_item_manager.manteinance_items_and_prices_by_km_by_sheet(pauta.kilometraje, sheet).map{|h| h[:obj]}
-          pauta.manteinance_items.destroy(pauta.manteinance_items - new_manteinance_items)
+          pauta.manteinance_items.delete(pauta.manteinance_items - new_manteinance_items)
           pauta.manteinance_items << (new_manteinance_items - pauta.manteinance_items)
         end
         pautas_to_update
       end
 
      def destroy_old_vme_pautas(vme, xls_kms, db_pautas_kms, all_xls_variants)
-        Pauta.where(vme_id: vme.id, kilometraje: (db_pautas_kms - xls_kms)).destroy_all
+        pauta_ids = Pauta.where(vme_id: vme.id, kilometraje: (db_pautas_kms - xls_kms)).pluck(:id_pauta)
+        PautaDetail.unscoped.where(id_pauta: pauta_ids).delete_all
+        BranchesManteinanceItem.unscoped.where(pauta_id: pauta_ids).delete_all
+        Pauta.where(id_pauta: pauta_ids).delete_all
         pg_values = []
         all_xls_variants.each do |variant|
           pg_values << "'" + variant.values.map{|v|v.to_s[0]}.join + "'"
         end
 
-        Pauta.where(vme_id: vme.id).where("concat(#{all_xls_variants.first.keys.join(',')}) not in (#{pg_values.join(',')})").destroy_all
+        pauta_ids = Pauta.where(vme_id: vme.id).where("concat(#{all_xls_variants.first.keys.join(',')}) not in (#{pg_values.join(',')})")
+        PautaDetail.unscoped.where(id_pauta: pauta_ids).delete_all
+        BranchesManteinanceItem.unscoped.where(pauta_id: pauta_ids).delete_all
+        Pauta.unscoped.where(id_pauta: pauta_ids).delete_all
       end
 
       def create_branch_manteinance_items(manteinance_items_ids, db_items_ids, manteinance_items_array, db_items, pauta_id, branch_id)
@@ -135,7 +141,7 @@ module MatrixImporter
       def destroy_branch_manteinance_items(manteinance_items_ids, db_items_ids, db_items, pauta_id, branch_id,manteinance_items_array)
         ids_to_destroy = (db_items_ids - manteinance_items_ids)
         db_items.select{|bmi| ids_to_destroy.include?(bmi.manteinance_item_id)}.each do |branch_item|
-          branch_item.destroy
+          branch_item.delete
         end
       end
 
