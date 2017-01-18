@@ -117,7 +117,7 @@ a {
 
 // Home
 #home-upper {
-	background-image: image-url("promo-image.jpg");
+	background-image: image-url("background-image.jpg");
 	&:after {
 		background: $main-color;
 		background: rgba($main-color,0.93);
@@ -153,7 +153,7 @@ a {
 
 // Dashboard
 section#section-guideline {
-	background-image: image-url("promo-image.jpg");
+	background-image: image-url("background-image.jpg");
 	&:after {
 		background: $main-color;
 		background: rgba($main-color,0.93);
@@ -253,11 +253,11 @@ section#section-parts {
 		}
 	}
 	span.promo-price {color: $main-color;}
-	.promo-list {
+	.promo-list, .part-list {
 		> li {
 			a {
 				background-color: $back-color;
-				color: $back-color;
+				color: $dark-color;
 				h6 {color: $dark-color;}
 				&:hover, &:active, &:focus {
 					box-shadow: 3px 3px 0 rgba($dark-color,0.2);
@@ -292,6 +292,61 @@ section#section-parts {
 					}
 				}
 			}
+		}
+	}
+	// Filters
+	#parts-filters {
+		border-bottom-color: rgba($dark-color,0.1);
+		.panel {
+			border-top-color: rgba($dark-color,0.1);
+			.panel-heading
+				a {
+					color: rgba($dark-color,0.8);
+					&:not(.collapsed) {color: $main-color;}
+				}
+			.panel-collapse {
+				&.collapse.in, &.collapsing {
+					.panel-body {
+						border-top-color: rgba($dark-color,0.1);
+					}
+				}
+				label {
+					input[type="checkbox"] {
+						&:checked + span {
+							color: $main-color;
+						}
+					}
+					&:hover, &:active, &:focus {
+						input[type="checkbox"] + span {
+							color: $main-color;
+						}
+					}
+				}
+			}
+		}
+	}
+	// Search
+	.nav.nav-tabs {
+		> li {
+			&.active {
+				> a {
+					background-color: darken($light-color,10%);
+				}
+			}
+			&:not(.active) {
+				> a {
+					color: $main-color;
+					&:hover, &:active, &:focus {
+						background-color: $main-color;
+						color: $back-color;
+					}
+				}
+			}
+		}
+	}
+	.tab-content {
+		.tab-pane {
+			background-color: darken($light-color,10%);
 		}
 	}
 }
