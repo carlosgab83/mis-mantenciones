@@ -362,7 +362,7 @@ body {
 
 #footer {
 	min-height: $footer-height;
-	padding: 25px 0;
+	padding: 20px 0;
 	@media #{$xs}{
 		padding: 20px 0 10px;
 		min-height: $footer-height - 30;
