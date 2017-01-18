@@ -20,4 +20,5 @@
 //= require jquery-validation
 //= require jquery-lazzynumeric-1.2/js/autoNumeric
 //= require jquery-lazzynumeric-1.2/js/jquery.lazzynumeric.min
+//= require google_analytics
 //= require_tree .
