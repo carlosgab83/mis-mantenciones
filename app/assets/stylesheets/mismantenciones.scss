@@ -6,14 +6,15 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:700');
 
 // Layout Variables
-$header-height: 80px;
-$footer-height: 80px;
+$header-height: 70px;
+$footer-height: 70px;
 
 //////////////////////////////////////////////////////////
 // General Styles
 //////////////////////////////////////////////////////////
-html, body {
-	overflow-x: hidden;
+html{
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 body {
 	white-space: normal;
@@ -51,6 +52,7 @@ button,
 .btn,
 input,
 select,
+label,
 textarea {
 	@include transition(all 0.3s ease-in-out);
 }
@@ -193,7 +195,7 @@ body {
 
 #header {
 	min-height: $header-height;
-	padding: 20px 0;
+	padding: 20px 0 10px;
 	position: fixed;
 	top: 0;
 	left: 0;
