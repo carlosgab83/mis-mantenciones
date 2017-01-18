@@ -100,6 +100,15 @@ a {
 		}
 	}
 	&:after {border-color: rgba($dark-color,0.9) transparent transparent transparent;}
+	.btn-special {
+		color: lighten($main-color, 20%);
+		border-color: lighten($main-color, 20%);
+		&:hover, &:active, &:focus {
+			color: $dark-color;
+			border-color: lighten($main-color, 20%);
+			background-color: lighten($main-color, 20%);
+		}
+	}
 }
 #footer {
 	&:before {border-color: transparent transparent rgba($dark-color,0.9) transparent;}

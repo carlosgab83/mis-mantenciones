@@ -217,6 +217,10 @@ body {
 		display: inline-block;
 		max-width: 300px;
 		margin: 6px 0;
+		@media #{$sm}{
+			margin: 10px 0;
+    		max-width: 220px;
+		}
 		@media #{$xs}{
 			width: 100%;
 			text-align: center;
@@ -269,6 +273,37 @@ body {
 			border-width: 0 0 1px 0;
 			opacity: 0.7;
 		}
+	}
+	.btn-special {
+		@media #{$md}{
+			width: 110px;
+			white-space: normal;
+			padding-top: 2px;
+			padding-bottom: 5px; 
+			font-size: 85%;
+			line-height: 1.1em;
+			strong {
+				display: inline-block;
+				width: 100%;
+			}
+		}
+		@media #{$sm}{
+			width: 90px;
+			white-space: normal;
+			padding-top: 2px;
+			padding-bottom: 5px; 
+			font-size: 85%;
+			line-height: 1.1em;
+			strong {
+				display: inline-block;
+				width: 100%;
+			}
+		}
+		border: 1px solid;
+		&:hover, &:active, &:focus {
+			text-decoration: none;
+		}
+		
 	}
 }
 
