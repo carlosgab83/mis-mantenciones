@@ -17,7 +17,7 @@ class Category < ApplicationRecord
   # TO DO: Refactor following logic to apply texts: Maybe move to a module and send texts to locales.
 
   def vehicle?
-    root.name == 'Vehículo'
+    root.name == 'Vehículos'
   end
 
   def promotion_action_button_name
