@@ -30,7 +30,9 @@ module MatrixImporter
       end
 
       def create_or_update_each_branch_pauta
+        branches_ids = []
         branch_sheet_manager.branches do |name, branch_id, sheet, variants, variants_str|
+          branches_ids << branch_id
           sheet = branch_sheet_manager.sheet(branch_id, variants_str)
           Pauta.where(id_pauta: pautas.map(&:id_pauta)).where(variants).each do |pauta|
             manteinance_items_array = manteinance_item_manager.manteinance_items_and_prices_by_km_by_sheet(pauta.kilometraje, sheet)
@@ -42,6 +44,7 @@ module MatrixImporter
             destroy_branch_manteinance_items(manteinance_items_ids, db_items_ids, db_items, pauta.id, branch_id,manteinance_items_array)
           end
         end
+        destroy_all_branches_not_in_xls(branches_ids, pautas.map(&:id_pauta))
       end
 
       def verify_uniq_and_same_kms_on_all_branches!
@@ -148,6 +151,10 @@ module MatrixImporter
       def update_manteinance_items(pauta, old_manteinance_items, new_manteinance_items)
         pauta.manteinance_items.destroy(old_manteinance_items - new_manteinance_items)
         pauta.manteinance_items << (new_manteinance_items - old_manteinance_items)
+      end
+
+      def destroy_all_branches_not_in_xls(branches_ids, pautas_ids)
+        BranchesManteinanceItem.where.not(branch_id: branches_ids).where(pauta_id: pautas_ids).delete_all
       end
     end
   end
