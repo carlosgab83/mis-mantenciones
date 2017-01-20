@@ -2,16 +2,16 @@
   .modal-content
     .modal-header
       button type="button" class="close" data-dismiss="modal" x
-      h4.modal-title Estamos listos
+      h4.modal-title #{image_tag('logo-mm.png')}
     .modal-body
       - branch = Branch.includes(:shop).where(id: @context_params[:branch_id]).first
       - pauta  = Pauta.where(id_pauta: @context_params[:id_pauta]).first
       - client_id  = @context_params[:client_id]
       - branch_pauta = branch.branch_pauta(pauta)
       .text-center.text-primary
-        .what Ahora puedes generar tu cupón de mantención
+        .what Ahora puedes generar tu ticket de atención para la mantención
         .for-what
-          | de tu
+          | de tu&nbsp;
           em #{vehicle_text(session[:vehicle], pauta)}
         .how-much
           strong en #{branch.shop.name}
@@ -24,4 +24,4 @@
         = f.input :client_id, input_html: {value: client_id}, as: :hidden
         = f.input :branch_id, input_html: {value: branch.id}, as: :hidden
         .row
-          button.btn.btn-cta.btn-block type="submit" Obtener Cupon
+          button.btn.btn-cta.btn-block type="submit" Obtener Ticket
