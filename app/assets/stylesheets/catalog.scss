@@ -522,3 +522,49 @@
 		}
 	}
 }
+
+//////////////////////////////////////////////////////////
+// Product Brands
+//////////////////////////////////////////////////////////
+
+.brand {
+	&.michelin,
+	&.pirelli,
+	&.goodyear,
+	&.nexen,
+	&.firestone,
+	&.bridgestone,
+	&.continental,
+	&.yokohama,
+	&.hankook,
+	&.toyo,
+	&.dunlop,
+	&.westlake,
+	&.achilles,
+	&.goodride,
+	&.ling-long {
+		display: block;
+		height: 25px;
+		width: 100%;
+		color: transparent;
+		font-size: 0!important;
+		background-repeat: no-repeat;
+		background-position: left top;
+		background-size: auto 25px;
+	}
+	&.michelin {background-image: image-url("brands/michelin.png");}
+	&.pirelli {background-image: image-url("brands/pirelli.png");}
+	&.goodyear {background-image: image-url("brands/goodyear.png");}
+	&.nexen {background-image: image-url("brands/nexen.png");}
+	&.firestone {background-image: image-url("brands/firestone.png");}
+	&.bridgestone {background-image: image-url("brands/bridgestone.png");}
+	&.continental {background-image: image-url("brands/continental.png");}
+	&.yokohama {background-image: image-url("brands/yokohama.png");}
+	&.hankook {background-image: image-url("brands/hankook.png");}
+	&.toyo {background-image: image-url("brands/toyo.png");}
+	&.dunlop {background-image: image-url("brands/dunlop.png");}
+	&.westlake {background-image: image-url("brands/westlake.png");}
+	&.achilles {background-image: image-url("brands/achilles.png");}
+	&.goodride {background-image: image-url("brands/goodride.png");}
+	&.ling-long {background-image: image-url("brands/ling-long.png");}
+}

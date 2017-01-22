@@ -391,6 +391,9 @@ section#section-parts {
 					@media #{$sm}{font-size: 120%;}
 					@media #{$xxs}{font-size: 110%;}
 				}
+				&.brand {
+					background-size: 100% auto;
+				}
 			}
 			> strong:nth-of-type(1) {
 				margin-top: 15px;
