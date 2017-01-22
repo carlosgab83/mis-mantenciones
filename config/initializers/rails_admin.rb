@@ -120,6 +120,12 @@
     end
 
     config.model 'Branch' do
+      list do
+        field :id
+        field :name
+        field :shop
+      end
+
       edit do
         field :name
         field :phone1
@@ -133,12 +139,39 @@
       end
     end
 
+    config.model 'BranchesProduct' do
+      list do
+        field :id
+        field :branch_id
+        field :product_id
+        field :price
+        field :url
+      end
+    end
+
     config.model 'Shop' do
       list do
         field :id
         field :name
         field :rut
         field :status
+      end
+    end
+
+    config.model 'BranchesManteinanceItem' do
+      list do
+        field :id
+        field :manteinance_item
+        field :pauta
+        field :branch
+      end
+    end
+
+    config.model 'PromotionsVme' do
+      list do
+        field :id
+        field :promotion
+        field :vme
       end
     end
 
