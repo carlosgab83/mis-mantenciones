@@ -27,4 +27,6 @@ Rails.application.routes.draw do
       get :open_url
     end
   end
+
+  resources :shop_inscriptions, only: [:new, :create, :update]
 end
