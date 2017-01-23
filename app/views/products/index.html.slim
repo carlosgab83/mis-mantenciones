@@ -1,0 +1,226 @@
+= render 'shared/header'
+
+#wrapper.catalog
+  .inner
+    .container
+      .row
+        .col-sm-12
+          h1
+            strong Neumáticos
+
+        .col-sm-12
+          ul.nav.nav-tabs
+            li.active 
+              a href="#car-search" role="tab" data-toggle="tab" 
+                | Buscar por 
+                strong Vehículo
+            li 
+              a href="#size-search" role="tab" data-toggle="tab" 
+                | Buscar por 
+                strong Tamaño
+          .tab-content
+            #car-search.tab-pane.fade.in.active role="tabpanel"
+              .row
+                .col-sm-12
+                  p Lorem Ipsum dolor sit amet
+              form
+                .row
+                  .col-sm-6.col-md-3
+                    select.selectpicker.form-control title="Marca" data-live-search="true"
+                      option Alfa Romeo
+                      option Audi
+                      option BMW
+                      option Chevrolet
+                      option Chrysler
+                      option Daewoo
+                      option Dahiatsu
+                      option Datsun
+                      option Dodge
+                      option Ferrari
+                      option Fiat
+                      option Ford
+                      option Honda
+                      option Hyundai
+                      option Isuzu
+                      option Jaguar
+                      option Kia
+                  .col-sm-6.col-md-3
+                    select.selectpicker.form-control title="Modelo" data-live-search="true"
+                      option Modelo 1
+                      option Modelo 2
+                      option Modelo 3
+                      option Modelo 4
+                      option Modelo 5
+                      option Modelo 6
+                      option Modelo 7
+                      option Modelo 8
+                      option Modelo 9
+                  .col-sm-6.col-md-3
+                    select.selectpicker.form-control title="Año" data-live-search="true"
+                      option 2017
+                      option 2016
+                      option 2015
+                      option 2014
+                      option 2013
+                      option 2012
+                      option 2011
+                      option 2010
+                      option 2009
+                  .col-sm-6.col-md-3
+                    button.btn.btn-cta.btn-block type="submit" Buscar
+              .row
+                .col-sm-12
+                  p.small Lorem Ipsum dolor sit amet
+            #size-search.tab-pane.fade role="tabpanel"
+              .row
+                .col-sm-12
+                  p Lorem Ipsum dolor sit amet
+              form
+                .row
+                  .col-sm-6.col-md-3
+                    select.selectpicker.form-control title="Ancho"
+                      option 115
+                      option 125
+                      option 135
+                      option 145
+                      option 155
+                      option 165
+                      option 175
+                      option 185
+                      option 195
+                      option 205
+                      option 215
+                      option 225
+                      option 235
+                      option 245
+                      option 255
+                      option 265
+                      option 275
+                      option 285
+                  .col-sm-6.col-md-3
+                    select.selectpicker.form-control title="Perfil"
+                      option 20
+                      option 25
+                      option 30
+                      option 35
+                      option 40
+                      option 45
+                      option 50
+                      option 55
+                      option 60
+                  .col-sm-6.col-md-3
+                    select.selectpicker.form-control title="Aro"
+                      option 10
+                      option 11
+                      option 12
+                      option 13
+                      option 14
+                      option 15
+                      option 16
+                      option 16.5
+                      option 17
+                  .col-sm-6.col-md-3
+                    button.btn.btn-cta.btn-block type="submit" Buscar
+              .row
+                .col-sm-12
+                  p.small Lorem Ipsum dolor sit amet
+
+        .col-sm-4.col-md-5
+          h4 Filtrar por
+          #parts-filters.panel-group role="tablist"
+            .panel
+              .panel-heading
+                a role="button" data-toggle="collapse" data-parent="#parts-filters" href="#brand-filters" 
+                  | Marca
+                  span 7
+              #brand-filters.panel-collapse.collapse.in role="tabpanel"
+                .panel-body
+                  ul.list-unstyled
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Bridgestone 
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Continental 
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Dunlop 
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Firestone 
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Goodyear 
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Michelin 
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Pirelli 
+            .panel
+              .panel-heading
+                a.collapsed role="button" data-toggle="collapse" data-parent="#parts-filters" href="#performance-filters" 
+                  | Performance
+                  span 10
+              #performance-filters.panel-collapse.collapse role="tabpanel"
+                .panel-body
+                  ul.list-unstyled
+                    li
+            .panel
+              .panel-heading
+                a.collapsed role="button" data-toggle="collapse" data-parent="#parts-filters" href="#price-filters" 
+                  | Precio
+                  span 2
+              #price-filters.panel-collapse.collapse role="tabpanel"
+                .panel-body
+                  ul.list-unstyled
+                    li
+        .col-sm-8.col-md-7
+          ul.part-list
+            li
+              a
+                .part-image
+                  = image_tag('part-image.jpg', :class => 'img-responsive')
+                .part-description
+                  h6.brand.michelin Michelin
+                  p Lorem Ipsum dolor dit amet
+                  strong desde
+                  strong.price 156.000
+            li
+              a
+                .part-image
+                  = image_tag('part-image.jpg', :class => 'img-responsive')
+                .part-description
+                  h6.brand.pirelli Pirelli
+                  p Lorem Ipsum dolor dit amet
+                  strong desde
+                  strong.price 156.000
+            li
+              a
+                .part-image
+                  = image_tag('part-image.jpg', :class => 'img-responsive')
+                .part-description
+                  h6.brand.goodyear Goodyear
+                  p Lorem Ipsum dolor dit amet
+                  strong desde
+                  strong.price 156.000
+          ul.pagination
+            li.active
+              a href="#" 1
+            li
+              a href="#" 2
+            li
+              a href="#" 3
+            li
+              a href="#" 4
+            li
+              a href="#" 5
+
+= render 'shared/footer'

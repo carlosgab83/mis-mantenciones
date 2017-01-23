@@ -1,6 +1,11 @@
 $(document).ready(function(){
   // Popover Init
   $('[data-toggle="popover"]').popover();
+  // Boostrap Select Init
+  $('.selectpicker').selectpicker({
+    size: 6
+  });
+
   // Sliders
   $('#promo-carousel, #parts-carousel').slick({
     dots: false,

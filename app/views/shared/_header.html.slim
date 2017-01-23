@@ -2,6 +2,9 @@ header#header
   .container
     .row
       .col-xs-12.col-sm-6.col-lg-7
+        = link_to new_shop_inscription_path, class: 'btn btn-link btn-special pull-right hidden-xs', remote: true
+          | Inscribe tu
+          strong Taller
         figure#logo
           = link_to :root do
             = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive")

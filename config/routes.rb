@@ -20,11 +20,13 @@ Rails.application.routes.draw do
 
   resources :coupons, only: [:create]
 
-  resources :products, only: [:show]
+  resources :products, only: [:index, :show]
 
   resources :branches_products do
     member do
       get :open_url
     end
   end
+
+  resources :shop_inscriptions, only: [:new, :create, :update]
 end
