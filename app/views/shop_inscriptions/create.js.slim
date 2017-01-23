@@ -1,0 +1,7 @@
+|
+  $('#shop_inscription-modal').html( "#{escape_javascript(render('create_shop_inscription_modal'))}" );
+
+  $('#modal-done-button').click(function() {
+    $(this).closest('.modal').modal('hide');
+    window.location = "/results";
+  });
