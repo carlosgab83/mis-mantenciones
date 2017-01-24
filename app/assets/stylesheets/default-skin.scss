@@ -43,6 +43,12 @@ a {
 	@extend .placeholder;
 	color: rgba($dark-color, 0.6);
 }
+@-webkit-keyframes autofill {
+    to {
+        color: $back-color;
+        background: transparent;
+    }
+}
 // Button
 .btn.btn-cta {
 	color: darken($main-color,5%);
@@ -99,7 +105,7 @@ a {
 			border-color: $back-color;
 		}
 	}
-	&:after {border-color: rgba($dark-color,0.9) transparent transparent transparent;}
+	&:after {border-color: rgba($dark-color,0.95) transparent transparent transparent;}
 	.btn-special {
 		color: lighten($main-color, 20%);
 		border-color: lighten($main-color, 20%);
@@ -111,10 +117,10 @@ a {
 	}
 }
 #footer {
-	&:before {border-color: transparent transparent rgba($dark-color,0.9) transparent;}
+	&:before {border-color: transparent transparent rgba($dark-color,0.95) transparent;}
 }
 #footer, #header {
-	background-color: rgba($dark-color,0.9);
+	background-color: rgba($dark-color,0.95);
 	color: $light-color;
 	a {
 		color: $light-color;
@@ -125,6 +131,13 @@ a {
 }
 
 // Home
+#wrapper.homepage {
+	background-image: image-url("guideline-background.jpg");
+	&:after {
+		background: $light-color;
+		background: rgba($light-color,0.94);
+	}
+}
 #home-upper {
 	background-image: image-url("background-image.jpg");
 	&:after {
@@ -152,13 +165,7 @@ a {
 		border-color: rgba($back-color,0.5);
 	}
 }
-#home-bottom {
-	background-image: image-url("guideline-background.jpg");
-	&:after {
-		background: $light-color;
-		background: rgba($light-color,0.94);
-	}
-}
+
 
 // Dashboard
 section#section-guideline {

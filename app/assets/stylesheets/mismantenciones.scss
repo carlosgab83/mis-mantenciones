@@ -165,6 +165,10 @@ textarea {
 		}
 	}
 }
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
 
 //////////////////////////////////////////////////////////
 // Layout
@@ -275,6 +279,10 @@ body {
 		}
 	}
 	.btn-special {
+		font-weight: 700;
+		@media #{$lg}{
+			strong {margin-left: 4px;}
+		}
 		@media #{$md}{
 			width: 110px;
 			white-space: normal;
