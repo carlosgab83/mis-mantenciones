@@ -391,6 +391,7 @@ section#section-parts {
 					@media #{$xxs}{font-size: 110%;}
 				}
 				&.brand {
+					height: 30px;
 					background-size: 100% auto;
 				}
 			}

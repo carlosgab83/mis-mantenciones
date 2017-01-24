@@ -281,7 +281,7 @@ body {
 	.btn-special {
 		font-weight: 700;
 		@media #{$lg}{
-			strong {margin-left: 2px;}
+			strong {margin-left: 4px;}
 		}
 		@media #{$md}{
 			width: 110px;
