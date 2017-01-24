@@ -27,9 +27,8 @@ section#section-parts {
 section#section-guideline {
 	min-height: 200px;
 	padding: 130px 0 60px;
-	@media #{$xxs} {
-		padding: 130px 0 40px;
-	}
+	@media #{$xs} {padding-bottom: 40px;}
+	@media #{$xxs} {padding: 130px 0 40px;}
 	h2 {
 		font-size: 140%;
 		margin: 0;
@@ -226,7 +225,7 @@ section#section-parts {
 	@media #{$xxs} {padding: 40px 0;}
 	h2 {
 		text-align: right;
-		@media #{$xxs} {text-align: center;}
+		@media #{$xs} {text-align: center;}
 	}
 	#part-list {
 		list-style: none;
@@ -235,7 +234,7 @@ section#section-parts {
 		width: 100%;
 		position: relative;
 		padding-left: 0;
-		margin: 35px 0 45px;
+		margin: 20px 0 45px;
 		@media #{$lg} {padding: 0 25px;}
 		@media #{$md} {padding: 0 15px;}
 		li {

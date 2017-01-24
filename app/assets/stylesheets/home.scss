@@ -5,6 +5,19 @@
 //////////////////////////////////////////////////////////
 
 // Color over image backgrounds
+#wrapper.homepage {
+	@extend .cover-background;
+	background-position: center bottom;
+	&:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+	}
+}
 #home-upper,
 #home-bottom {
 	position: relative;
@@ -29,6 +42,7 @@
 	padding: 60px 0;
 	color: $light-color;
 	color: rgba($light-color,0.8);
+	z-index: 1;
 	h1 {
 		font-weight: 300;
 		font-family: 'Exo 2', sans-serif;
@@ -87,6 +101,9 @@
 		border-width: 0 0 1px 0;
 		padding-left: 0;
 		padding-right: 0;
+		&:focus {
+			box-shadow: none;
+		}
 	}
 	.input-group-addon {
 		background-color: transparent;
