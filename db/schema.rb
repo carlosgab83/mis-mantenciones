@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170122050641) do
+ActiveRecord::Schema.define(version: 20170123224643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -384,6 +384,8 @@ ActiveRecord::Schema.define(version: 20170122050641) do
     t.boolean  "deleted",           default: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.string   "company_name"
+    t.string   "company_rut"
     t.index ["email"], name: "shop_inscriptions_business_index", unique: true, using: :btree
   end
 

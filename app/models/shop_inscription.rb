@@ -1,5 +1,5 @@
 class ShopInscription < ApplicationRecord
-  validates :name, :email, :comune_id, presence: true
+  validates :name, :email, :comune_id, :company_name, :company_rut, presence: true
 
   belongs_to :comune
 
