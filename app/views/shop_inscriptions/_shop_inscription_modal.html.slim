@@ -25,12 +25,26 @@
               = f.input :email, label: false, placeholder:'Correo electrónico', error: ''
           .col-sm-6.col.md-4
             .form-group
+              label.sr-only for="company_name" Nombre Empresa
+              = f.input :company_name, label: false, placeholder:'Nombre empresa', error: ''
+          .col-sm-6.col.md-4
+            .form-group
+              label.sr-only for="company_rut" Rut Empresa
+              = f.input :company_rut, label: false, placeholder:'Rut empresa ej: 12.345.678-9', error: ''
+          .col-sm-6.col.md-4
+            .form-group
               label.sr-only for="phone" Teléfono
               = f.input :phone, label: false, placeholder:'Teléfono ej: 959945632', error: ''
           .col-sm-6.col.md-4
             .form-group
               label.sr-only for="county" Comuna
               = f.input :comune_id, collection: Comune.all.map{|c|[c.desc_comuna, c.id_comuna]}, label: false, prompt: 'Comuna', error:''
+          .col-sm-6.col.md-4
+            .form-group
+              .text-left
+                = f.check_box(:accept_terms, class:'accept-terms-check')
+                | He leído y acepto los
+                = link_to "Términos y Condiciones", "http://files.mismantenciones.com/pdf/términos_y_condiciones_MisMantenciones.pdf", target: :_blank
 
           .col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
             button#contact-submit.btn.btn-cta.btn-block type="submit" Enviar
