@@ -172,6 +172,18 @@
         field :id
         field :promotion
         field :vme
+        field :from_year
+        field :to_year
+      end
+    end
+
+    config.model 'ProductsVme' do
+      list do
+        field :id
+        field :product
+        field :vme
+        field :from_year
+        field :to_year
       end
     end
 

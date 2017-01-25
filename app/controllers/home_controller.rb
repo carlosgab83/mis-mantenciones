@@ -25,7 +25,6 @@ class HomeController < ApplicationController
       redirect_to :search_home
       return
     end
-
     begin
       @vehicle = VehicleFinder.new(SearchVehicleForm.new(session[:search])).call
       # If not vehicle found, @vehicle.vme is nil

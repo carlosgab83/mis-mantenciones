@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123224643) do
+ActiveRecord::Schema.define(version: 20170125032403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -230,6 +230,8 @@ ActiveRecord::Schema.define(version: 20170123224643) do
     t.boolean "diesel_engine"
     t.boolean "double_traction"
     t.boolean "automatic_transmission"
+    t.integer "from_year"
+    t.integer "to_year"
     t.index ["kilometraje", "vme_id", "diesel_engine", "double_traction", "automatic_transmission"], name: "pauta_business_index", unique: true, using: :btree
   end
 
@@ -281,6 +283,8 @@ ActiveRecord::Schema.define(version: 20170123224643) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "product_id",                 null: false
+    t.integer  "from_year"
+    t.integer  "to_year"
     t.index ["product_id", "vme_id"], name: "products_vmes_business_index", unique: true, using: :btree
     t.index ["product_id"], name: "index_products_vmes_on_product_id", using: :btree
   end
@@ -314,6 +318,8 @@ ActiveRecord::Schema.define(version: 20170123224643) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "promotion_id",                 null: false
+    t.integer  "from_year"
+    t.integer  "to_year"
     t.index ["promotion_id", "vme_id"], name: "promotions_vmes_business_index", unique: true, using: :btree
     t.index ["promotion_id"], name: "index_promotions_vmes_on_promotion_id", using: :btree
   end
