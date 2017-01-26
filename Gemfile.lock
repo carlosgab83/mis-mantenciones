@@ -330,7 +330,7 @@ DEPENDENCIES
   rails_admin (~> 1.0)
   rails_admin-i18n
   rails_admin_nested_set (~> 0.5)
-  redis-rails
+  redis-rails (~> 5.0)
   roo (~> 2.5.0)
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
