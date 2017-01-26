@@ -14,6 +14,12 @@ class HomeController < ApplicationController
       session[:search]['kms']    = params[:search][:kms]
     end
 
+    if session[:search]['patent'].nil? or session[:search]['patent'].blank?
+      EventTracker::ClickSearchWithoutPatent.new(controller: self).track
+      redirect_to :search_home
+      return
+    end
+
     if session[:search].nil? or session[:search]['patent'].nil? or session[:search]['kms'].nil?
       session[:rvm_id] = nil
       redirect_to :search_home

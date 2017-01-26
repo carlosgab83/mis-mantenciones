@@ -11,9 +11,10 @@ class ShopInscriptionsController < ApplicationController
 
     def create
     if create_shop_inscription_params
-      shop_inscription = ShopInscriptionCreator.new(create_shop_inscription_params).call
-      if shop_inscription.valid?
-        EventTracker::RegisterAsShopInscription.new(controller: self, shop_inscription: shop_inscription).track
+      @shop_inscription = ShopInscriptionCreator.new(create_shop_inscription_params).call
+      if @shop_inscription.valid?
+        ShopInscriptionsNotifier.new(shop_inscription: @shop_inscription).call
+        EventTracker::RegisterAsShopInscription.new(controller: self, shop_inscription: @shop_inscription).track
         render :create, status: :ok
       else
         render action: :fail, status: 422
@@ -28,6 +29,6 @@ class ShopInscriptionsController < ApplicationController
   private
 
   def create_shop_inscription_params
-    params.require(:shop_inscription).permit(:name, :primary_last_name, :email, :phone, :rut, :comune_id, :accept_terms)
+    params.require(:shop_inscription).permit(:name, :primary_last_name, :email, :phone, :rut, :comune_id, :company_name, :company_rut, :accept_terms)
   end
 end

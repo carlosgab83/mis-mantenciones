@@ -5,6 +5,8 @@ module ShopInscriptionSerializer
       json.client_name               name
       json.client_primary_last_name  primary_last_name
       json.client_email              email
+      json.client_company_name       company_name
+      json.client_company_rut        company_rut
     end
   end
 end
