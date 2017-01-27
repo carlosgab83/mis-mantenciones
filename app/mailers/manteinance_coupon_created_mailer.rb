@@ -36,26 +36,6 @@ class ManteinanceCouponCreatedMailer < ApplicationMailer
       subject: "Cliente: #{manteinance_coupon.client.full_name} ha adquirido una #{manteinance_coupon.pauta.name} en #{manteinance_coupon.branch.name}.",
       merge_vars: [
         {
-          rcpt: manteinance_coupon.branch.email,
-          vars: [
-            {name: 'CLIENT_NAME', content: manteinance_coupon.client.full_name},
-            {name: 'CLIENT_EMAIL', content: manteinance_coupon.client.email},
-            {name: 'CLIENT_PHONE', content: manteinance_coupon.client.phone},
-            {name: 'PAUTA_NAME', content: manteinance_coupon.pauta.name},
-            {name: 'SHOP_NAME', content: manteinance_coupon.branch.shop.name},
-            {name: 'BRANCH_NAME', content: manteinance_coupon.branch.name},
-            {name: 'VEHICLE_NAME', content: "#{vehicle_brand} #{vehicle_model}"},
-            {name: 'RVM', content: patent},
-            {name: 'RVM_BRAND', content: vehicle_brand},
-            {name: 'RVM_MODEL', content: vehicle_model},
-            {name: 'RVM_YEAR', content: manufacturing_year},
-            {name: 'RVM_CHASSIS', content: chassis_serial},
-            {name: 'RVM_MOTOR', content: engine_serial},
-            {name: 'TICKET_NUMBER', content: manteinance_coupon.id},
-            {name: 'COPY_RIGHT_YEAR', content: Date.today.year},
-          ]
-        },
-        {
           rcpt: manteinance_coupon.branch.shop.email,
           vars: [
             {name: 'CLIENT_NAME', content: manteinance_coupon.client.full_name},
