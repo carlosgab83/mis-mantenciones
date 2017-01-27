@@ -17,7 +17,7 @@ class Vehicle
       self.brand_id = v_rvm_vehiculo[:v_cod_marca]
       self.model_id = v_rvm_vehiculo[:v_cod_modelo]
       self.engine_serial = v_rvm_vehiculo[:v_motor]
-      self.chassis_serial = v_rvm_vehiculo[:v_chassis]
+      self.chassis_serial = v_rvm_vehiculo[:v_chasis]
       self.found = true
       self.table_brand_name = Brand.find_by(id_marca: brand_id).try(:descripcion)
       self.table_model_name = Model.find_by(id_modelo: model_id).try(:modelo_descripcion)
