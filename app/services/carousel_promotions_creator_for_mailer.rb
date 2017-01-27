@@ -25,7 +25,7 @@ class CarouselPromotionsCreatorForMailer < BaseService
                       <tbody>
                         <tr>
                           <td class='mcnCaptionBottomImageContent' align='center' valign='top' style='padding:0 9px 9px 9px;'>
-                            <a href='#{Rails.application.routes.url_helpers.promotion_url(promotion, patent: params[:patent], kms: params[:kms], host: base_host)}' title='' class='' target='_blank'>
+                            <a href='#{PromotionUrlGenerator.new(promotion: promotion, patent: params[:patent], kms: params[:kms]).call}' title='' class='' target='_blank'>
                               <img alt='' src='#{promotion.image_url}' width='164' style='max-width:185px;' class='mcnImage'>
                             </a>
                           </td>
@@ -48,7 +48,7 @@ class CarouselPromotionsCreatorForMailer < BaseService
                         <tbody>
                           <tr>
                             <td align='center' valign='middle' class='mcnButtonContent' style='font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; padding: 15px;'>
-                              <a class='mcnButton ' title='VER PROMOCIÓN' href='#{Rails.application.routes.url_helpers.promotion_url(promotion, patent: params[:patent], kms: params[:kms], host:base_host)}' target='_blank' style='font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #06407F;'>VER PROMOCIÓN</a>
+                              <a class='mcnButton ' title='VER PROMOCIÓN' href='#{PromotionUrlGenerator.new(promotion: promotion, patent: params[:patent], kms: params[:kms]).call}' target='_blank' style='font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #06407F;'>VER PROMOCIÓN</a>
                             </td>
                           </tr>
                         </tbody>

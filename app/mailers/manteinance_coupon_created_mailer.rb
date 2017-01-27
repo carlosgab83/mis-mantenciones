@@ -33,7 +33,7 @@ class ManteinanceCouponCreatedMailer < ApplicationMailer
       from_name: default_from_name,
       from_email: default_from_email,
       to: [{email: manteinance_coupon.branch.email}, {email: manteinance_coupon.branch.shop.email}],
-      subject: "Cliente: #{manteinance_coupon.client.full_name} a adquirido una #{manteinance_coupon.pauta.name} en #{manteinance_coupon.branch.name}.",
+      subject: "Cliente: #{manteinance_coupon.client.full_name} ha adquirido una #{manteinance_coupon.pauta.name} en #{manteinance_coupon.branch.name}.",
       merge_vars: [
         {
           rcpt: manteinance_coupon.client.email,
