@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112224225) do
+ActiveRecord::Schema.define(version: 20170123224643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -374,6 +374,21 @@ ActiveRecord::Schema.define(version: 20170112224225) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
   end
 
+  create_table "shop_inscriptions", force: :cascade do |t|
+    t.string   "name",                              null: false
+    t.string   "primary_last_name"
+    t.string   "email",                             null: false
+    t.string   "phone"
+    t.string   "rut"
+    t.integer  "comune_id",                         null: false
+    t.boolean  "deleted",           default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "company_name"
+    t.string   "company_rut"
+    t.index ["email"], name: "shop_inscriptions_business_index", unique: true, using: :btree
+  end
+
   create_table "shops", force: :cascade do |t|
     t.string   "name",                       null: false
     t.string   "rut",                        null: false
@@ -492,6 +507,7 @@ ActiveRecord::Schema.define(version: 20170112224225) do
   add_foreign_key "proveedor_item_mantencion", "pauta_proveedor", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta_prov"
   add_foreign_key "proveedor_taller_sucursal", "comuna", column: "id_comuna", primary_key: "id_comuna", name: "fk_comuna"
   add_foreign_key "proveedor_taller_sucursal", "proveedor_taller", column: "ide_rut", primary_key: "ide_rut", name: "fk_proveedor_taller"
+  add_foreign_key "shop_inscriptions", "comuna", column: "comune_id", primary_key: "id_comuna"
   add_foreign_key "solicitud_agendamiento", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_marca"
   add_foreign_key "solicitud_agendamiento", "modelo", column: "id_modelo", primary_key: "id_modelo", name: "fk_modelo"
   add_foreign_key "solicitud_agendamiento", "pauta", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta"

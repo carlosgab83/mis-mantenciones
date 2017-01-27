@@ -6,14 +6,15 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:700');
 
 // Layout Variables
-$header-height: 80px;
-$footer-height: 80px;
+$header-height: 70px;
+$footer-height: 70px;
 
 //////////////////////////////////////////////////////////
 // General Styles
 //////////////////////////////////////////////////////////
-html, body {
-	overflow-x: hidden;
+html{
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 body {
 	white-space: normal;
@@ -51,6 +52,7 @@ button,
 .btn,
 input,
 select,
+label,
 textarea {
 	@include transition(all 0.3s ease-in-out);
 }
@@ -163,6 +165,10 @@ textarea {
 		}
 	}
 }
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
 
 //////////////////////////////////////////////////////////
 // Layout
@@ -193,7 +199,7 @@ body {
 
 #header {
 	min-height: $header-height;
-	padding: 20px 0;
+	padding: 20px 0 10px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -215,6 +221,10 @@ body {
 		display: inline-block;
 		max-width: 300px;
 		margin: 6px 0;
+		@media #{$sm}{
+			margin: 10px 0;
+    		max-width: 220px;
+		}
 		@media #{$xs}{
 			width: 100%;
 			text-align: center;
@@ -267,6 +277,41 @@ body {
 			border-width: 0 0 1px 0;
 			opacity: 0.7;
 		}
+	}
+	.btn-special {
+		font-weight: 700;
+		@media #{$lg}{
+			strong {margin-left: 4px;}
+		}
+		@media #{$md}{
+			width: 110px;
+			white-space: normal;
+			padding-top: 2px;
+			padding-bottom: 5px; 
+			font-size: 85%;
+			line-height: 1.1em;
+			strong {
+				display: inline-block;
+				width: 100%;
+			}
+		}
+		@media #{$sm}{
+			width: 90px;
+			white-space: normal;
+			padding-top: 2px;
+			padding-bottom: 5px; 
+			font-size: 85%;
+			line-height: 1.1em;
+			strong {
+				display: inline-block;
+				width: 100%;
+			}
+		}
+		border: 1px solid;
+		&:hover, &:active, &:focus {
+			text-decoration: none;
+		}
+		
 	}
 }
 
@@ -325,7 +370,7 @@ body {
 
 #footer {
 	min-height: $footer-height;
-	padding: 25px 0;
+	padding: 20px 0;
 	@media #{$xs}{
 		padding: 20px 0 10px;
 		min-height: $footer-height - 30;

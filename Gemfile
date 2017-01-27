@@ -25,6 +25,8 @@ gem 'simple_form', '~> 3.3'
 gem 'friendly_id', '~> 5.1.0'
 gem 'mixpanel-ruby', '~>2.2'
 gem 'mechanize', '~>2.7'
+gem 'redis-rails', '~>5.0'
+gem 'mandrill-api', '~>1.0', require: 'mandrill'
 
 group :development, :test do
   gem 'pry-byebug'

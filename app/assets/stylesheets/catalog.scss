@@ -7,8 +7,9 @@
 .catalog {
 	.inner {
 		height: auto;
-		padding: 90px 0;
-		padding-top: 140px;
+		padding: 120px 0 60px 0;
+		@media #{$xs}{padding-top: 140px;}
+		@media #{$xxs}{padding-top: 110px;}
 		h1 {
 			font-size: 30px;
 		}
@@ -217,6 +218,234 @@
 }
 
 //////////////////////////////////////////////////////////
+// Product List
+//////////////////////////////////////////////////////////
+
+.catalog {
+	// Products
+	.part-list {
+		list-style: none;
+		padding-left: 0;
+		> li {
+			margin-bottom: 15px;
+			a {
+				display: table;
+				table-layout: fixed;
+				width: 100%;
+				padding-left: 0;
+				> h4, h5, h6, p {cursor: pointer;}
+				.part-image, .part-description {
+					display: table-cell;
+				}
+				.part-image {
+					@include transition(all 0.3s ease-in-out);
+					position: relative;
+					opacity: 0.8;
+					@media #{$lg}{width: 200px;}
+					@media #{$md}{width: 160px;}
+					@media #{$sm}{width: 130px;}
+					@media #{$xs}{width: 100px;}
+					@media #{$xxs}{width: 70px;}
+					padding: 10px;
+					vertical-align: middle;
+					text-align: center;
+					img {
+						display: inline-block;
+						max-height: 145px;
+						vertical-align: bottom;
+					}
+					.brand-logo {
+						position: absolute;
+						z-index: 1;
+						top: 15px;
+						right: 0;
+					}
+					@media #{$xs}{
+						top: 0;
+						margin-top: 0;
+						margin-bottom: 0;
+					}
+				}
+				.part-description {
+					@media #{$lg}{width: calc(100% - 200px);}
+					@media #{$md}{width: calc(100% - 160px);}
+					@media #{$sm}{width: calc(100% - 130px);}
+					@media #{$xs}{width: calc(100% - 100px);}
+					@media #{$xxs}{width: calc(100% - 70px);}
+					padding: 15px;
+					vertical-align: middle;
+					> h6 {
+						margin-bottom: 5px;
+						font-size: 135%;
+						@media #{$xs}{font-size: 120%;}
+					}
+					> p {
+						@media #{$xs}{margin-bottom: 5px;}
+					}
+					span, strong {
+						display: inline-block;
+						width: 100%;
+						font-style: italic;
+					}
+					strong {
+						font-family: 'Exo', sans-serif;
+						font-weight: bold;
+						opacity: 0.8;
+						&:last-child {
+							font-size: 135%;
+							@media #{$xs}{font-size: 120%;}
+						}
+					}
+				}
+				&:hover, &:active, &:focus {
+					.part-image {
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+	// Pagination
+	.pagination {
+		width: 100%;
+		text-align: center;
+		font-style: italic;
+		> li {
+			display: inline-block;
+			margin: 2px;
+			font-family: 'Exo', sans-serif;
+			font-weight: bold;
+			font-size: 90%;
+			&.active {
+			}
+			> a {
+				border: none;
+				padding: 6px 12px;
+			}
+		}
+	}
+	// Filters
+	#parts-filters {
+		border-bottom: 1px dashed;
+		.panel {
+			background-color: transparent;
+			box-shadow: none;
+			border: none;
+			border-top: 1px dashed;
+			.panel-heading {
+				padding: 0;
+				a {
+					display: block;
+					padding: 10px 0;
+					font-family: 'Exo', sans-serif;
+					font-weight: bold;
+					font-style: italic;
+					font-size: 15px;
+					span {
+						font-family: 'Exo 2', sans-serif;
+						font-weight: normal;
+						display: inline-block;
+						margin: 0 5px;
+						font-size: 80%;
+						&:before {content: '('}
+						&:after {content: ')'}
+					}
+					&:before {
+						font-family: 'FontAwesome';
+						display: inline-block;
+						width: 15px;
+						margin-right: 5px;
+						content: '\f107';
+					}
+					&.collapsed {
+						&:before {
+							content: '\f105';
+						}
+					}
+				}
+			}
+			& + .panel {
+				margin-top: 0;
+			}
+			.panel-collapse {
+				&.collapse.in, &.collapsing {
+					.panel-body {
+						border-top: 1px dashed;
+						padding: 0;
+					}
+				}
+				.list-unstyled{
+					margin-bottom: 0;
+					padding-left: 0;
+					> li {
+						> label {
+							display: inline-block;
+							width: 100%;
+							padding: 7px 0 7px 20px;
+							margin-bottom: 0;
+							cursor: pointer;
+							input[type="checkbox"] {
+								& + span:before {
+									vertical-align: middle;
+									font-family: 'FontAwesome';
+									display: inline-block;
+									width: 15px;
+									margin-right: 5px;
+									content: '\f096';
+								}
+								&:checked + span:before {
+									content: '\f046';
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	// Search
+	.nav.nav-tabs {
+		border-bottom: none;
+		@media #{$oxs}{margin-top: -45px;}
+		> li {
+			float: right;
+			text-align: center;
+			@media #{$xs}{width: 50%;}
+			> a {
+				border: none;
+				font-style: italic;
+				margin: 0;
+				padding: 14px 28px;
+				@media #{$xs}{padding: 8px 16px;}
+				strong {
+					font-family: 'Exo', sans-serif;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+	.tab-content {
+		margin-bottom: 25px;
+		.tab-pane {
+			font-style: italic;
+			padding: 20px;
+			.form-control {
+				@media #{$usm}{
+					margin-bottom: 5px;
+				}
+			}
+			.btn-cta {margin: 0;}
+			p {margin-bottom: 10px;}
+			p.small {
+				margin-top: 10px;
+				margin-bottom: 0;
+				opacity: 0.8;
+			}
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////
 // Product Detail
 //////////////////////////////////////////////////////////
 
@@ -248,7 +477,7 @@
 			margin: 20px 0;
 			li {
 				margin-bottom: 5px;
-			}	
+			}
 		}
 		h1, h2, h3, h4, h5, h6 {
 			opacity: 0.6;
@@ -292,4 +521,50 @@
 			}
 		}
 	}
+}
+
+//////////////////////////////////////////////////////////
+// Product Brands
+//////////////////////////////////////////////////////////
+
+.brand {
+	&.michelin,
+	&.pirelli,
+	&.goodyear,
+	&.nexen,
+	&.firestone,
+	&.bridgestone,
+	&.continental,
+	&.yokohama,
+	&.hankook,
+	&.toyo,
+	&.dunlop,
+	&.westlake,
+	&.achilles,
+	&.goodride,
+	&.ling-long {
+		display: block;
+		height: 25px;
+		width: 100%;
+		color: transparent;
+		font-size: 0!important;
+		background-repeat: no-repeat;
+		background-position: left top;
+		background-size: auto 25px;
+	}
+	&.michelin {background-image: image-url("brands/michelin.png");}
+	&.pirelli {background-image: image-url("brands/pirelli.png");}
+	&.goodyear {background-image: image-url("brands/goodyear.png");}
+	&.nexen {background-image: image-url("brands/nexen.png");}
+	&.firestone {background-image: image-url("brands/firestone.png");}
+	&.bridgestone {background-image: image-url("brands/bridgestone.png");}
+	&.continental {background-image: image-url("brands/continental.png");}
+	&.yokohama {background-image: image-url("brands/yokohama.png");}
+	&.hankook {background-image: image-url("brands/hankook.png");}
+	&.toyo {background-image: image-url("brands/toyo.png");}
+	&.dunlop {background-image: image-url("brands/dunlop.png");}
+	&.westlake {background-image: image-url("brands/westlake.png");}
+	&.achilles {background-image: image-url("brands/achilles.png");}
+	&.goodride {background-image: image-url("brands/goodride.png");}
+	&.ling-long {background-image: image-url("brands/ling-long.png");}
 }

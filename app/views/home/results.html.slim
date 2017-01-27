@@ -9,60 +9,60 @@
             li
               .inner-cell
                 h2
-                  | Las Mantenciones para tu <em>#{@vehicle.brand_name} #{@vehicle.rvm_model} #{@vehicle.manufacturing_year}</em>
+                  | Mantenciones para tu <em>#{@vehicle.brand_name} #{@vehicle.rvm_model} #{@vehicle.manufacturing_year}</em>
               .inner-cell
                 span.lead #{@pauta.name}
             li
-              a class='#{manteinance_item_status_class(@pauta.engine_manteinance_items)}' data-toggle="popover" data-trigger="focus hover" data-content="#{manteinance_items_list(@pauta.engine_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
+              a class='#{manteinance_item_status_class(@pauta.engine_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.engine_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-motor
                   | Motor
                 .inner-cell
                   span.badge #{@pauta.engine_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.transmission_manteinance_items)}' data-toggle="popover" data-trigger="focus hover" data-content="#{manteinance_items_list(@pauta.transmission_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
+              a class='#{manteinance_item_status_class(@pauta.transmission_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.transmission_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-transmision
                   | Transmisión
                 .inner-cell
                   span.badge #{@pauta.transmission_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.brake_manteinance_items)}' data-toggle="popover" data-trigger="focus hover" data-content="#{manteinance_items_list(@pauta.brake_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
+              a class='#{manteinance_item_status_class(@pauta.brake_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.brake_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-brake-disk
                   | Frenos
                 .inner-cell
                   span.badge #{@pauta.brake_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.tyres_manteinance_items)}' data-toggle="popover" data-trigger="focus hover" data-content="#{manteinance_items_list(@pauta.tyres_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
+              a class='#{manteinance_item_status_class(@pauta.tyres_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.tyres_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-wheel
                   | Neumáticos
                 .inner-cell
                   span.badge #{@pauta.tyres_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.direction_manteinance_items)}' data-toggle="popover" data-trigger="focus hover" data-content="#{manteinance_items_list(@pauta.direction_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
+              a class='#{manteinance_item_status_class(@pauta.direction_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.direction_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-steering-wheel
                   | Dirección
                 .inner-cell
                   span.badge #{@pauta.direction_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.suspension_manteinance_items)}' data-toggle="popover" data-trigger="focus hover" data-content="#{manteinance_items_list(@pauta.suspension_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
+              a class='#{manteinance_item_status_class(@pauta.suspension_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.suspension_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-shock-absorber
                   | Suspensión
                 .inner-cell
                   span.badge #{@pauta.suspension_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.electric_manteinance_items)}' data-toggle="popover" data-trigger="focus hover" data-content="#{manteinance_items_list(@pauta.electric_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
+              a class='#{manteinance_item_status_class(@pauta.electric_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.electric_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-battery
                   | Sist. Eléctrico
                 .inner-cell
                   span.badge #{@pauta.electric_manteinance_items.count}
             li
-              a class='#{manteinance_item_status_class(@pauta.other_manteinance_items)}' data-toggle="popover" data-trigger="focus hover" data-content="#{manteinance_items_list(@pauta.other_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
+              a class='#{manteinance_item_status_class(@pauta.other_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.other_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
                 .inner-cell
                   span.flaticon-car-search
                   | Otros
@@ -91,7 +91,7 @@
       .row
         .col-md-12.text-center
           = link_to promotions_path do
-            .btn.btn-link Ver todas
+            .btn.btn-cta Ver todas las promociones
 
   section#section-parts
     .container
@@ -115,5 +115,9 @@
               - from_price = product.branches_products.map{|bp| bp.cached_price }.compact.try(:min)
               - next if from_price.nil?
               = render 'carousel_product', product: product, from_price: from_price
+          .row
+            .col-md-12.text-center
+              = link_to promotions_path do
+                /.btn.btn-cta Ver todos los Productos
 
 = render 'shared/footer'

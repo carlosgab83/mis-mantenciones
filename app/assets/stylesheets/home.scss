@@ -5,6 +5,19 @@
 //////////////////////////////////////////////////////////
 
 // Color over image backgrounds
+#wrapper.homepage {
+	@extend .cover-background;
+	background-position: center bottom;
+	&:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+	}
+}
 #home-upper,
 #home-bottom {
 	position: relative;
@@ -25,22 +38,24 @@
 
 #home-upper {
 	text-align: center;
-	min-height: 260px;
-	padding: 80px 0;
+	min-height: 240px;
+	padding: 60px 0;
 	color: $light-color;
 	color: rgba($light-color,0.8);
+	z-index: 1;
 	h1 {
 		font-weight: 300;
 		font-family: 'Exo 2', sans-serif;
 		margin-bottom: 0;
 		.img-logo {
 			max-width: 100%;
+			@media #{$xs}{max-width: 75%;}
 			vertical-align: bottom;
 		}
 	}
 }
 #home-middle {
-	min-height: 160px;
+	min-height: 150px;
 	padding: 40px 0;
 	position: relative;
 	z-index: 1;
@@ -52,6 +67,7 @@
 		font-family: 'Exo', sans-serif;
 		font-style: italic;
 		margin-bottom: 0;
+		font-size: 22px;
 		@media #{$usm}{
 			text-align: center;
 			margin-bottom: 15px;
@@ -85,6 +101,9 @@
 		border-width: 0 0 1px 0;
 		padding-left: 0;
 		padding-right: 0;
+		&:focus {
+			box-shadow: none;
+		}
 	}
 	.input-group-addon {
 		background-color: transparent;
@@ -93,7 +112,7 @@
 }
 #home-bottom {
 	min-height: 260px;
-	padding: 100px 0;
+	padding: 90px 0;
 	@media #{$xxs}{
 		min-height: 240px;
 		padding: 80px 0;

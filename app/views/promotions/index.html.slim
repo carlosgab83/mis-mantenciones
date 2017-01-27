@@ -28,7 +28,8 @@
                   .promo-description
                     h6 = promotion.name
                     p = truncate(promotion.preview_text, :length => 120, :omission => '... ')
-                    span.promo-price = mismantenciones_number_to_currency(promotion.promo_price)
-                    span.full-price = mismantenciones_number_to_currency(promotion.full_price)
+                    - if promotion.show_button?
+                      span.promo-price = mismantenciones_number_to_currency(promotion.promo_price)
+                      span.full-price = mismantenciones_number_to_currency(promotion.full_price)
 
 = render 'shared/footer'

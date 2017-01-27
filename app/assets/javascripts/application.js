@@ -16,6 +16,7 @@
 // asdsd//= require turbolinks
 //= require bootstrap-sass/assets/javascripts/bootstrap-sprockets
 //= require slick.min
+//= require bootstrap-select
 //= require mismantenciones
 //= require jquery-validation
 //= require jquery-lazzynumeric-1.2/js/autoNumeric
