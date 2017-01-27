@@ -7,4 +7,7 @@ class ShopInscription < ApplicationRecord
 
   include ShopInscriptionSerializer
 
+  def full_name
+    "#{name} #{primary_last_name}"
+  end
 end
