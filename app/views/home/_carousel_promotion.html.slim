@@ -5,10 +5,11 @@ a.single-promo href="#{promotion_path(promotion)}" title="#{promotion.name}"
       = image_tag(promotion.branches.try(:last).try(:shop).try(:image_url) || "", :alt => "", :class => "brand-logo")
       = image_tag(promotion.image_url || "promo-image.jpg", :alt => promotion.name)
       span.promo-image-text #{promotion.name}
-    .promo-description
-      h6 #{mismantenciones_number_to_currency(promotion.promo_price)}
-      - if promotion.full_price != promotion.promo_price
-        span.changed #{mismantenciones_number_to_currency(promotion.full_price)}
+    - if promotion.show_price?
+      .promo-description
+        h6 #{mismantenciones_number_to_currency(promotion.promo_price)}
+        - if promotion.full_price != promotion.promo_price
+          span.changed #{mismantenciones_number_to_currency(promotion.full_price)}
   - else
     .promo-image
       = image_tag(promotion.branches.try(:last).try(:shop).try(:image_url) || "", :alt => "", :class => "brand-logo")

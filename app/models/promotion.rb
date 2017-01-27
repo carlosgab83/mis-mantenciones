@@ -25,4 +25,8 @@ class Promotion < ApplicationRecord
     end.join(', ')
   end
 
+  def show_price?
+    promo_price != -999
+  end
+
 end
