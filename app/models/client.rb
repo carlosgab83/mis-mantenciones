@@ -6,4 +6,8 @@ class Client < ApplicationRecord
   attr_accessor :accept_terms
 
   include ClientSerializer
+
+  def full_name
+    "#{name} #{primary_last_name}"
+  end
 end
