@@ -29,4 +29,11 @@ Rails.application.routes.draw do
   end
 
   resources :shop_inscriptions, only: [:new, :create, :update]
+
+  # Error Handling
+  if not Rails.env.production?
+   match '404' => "home#search", via: [:get, :post, :put, :patch, :delete]
+   match '422' => "home#search", via: [:get, :post, :put, :patch, :delete]
+   match '500' => "home#search", via: [:get, :post, :put, :patch, :delete]
+  end
 end
