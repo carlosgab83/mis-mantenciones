@@ -187,6 +187,18 @@
       end
     end
 
+
+    config.model 'SearchCategorySetting' do
+      list do
+        field :id
+        field :category
+        field :category_attribute
+        field :filter_type
+        field :position
+        field :deleted
+      end
+    end
+
     ## With an audit adapter, you can add:
     # history_index
     # history_show
