@@ -7,21 +7,20 @@ class SearchCategorySetting < ApplicationRecord
 
   # Filter type filled with HORIZONTAL value must be appear on horizontal filters on view
   HORIZONTAL = 0
+  YEARS = 2000..2016
 
   # Recursive scope that look attribuutes for an category, if results is empty, look the same on category's parent
   scope :horizontal_attributes_for_category, -> (category) do
-    results = not_deleted.where(category: category, filter_type: HORIZONTAL).order(:position)
-    return results if results.any?
+    results = not_deleted.includes(:category_attribute).where(category: category, filter_type: HORIZONTAL).order(:position)
+    return results.map{|scs| scs.category_attribute} if results.any?
     return [] if category.root?
     horizontal_attributes_for_category(category.parent)
   end
 
   scope :vertical_attributes_for_category, -> (category) do
-    results = not_deleted.where(category: category).where.not(filter_type: HORIZONTAL).order(:position)
-    return results if results.any?
+    results = not_deleted.includes(:category_attribute).where(category: category).where.not(filter_type: HORIZONTAL).order(:position)
+    return results.map{|scs| scs.category_attribute} if results.any?
     return [] if category.root?
     vertical_attributes_for_category(category.parent)
   end
 end
-
-

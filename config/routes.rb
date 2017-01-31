@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :search_products, only: [:index, :show, :new]
+
   resources :shop_inscriptions, only: [:new, :create, :update]
 
   # Error Handling

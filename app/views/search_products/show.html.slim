@@ -1,0 +1,125 @@
+= render 'shared/header'
+
+#wrapper.catalog
+  .inner
+    .container
+      .row
+        .col-sm-12
+          h1
+            strong #{@category.name.camelize}
+
+        .col-sm-12
+          ul.nav.nav-tabs
+            li.active
+              a href="#car-search" role="tab" data-toggle="tab"
+                | Buscar por
+                strong Vehículo
+            li
+              a href="#attributes-search" role="tab" data-toggle="tab"
+                | Buscar por
+                strong Atributos
+          .tab-content
+            #car-search.tab-pane.fade.in.active role="tabpanel"
+              = render partial: 'search_by_vehicle'
+            #attributes-search.tab-pane.fade role="tabpanel"
+              = render partial: 'search_by_attributes'
+
+        .col-sm-4.col-md-5
+          h4 Filtrar por
+          #parts-filters.panel-group role="tablist"
+            .panel
+              .panel-heading
+                a role="button" data-toggle="collapse" data-parent="#parts-filters" href="#brand-filters"
+                  | Marca
+                  span 7
+              #brand-filters.panel-collapse.collapse.in role="tabpanel"
+                .panel-body
+                  ul.list-unstyled
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Bridgestone
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Continental
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Dunlop
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Firestone
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Goodyear
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Michelin
+                    li
+                      label.checkbox
+                        input type="checkbox"
+                        span Pirelli
+            .panel
+              .panel-heading
+                a.collapsed role="button" data-toggle="collapse" data-parent="#parts-filters" href="#performance-filters"
+                  | Performance
+                  span 10
+              #performance-filters.panel-collapse.collapse role="tabpanel"
+                .panel-body
+                  ul.list-unstyled
+                    li
+            .panel
+              .panel-heading
+                a.collapsed role="button" data-toggle="collapse" data-parent="#parts-filters" href="#price-filters"
+                  | Precio
+                  span 2
+              #price-filters.panel-collapse.collapse role="tabpanel"
+                .panel-body
+                  ul.list-unstyled
+                    li
+        .col-sm-8.col-md-7
+          ul.part-list
+            li
+              a
+                .part-image
+                  = image_tag('part-image.jpg', :class => 'img-responsive')
+                .part-description
+                  h6.brand.michelin Michelin
+                  p Lorem Ipsum dolor dit amet
+                  strong desde
+                  strong.price 156.000
+            li
+              a
+                .part-image
+                  = image_tag('part-image.jpg', :class => 'img-responsive')
+                .part-description
+                  h6.brand.pirelli Pirelli
+                  p Lorem Ipsum dolor dit amet
+                  strong desde
+                  strong.price 156.000
+            li
+              a
+                .part-image
+                  = image_tag('part-image.jpg', :class => 'img-responsive')
+                .part-description
+                  h6.brand.goodyear Goodyear
+                  p Lorem Ipsum dolor dit amet
+                  strong desde
+                  strong.price 156.000
+          ul.pagination
+            li.active
+              a href="#" 1
+            li
+              a href="#" 2
+            li
+              a href="#" 3
+            li
+              a href="#" 4
+            li
+              a href="#" 5
+
+= render 'shared/footer'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170129155957) do
+ActiveRecord::Schema.define(version: 20170130025126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,7 +120,9 @@ ActiveRecord::Schema.define(version: 20170129155957) do
     t.integer  "rgt",                            null: false
     t.integer  "depth",          default: 0,     null: false
     t.integer  "children_count", default: 0,     null: false
+    t.string   "slug"
     t.index ["name"], name: "categories_business_index", unique: true, using: :btree
+    t.index ["slug"], name: "index_categories_on_slug", using: :btree
   end
 
   create_table "clients", force: :cascade do |t|
