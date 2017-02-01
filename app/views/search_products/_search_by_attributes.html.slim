@@ -1,51 +1,13 @@
 .row
   .col-sm-12
     p Lorem Ipsum dolor sit amet
-form
-  .row
-    .col-sm-6.col-md-3
-      select.selectpicker.form-control title="Attr1" data-live-search="true"
-        option Alfa Romeo
-        option Audi
-        option BMW
-        option Chevrolet
-        option Chrysler
-        option Daewoo
-        option Dahiatsu
-        option Datsun
-        option Dodge
-        option Ferrari
-        option Fiat
-        option Ford
-        option Honda
-        option Hyundai
-        option Isuzu
-        option Jaguar
-        option Kia
-    .col-sm-6.col-md-3
-      select.selectpicker.form-control title="Modelo" data-live-search="true"
-        option Modelo 1
-        option Modelo 2
-        option Modelo 3
-        option Modelo 4
-        option Modelo 5
-        option Modelo 6
-        option Modelo 7
-        option Modelo 8
-        option Modelo 9
-    .col-sm-6.col-md-3
-      select.selectpicker.form-control title="Año" data-live-search="true"
-        option 2017
-        option 2016
-        option 2015
-        option 2014
-        option 2013
-        option 2012
-        option 2011
-        option 2010
-        option 2009
-    .col-sm-6.col-md-3
-      button.btn.btn-cta.btn-block type="submit" Buscar
+  = form_tag search_product_path, method: :put, id: 'search-products-by-attributes-form'
     .row
-      .col-sm-12
-        p.small Lorem Ipsum dolor sit amet
+      - @search_products_form.horizontal_filters.by_attributes[0..2].each do |attribute_struct|
+        .col-sm-6.col-md-3
+          = select_tag("client_search_input[horizontal_filters[by_attributes[#{attribute_struct.attribute.id}]]", options_for_select(attribute_struct.values), class: 'selectpicker form-control', include_blank: true, title: attribute_struct.attribute.name, 'data-live-search' => 'true')
+      .col-sm-6.col-md-3
+        button.btn.btn-cta.btn-block type="submit" Buscar
+      .row
+        .col-sm-12
+          p.small Lorem Ipsum dolor sit amet

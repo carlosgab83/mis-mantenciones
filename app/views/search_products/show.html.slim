@@ -7,16 +7,15 @@
         .col-sm-12
           h1
             strong #{@category.name.camelize}
-
         .col-sm-12
           ul.nav.nav-tabs
             li.active
               a href="#car-search" role="tab" data-toggle="tab"
-                | Buscar por
+                | Buscar por&nbsp;
                 strong Vehículo
             li
               a href="#attributes-search" role="tab" data-toggle="tab"
-                | Buscar por
+                | Buscar por&nbsp;
                 strong Atributos
           .tab-content
             #car-search.tab-pane.fade.in.active role="tabpanel"
@@ -83,33 +82,16 @@
                     li
         .col-sm-8.col-md-7
           ul.part-list
-            li
-              a
-                .part-image
-                  = image_tag('part-image.jpg', :class => 'img-responsive')
-                .part-description
-                  h6.brand.michelin Michelin
-                  p Lorem Ipsum dolor dit amet
-                  strong desde
-                  strong.price 156.000
-            li
-              a
-                .part-image
-                  = image_tag('part-image.jpg', :class => 'img-responsive')
-                .part-description
-                  h6.brand.pirelli Pirelli
-                  p Lorem Ipsum dolor dit amet
-                  strong desde
-                  strong.price 156.000
-            li
-              a
-                .part-image
-                  = image_tag('part-image.jpg', :class => 'img-responsive')
-                .part-description
-                  h6.brand.goodyear Goodyear
-                  p Lorem Ipsum dolor dit amet
-                  strong desde
-                  strong.price 156.000
+            - @products.each do |product|
+              li
+                = link_to product_path(product)
+                  .part-image
+                    = image_tag(product.image_url || "part-image.jpg", :alt => product.product_brand.name + " " + product.name)
+                  .part-description
+                    h6 class="#{"brand #{product.product_brand.name.downcase.tr(" ","-")}"}"
+                    p #{product.name}
+                    strong desde
+                    strong.price #{product.min_price}
           ul.pagination
             li.active
               a href="#" 1

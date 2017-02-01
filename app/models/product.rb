@@ -15,6 +15,7 @@ class Product < ApplicationRecord
 
   scope :actives, -> {where("status is true")}
   scope :not_deleted, -> {where(deleted: [false, nil])}
+  scope :by_category, -> (category) {joins(:category).where("products.category_id = ?", category.id)}
 
   def branches_products_with_prices
     non_price_value = 9999999999
@@ -37,6 +38,10 @@ class Product < ApplicationRecord
 
   def model_attribute_value
     name
+  end
+
+  def min_price
+    branches_products.map{|bp| bp.price }.compact.try(:min)
   end
 end
 

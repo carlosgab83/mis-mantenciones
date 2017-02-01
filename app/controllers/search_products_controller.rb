@@ -13,12 +13,21 @@ class SearchProductsController < ApplicationController
   # Shows initial view
   def show
     @category = Category.where(name: params[:id]).first || Category.roots.first.id # i.e: /search_products/neumaticos
-    @products = []
     @search_products_form = ProductsFinder.new(client_search_input: params[:client_search_input], category: @category, vehicle: session[:vehicle]).call
+    @products = @search_products_form.results
     EventTracker::SearchProducts.new(controller: self, vehicle: session[:vehicle], client: session[:client], category: @category).track
   end
 
   # Make new search based on user criteria
-  def new
+  def update
+    show
+    render action: :show
+  end
+
+  def model_collection
+    @models = Model.actives.where(id_marca: params[:brand_id])
+    respond_to do |format|
+      format.js
+    end
   end
 end
