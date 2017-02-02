@@ -17,6 +17,7 @@ class ManteinanceCouponCreatedMailer < ApplicationMailer
             {name: 'SHOP_NAME', content: manteinance_coupon.branch.shop.name},
             {name: 'BRANCH_NAME', content: manteinance_coupon.branch.name},
             {name: 'TICKET_NUMBER', content: manteinance_coupon.id},
+            {name: 'MANTEINANCE_ITEMS', content: ManteinanceItemsCreatorForMailer.new(pauta: manteinance_coupon.pauta).call},
             {name: 'PROMOS_SECTION', content: CarouselPromotionsCreatorForMailer.new(promotions_ids: promotions_ids, patent: patent, kms: kms).call},
             {name: 'COPY_RIGHT_YEAR', content: Date.today.year},
           ]
@@ -52,6 +53,7 @@ class ManteinanceCouponCreatedMailer < ApplicationMailer
             {name: 'RVM_CHASSIS', content: chassis_serial},
             {name: 'RVM_MOTOR', content: engine_serial},
             {name: 'TICKET_NUMBER', content: manteinance_coupon.id},
+            {name: 'MANTEINANCE_ITEMS', content: ManteinanceItemsCreatorForMailer.new(pauta: manteinance_coupon.pauta).call},
             {name: 'COPY_RIGHT_YEAR', content: Date.today.year},
           ]
         }
