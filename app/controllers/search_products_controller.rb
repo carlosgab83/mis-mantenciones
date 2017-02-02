@@ -25,7 +25,7 @@ class SearchProductsController < ApplicationController
   end
 
   def model_collection
-    @models = Model.actives.where(id_marca: params[:brand_id])
+    @models = Model.actives.where(id_marca: params[:brand_id]).order(:modelo_descripcion)
     respond_to do |format|
       format.js
     end

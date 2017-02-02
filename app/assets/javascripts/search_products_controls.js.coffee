@@ -10,7 +10,7 @@ $(document).on('page:load', searchProductsControls.ready)
 #############################################################################
 
 searchProductsControls.dynamic_selectors = ->
-  $('#client_search_input_horizontal_filters_brand_id').change ->
+  $('#client_search_input_horizontal_filters_by_vehicle_brand_id').change ->
     params = {}
     params['brand_id']  = $(this).val()
     url = '/search_products/model_collection'

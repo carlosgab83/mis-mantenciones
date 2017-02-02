@@ -4,11 +4,13 @@
   = form_tag search_product_path, method: :put, id: 'search-products-by-vehicle-form'
     .row
       .col-sm-6.col-md-3
-        = select_tag('client_search_input[horizontal_filters[by_vehicle[brand_id]]', options_for_select(@search_products_form.horizontal_filters.by_vehicle.brands.collect{|brand| [brand.descripcion, brand.id_marca] }), class: 'selectpicker form-control', include_blank: true,  title: 'Marca', 'data-live-search' => 'true')
+        = select_tag('client_search_input[horizontal_filters[by_vehicle[brand_id]]', options_for_select(@search_products_form.horizontal_filters.by_vehicle.brands.collect{|brand| [brand.descripcion, brand.id_marca] }, @search_products_form.client_search_input['horizontal_filters']['by_vehicle'].try(:[],'brand_id')), class: 'selectpicker form-control', include_blank: true,  title: 'Marca', 'data-live-search' => 'true')
       .col-sm-6.col-md-3
-        = select_tag('client_search_input[horizontal_filters[by_vehicle[model_id]]', options_for_select([[]]), class: 'selectpicker form-control', include_blank: true,  title: 'Modelo', 'data-live-search' => 'true')
+        - models = (@search_products_form.client_search_input['horizontal_filters']['by_vehicle'].try(:[],'brand_id') ? @search_products_form.horizontal_filters.by_vehicle.models.collect{|model| [model.modelo_descripcion, model.id_modelo] } : [[]])
+        - model_selected = @search_products_form.client_search_input['horizontal_filters']['by_vehicle'].try(:[],'model_id')
+        = select_tag('client_search_input[horizontal_filters[by_vehicle[model_id]]', options_for_select(models, model_selected), class: 'selectpicker form-control', include_blank: true,  title: 'Modelo', 'data-live-search' => 'true')
       .col-sm-6.col-md-3
-        = select_tag('client_search_input[horizontal_filters[by_vehicle[year]]', options_for_select(@search_products_form.horizontal_filters.by_vehicle.years), class: 'selectpicker form-control', include_blank: true,  title: 'Año', 'data-live-search' => 'true')
+        = select_tag('client_search_input[horizontal_filters[by_vehicle[year]]', options_for_select(@search_products_form.horizontal_filters.by_vehicle.years, @search_products_form.client_search_input['horizontal_filters']['by_vehicle'].try(:[],'year')), class: 'selectpicker form-control', include_blank: true,  title: 'Año', 'data-live-search' => 'true')
       .col-sm-6.col-md-3
         button.btn.btn-cta.btn-block type="submit" Buscar
       .row

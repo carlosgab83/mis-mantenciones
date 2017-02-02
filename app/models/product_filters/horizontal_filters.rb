@@ -16,8 +16,9 @@ class HorizontalFilters < ProductFilters
 
   def proccess
     struct = Struct.new(:brands, :models, :years)
-    self.by_vehicle = struct.new(Brand.actives.all, Model.all, years.to_a.reverse)
-
+    brand_id = (client_search_input.present? ? client_search_input['horizontal_filters']['by_vehicle'].try(:[],'brand_id') : nil)
+    models = (brand_id ? Model.actives.where(id_marca: brand_id).order(:modelo_descripcion) : [])
+    self.by_vehicle = struct.new(Brand.actives.order(:descripcion), models, years.to_a.reverse)
     attributes_ids = SearchCategorySetting.horizontal_attributes_for_category(category).pluck :id
     self.by_attributes = attributes_by_category(attributes_ids, category)
   end

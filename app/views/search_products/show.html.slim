@@ -9,18 +9,18 @@
             strong #{@category.name.camelize}
         .col-sm-12
           ul.nav.nav-tabs
-            li.active
+            li class="#{vehicle_tab_active?(@search_products_form) ? 'active' : ''}"
               a href="#car-search" role="tab" data-toggle="tab"
                 | Buscar por&nbsp;
                 strong Vehículo
-            li
+            li class="#{vehicle_tab_active?(@search_products_form) ? '' : 'active'}"
               a href="#attributes-search" role="tab" data-toggle="tab"
                 | Buscar por&nbsp;
                 strong Atributos
           .tab-content
-            #car-search.tab-pane.fade.in.active role="tabpanel"
+            #car-search.tab-pane.fade role="tabpanel" class="#{vehicle_tab_active?(@search_products_form) ? 'in active' : ''}"
               = render partial: 'search_by_vehicle'
-            #attributes-search.tab-pane.fade role="tabpanel"
+            #attributes-search.tab-pane.fade role="tabpanel" class="#{vehicle_tab_active?(@search_products_form) ? '' :  'in active'}"
               = render partial: 'search_by_attributes'
 
         .col-sm-4.col-md-5

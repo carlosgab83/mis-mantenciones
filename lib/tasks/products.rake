@@ -11,6 +11,8 @@ namespace "products" do
         product.branches_products.each do |branch_product|
           puts "  Warm branch_product: #{branch_product.id}, name: #{branch_product.url}"
           branch_product.price
+          product.price = product.min_price
+          product.save
       end
       end
       puts "#{Time.now}: End Cache Warming"

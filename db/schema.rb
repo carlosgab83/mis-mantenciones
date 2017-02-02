@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130025126) do
+ActiveRecord::Schema.define(version: 20170202052149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -273,6 +273,7 @@ ActiveRecord::Schema.define(version: 20170130025126) do
     t.string   "slug"
     t.boolean  "status"
     t.string   "image_url"
+    t.float    "price"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["name"], name: "products_business_index", unique: true, using: :btree
     t.index ["product_brand_id"], name: "index_products_on_product_brand_id", using: :btree
