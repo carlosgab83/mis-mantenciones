@@ -39,7 +39,9 @@ class ProductsFinder < BaseService
     end
 
     queries = []
-    all_attributes = attributes.to_h.collect {|attribute_id, attribute_value| [attribute_id, attribute_value]}
+
+    all_attributes = []
+    attributes.each_pair{|attribute_id, attribute_value| all_attributes << [attribute_id, attribute_value]}
     (vertical_filters || []).each do |attribute_id, attributes_values|
       attributes_values.each do |attribute_value|
         all_attributes << [attribute_id, attribute_value]
