@@ -16,82 +16,20 @@
             li class="#{vehicle_tab_active?(@search_products_form) ? '' : 'active'}"
               a href="#attributes-search" role="tab" data-toggle="tab"
                 | Buscar por&nbsp;
-                strong Atributos
+                strong Medida
           .tab-content
-            #car-search.tab-pane.fade role="tabpanel" class="#{vehicle_tab_active?(@search_products_form) ? 'in active' : ''}"
+            #car-search.search-criteria.tab-pane.fade role="tabpanel" class="#{vehicle_tab_active?(@search_products_form) ? 'in active' : ''}"
               = render partial: 'search_by_vehicle'
-            #attributes-search.tab-pane.fade role="tabpanel" class="#{vehicle_tab_active?(@search_products_form) ? '' :  'in active'}"
+            #attributes-search.search-criteria.tab-pane.fade role="tabpanel" class="#{vehicle_tab_active?(@search_products_form) ? '' :  'in active'}"
               = render partial: 'search_by_attributes'
-
-        .col-sm-4.col-md-5
-          h4 Filtrar por
-          #parts-filters.panel-group role="tablist"
-            .panel
-              .panel-heading
-                a role="button" data-toggle="collapse" data-parent="#parts-filters" href="#brand-filters"
-                  | Marca
-                  span 7
-              #brand-filters.panel-collapse.collapse.in role="tabpanel"
-                .panel-body
-                  ul.list-unstyled
-                    li
-                      label.checkbox
-                        input type="checkbox"
-                        span Bridgestone
-                    li
-                      label.checkbox
-                        input type="checkbox"
-                        span Continental
-                    li
-                      label.checkbox
-                        input type="checkbox"
-                        span Dunlop
-                    li
-                      label.checkbox
-                        input type="checkbox"
-                        span Firestone
-                    li
-                      label.checkbox
-                        input type="checkbox"
-                        span Goodyear
-                    li
-                      label.checkbox
-                        input type="checkbox"
-                        span Michelin
-                    li
-                      label.checkbox
-                        input type="checkbox"
-                        span Pirelli
-            .panel
-              .panel-heading
-                a.collapsed role="button" data-toggle="collapse" data-parent="#parts-filters" href="#performance-filters"
-                  | Performance
-                  span 10
-              #performance-filters.panel-collapse.collapse role="tabpanel"
-                .panel-body
-                  ul.list-unstyled
-                    li
-            .panel
-              .panel-heading
-                a.collapsed role="button" data-toggle="collapse" data-parent="#parts-filters" href="#price-filters"
-                  | Precio
-                  span 2
-              #price-filters.panel-collapse.collapse role="tabpanel"
-                .panel-body
-                  ul.list-unstyled
-                    li
+        - if @search_products_form.vertical_filters.attributes.any?
+          .col-sm-4.col-md-5
+            h4 Filtrar por
+            #parts-filters.panel-group.vertical-attributes role="tablist"
+              = render 'vertical_filters'
         .col-sm-8.col-md-7
           ul.part-list
-            - @products.each do |product|
-              li
-                = link_to product_path(product)
-                  .part-image
-                    = image_tag(product.image_url || "part-image.jpg", :alt => product.product_brand.name + " " + product.name)
-                  .part-description
-                    h6 class="#{"brand #{product.product_brand.name.downcase.tr(" ","-")}"}"
-                    p #{product.name}
-                    strong desde
-                    strong.price #{product.min_price}
+            = render 'products'
           ul.pagination
             li.active
               a href="#" 1

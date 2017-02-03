@@ -3,48 +3,64 @@ class ProductsFinder < BaseService
   def call
     form = SearchProductsForm.new({})
     form.client_search_input = params[:client_search_input] || {}
-    form.horizontal_filters = prepare_horizontal_filters(params[:category], params[:vehicle], form.client_search_input)
-    form.vertical_filters = prepare_vertical_filters(params[:category])
+    form.horizontal_filters = prepare_horizontal_filters(params[:category], form.client_search_input)
+    form.vertical_filters = prepare_vertical_filters(params[:category], form.client_search_input)
     form.results = find_products(form.client_search_input).order(:price)
     form
   end
 
   private
 
-  def prepare_horizontal_filters(category, vehicle, client_search_input)
+  def prepare_horizontal_filters(category, client_search_input)
     HorizontalFilters.new(category: category, vehicle: @vehicle, years: SearchCategorySetting::YEARS, client_search_input: client_search_input)
   end
 
-  def prepare_vertical_filters(category)
-    VerticalFilters.new(category: category, vehicle: @vehicle)
+  def prepare_vertical_filters(category, client_search_input)
+    VerticalFilters.new(category: category, vehicle: @vehicle, client_search_input: client_search_input)
   end
 
   def find_products(input)
     input['horizontal_filters'] ||= {} # initalize to empty hash in case of horizontal_filters is nil
+    input['vertical_filters']   ||= {} # initalize to empty hash in case of vertical_filters is nil
     case input['horizontal_filters'].keys.first
       when 'by_attributes'
-        find_products_by_attributes(input['horizontal_filters']['by_attributes'], params[:category])
+        find_products_by_attributes(input['horizontal_filters']['by_attributes'], input['vertical_filters']['attributes'] || [], params[:category])
       when 'by_vehicle'
-        find_products_by_vehicle(input['horizontal_filters']['by_vehicle'], params[:category])
+        find_products_by_vehicle_with_vertical_filters(input['horizontal_filters']['by_vehicle'], input['vertical_filters']['attributes'], params[:category])
       else # When nothing passed
         Product.actives.not_deleted.by_category(params[:category])
     end
   end
 
-  def find_products_by_attributes(attributes, category)
+  def find_products_by_attributes(attributes, vertical_filters, category)
     products = Product.actives.not_deleted.by_category(category)
-    if (attributes.values - [""]).empty?
+    if (attributes.values - [""]).empty? and vertical_filters.empty?
       return products
     end
 
     queries = []
-    attributes.each do |attribute_id, attribute_value|
+    all_attributes = attributes.to_h.collect {|attribute_id, attribute_value| [attribute_id, attribute_value]}
+    (vertical_filters || []).each do |attribute_id, attributes_values|
+      attributes_values.each do |attribute_value|
+        all_attributes << [attribute_id, attribute_value]
+      end
+    end
+
+    all_attributes.each do |attr_id_value_array| # i.e:  [["10", "OTRO T"], ["1", ""], ["3", "aro1"]]
+      attribute_id, attribute_value = attr_id_value_array[0], attr_id_value_array[1]
       next if attribute_value.blank?
       products = Product.actives.not_deleted.by_category(category)
                   .joins(:product_attributes)
                   .where("attributes_products.attribute_id = ? and attributes_products.value = ?", attribute_id.to_i, attribute_value).to_sql
       queries << products
     end
+    Product.from("(#{queries.join(' intersect ')}) as products")
+  end
+
+  def find_products_by_vehicle_with_vertical_filters(by_vehicle_attributes, vertical_filters, category)
+    queries = []
+    queries << find_products_by_attributes({}, vertical_filters || [], category).to_sql
+    queries << find_products_by_vehicle(by_vehicle_attributes, category).to_sql
     Product.from("(#{queries.join(' intersect ')}) as products")
   end
 

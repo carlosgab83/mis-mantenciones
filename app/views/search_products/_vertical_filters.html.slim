@@ -1,0 +1,17 @@
+- @search_products_form.vertical_filters.attributes.each do |attribute_hash|
+  .panel
+    .panel-heading
+      - anchor_id = "#{attribute_hash.attribute.name.delete(' ')}-filters"
+      /a role="button" data-toggle="collapse" href="##{anchor_id}" data-parent="#parts-filters"
+      a role="button" data-toggle="collapse" href="##{anchor_id}"
+        = attribute_hash.attribute.name.camelize
+        /span #{attribute_hash.values.count}
+    .panel-collapse.collapse.in role="tabpanel" id="#{anchor_id}"
+      .panel-body
+        - attribute_id = attribute_hash.attribute.id
+        ul.list-unstyled data-attribute_id="#{attribute_id}"
+          - attribute_hash.values.each do |value|
+              li data-value="#{value}"
+                label.checkbox
+                  = check_box_tag('', 1, @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], attribute_id.to_s).try(:include?, value) == true)
+                  span #{value.camelize}
