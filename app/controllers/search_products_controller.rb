@@ -15,7 +15,7 @@ class SearchProductsController < ApplicationController
     @category = Category.where(name: params[:id]).first || Category.roots.first.id # i.e: /search_products/neumaticos
     @search_products_form = ProductsFinder.new(client_search_input: params[:client_search_input], category: @category, vehicle: session[:vehicle]).call
     @products = @search_products_form.results
-    EventTracker::SearchProducts.new(controller: self, vehicle: session[:vehicle], client: session[:client], category: @category).track
+    EventTracker::SearchProducts.new(controller: self, vehicle: session[:vehicle], client: session[:client], category: @category, client_search_input: params[:client_search_input]).track
   end
 
   # Make new search based on user criteria

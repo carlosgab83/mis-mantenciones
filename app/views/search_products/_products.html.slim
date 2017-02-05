@@ -7,4 +7,4 @@
         h6 class="#{"brand #{product.product_brand.name.downcase.tr(" ","-")}"}"
         p #{product.name}
         strong desde
-        strong.price #{product.min_price}
+        strong.price #{mismantenciones_number_to_currency(product.price)}

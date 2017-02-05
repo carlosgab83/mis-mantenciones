@@ -5,7 +5,7 @@ class ProductsFinder < BaseService
     form.client_search_input = params[:client_search_input] || {}
     form.horizontal_filters = prepare_horizontal_filters(params[:category], form.client_search_input)
     form.vertical_filters = prepare_vertical_filters(params[:category], form.client_search_input)
-    form.results = find_products(form.client_search_input).order(:price)
+    form.results = find_products(form.client_search_input).order(:price).paginate(page: form.client_search_input['page'])
     form
   end
 
@@ -39,7 +39,7 @@ class ProductsFinder < BaseService
     end
 
     queries = []
-
+    # Unify horizontal attributes (tab attributes) with vertical filters: all_attributes will contain both
     all_attributes = []
     attributes.each_pair{|attribute_id, attribute_value| all_attributes << [attribute_id, attribute_value]}
     (vertical_filters || []).each do |attribute_id, attributes_values|
@@ -48,15 +48,25 @@ class ProductsFinder < BaseService
       end
     end
 
+    # Each iteration make a distinct query, finally run an intersect query with whole previous
     all_attributes.each do |attr_id_value_array| # i.e:  [["10", "OTRO T"], ["1", ""], ["3", "aro1"]]
       attribute_id, attribute_value = attr_id_value_array[0], attr_id_value_array[1]
       next if attribute_value.blank?
       products = Product.actives.not_deleted.by_category(category)
-                  .joins(:product_attributes)
-                  .where("attributes_products.attribute_id = ? and attributes_products.value = ?", attribute_id.to_i, attribute_value).to_sql
+
+      if attribute_id == "_price_from"
+        next if attribute_value.blank?
+        products = products.where("products.price >= ?", attribute_value.to_f).to_sql
+      elsif attribute_id == "_price_to"
+        next if attribute_value.blank?
+        products = products.where("products.price <= ?", attribute_value.to_f).to_sql
+      else
+        products = products.joins(:product_attributes)
+                           .where("attributes_products.attribute_id = ? and attributes_products.value = ?", attribute_id.to_i, attribute_value).to_sql
+      end
       queries << products
     end
-    Product.from("(#{queries.join(' intersect ')}) as products")
+    queries.any? ? Product.from("(#{queries.join(' intersect ')}) as products") : Product.actives.not_deleted.by_category(category)
   end
 
   def find_products_by_vehicle_with_vertical_filters(by_vehicle_attributes, vertical_filters, category)

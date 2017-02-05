@@ -109,6 +109,7 @@
         field :branches
         field :image_url
         field :slug
+        field :price
       end
 
       list do
