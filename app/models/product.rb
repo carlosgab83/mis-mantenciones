@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   extend ProductsSerializer
   include ProductSerializer
 
-   self.per_page = 10
+   self.per_page = 5
 
   belongs_to :product_type
   belongs_to :category
