@@ -112,12 +112,12 @@
 
           #parts-carousel
             - @products.each do |product|
-              - from_price = product.branches_products.map{|bp| bp.cached_price }.compact.try(:min)
+              - from_price = product.min_price
               - next if from_price.nil?
               = render 'carousel_product', product: product, from_price: from_price
           .row
             .col-md-12.text-center
-              = link_to promotions_path do
-                /.btn.btn-cta Ver todos los Productos
+              = link_to search_products_path do
+                .btn.btn-cta Ver todos los Productos
 
 = render 'shared/footer'

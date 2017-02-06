@@ -1,0 +1,14 @@
+.row
+  .col-sm-12
+    p Lorem Ipsum dolor sit amet
+  = form_tag search_product_path, method: :put, id: 'search-products-by-attributes-form'
+    .row
+      - @search_products_form.horizontal_filters.by_attributes[0..2].each do |attribute_struct|
+        .col-sm-6.col-md-3
+          - attr_selected = @search_products_form.client_search_input['horizontal_filters']['by_attributes'].try(:[], attribute_struct.attribute.id.to_s)
+          = select_tag("client_search_input[horizontal_filters[by_attributes[#{attribute_struct.attribute.id}]]", options_for_select(attribute_struct.values, attr_selected), class: 'selectpicker form-control', include_blank: true, title: attribute_struct.attribute.name, 'data-live-search' => 'true')
+      .col-sm-6.col-md-3
+        button.btn.btn-cta.btn-block type="submit" Buscar
+      .row
+        .col-sm-12
+          p.small Lorem Ipsum dolor sit amet

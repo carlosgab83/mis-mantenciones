@@ -1,0 +1,36 @@
+= render 'shared/header'
+
+#wrapper.catalog
+  .inner
+    .container
+      .row
+        .col-sm-12
+          h1
+            strong #{@category.name.camelize}
+        .col-sm-12
+          ul.nav.nav-tabs
+            li class="#{vehicle_tab_active?(@search_products_form) ? 'active' : ''}"
+              a href="#car-search" role="tab" data-toggle="tab"
+                | Buscar por&nbsp;
+                strong Vehículo
+            li class="#{vehicle_tab_active?(@search_products_form) ? '' : 'active'}"
+              a href="#attributes-search" role="tab" data-toggle="tab"
+                | Buscar por&nbsp;
+                strong Medida
+          .tab-content
+            #car-search.search-criteria.tab-pane.fade role="tabpanel" class="#{vehicle_tab_active?(@search_products_form) ? 'in active' : ''}"
+              = render partial: 'search_by_vehicle'
+            #attributes-search.search-criteria.tab-pane.fade role="tabpanel" class="#{vehicle_tab_active?(@search_products_form) ? '' :  'in active'}"
+              = render partial: 'search_by_attributes'
+        - if @search_products_form.vertical_filters.attributes.any?
+          .col-sm-4.col-md-5
+            h4 Filtrar por
+            #parts-filters.panel-group.vertical-attributes role="tablist"
+              = render 'vertical_filters'
+        .col-sm-8.col-md-7
+          ul.part-list
+            = render 'products'
+          ul.pagination
+            = render 'pagination_links'
+
+= render 'shared/footer'

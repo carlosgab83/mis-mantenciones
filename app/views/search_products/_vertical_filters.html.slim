@@ -1,0 +1,36 @@
+- @search_products_form.vertical_filters.attributes.each do |attribute_hash|
+  .panel
+    .panel-heading
+      - anchor_id = "#{attribute_hash.attribute.name.delete(' ')}-filters"
+      a role="button" data-toggle="collapse" href="##{anchor_id}"
+        = attribute_hash.attribute.name.camelize
+    .panel-collapse.collapse.in role="tabpanel" id="#{anchor_id}"
+      .panel-body
+        - attribute_id = attribute_hash.attribute.id
+        ul.list-unstyled data-attribute_id="#{attribute_id}"
+          - attribute_hash.values.each do |value|
+              li data-value="#{value}"
+                label.checkbox
+                  = check_box_tag('', 1, @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], attribute_id.to_s).try(:include?, value) == true)
+                  span #{value.camelize}
+.panel
+  .panel-heading
+    - anchor_id = "_price-filters"
+    a role="button" data-toggle="collapse" href="##{anchor_id}"
+      | Precio
+  .panel-collapse.collapse.in role="tabpanel" id="#{anchor_id}"
+    .panel-body
+      - attribute_id = '_price_from'
+      ul.list-unstyled data-attribute_id="#{attribute_id}"
+            li
+              label
+                span Desde&nbsp;
+                = text_field_tag('', '_from_price', class: 'big-numeric',value: @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], '_price_from'))
+      - attribute_id = '_price_to'
+      ul.list-unstyled data-attribute_id="#{attribute_id}"
+            li
+              label
+                span Hasta&nbsp;
+                = text_field_tag('', '_to_price', class: 'big-numeric', value: @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], '_price_to'))
+                span.btn &nbsp;ir
+

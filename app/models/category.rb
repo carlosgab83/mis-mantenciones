@@ -2,6 +2,7 @@ class Category < ApplicationRecord
   acts_as_nested_set
 
   include CategorySerializer
+  extend  FriendlyId
 
   rails_admin do
     nested_set({
@@ -13,6 +14,11 @@ class Category < ApplicationRecord
         #scopes: [:deleted, :disabled] # filter nodes by scope
     })
   end
+
+  has_many :products
+
+  # Use friendly id based on name
+  friendly_id :name, use: :slugged
 
   # TO DO: Refactor following logic to apply texts: Maybe move to a module and send texts to locales.
 
