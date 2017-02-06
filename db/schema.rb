@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123224643) do
+ActiveRecord::Schema.define(version: 20170202052149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,7 +120,9 @@ ActiveRecord::Schema.define(version: 20170123224643) do
     t.integer  "rgt",                            null: false
     t.integer  "depth",          default: 0,     null: false
     t.integer  "children_count", default: 0,     null: false
+    t.string   "slug"
     t.index ["name"], name: "categories_business_index", unique: true, using: :btree
+    t.index ["slug"], name: "index_categories_on_slug", using: :btree
   end
 
   create_table "clients", force: :cascade do |t|
@@ -230,6 +232,8 @@ ActiveRecord::Schema.define(version: 20170123224643) do
     t.boolean "diesel_engine"
     t.boolean "double_traction"
     t.boolean "automatic_transmission"
+    t.integer "from_year"
+    t.integer "to_year"
     t.index ["kilometraje", "vme_id", "diesel_engine", "double_traction", "automatic_transmission"], name: "pauta_business_index", unique: true, using: :btree
   end
 
@@ -269,6 +273,7 @@ ActiveRecord::Schema.define(version: 20170123224643) do
     t.string   "slug"
     t.boolean  "status"
     t.string   "image_url"
+    t.float    "price"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["name"], name: "products_business_index", unique: true, using: :btree
     t.index ["product_brand_id"], name: "index_products_on_product_brand_id", using: :btree
@@ -281,6 +286,8 @@ ActiveRecord::Schema.define(version: 20170123224643) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "product_id",                 null: false
+    t.integer  "from_year"
+    t.integer  "to_year"
     t.index ["product_id", "vme_id"], name: "products_vmes_business_index", unique: true, using: :btree
     t.index ["product_id"], name: "index_products_vmes_on_product_id", using: :btree
   end
@@ -314,6 +321,8 @@ ActiveRecord::Schema.define(version: 20170123224643) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "promotion_id",                 null: false
+    t.integer  "from_year"
+    t.integer  "to_year"
     t.index ["promotion_id", "vme_id"], name: "promotions_vmes_business_index", unique: true, using: :btree
     t.index ["promotion_id"], name: "index_promotions_vmes_on_promotion_id", using: :btree
   end
@@ -363,6 +372,19 @@ ActiveRecord::Schema.define(version: 20170123224643) do
     t.text    "v_pro_nombre"
     t.index ["v_rvm"], name: "idx_v_rvm", unique: true, using: :btree
     t.index ["v_rvm"], name: "index_v_rvm", using: :btree
+  end
+
+  create_table "search_category_settings", force: :cascade do |t|
+    t.integer  "filter_type",  null: false
+    t.integer  "position"
+    t.boolean  "deleted"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "category_id",  null: false
+    t.integer  "attribute_id", null: false
+    t.index ["attribute_id"], name: "index_search_category_settings_on_attribute_id", using: :btree
+    t.index ["category_id", "attribute_id"], name: "search_category_settings_business_index", unique: true, using: :btree
+    t.index ["category_id"], name: "index_search_category_settings_on_category_id", using: :btree
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -507,6 +529,8 @@ ActiveRecord::Schema.define(version: 20170123224643) do
   add_foreign_key "proveedor_item_mantencion", "pauta_proveedor", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta_prov"
   add_foreign_key "proveedor_taller_sucursal", "comuna", column: "id_comuna", primary_key: "id_comuna", name: "fk_comuna"
   add_foreign_key "proveedor_taller_sucursal", "proveedor_taller", column: "ide_rut", primary_key: "ide_rut", name: "fk_proveedor_taller"
+  add_foreign_key "search_category_settings", "attributes"
+  add_foreign_key "search_category_settings", "categories"
   add_foreign_key "shop_inscriptions", "comuna", column: "comune_id", primary_key: "id_comuna"
   add_foreign_key "solicitud_agendamiento", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_marca"
   add_foreign_key "solicitud_agendamiento", "modelo", column: "id_modelo", primary_key: "id_modelo", name: "fk_modelo"

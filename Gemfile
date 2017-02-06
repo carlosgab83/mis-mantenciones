@@ -27,6 +27,7 @@ gem 'mixpanel-ruby', '~>2.2'
 gem 'mechanize', '~>2.7'
 gem 'redis-rails', '~>5.0'
 gem 'mandrill-api', '~>1.0', require: 'mandrill'
+gem 'will_paginate', '>= 3.1'
 
 group :development, :test do
   gem 'pry-byebug'

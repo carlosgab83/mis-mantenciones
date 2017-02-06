@@ -13,4 +13,8 @@ class BranchesProduct < ApplicationRecord
       ProductScraper::Base.new.scraper_instance(url).price
     end
   end
+
+  def price
+    super || cached_price
+  end
 end
