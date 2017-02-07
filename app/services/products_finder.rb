@@ -1,7 +1,7 @@
 class ProductsFinder < BaseService
 
   def call
-    form = SearchProductsForm.new({})
+    form = SearchProductsForm.new({vehicle: params[:vehicle]})
     form.client_search_input = params[:client_search_input] || {}
     form.horizontal_filters = prepare_horizontal_filters(params[:category], form.client_search_input)
     form.vertical_filters = prepare_vertical_filters(params[:category], form.client_search_input)
@@ -12,11 +12,11 @@ class ProductsFinder < BaseService
   private
 
   def prepare_horizontal_filters(category, client_search_input)
-    HorizontalFilters.new(category: category, vehicle: @vehicle, years: SearchCategorySetting::YEARS, client_search_input: client_search_input)
+    HorizontalFilters.new(category: category, vehicle: params[:vehicle], years: SearchCategorySetting::YEARS, client_search_input: client_search_input)
   end
 
   def prepare_vertical_filters(category, client_search_input)
-    VerticalFilters.new(category: category, vehicle: @vehicle, client_search_input: client_search_input)
+    VerticalFilters.new(category: category, vehicle: params[:vehicle], client_search_input: client_search_input)
   end
 
   def find_products(input)
@@ -48,21 +48,28 @@ class ProductsFinder < BaseService
       end
     end
 
+    # all_attributes => i.e:  [["22", "102V"], ["22", "103V"], ["26", "140"], ["_price_from", ""], ["_price_to", ""]]
+    all_attributes = all_attributes.group_by{|attr_hash| attr_hash[0]} # attr_hash[0] is attribute_id
+
+    # now all_attribues => {"22"=>[["22", "102V"], ["22", "103V"]], "26"=>[["26", "140"]], "_price_from"=>[["_price_from", ""]], "_price_to"=>[["_price_to", ""]]}
+
     # Each iteration make a distinct query, finally run an intersect query with whole previous
-    all_attributes.each do |attr_id_value_array| # i.e:  [["10", "OTRO T"], ["1", ""], ["3", "aro1"]]
-      attribute_id, attribute_value = attr_id_value_array[0], attr_id_value_array[1]
-      next if attribute_value.blank?
+    all_attributes.each do |attr_id, array| # attr_id => "22", array => [["22", "102V"], ["22", "103V"]]
+      attribute_id, attribute_values = attr_id, array.map{|x| x[1]} # extract only values
+
+      next if attribute_values.size == 1 and attribute_values.first.blank?
       products = Product.actives.not_deleted.by_category(category)
 
       if attribute_id == "_price_from"
-        next if attribute_value.blank?
-        products = products.where("products.price >= ?", attribute_value.to_f).to_sql
+        products = products.where("products.price >= ?", attribute_values.first.try(:to_f)).to_sql
       elsif attribute_id == "_price_to"
-        next if attribute_value.blank?
-        products = products.where("products.price <= ?", attribute_value.to_f).to_sql
+        products = products.where("products.price <= ?", attribute_values.first.try(:to_f)).to_sql
       else
+        attribute_values.delete('')
+        attribute_values.delete(' ')
+        attribute_values.map!{|x| "'#{x}'"}
         products = products.joins(:product_attributes)
-                           .where("attributes_products.attribute_id = ? and attributes_products.value = ?", attribute_id.to_i, attribute_value).to_sql
+                           .where("attributes_products.attribute_id = ? and attributes_products.value in (#{attribute_values.join(',')})", attribute_id.to_i).to_sql
       end
       queries << products
     end
