@@ -13,6 +13,16 @@ class SearchProductsController < ApplicationController
   # Shows initial view
   def show
     @category = Category.where(name: params[:id]).first || Category.roots.first.id # i.e: /search_products/neumaticos
+
+    if params[:client_search_input].try(:[],'horizontal_filters').try(:[],'by_vehicle').present? or params[:client_search_input].nil?
+      params[:client_search_input] = {'horizontal_filters' => {'by_vehicle'=>{}}} if params[:client_search_input].nil?
+      if ((params[:client_search_input]['horizontal_filters']['by_vehicle'].values||[]) - [""]).empty?
+        params[:client_search_input]['horizontal_filters']['by_vehicle']['brand_id'] = session[:vehicle].brand_id
+        params[:client_search_input]['horizontal_filters']['by_vehicle']['model_id'] = session[:vehicle].model_id
+        params[:client_search_input]['horizontal_filters']['by_vehicle']['year'] = session[:vehicle].manufacturing_year
+      end
+    end
+
     @search_products_form = ProductsFinder.new(client_search_input: params[:client_search_input], category: @category, vehicle: session[:vehicle]).call
     @products = @search_products_form.results
     EventTracker::SearchProducts.new(controller: self, vehicle: session[:vehicle], client: session[:client], category: @category, client_search_input: params[:client_search_input]).track
