@@ -9,9 +9,11 @@
         - attribute_id = attribute_hash.attribute.id
         ul.list-unstyled data-attribute_id="#{attribute_id}"
           - attribute_hash.values.each do |value|
+              - next if not (@search_products_form.vertical_filters.attrs_values_only_horizontal.select{|x|x[0].to_i == attribute_id}.map{|x|x[1]} + @search_products_form.vertical_filters.attrs_values.select{|x|x[0].to_i == attribute_id}.map{|x|x[1]}).include?(value)
               li data-value="#{value}"
                 label.checkbox
-                  = check_box_tag('', 1, @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], attribute_id.to_s).try(:include?, value) == true)
+                  -  selected  = (@search_products_form.client_search_input['vertical_filters'].empty? ? true : @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], attribute_id.to_s).try(:include?, value) == true)
+                  = check_box_tag('', 1, selected)
                   span #{value.camelize}
 .panel
   .panel-heading

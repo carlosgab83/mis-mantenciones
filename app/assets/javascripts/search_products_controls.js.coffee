@@ -3,6 +3,9 @@ window.searchProductsControls ?= {}
 
 # Event listener:
 searchProductsControls.ready = ->
+  $(searchProductsControls.activeForm()).find('button:submit').click ->
+    generalControls.showLoadingEffect()
+
 
 $(document).ready(searchProductsControls.ready)
 $(document).on('page:load', searchProductsControls.ready)
@@ -36,7 +39,6 @@ searchProductsControls.submitForm = ->
 # Appends all vertical filters to active form and do submit
 searchProductsControls.clickOnVerticalFilters = ->
   $('#parts-filters ul li').change ->
-    generalControls.showLoadingEffect()
     searchProductsControls.insertVerticalFiltersOnActiveform()
     searchProductsControls.submitForm()
 

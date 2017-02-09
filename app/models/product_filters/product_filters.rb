@@ -1,14 +1,14 @@
 # encoding: utf-8
 class ProductFilters
 
-  def attributes_by_category(attributes_ids, category)
+  def attributes_by_category(attributes_ids, category, attrs_values)
     struct = Struct.new(:attribute, :values)
-    attributes_and_values_list(attributes_ids, category).collect do |attribute_hash|
+    attributes_and_values_list(attributes_ids, category, attrs_values).collect do |attribute_hash|
       struct.new(attribute_hash[:attribute], attribute_hash[:values].sort)
     end
   end
 
-  def attributes_and_values_list(attributes_ids, category)
+  def attributes_and_values_list(attributes_ids, category, attrs_values)
     attributes_products = Attribute.attributes_products_for_attributes_ids_and_category(attributes_ids, category)
     result = {}
     attributes_products.each do |attributes_product|
