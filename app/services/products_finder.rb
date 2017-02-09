@@ -3,30 +3,45 @@ class ProductsFinder < BaseService
   def call
     form = SearchProductsForm.new({vehicle: params[:vehicle]})
     form.client_search_input = params[:client_search_input] || {}
-    form.horizontal_filters = prepare_horizontal_filters(params[:category], form.client_search_input)
-    form.vertical_filters = prepare_vertical_filters(params[:category], form.client_search_input)
-    form.results = find_products(form.client_search_input).order(:price).paginate(page: form.client_search_input['page'])
+    form.results = find_products(form.client_search_input).order(:price)
+
+    # For show only required vertical filters
+    form.results_horizontal = find_products(form.client_search_input, -1, only_horizontal = true).order(:price)
+
+    # For show only required horizontal filters valuesd
+    form.results0 = find_products(form.client_search_input, 0).order(:price)
+    form.results1 = find_products(form.client_search_input, 1).order(:price)
+
+    form.horizontal_filters = prepare_horizontal_filters(params[:category], form.client_search_input, form.results, form.results0, form.results1)
+    form.vertical_filters = prepare_vertical_filters(params[:category], form.client_search_input, form.results, form.results_horizontal)
+    form.results = form.results.paginate(page: form.client_search_input['page'])
+    form.category = params[:category]
     form
   end
 
   private
 
-  def prepare_horizontal_filters(category, client_search_input)
-    HorizontalFilters.new(category: category, vehicle: params[:vehicle], years: SearchCategorySetting::YEARS, client_search_input: client_search_input)
+  attr_accessor :attrs_values
+
+  def prepare_horizontal_filters(category, client_search_input, results, results0, results1)
+    HorizontalFilters.new(category: category, vehicle: params[:vehicle], years: SearchCategorySetting::YEARS, client_search_input: client_search_input, results: results, results0: results0, results1: results1)
   end
 
-  def prepare_vertical_filters(category, client_search_input)
-    VerticalFilters.new(category: category, vehicle: params[:vehicle], client_search_input: client_search_input)
+  def prepare_vertical_filters(category, client_search_input, results, results_horizontal)
+    VerticalFilters.new(category: category, vehicle: params[:vehicle], client_search_input: client_search_input, results: results, results_horizontal: results_horizontal)
   end
 
-  def find_products(input)
+  def find_products(input, attributes_to_keep = -1, only_horizontal = false) # -1 to keep all attributes
     input['horizontal_filters'] ||= {} # initalize to empty hash in case of horizontal_filters is nil
     input['vertical_filters']   ||= {} # initalize to empty hash in case of vertical_filters is nil
     case input['horizontal_filters'].keys.first
       when 'by_attributes'
-        find_products_by_attributes(input['horizontal_filters']['by_attributes'], input['vertical_filters']['attributes'] || [], params[:category])
-      when 'by_vehicle'
-        find_products_by_vehicle_with_vertical_filters(input['horizontal_filters']['by_vehicle'], input['vertical_filters']['attributes'], params[:category])
+        vertical_filters = input['vertical_filters']['attributes'] || []
+        vertical_filters = [] if only_horizontal
+        # Deprecation on Rails 5.1
+        find_products_by_attributes(input['horizontal_filters']['by_attributes'].to_a[0..attributes_to_keep].to_h, vertical_filters, params[:category])
+      # when 'by_vehicle'
+      #   find_products_by_vehicle_with_vertical_filters(input['horizontal_filters']['by_vehicle'], input['vertical_filters']['attributes'], params[:category])
       else # When nothing passed
         Product.actives.not_deleted.by_category(params[:category])
     end
@@ -37,7 +52,6 @@ class ProductsFinder < BaseService
     if (attributes.values - [""]).empty? and vertical_filters.empty?
       return products
     end
-
     queries = []
     # Unify horizontal attributes (tab attributes) with vertical filters: all_attributes will contain both
     all_attributes = []
