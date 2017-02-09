@@ -3,6 +3,7 @@ class ProductsFinder < BaseService
   def call
     form = SearchProductsForm.new({vehicle: params[:vehicle]})
     form.client_search_input = params[:client_search_input] || {}
+    fix_price_range(form)
     form.results = find_products(form.client_search_input).order(:price)
 
     # For show only required vertical filters
@@ -112,5 +113,20 @@ class ProductsFinder < BaseService
       products = products.where("? between coalesce(products_vmes.from_year, 0) and coalesce(products_vmes.to_year, 3000)", attributes["year"].to_i)
     end
     products
+  end
+
+  def fix_price_range(form)
+    if form.client_search_input['vertical_filters'].present? and
+      form.client_search_input['vertical_filters']['attributes'].present? and
+      form.client_search_input['vertical_filters']['attributes']['_price_from'].present? and
+      form.client_search_input['vertical_filters']['attributes']['_price_to'].present? and
+      form.client_search_input['vertical_filters']['attributes']['_price_from'].first != '' and
+      form.client_search_input['vertical_filters']['attributes']['_price_to'].first != '' and
+      form.client_search_input['vertical_filters']['attributes']['_price_to'].first.to_f < form.client_search_input['vertical_filters']['attributes']['_price_from'].first.to_f
+
+      tmp = form.client_search_input['vertical_filters']['attributes']['_price_to']
+      form.client_search_input['vertical_filters']['attributes']['_price_to'] = form.client_search_input['vertical_filters']['attributes']['_price_from']
+      form.client_search_input['vertical_filters']['attributes']['_price_from'] = tmp
+    end
   end
 end
