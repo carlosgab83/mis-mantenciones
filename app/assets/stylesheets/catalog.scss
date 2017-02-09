@@ -12,6 +12,11 @@
 		@media #{$xxs}{padding-top: 110px;}
 		h1 {
 			font-size: 30px;
+			@media #{$xs}{
+				font-size: 27px;
+				margin-bottom: 15px
+			}
+			@media #{$xxs}{font-size: 24px;}
 		}
 		h1,h2,h3 {
 			opacity: 0.6;
@@ -64,7 +69,7 @@
 			top: -50px;
 			z-index: 1;
 			display: inline-block;
-			padding: 8px 18px;
+			padding: 8px 10px;
 			border: 1px solid;
 			h3 {
 				margin-bottom: 0;
@@ -114,11 +119,15 @@
 				table-layout: fixed;
 				width: 100%;
 				padding-left: 0;
+				@media #{$oxs} {height: 180px;}
+				@media #{$xs} {height: 160px;}
 				> h4, h5, h6, p {cursor: pointer;}
+				p {margin-bottom: 0;}
 				.promo-image {
 					position: relative;
 					width: 40%;
 					opacity: 0.8;
+					height: 100%;
 					@extend .cover-background;
 					@include transition(all 0.3s ease-in-out);
 					.brand-logo {
@@ -132,6 +141,9 @@
 						margin-top: 0;
 						margin-bottom: 0;
 					}
+					@media #{$xxs}{
+						height: 120px
+					}
 				}
 				.promo-image, .promo-description {
 					display: table-cell;
@@ -144,6 +156,9 @@
 				.promo-description {
 					padding: 20px;
 					font-style: italic;
+					@media #{$xxs}{
+						padding: 10px 20px;
+					}
 					> h6 {
 						font-family: 'Exo', sans-serif;
 						font-weight: bold;
