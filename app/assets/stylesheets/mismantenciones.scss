@@ -93,6 +93,10 @@ textarea {
 	}
 	&.btn-ghost {
 		box-shadow: none!important;
+		@media #{$xxs}{
+			padding-left: 5px;
+			padding-right: 5px;
+		}
 	}
 	&.btn-link {
 		font-weight: 300;
@@ -372,8 +376,12 @@ body {
 	min-height: $footer-height;
 	padding: 20px 0;
 	@media #{$xs}{
-		padding: 20px 0 10px;
+		padding: 10px 0;
 		min-height: $footer-height - 30;
+		> .container > .row {
+			> div:first-child {padding-right: 0}
+			> div:last-child {padding-left: 0}
+		}
 	}
 	position: relative;
 	&:before {@extend .upper-triangle;}
@@ -384,17 +392,25 @@ body {
 	ul, p {
 		font-size: 90%;
 		margin-bottom: 0;
-		@media #{$xs}{margin-bottom: 5px;}
 		a {
 			display: inline-block;
 			padding: 6px 0;
 			vertical-align: middle;
 			min-height: 34px;
+			@media #{$xxs}{
+				min-height: 29px;
+				padding: 6px 0 0 0;
+			}
+			@media #{$xxxs}{padding-top: 0;}
 			&.acid {
 				margin-left: 10px;
 				padding: 0;
 				> img {
+					vertical-align: middle;
 					height: 30px;
+					@media #{$sm}{height: 26px;}
+					@media #{$xs}{height: 22px;}
+					@media #{$xxs}{height: 18px;}
 				}
 			}
 		}
