@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
 
+  skip_before_action :set_default_vehicle, :only => [:search]
+
   def search
     session[:client] = nil
   end
@@ -16,8 +18,6 @@ class HomeController < ApplicationController
 
     if session[:search]['patent'].nil? or session[:search]['patent'].blank?
       EventTracker::ClickSearchWithoutPatent.new(controller: self).track
-      redirect_to :search_home
-      return
     end
 
     if session[:search].nil? or session[:search]['patent'].nil? or session[:search]['kms'].nil?
