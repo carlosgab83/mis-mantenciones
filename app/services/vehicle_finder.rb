@@ -1,6 +1,9 @@
 class VehicleFinder < BaseService
 
   def call
+    if params.patent.blank?
+      params.patent = Vehicle::DEFAULT_PATENT
+    end
     patent = adjust(params.patent)
     row = (execute query patent).first
     vehicle = Vehicle.new(row, patent, params.kms)
