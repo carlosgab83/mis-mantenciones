@@ -1,6 +1,10 @@
 # encoding: utf-8
 class Vehicle
 
+  DEFAULT_PATENT = 'MIPTNT'
+  DEFAULT_BRAND = 'BATMOBILE'
+  DEFAULT_MODEL = 'TUMBLER'
+
   attr_reader :rvm_brand, :rvm_model, :manufacturing_year, :brand_id, :model_id,
               :engine_serial, :chassis_serial, :patent, :kms, :found, :table_model_name, :table_brand_name
   attr_accessor :vme
@@ -9,6 +13,7 @@ class Vehicle
   # Input is onw row of db view v_rvm_vehiculo
   def initialize(v_rvm_vehiculo, patent, kms)
     self.found = false
+
     if v_rvm_vehiculo.present?
       v_rvm_vehiculo.symbolize_keys!
       self.rvm_brand = v_rvm_vehiculo[:v_marca]
@@ -21,6 +26,9 @@ class Vehicle
       self.found = true
       self.table_brand_name = Brand.find_by(id_marca: brand_id).try(:descripcion)
       self.table_model_name = Model.find_by(id_modelo: model_id).try(:modelo_descripcion)
+    else # When no patent is found or user not give patent
+      self.rvm_brand = DEFAULT_BRAND
+      self.rvm_model = DEFAULT_MODEL
     end
 
     self.patent = patent
