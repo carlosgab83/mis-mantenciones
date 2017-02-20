@@ -13,6 +13,7 @@ FactoryGirl.define do
     status true
     max_coupons 100
     priority 1
+    category
   end
 
   factory :invalid_promotion, class: 'Coupon' do

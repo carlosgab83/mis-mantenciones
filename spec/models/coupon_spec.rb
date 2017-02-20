@@ -14,7 +14,6 @@ RSpec.describe Coupon, :type => :model do
     end
 
     it { is_expected.to validate_presence_of(:promotion_id) }
-    it { is_expected.to validate_presence_of(:price) }
     it { is_expected.to validate_presence_of(:client_id) }
     it { is_expected.to validate_presence_of(:date) }
   end
