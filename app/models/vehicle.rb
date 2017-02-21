@@ -4,6 +4,7 @@ class Vehicle
   DEFAULT_PATENT = 'MIPTNT'
   DEFAULT_BRAND = 'BATMOBILE'
   DEFAULT_MODEL = 'TUMBLER'
+  DEFAULT_YEAR = 2016
 
   attr_reader :rvm_brand, :rvm_model, :manufacturing_year, :brand_id, :model_id,
               :engine_serial, :chassis_serial, :patent, :kms, :found, :table_model_name, :table_brand_name
@@ -29,6 +30,7 @@ class Vehicle
     else # When no patent is found or user not give patent
       self.rvm_brand = DEFAULT_BRAND
       self.rvm_model = DEFAULT_MODEL
+      self.manufacturing_year = DEFAULT_YEAR
     end
 
     self.patent = patent
