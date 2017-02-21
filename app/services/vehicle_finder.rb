@@ -1,11 +1,11 @@
 class VehicleFinder < BaseService
 
   def call
-    if params.patent.blank?
-      params.patent = Vehicle::DEFAULT_PATENT
+    row = nil
+    if params.patent.present?
+      patent = adjust(params.patent)
+      row = (execute query patent).first
     end
-    patent = adjust(params.patent)
-    row = (execute query patent).first
     vehicle = Vehicle.new(row, patent, params.kms)
     vehicle.vme = closest_vme(vehicle)
     vehicle
