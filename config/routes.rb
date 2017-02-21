@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :search_products, only: [:index, :show, :update] do
+  resources :search_products, :path => '/search-products', only: [:index, :show, :update] do
     collection do
       get :model_collection
     end
