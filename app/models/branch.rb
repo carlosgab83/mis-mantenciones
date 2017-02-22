@@ -5,6 +5,8 @@ class Branch < ApplicationRecord
   has_many :products, through: :branches_products
   has_many :branches_manteinance_items
 
+  HIDE_BRANCH_PRICE_VALUE = -999
+
   include BranchSerializer
 
   scope :for_pauta, -> (pauta) do

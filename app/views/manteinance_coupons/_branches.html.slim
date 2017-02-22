@@ -7,6 +7,9 @@ ul.list-unstyled.manteinance_coupon-branches
           span.name #{branch.shop.name}
           span.location #{branch.name}
         .prices
-          - if branch.full_price(pauta) != branch.promo_price(pauta)
-            span.normal #{mismantenciones_number_to_currency(branch.full_price(pauta))}
-          span.special data-price='#{branch.promo_price(pauta)}' #{mismantenciones_number_to_currency(branch.promo_price(pauta))}
+          - if branch.promo_price(pauta).try(:to_i) != Branch::HIDE_BRANCH_PRICE_VALUE
+            - if branch.full_price(pauta) != branch.promo_price(pauta)
+              span.normal #{mismantenciones_number_to_currency(branch.full_price(pauta))}
+            span.special data-price='#{branch.promo_price(pauta)}' #{mismantenciones_number_to_currency(branch.promo_price(pauta))}
+          - else
+            .no-price
