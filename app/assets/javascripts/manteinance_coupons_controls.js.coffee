@@ -136,17 +136,29 @@ manteinanceCouponsControls.activeBranch = () ->
 #############################################################################
 
 manteinanceCouponsControls.updateBookingButton = () ->
-  if manteinanceCouponsControls.activeBranch().data('booking-url') != '' && manteinanceCouponsControls.alternativesList['branches'].length > 0
-    $('#book-manteinance-copupon').show()
-  else
+  activeBranch = manteinanceCouponsControls.activeBranch()
+  if $(activeBranch).find('.no-price').length == 1
     $('#book-manteinance-copupon').hide()
+    $('#obtain-manteinance-copupon').hide()
+  else
+    # Then it has a price, must be showed
+    if activeBranch.data('booking-url') != '' && manteinanceCouponsControls.alternativesList['branches'].length > 0
+      $('#book-manteinance-copupon').show()
+    else
+      $('#book-manteinance-copupon').hide()
 
 #############################################################################
 
 manteinanceCouponsControls.updateObtainManteinanceCouponButton = () ->
-  if manteinanceCouponsControls.activeBranch().data('booking-url') != '' && manteinanceCouponsControls.alternativesList['branches'].length > 0
-    $('#obtain-manteinance-coupon').hide()
+  activeBranch = manteinanceCouponsControls.activeBranch()
+  if $(activeBranch).find('.no-price').length == 1
+    $('#book-manteinance-copupon').hide()
+    $('#obtain-manteinance-copupon').hide()
   else
-    $('#obtain-manteinance-coupon').show()
+    # Then it has a price, must be showed
+    if activeBranch.data('booking-url') != '' && manteinanceCouponsControls.alternativesList['branches'].length > 0
+      $('#obtain-manteinance-coupon').hide()
+    else
+      $('#obtain-manteinance-coupon').show()
 
 #############################################################################
