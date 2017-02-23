@@ -3,7 +3,4 @@
 
   $('#obtain-coupon-client-registered-modal').html( "#{escape_javascript(render('/coupons/obtain_coupon_client_registered_modal'))}" );
 
-  if ($('#promotion_category')[0].value == 'Vehículo')
-    $('#new_coupon').submit()
-  else
-    $('#obtain-coupon-client-registered-modal').modal('show');
+  $('#new_coupon').submit()
