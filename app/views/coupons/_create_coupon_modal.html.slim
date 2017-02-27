@@ -9,9 +9,10 @@
         - else
           .what Tu número de cupón es: #{@coupon.id} para la promoción #{@coupon.promotion.name}
           .how-much
-            strong en #{@coupon.promotion.shops_details}
-            | &nbsp;por&nbsp;
-            strong #{mismantenciones_number_to_currency(@coupon.price)}
+            strong &nbsp;en #{@coupon.promotion.shops_details}
+            if @coupon.price.present?
+              | &nbsp;por&nbsp;
+              strong #{mismantenciones_number_to_currency(@coupon.price)}
     .modal-footer
       .row
           button.btn.btn-cta.btn-block#modal-done-button type="submit" Listo, continuar viendo mismantenciones.com
