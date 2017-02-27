@@ -10,7 +10,7 @@
           .what Tu número de cupón es: #{@coupon.id} para la promoción #{@coupon.promotion.name}
           .how-much
             strong &nbsp;en #{@coupon.promotion.shops_details}
-            if @coupon.price.present?
+            - if @coupon.price.present?
               | &nbsp;por&nbsp;
               strong #{mismantenciones_number_to_currency(@coupon.price)}
     .modal-footer
