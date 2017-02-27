@@ -7,11 +7,11 @@
         - if @coupon.promotion.category.vehicle?
           .what Te enviaremos un correo electrónico con más información de este modelo
         - else
-          .what Tu número de cupon es: #{@coupon.id} para la promoción #{@coupon.promotion.name}
+          .what Tu número de cupón es: #{@coupon.id} para la promoción #{@coupon.promotion.name}
           .how-much
             strong en #{@coupon.promotion.shops_details}
             | &nbsp;por&nbsp;
             strong #{mismantenciones_number_to_currency(@coupon.price)}
     .modal-footer
       .row
-          button.btn.btn-cta.btn-block#modal-done-button type="submit" Listo, continúar viendo mismantenciones.com
+          button.btn.btn-cta.btn-block#modal-done-button type="submit" Listo, continuar viendo mismantenciones.com
