@@ -1,5 +1,5 @@
 class Client < ApplicationRecord
-  validates :name, :email, :phone, presence: true
+  validates :name, :email, presence: true
 
   belongs_to :comune
 
