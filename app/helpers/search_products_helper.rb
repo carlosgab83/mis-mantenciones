@@ -19,4 +19,11 @@ module SearchProductsHelper
       return (the_values.any? ? the_values.sort : [(@search_products_form.client_search_input['horizontal_filters']['by_attributes']||{}).values[2]] || [])
     end
   end
+
+  def verify_all_deselected(attribute_id)
+    (@search_products_form.client_search_input['vertical_filters'].try(:empty?) or
+      @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').nil? or
+      @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], attribute_id.to_s).nil? or
+      @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], attribute_id.to_s).try(:empty?))
+  end
 end

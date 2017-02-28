@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202052149) do
+ActiveRecord::Schema.define(version: 20170228003124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 20170202052149) do
     t.string   "email",                             null: false
     t.string   "phone"
     t.string   "rut"
-    t.integer  "comune_id",                         null: false
+    t.integer  "comune_id"
     t.string   "rvm_id",                                         comment: "is the *patente* on the rvm table"
     t.boolean  "deleted",           default: false
     t.datetime "created_at",                        null: false
@@ -155,12 +155,6 @@ ActiveRecord::Schema.define(version: 20170202052149) do
     t.index ["client_id"], name: "index_coupons_on_client_id", using: :btree
     t.index ["promotion_id"], name: "index_coupons_on_promotion_id", using: :btree
   end
-
-# Could not dump table "envios_mail_cliente" because of following StandardError
-#   Unknown type 'time with time zone' for column 'hora_envio'
-
-# Could not dump table "ingresos" because of following StandardError
-#   Unknown type 'time with time zone' for column 'hora_ingreso'
 
   create_table "item_mantencion", primary_key: "id_item_mantencion", id: :integer, force: :cascade do |t|
     t.text    "desc_mantencion",                 null: false
@@ -246,15 +240,6 @@ ActiveRecord::Schema.define(version: 20170202052149) do
     t.index ["id_pauta", "id_item_mantencion"], name: "pauta_detalle_business_index", unique: true, using: :btree
   end
 
-  create_table "pauta_proveedor", primary_key: ["id_pauta", "ide_rut", "suc_id"], force: :cascade do |t|
-    t.integer "id_pauta",        null: false
-    t.integer "ide_rut",         null: false
-    t.integer "suc_id",          null: false
-    t.decimal "valor"
-    t.decimal "valor_descuento"
-    t.decimal "porcentaje"
-  end
-
   create_table "product_brands", force: :cascade do |t|
     t.string   "name"
     t.boolean  "deleted",    default: false
@@ -327,36 +312,11 @@ ActiveRecord::Schema.define(version: 20170202052149) do
     t.index ["promotion_id"], name: "index_promotions_vmes_on_promotion_id", using: :btree
   end
 
-  create_table "proveedor_item_mantencion", primary_key: ["id_pauta", "ide_rut", "suc_id", "id_item_mantencion"], force: :cascade do |t|
-    t.integer "id_pauta",           null: false
-    t.integer "ide_rut",            null: false
-    t.integer "suc_id",             null: false
-    t.integer "id_item_mantencion", null: false
-    t.decimal "valor"
-    t.decimal "valor_descuento"
-    t.decimal "porcentaje"
-  end
-
   create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, comment: "Rut taller", force: :cascade do |t|
     t.string  "ide_dv",        limit: 1,               null: false
     t.text    "ide_nombre_rz",                         null: false
     t.integer "ide_estado",              default: 1,   null: false
     t.text    "ide_alias",               default: " ", null: false
-  end
-
-  create_table "proveedor_taller_sucursal", primary_key: ["ide_rut", "suc_id"], force: :cascade do |t|
-    t.integer "ide_rut",                             null: false
-    t.integer "suc_id",                              null: false
-    t.text    "pts_nombre",                          null: false
-    t.integer "pts_estado",              default: 1, null: false
-    t.text    "pts_direccion",                       null: false
-    t.integer "id_comuna",                           null: false
-    t.text    "telefono"
-    t.text    "email"
-    t.text    "horario_atencion_habil"
-    t.text    "horario_atencion_inabil"
-    t.text    "waze_url"
-    t.text    "agenda_url"
   end
 
   create_table "rvm", primary_key: "v_rvm", id: :text, force: :cascade do |t|
@@ -424,21 +384,6 @@ ActiveRecord::Schema.define(version: 20170202052149) do
     t.index ["rut"], name: "index_shops_on_rut", unique: true, using: :btree
   end
 
-# Could not dump table "solicitud_agendamiento" because of following StandardError
-#   Unknown type 'time with time zone' for column 'hora_solicitud_agendamiento'
-
-# Could not dump table "solicitud_cotizaciones" because of following StandardError
-#   Unknown type 'time with time zone' for column 'hora_solicitud_cotizacion'
-
-  create_table "solicitud_enc_alternativas", primary_key: ["id_sol_encuesta", "id_alternativas_enc"], force: :cascade do |t|
-    t.integer "id_sol_encuesta",                 null: false
-    t.integer "id_alternativas_enc",             null: false
-    t.integer "aceptada",            default: 0, null: false
-  end
-
-# Could not dump table "solicitud_encuesta" because of following StandardError
-#   Unknown type 'time with time zone' for column 'hora_encuesta'
-
   create_table "system_settings", force: :cascade do |t|
     t.integer  "product_scraping_caching_minutes", null: false
     t.datetime "created_at",                       null: false
@@ -498,12 +443,6 @@ ActiveRecord::Schema.define(version: 20170202052149) do
   add_foreign_key "clients", "rvm", primary_key: "v_rvm"
   add_foreign_key "coupons", "clients"
   add_foreign_key "coupons", "promotions"
-  add_foreign_key "envios_mail_cliente", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_marca"
-  add_foreign_key "envios_mail_cliente", "modelo", column: "id_modelo", primary_key: "id_modelo", name: "fk_modelo"
-  add_foreign_key "envios_mail_cliente", "pauta", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta"
-  add_foreign_key "ingresos", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_marca"
-  add_foreign_key "ingresos", "modelo", column: "id_modelo", primary_key: "id_modelo", name: "fk_modelo"
-  add_foreign_key "ingresos", "pauta", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta"
   add_foreign_key "item_mantencion", "tipo_seccion", column: "id_tipo_seccion", primary_key: "id_tiposeccion", name: "fk_tiposeccion"
   add_foreign_key "manteinance_coupons", "branches"
   add_foreign_key "manteinance_coupons", "clients"
@@ -516,8 +455,6 @@ ActiveRecord::Schema.define(version: 20170202052149) do
   add_foreign_key "pauta", "vehiculo_modelo_especifico", column: "vme_id", primary_key: "vme_id"
   add_foreign_key "pauta_detalle", "item_mantencion", column: "id_item_mantencion", primary_key: "id_item_mantencion", name: "fk_item_mantencion"
   add_foreign_key "pauta_detalle", "pauta", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta"
-  add_foreign_key "pauta_proveedor", "pauta", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta"
-  add_foreign_key "pauta_proveedor", "proveedor_taller_sucursal", column: "ide_rut", primary_key: "ide_rut", name: "fk_proveedor_sucursal"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "product_brands"
   add_foreign_key "products_vmes", "products"
@@ -525,25 +462,9 @@ ActiveRecord::Schema.define(version: 20170202052149) do
   add_foreign_key "promotions", "categories"
   add_foreign_key "promotions_vmes", "promotions"
   add_foreign_key "promotions_vmes", "vehiculo_modelo_especifico", column: "vme_id", primary_key: "vme_id"
-  add_foreign_key "proveedor_item_mantencion", "item_mantencion", column: "id_item_mantencion", primary_key: "id_item_mantencion", name: "fk_item_mantencion"
-  add_foreign_key "proveedor_item_mantencion", "pauta_proveedor", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta_prov"
-  add_foreign_key "proveedor_taller_sucursal", "comuna", column: "id_comuna", primary_key: "id_comuna", name: "fk_comuna"
-  add_foreign_key "proveedor_taller_sucursal", "proveedor_taller", column: "ide_rut", primary_key: "ide_rut", name: "fk_proveedor_taller"
   add_foreign_key "search_category_settings", "attributes"
   add_foreign_key "search_category_settings", "categories"
   add_foreign_key "shop_inscriptions", "comuna", column: "comune_id", primary_key: "id_comuna"
-  add_foreign_key "solicitud_agendamiento", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_marca"
-  add_foreign_key "solicitud_agendamiento", "modelo", column: "id_modelo", primary_key: "id_modelo", name: "fk_modelo"
-  add_foreign_key "solicitud_agendamiento", "pauta", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta"
-  add_foreign_key "solicitud_agendamiento", "proveedor_taller_sucursal", column: "ide_rut", primary_key: "ide_rut", name: "fk_proveedor_taller_sucursal"
-  add_foreign_key "solicitud_cotizaciones", "comuna", column: "id_comuna", primary_key: "id_comuna", name: "fk_comuna"
-  add_foreign_key "solicitud_cotizaciones", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_marca"
-  add_foreign_key "solicitud_cotizaciones", "modelo", column: "id_modelo", primary_key: "id_modelo", name: "fk_modelo"
-  add_foreign_key "solicitud_cotizaciones", "pauta", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta"
-  add_foreign_key "solicitud_enc_alternativas", "mm_alternativas_encuesta", column: "id_alternativas_enc", primary_key: "id_alternativas_enc", name: "fk_alternativas"
-  add_foreign_key "solicitud_enc_alternativas", "solicitud_encuesta", column: "id_sol_encuesta", primary_key: "id_sol_encuesta", name: "fk_solicitud_encuesta"
-  add_foreign_key "solicitud_encuesta", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_marca"
-  add_foreign_key "solicitud_encuesta", "modelo", column: "id_modelo", primary_key: "id_modelo", name: "fk_modelo"
   add_foreign_key "vehiculo_modelo_especifico", "modelo", column: "id_modelo", primary_key: "id_modelo", name: "fk_modelo"
   add_foreign_key "vehiculo_modelo_especifico", "tipo_vehiculo", column: "tv_id", primary_key: "tv_id", name: "fk_tipo_vehiculo"
 end

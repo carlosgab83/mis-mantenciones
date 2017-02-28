@@ -13,7 +13,6 @@ class SearchProductsController < ApplicationController
   # Shows initial view
   def show
     @category = Category.where(name: params[:id]).first || Category.roots.first.id # i.e: /search_products/neumaticos
-
     if params[:client_search_input].try(:[],'horizontal_filters').try(:[],'by_vehicle').present? or params[:client_search_input].nil?
       params[:client_search_input] = {'horizontal_filters' => {'by_vehicle'=>{}}} if params[:client_search_input].nil?
       if ((params[:client_search_input]['horizontal_filters']['by_vehicle'].values||[]) - [""]).empty?
