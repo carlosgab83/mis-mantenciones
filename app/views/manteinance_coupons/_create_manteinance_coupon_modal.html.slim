@@ -7,9 +7,9 @@
       .text-center.text-primary
         .what Tu número de ticket es el: #{@manteinance_coupon.id} para la #{@manteinance_coupon.pauta.name}
         .for-what
-          | de tu
+          | de tu&nbsp;
           em #{vehicle_text(session[:vehicle], @manteinance_coupon.pauta)}
         | Te hemos enviado un email de confirmación con el detalle del servicio.
     .modal-footer
       .row
-        button.btn.btn-cta.btn-block#modal-done-button type="submit" Listo, continúar viendo mismantenciones.com
+        button.btn.btn-cta.btn-block#modal-done-button type="submit" Listo, continuar viendo mismantenciones.com

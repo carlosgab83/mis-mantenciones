@@ -3,9 +3,4 @@
 
   $('#book-manteinance-coupon-client-registered-modal').html( "#{escape_javascript(render('/manteinance_coupons/book_manteinance_coupon_client_registered_modal'))}" );
 
-  // Configure this modal must hide after click booking button
-  $('#confirm-book-manteinance-coupon').click(function(event) {
-    $('#book-manteinance-coupon-client-registered-modal').modal('hide')
-  });
-
-  $('#book-manteinance-coupon-client-registered-modal').modal('show')
+  $('#book-manteinance-coupon-client-registered-modal #new_manteinance_coupon').submit()
