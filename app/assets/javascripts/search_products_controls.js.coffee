@@ -39,6 +39,15 @@ searchProductsControls.submitForm = ->
 # Appends all vertical filters to active form and do submit
 searchProductsControls.clickOnVerticalFilters = ->
   $('#parts-filters ul li').change ->
+    if $(this).data('value') == '_select_all' && $(this).find('input[type=checkbox]')[0].checked == true
+      for checkbox in $(this).closest('ul').find('li input:checkbox:checked')
+        do ->
+          checkbox.checked = false
+    else if $(this).data('value') == '_select_all' && $(this).find('input[type=checkbox]')[0].checked == false
+      # Don't do anything
+      return
+    else if $(this).data('value') != '_select_all' && !this.classList.contains('price-range')
+      $(this).closest('ul').find('li[data-value="_select_all"]').find('input[type=checkbox]')[0].checked = false
     searchProductsControls.insertVerticalFiltersOnActiveform()
     searchProductsControls.submitForm()
 

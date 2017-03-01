@@ -1,5 +1,7 @@
 class ProductsFinder < BaseService
 
+  SELECT_ALL_STR = '_select_all'
+
   def call
     form = SearchProductsForm.new({vehicle: params[:vehicle]})
     form.client_search_input = params[:client_search_input] || {}
@@ -50,6 +52,10 @@ class ProductsFinder < BaseService
 
   def find_products_by_attributes(attributes, vertical_filters, category)
     products = Product.actives.not_deleted.by_category(category)
+    vertical_filters.each do |attribute_id, values|
+      vertical_filters[attribute_id] ||= []
+      vertical_filters[attribute_id] = [] if vertical_filters[attribute_id].include?(ProductsFinder::SELECT_ALL_STR)
+    end
     if (attributes.values - [""]).empty? and vertical_filters.empty?
       return products
     end
