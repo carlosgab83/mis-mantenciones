@@ -3,7 +3,7 @@ class PromotionsController < ApplicationController
 
   def index
     @promotions = AllPromotionsFinder.new(promotions_params).call
-    @categories = Category.leaves
+    @categories = PromotionCategoriesFinder.new.call
     if promotions_params[:category_id].present?
       category = Category.find(promotions_params[:category_id])
       EventTracker::FilterPromotions.new(controller: self, client: session[:client], vehicle: session[:vehicle], category: category).track
