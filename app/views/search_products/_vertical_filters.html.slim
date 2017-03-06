@@ -29,16 +29,18 @@
   .panel-collapse.collapse.in role="tabpanel" id="#{anchor_id}"
     .panel-body
       - attribute_id = '_price_from'
-      ul.list-unstyled data-attribute_id="#{attribute_id}"
+      .row
+        .col-xs-5
+          ul.list-unstyled data-attribute_id="#{attribute_id}"
             li.price-range
-              label
-                span Desde&nbsp;
-                = text_field_tag('', '_from_price', class: 'big-numeric',value: @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], '_price_from'))
-      - attribute_id = '_price_to'
-      ul.list-unstyled data-attribute_id="#{attribute_id}"
+              span Desde&nbsp;
+              = text_field_tag('', '_from_price', class: 'big-numeric form-control',value: @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], '_price_from'))
+          - attribute_id = '_price_to'
+        .col-xs-5
+          ul.list-unstyled data-attribute_id="#{attribute_id}"
             li.price-range
-              label
-                span Hasta&nbsp;
-                = text_field_tag('', '_to_price', class: 'big-numeric', value: @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], '_price_to'))
-                span.btn &nbsp;ir
+              span Hasta&nbsp;
+              = text_field_tag('', '_to_price', class: 'big-numeric form-control', value: @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], '_price_to'))
+        .col-xs-2
+          span.btn.btn-cta &nbsp;ir
 
