@@ -343,12 +343,16 @@ section#section-parts {
 	}
 	.promo-description {
 		h6 {
-			font-size: 140%;
-			font-family: 'Exo', sans-serif;
+			font-size: 120%;
+			font-family: 'Exo 2', sans-serif;
 			font-style: italic;
 			margin-bottom: 5px;
+			font-weight: 400;
 		}
 		span {
+			font-size: 120%;
+			font-family: 'Exo', sans-serif;
+			font-weight: 700;
 			&.changed {
 				text-decoration: line-through;
 			}

@@ -1,9 +1,54 @@
 $(document).ready(function(){
   // Popover Init
   $('[data-toggle="popover"]').popover();
+  $(window).off("resize").on("resize", function() {
+    $(".popover").each(function() {
+      var popover = $(this);
+      if (popover.is(":visible")) {
+        var ctrl = $(popover.context);
+        ctrl.popover('show');
+      }
+    });
+  });
   // Boostrap Select Init
   $('.selectpicker').selectpicker({
     size: 6
+  });
+
+  // Get in advise Popover
+  $(function () {
+    function popoverPlacement(){
+      var width = window.innerWidth;
+      if (width<768) return 'bottom';
+      return 'top';
+    }
+    $(".get-in-advise")
+    .popover({
+      placement: popoverPlacement,
+      trigger: "manual",
+      html: true,
+      content: "También puedes entrar sin patente!" 
+    });
+    setTimeout(function(){
+      $(".get-in-advise").popover('show');
+    }, 4000);
+  });
+
+  // Send advise Popover
+  $("#contact-modal").on('shown.bs.modal', function(){
+    $("#contact-submit").popover({
+      placement: "bottom",
+      trigger: "manual",
+      html: true,
+      container: "body",
+      content: "<strong>¡No te preocupes!</strong><br> No pagarás nada por apretar este botón" 
+    });
+    setTimeout(function(){
+      $("#contact-submit").popover('show');
+    }, 2000);
+  });
+  $("#contact-modal").on('hide.bs.modal', function(){
+    $("#contact-submit").popover('hide');
   });
 
   // Sliders
