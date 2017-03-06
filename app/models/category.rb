@@ -16,6 +16,7 @@ class Category < ApplicationRecord
   end
 
   has_many :products
+  has_many :promotions
 
   # Use friendly id based on name
   friendly_id :name, use: :slugged
