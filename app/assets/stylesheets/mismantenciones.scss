@@ -75,6 +75,33 @@ textarea {
 		font-weight: 400;
 	}
 }
+// Popover
+.popover {
+	border-radius: 0;
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 300;
+	width: 200px;
+	border: none;
+	line-height: 1.2em;
+	.popover-content {
+		padding: 10px;
+		strong {
+			font-family: 'Exo', sans-serif;
+		}
+	}
+	&.bottom {
+		margin-top: 18px;
+		.arrow:after {
+			top: 2px;
+		}	
+	}
+	&.top {
+		margin-top: -15px;
+		.arrow:after {
+			bottom: 2px;
+		}
+	}
+}
 
 //////////////////////////////////////////////////////////
 // Special Buttons
@@ -407,9 +434,9 @@ body {
 				padding: 0;
 				> img {
 					vertical-align: middle;
-					height: 30px;
-					@media #{$sm}{height: 26px;}
-					@media #{$xs}{height: 22px;}
+					height: 26px;
+					@media #{$sm}{height: 24px;}
+					@media #{$xs}{height: 21px;}
 					@media #{$xxs}{height: 18px;}
 				}
 			}
@@ -436,6 +463,9 @@ body {
 		.modal-content {
 			box-shadow: none;
 			border: none;
+			.popover {
+
+			}
 		}
 	}
 }
