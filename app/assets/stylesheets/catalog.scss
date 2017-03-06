@@ -8,7 +8,10 @@
 	.inner {
 		height: auto;
 		padding: 120px 0 60px 0;
-		@media #{$xs}{padding-top: 140px;}
+		@media #{$xs}{
+			padding-top: 140px;
+			padding-bottom: 10px;
+		}
 		@media #{$xxs}{padding-top: 110px;}
 		h1 {
 			font-size: 30px;
@@ -18,7 +21,7 @@
 			}
 			@media #{$xxs}{font-size: 24px;}
 		}
-		h1,h2,h3 {
+		h1, h2, h3 {
 			opacity: 0.6;
 			font-style: italic;
 			font-family: 'Exo 2', sans-serif;
@@ -267,6 +270,7 @@
 					img {
 						display: inline-block;
 						max-height: 145px;
+						max-width: 100%;
 						vertical-align: bottom;
 					}
 					.brand-logo {
@@ -325,15 +329,14 @@
 		width: 100%;
 		text-align: center;
 		font-style: italic;
-		> li {
+		> div {
 			display: inline-block;
 			margin: 2px;
 			font-family: 'Exo', sans-serif;
 			font-weight: bold;
 			font-size: 90%;
-			&.active {
-			}
 			> a {
+				display: inline-block;
 				border: none;
 				padding: 6px 12px;
 			}
@@ -387,6 +390,16 @@
 					.panel-body {
 						border-top: 1px dashed;
 						padding: 0;
+						.row {
+							margin: 0 -5px;
+							div[class^="col-"] {
+								padding: 10px 5px;
+								.btn-cta {
+									margin-top: 19px;
+									margin-bottom: 0;
+								}
+							}
+						}
 					}
 				}
 				.list-unstyled{
@@ -455,6 +468,19 @@
 				margin-top: 10px;
 				margin-bottom: 0;
 				opacity: 0.8;
+			}
+		}
+		#attributes-search {
+			background-image: image-url("tires-sizes.png");
+			background-repeat: no-repeat;
+			background-size: 175px auto;
+			@media #{$oxs}{
+				padding-left: 200px;
+				background-position: 15px bottom;
+			}
+			@media #{$xs}{
+				padding-bottom: 100px;
+				background-position: center bottom;
 			}
 		}
 	}

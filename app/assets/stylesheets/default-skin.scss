@@ -229,8 +229,12 @@ section#section-parts {
 }
 .promo-description {
 	color: $dark-color;
-	h6 {color: $main-color;}
-	span {color: lighten($dark-color, 15%)}
+	h6 {color: lighten($dark-color, 15%)}
+	span { color: $main-color;}
+	ul,ol {
+		padding-left: 15px;
+		margin-bottom: 19px;
+	}
 }
 
 .single-part {
@@ -324,6 +328,9 @@ section#section-parts {
 				&.collapse.in, &.collapsing {
 					.panel-body {
 						border-top-color: rgba($dark-color,0.1);
+						.form-control {
+							background-color: $back-color;
+						}
 					}
 				}
 				label {
@@ -428,6 +435,35 @@ section#section-parts {
 			ul > li {
 				color: darken($main-color,4%);
 			}
+		}
+	}
+}
+
+// Popover
+.popover {
+	text-align: center;
+	color: $dark-color;
+	box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+}
+#home-middle {
+	.popover {
+		background-color: $light-color;
+		&.bottom .arrow:after {
+			border-bottom-color: $light-color;
+		}
+		&.top .arrow:after {
+			border-top-color: $light-color;
+		}
+	}
+}
+.modal-backdrop {
+	& + .popover {
+		background-color: lighten(desaturate($side-color,10%), 10%);
+		&.bottom .arrow:after {
+			border-bottom-color: lighten(desaturate($side-color,10%), 10%);
+		}
+		&.top .arrow:after {
+			border-top-color: lighten(desaturate($side-color,10%), 10%);
 		}
 	}
 }

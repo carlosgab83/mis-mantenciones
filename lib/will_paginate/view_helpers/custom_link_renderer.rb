@@ -15,6 +15,6 @@ class CustomLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
   end
 
   def page_number(page)
-    tag(:li, "<a> #{page} </a>", :class => (page == current_page ? 'active' : ''), "data-page" => "#{page}")
+    tag(:div, "<a> #{page} </a>", :class => (page == current_page ? 'active' : ''), "data-page" => "#{page}")
   end
 end
