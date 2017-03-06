@@ -81,9 +81,9 @@ searchProductsControls.deleteVerticalFiltersFromForm = (form) ->
 
 # Appends all vertical filters to active form and do submit
 searchProductsControls.clickOnPaginationLinks = ->
-  $('ul.pagination li a').click ->
+  $('div.pagination a').click ->
     form = searchProductsControls.activeForm()
-    page = $(this).parents('li:first').data('page')
+    page = $(this).parents('div:first').data('page')
     $(form).append("<input type='hidden' name='client_search_input[page]' value='"+page+"'/>")
     searchProductsControls.insertVerticalFiltersOnActiveform()
     searchProductsControls.submitForm()
