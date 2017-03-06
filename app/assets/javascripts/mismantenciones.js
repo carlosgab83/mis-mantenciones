@@ -3,13 +3,13 @@ $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
   $(window).off("resize").on("resize", function() {
     $(".popover").each(function() {
-        var popover = $(this);
-        if (popover.is(":visible")) {
-            var ctrl = $(popover.context);
-            ctrl.popover('show');
-        }
+      var popover = $(this);
+      if (popover.is(":visible")) {
+        var ctrl = $(popover.context);
+        ctrl.popover('show');
+      }
     });
-});
+  });
   // Boostrap Select Init
   $('.selectpicker').selectpicker({
     size: 6
@@ -46,6 +46,9 @@ $(document).ready(function(){
     setTimeout(function(){
       $("#contact-submit").popover('show');
     }, 2000);
+  });
+  $("#contact-modal").on('hide.bs.modal', function(){
+    $("#contact-submit").popover('hide');
   });
 
   // Sliders

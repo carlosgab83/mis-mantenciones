@@ -91,14 +91,20 @@ textarea {
 	}
 	&.bottom {
 		margin-top: 18px;
-		.arrow:after {
-			top: 2px;
+		.arrow {
+			top: -10px;
+			&:after {
+				top: 2px;
+			}
 		}	
 	}
 	&.top {
 		margin-top: -15px;
-		.arrow:after {
-			bottom: 2px;
+		.arrow {
+			bottom: -10px;
+			&:after {
+				bottom: 2px;
+			}
 		}
 	}
 }
