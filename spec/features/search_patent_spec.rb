@@ -6,7 +6,7 @@ describe "Search Patent", :type => :feature do
 
   context 'With found Patent' do
 
-    before(:all) do
+    before(:each) do
       create_search_patent_context
     end
 
