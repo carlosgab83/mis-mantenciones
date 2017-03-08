@@ -10,22 +10,44 @@ describe "Search Patent", :type => :feature do
       create_search_patent_context
     end
 
-    it 'render results page with vehicle\'s data' do
-      create_search_patent_stub_proc.call([Rvm.first.attributes.merge(Vme.first.attributes)])
-      visit '/'
-      within '.search-patent' do
-        fill_in 'search_patent', with: 'AAA000'
-        click_button 'Comenzar'
+    context 'With no kms input' do
+
+      it 'render results page with vehicle\'s data' do
+        create_search_patent_stub_proc.call([Rvm.first.attributes.merge(Vme.first.attributes)])
+        visit '/'
+        within '.search-patent' do
+          fill_in 'search_patent', with: 'AAA000'
+          click_button 'Comenzar'
+        end
+
+        expect(page.find(:xpath,".//section[@id='section-guideline']/div/div/div/ul/li/div/h2").text).to eq('Mantenciones para tu TOYOTA LANDCRUISER 2015')
+
+        expect(page).to have_xpath(".//span[@class='lead']")
+        expect(page.find(:xpath,".//span[@class='lead']").text).to eq('Mantención 10.000 kms')
       end
+    end
 
-      expect(page.find(:xpath,".//section[@id='section-guideline']/div/div/div/ul/li/div/h2").text).to eq('Mantenciones para tu TOYOTA LANDCRUISER 2015')
+    context 'With kms input' do
 
-      expect(page).to have_xpath(".//span[@class='lead']")
-      expect(page.find(:xpath,".//span[@class='lead']").text).to eq('Mantención 10.000 kms')
+      it 'render results page with vehicle\'s data' do
+        create_search_patent_stub_proc.call(toyota_land_cruiser_finder_attributes)
+        visit '/'
+        within '.search-patent' do
+          fill_in 'search_patent', with: 'AAA000'
+          fill_in 'search_kms', with: '18000' # The closest pauta is 20.000
+          click_button 'Comenzar'
+        end
+
+        expect(page.find(:xpath,".//section[@id='section-guideline']/div/div/div/ul/li/div/h2").text).to eq('Mantenciones para tu TOYOTA LANDCRUISER 2015')
+
+        expect(page).to have_xpath(".//span[@class='lead']")
+        expect(page.find(:xpath,".//span[@class='lead']").text).to eq('Mantención 20.000 kms')
+      end
     end
   end
 
   context 'With not found Patent' do
+
     it 'render results page with general vehicle\'s data' do
       create_search_patent_stub_proc.call([])
       visit '/'

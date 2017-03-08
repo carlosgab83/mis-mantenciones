@@ -35,10 +35,17 @@ def create_specific_pautas
   model_land_cruiser = Model.find_by(modelo_descripcion: 'LAND CRUISER')
   vme = Vme.where(id_modelo: model_land_cruiser.id_modelo).first
   create(:pauta, kilometraje: 10000, vme_id: vme.id, id_modelo: model_land_cruiser.id_modelo)
+  create(:pauta, kilometraje: 20000, vme_id: vme.id, id_modelo: model_land_cruiser.id_modelo)
 end
 
 def create_search_patent_stub_proc
   -> (return_data) {
     allow_any_instance_of(VehicleFinder).to receive(:execute).and_return(return_data)
   }
+end
+
+def toyota_land_cruiser_finder_attributes
+  rvm = Rvm.first
+  vme = Vme.first
+  [rvm.attributes.merge(vme.attributes).merge(v_cod_marca: vme.model.id_marca, v_cod_modelo: vme.id_modelo)]
 end
