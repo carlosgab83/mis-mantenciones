@@ -12,6 +12,7 @@ module Carousel
 
     def items
       objects_to_return = []
+      return objects_to_return if categories.compact.empty?
       self.objects_size = objects.size
       size.times do |index|
         category_id = categories[circular_index(index)].id
@@ -49,7 +50,7 @@ module Carousel
 
     def initialize_last_indices_by_category
       self.last_indices_by_category = {}
-      categories.each do |category|
+      categories.compact.each do |category|
         last_indices_by_category[category.id] = 0
       end
     end

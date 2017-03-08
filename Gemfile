@@ -35,7 +35,11 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.7'
   gem 'ffaker', '~> 2.2'
   gem 'shoulda', '~> 3.5'
-  gem 'letter_opener'
+  gem 'letter_opener', '~>1.4'
+  gem 'capybara', '~>2.12'
+  gem 'capybara-email', '~>2.5'
+  gem 'launchy', '~>2.4'
+  gem 'database_cleaner', '~>1.5'
 end
 
 group :staging do
