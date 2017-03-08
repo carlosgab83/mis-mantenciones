@@ -139,7 +139,7 @@ manteinanceCouponsControls.updateBookingButton = () ->
   activeBranch = manteinanceCouponsControls.activeBranch()
   if $(activeBranch).find('.no-price').length == 1
     $('#book-manteinance-copupon').hide()
-    $('#obtain-manteinance-copupon').hide()
+    $('#obtain-manteinance-coupon').hide()
   else
     # Then it has a price, must be showed
     if activeBranch.data('booking-url') != '' && manteinanceCouponsControls.alternativesList['branches'].length > 0
