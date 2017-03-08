@@ -1,7 +1,5 @@
 language: ruby
 rvm:
- - 2.2
- - jruby
- - rbx-2
+# - 2.3 # i'm not indicating ruby version in order to travis look at .ruby-version
 # uncomment and edit the following line if your project needs to run something other than `rake`:
-# script: bundle exec rspec spec
+script: bundle exec rspec spec
