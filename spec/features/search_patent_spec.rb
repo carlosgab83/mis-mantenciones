@@ -48,6 +48,10 @@ describe "Search Patent", :type => :feature do
 
   context 'With not found Patent' do
 
+    before(:each) do
+      create_search_patent_context
+    end
+
     it 'render results page with general vehicle\'s data' do
       create_search_patent_stub_proc.call([])
       visit '/'
