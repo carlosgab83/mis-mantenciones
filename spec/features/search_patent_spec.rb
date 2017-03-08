@@ -8,19 +8,36 @@ describe "Search Patent", :type => :feature do
 
     before(:all) do
       create_search_patent_context
-      #CREAR LAS PAUTAS
     end
 
     it 'render results page with vehicle\'s data' do
-      allow_any_instance_of(VehicleFinder).to receive(:execute).and_return([Vme.first.attributes])
+      create_search_patent_stub_proc.call([Rvm.first.attributes.merge(Vme.first.attributes)])
       visit '/'
       within '.search-patent' do
         fill_in 'search_patent', with: 'AAA000'
         click_button 'Comenzar'
       end
+
+      expect(page.find(:xpath,".//section[@id='section-guideline']/div/div/div/ul/li/div/h2").text).to eq('Mantenciones para tu TOYOTA LANDCRUISER 2015')
+
+      expect(page).to have_xpath(".//span[@class='lead']")
+      expect(page.find(:xpath,".//span[@class='lead']").text).to eq('Mantención 10.000 kms')
     end
   end
 
   context 'With not found Patent' do
+    it 'render results page with general vehicle\'s data' do
+      create_search_patent_stub_proc.call([])
+      visit '/'
+      within '.search-patent' do
+        fill_in 'search_patent', with: 'XAA000' # Patent not found in database
+        click_button 'Comenzar'
+      end
+
+      expect(page.find(:xpath,".//section[@id='section-guideline']/div/div/div/ul/li/div/h2").text).to eq('Mantenciones para tu AUTO O MOTO')
+
+      expect(page).to have_xpath(".//span[@class='lead']")
+      expect(page.find(:xpath,".//span[@class='lead']").text).to eq('Mantención 10.000 kms')
+    end
   end
 end
