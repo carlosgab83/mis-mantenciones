@@ -38,6 +38,12 @@ def create_specific_pautas
   create(:pauta, kilometraje: 20000, vme_id: vme.id, id_modelo: model_land_cruiser.id_modelo)
 end
 
+def create_categories
+  create(:category, name: 'Vehículos')
+  create(:category, name: 'Servicios')
+  create(:category, name: 'Productos')
+end
+
 def create_search_patent_stub_proc
   -> (return_data) {
     allow_any_instance_of(VehicleFinder).to receive(:execute).and_return(return_data)
