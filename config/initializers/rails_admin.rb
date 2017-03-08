@@ -137,6 +137,7 @@
         field :scraper_model
         field :deleted
         field :shop
+        field :commune_id
       end
     end
 
