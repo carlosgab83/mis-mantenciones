@@ -13,7 +13,7 @@ describe "Search Patent", :type => :feature do
     context 'With no kms input' do
 
       it 'render results page with vehicle\'s data' do
-        create_search_patent_stub_proc.call([Rvm.first.attributes.merge(Vme.first.attributes)])
+        create_search_patent_stub_proc.call(toyota_land_cruiser_finder_attributes)
         visit '/'
         within '.search-patent' do
           fill_in 'search_patent', with: 'AAA000'
