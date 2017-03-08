@@ -1,3 +1,5 @@
+[![Code Climate](https://lima.codeclimate.com/github/carlosgab83/mis-mantenciones/badges/gpa.svg)](https://lima.codeclimate.com/github/carlosgab83/mis-mantenciones/)
+
 # mis-mantenciones
 Chilean webapp for finding manteinance service products and promos for cars
 
