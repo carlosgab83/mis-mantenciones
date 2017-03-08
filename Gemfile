@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg'
 gem 'puma', '~> 3.0'
-gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
@@ -28,6 +27,10 @@ gem 'mechanize', '~>2.7'
 gem 'redis-rails', '~>5.0'
 gem 'mandrill-api', '~>1.0', require: 'mandrill'
 gem 'will_paginate', '>= 3.1'
+
+group :production, :staging do
+  gem 'sass-rails', '~> 5.0'
+end
 
 group :development, :test do
   gem 'pry-byebug'
