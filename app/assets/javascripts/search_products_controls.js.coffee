@@ -17,9 +17,9 @@ searchProductsControls.dynamicSelectors = ->
     params = {}
     params['brand_id'] = $(this).val()
     url = '/search_products/model_collection'
-    method ="GET";
+    method ="GET"
     success_function = ->
-    generalControls.sendAjax(params, url, success_function, method);
+    generalControls.sendAjax(params, url, success_function, method)
 
 $(document).ready(searchProductsControls.dynamicSelectors)
 $(document).on('page:load', searchProductsControls.dynamicSelectors)
