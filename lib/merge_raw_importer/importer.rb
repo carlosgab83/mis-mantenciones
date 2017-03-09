@@ -97,7 +97,7 @@ module MergeRawImporter
       str_row = []
       columns.each_with_index do |column, i|
         if [:created_at, :updated_at].include?(column[0])
-          str_row << "'#{Time.now.to_s}'"
+          str_row << "'#{Time.now}'"
         elsif [:boolean].include?(column[1])
           str_row << (row[i] == true or row[i] == 1)
         elsif [:integer, :float, :double, :boolean].include?(column[1])

@@ -21,7 +21,7 @@ class CarouselPromotionsFinder < BaseService
   end
 
   def get_promotions_base
-    promotions = Promotion.availables.actives.with_stock.not_deleted
+    Promotion.availables.actives.with_stock.not_deleted
     .includes(:branches, :category)
     .joins(:promotions_vmes)
     .order("promotions.priority desc, promotions.promo_price asc, promotions.created_at desc")
@@ -56,7 +56,7 @@ class CarouselPromotionsFinder < BaseService
   end
 
   def get_promotions_without_vmes_without_year
-    promotions = get_promotions_base.where("promotions_vmes.vme_id IS NULL").to_a
+    get_promotions_base.where("promotions_vmes.vme_id IS NULL").to_a
   end
 
   def get_category_array

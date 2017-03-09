@@ -6,17 +6,17 @@ module SearchProductsHelper
 
   # Only show values that correspond with current combination
   def fill_horizontal_options_for_select(values, attribute_id, search_products_form)
-    category = @search_products_form.category
+    category = search_products_form.category
     attributes = SearchCategorySetting.horizontal_attributes_for_category(category).to_a
     return values.sort if attribute_id == attributes.first.id
     if attribute_id == attributes[1].id
-      the_values = @search_products_form.horizontal_filters.attrs_values0.map{|x|x[1]}
-      return (the_values.any? ? the_values.sort : [(@search_products_form.client_search_input['horizontal_filters']['by_attributes']||{}).values[1]] || [])
+      the_values = search_products_form.horizontal_filters.attrs_values0.map{|x|x[1]}
+      return (the_values.any? ? the_values.sort : [(search_products_form.client_search_input['horizontal_filters']['by_attributes']||{}).values[1]] || [])
     end
 
     if attribute_id == attributes[2].id
-      the_values = @search_products_form.horizontal_filters.attrs_values1.map{|x|x[1]}
-      return (the_values.any? ? the_values.sort : [(@search_products_form.client_search_input['horizontal_filters']['by_attributes']||{}).values[2]] || [])
+      the_values = search_products_form.horizontal_filters.attrs_values1.map{|x|x[1]}
+      return (the_values.any? ? the_values.sort : [(search_products_form.client_search_input['horizontal_filters']['by_attributes']||{}).values[2]] || [])
     end
   end
 
