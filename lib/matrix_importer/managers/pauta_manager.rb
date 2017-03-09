@@ -99,7 +99,7 @@ module MatrixImporter
         pautas_to_update
       end
 
-     def destroy_old_vme_pautas(vme, xls_kms, db_pautas_kms, all_xls_variants)
+      def destroy_old_vme_pautas(vme, xls_kms, db_pautas_kms, all_xls_variants)
         pauta_ids = Pauta.where(vme_id: vme.id, kilometraje: (db_pautas_kms - xls_kms)).pluck(:id_pauta)
         PautaDetail.unscoped.where(id_pauta: pauta_ids).delete_all
         BranchesManteinanceItem.unscoped.where(pauta_id: pauta_ids).delete_all

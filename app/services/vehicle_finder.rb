@@ -14,7 +14,7 @@ class VehicleFinder < BaseService
   private
 
   def query(patent)
-    query = ActiveRecordHelper.sanitize_sql(["select v_marca, v_modelo, v_ano_fab, v_cod_marca, v_cod_modelo, v_motor, v_chasis, v_cod_tveh
+    ActiveRecordHelper.sanitize_sql(["select v_marca, v_modelo, v_ano_fab, v_cod_marca, v_cod_modelo, v_motor, v_chasis, v_cod_tveh
       from v_rvm_vehiculo where v_rvm= ?", patent])
   end
 

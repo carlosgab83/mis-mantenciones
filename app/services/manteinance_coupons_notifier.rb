@@ -3,7 +3,7 @@ class ManteinanceCouponsNotifier < BaseService
   PROMOTIONS_TO_SHOW_IN_EMAIL = 3
 
   def call
-    promotions_ids = CarouselPromotionsFinder.new(vehicle: params[:vehicle]).call[0..(PROMOTIONS_TO_SHOW_IN_EMAIL-1)].map &:id
+    promotions_ids = CarouselPromotionsFinder.new(vehicle: params[:vehicle]).call[0..(PROMOTIONS_TO_SHOW_IN_EMAIL-1)].map(&:id)
     ManteinanceCouponCreatedMailer.notify_client(
       params[:manteinance_coupon],
       params[:vehicle].rvm_brand,
