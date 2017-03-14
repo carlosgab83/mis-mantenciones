@@ -1,5 +1,5 @@
 class Promotion < ApplicationRecord
-  extend  FriendlyId
+  extend FriendlyId
   extend PromotionsSerializer
   include PromotionSerializer
 

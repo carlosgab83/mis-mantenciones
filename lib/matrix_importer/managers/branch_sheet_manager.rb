@@ -68,19 +68,19 @@ module MatrixImporter
             variants << _variants
           end
           variants
-        end
+      end
 
-        def kms_by_branch_id(branch_id)
-          branches do |name, _branch_id, sheet, variants|
-            next if branch_id.to_s != _branch_id.to_s
-            return kms_by_sheet(sheet).sort
-          end
-          return nil
+      def kms_by_branch_id(branch_id)
+        branches do |name, _branch_id, sheet, variants|
+          next if branch_id.to_s != _branch_id.to_s
+          return kms_by_sheet(sheet).sort
         end
+        return nil
+      end
 
-        def kms_by_sheet(sheet)
-          return sheet.row(Common::Constants::TITLES_ROW)[Common::Constants::FIRST_KMS_INDEX..-1]
-        end
+      def kms_by_sheet(sheet)
+        return sheet.row(Common::Constants::TITLES_ROW)[Common::Constants::FIRST_KMS_INDEX..-1]
+      end
 
       private
 

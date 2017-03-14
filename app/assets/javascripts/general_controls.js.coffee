@@ -30,13 +30,13 @@ generalControls.sendAjax = (params, url, success_function, method) ->
 
 generalControls.showLoadingEffect = () ->
   $('.loader').show();
-  $('body').addClass('loading-time');
+  $('body').addClass('loading-time')
 
 #############################################################################
 
 generalControls.hideLoadingEffect = () ->
-  $('.loader').hide();
-  $('body').removeClass('loading-time');
+  $('.loader').hide()
+  $('body').removeClass('loading-time')
 
 #############################################################################
 
@@ -53,4 +53,4 @@ generalControls.defaultValidations = () ->
   #   },
   #   submitHandler: (form) ->
   #     form.submit()
-  # });
+  # })

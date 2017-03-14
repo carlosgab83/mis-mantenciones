@@ -9,7 +9,7 @@ class ShopInscriptionsController < ApplicationController
       end
     end
 
-    def create
+  def create
     if create_shop_inscription_params
       @shop_inscription = ShopInscriptionCreator.new(create_shop_inscription_params).call
       if @shop_inscription.valid?

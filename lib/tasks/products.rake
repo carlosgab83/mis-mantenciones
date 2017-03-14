@@ -13,7 +13,7 @@ namespace "products" do
           branch_product.price
           product.price = product.min_price
           product.save
-      end
+        end
       end
       puts "#{Time.now}: End Cache Warming"
 

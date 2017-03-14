@@ -47,14 +47,14 @@ manteinanceCouponsControls.similarPauta = (checkboxFilterElement) ->
     setTimeout(run, 400)
     return
 
-  params = {};
+  params = {}
   params['manteinance_coupon[id_pauta]'] = pautaToRequest['id']
   params['active_sorting_button'] = $('.modal-header > .sort-buttons >label.active > input')[0].value
 
-  url = "/manteinance_coupons/new";
-  method ="GET";
+  url = "/manteinance_coupons/new"
+  method ="GET"
   success_function = ->
-  generalControls.sendAjax(params, url, success_function, method);
+  generalControls.sendAjax(params, url, success_function, method)
 
 #############################################################################
 
@@ -103,10 +103,10 @@ manteinanceCouponsControls.obtainManteinanceCoupon = () ->
   params['success_partial'] = '/manteinance_coupons/obtain_manteinance_coupon_client_registered'
   params['branch_id'] = manteinanceCouponsControls.activeBranch().data('branch_id')
   params['id_pauta'] = manteinanceCouponsControls.alternativesList['pauta']['id']
-  url = "/clients/new";
-  method ="GET";
+  url = "/clients/new"
+  method ="GET"
   success_function = ->
-  generalControls.sendAjax(params, url, success_function, method);
+  generalControls.sendAjax(params, url, success_function, method)
 
 #############################################################################
 
@@ -116,10 +116,10 @@ manteinanceCouponsControls.bookManteinanceCoupon = (clientInformation = null) ->
   params['success_partial'] = '/manteinance_coupons/book_manteinance_coupon_client_registered'
   params['branch_id'] = manteinanceCouponsControls.activeBranch().data('branch_id')
   params['id_pauta'] = manteinanceCouponsControls.alternativesList['pauta']['id']
-  url = "/clients/new";
-  method ="GET";
+  url = "/clients/new"
+  method ="GET"
   success_function = ->
-  generalControls.sendAjax(params, url, success_function, method);
+  generalControls.sendAjax(params, url, success_function, method)
 
 #############################################################################
 
