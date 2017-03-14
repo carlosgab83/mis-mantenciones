@@ -14,9 +14,9 @@ couponsControls.buyPromotion = (promotionAnchorElement) ->
   params['partial'] = '/coupons/obtain_coupon_before'
   params['success_partial'] = '/coupons/obtain_coupon_client_registered'
   params['promotion_id'] = $(promotionAnchorElement).data('id')
-  url = "/clients/new";
-  method ="GET";
+  url = "/clients/new"
+  method ="GET"
   success_function = ->
-  generalControls.sendAjax(params, url, success_function, method);
+  generalControls.sendAjax(params, url, success_function, method)
 
 #############################################################################

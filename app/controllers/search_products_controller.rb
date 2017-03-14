@@ -7,12 +7,12 @@ class SearchProductsController < ApplicationController
   def index
     EventTracker::SearchProducts.new(controller: self, vehicle: session[:vehicle], client: session[:client], category: nil).track
     default_category = Category.where(name: 'Neumáticos').first || Category.roots.first
-    redirect_to action: :show, id: default_category.try(:name)
+    redirect_to action: :show, id: default_category.try(:slug)
   end
 
   # Shows initial view
   def show
-    @category = Category.where(name: params[:id]).first || Category.roots.first.id # i.e: /search_products/neumaticos
+    @category = Category.friendly.find(params[:id]) || Category.roots.first.slug # i.e: /search_products/neumaticos
     if params[:client_search_input].try(:[],'horizontal_filters').try(:[],'by_vehicle').present? or params[:client_search_input].nil?
       params[:client_search_input] = {'horizontal_filters' => {'by_vehicle'=>{}}} if params[:client_search_input].nil?
       if ((params[:client_search_input]['horizontal_filters']['by_vehicle'].values||[]) - [""]).empty?

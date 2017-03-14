@@ -73,11 +73,13 @@
       list do
         field :id
         field :name
+        field :slug
         field :parent
       end
 
       edit do
         field :name
+        field :slug
       end
     end
 
@@ -137,6 +139,7 @@
         field :scraper_model
         field :deleted
         field :shop
+        field :commune_id
       end
     end
 

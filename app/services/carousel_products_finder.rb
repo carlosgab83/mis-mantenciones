@@ -21,7 +21,7 @@ class CarouselProductsFinder < BaseService
   end
 
   def get_products_base
-    products = Product.actives.not_deleted
+    Product.actives.not_deleted
     .includes(:branches, :category)
     .joins(:products_vmes)
     .order("products.created_at desc")
@@ -54,7 +54,7 @@ class CarouselProductsFinder < BaseService
   end
 
   def get_products_without_vmes_without_year
-    products = get_products_base.where("products_vmes.vme_id IS NULL").to_a
+    get_products_base.where("products_vmes.vme_id IS NULL").to_a
   end
 
   def get_category_array

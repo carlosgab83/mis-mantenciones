@@ -9,7 +9,4 @@ class AllPromotionsFinder < BaseService
     end
     promotions
   end
-
-  private
-
 end
