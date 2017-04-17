@@ -5,7 +5,6 @@
 //////////////////////////////////////////////////////////
 
 // Color over image backgrounds
-section#section-guideline,
 section#section-parts {
 	position: relative;
 	@extend .cover-background;
@@ -24,36 +23,14 @@ section#section-parts {
 }
 
 // Guideline
-section#section-guideline {
-	min-height: 200px;
+section#section-map {
+	min-height: 100vh;
 	padding: 130px 0 60px;
 	@media #{$xs} {padding-bottom: 40px;}
 	@media #{$xxs} {padding: 130px 0 40px;}
-	h2 {
-		font-size: 140%;
-		margin: 0;
-		@media #{$osm} {
-			margin-bottom: 30px;
-		}
-		&:after {
-			content: '';
-			position: absolute;
-			left: 0;
-			bottom: 60px;
-			width: 100%;
-			height: 1px;
-			border-bottom: 1px solid;
-			@media #{$xs} {
-				bottom: -30px;
-			}
-		}
-		em {
-			display: inline-block;
-			width: 100%;
-			font-size: 140%;
-			@media #{$sm} {width: auto;}
-			@media #{$xs} {font-size: 120%;}
-		}
+	#map {
+		width: 100%;
+		height: 100%;
 	}
 	.lead {
 		display: inline-block;
@@ -67,138 +44,6 @@ section#section-guideline {
 		opacity: 0.8;
 		line-height: 1.3em;
 		display: inline-block;
-	}
-	#guideline-list {
-		list-style: none;
-		display: table;
-		table-layout: fixed;
-		width: 100%;
-		padding: 0 0 15px 0;
-		margin-bottom: 15px;
-		border-bottom: 1px solid;
-		position: relative;
-		li {
-			display: table-cell;
-			width: 1%;
-			text-align: center;
-			padding: 0 6px;
-			vertical-align: bottom;
-			a {
-				display: inline-block;
-				width: 100%;
-				font-style: italic;
-				position: relative;
-				&:hover, &:focus, &:active {z-index: 1000;}
-				&.disabled {
-					opacity: 0.5;
-					cursor: not-allowed;
-				}
-				.badge {
-					border-radius: 50%;
-					width: 30px;
-					height: 30px;
-					padding: 5px 1px;
-					line-height: 18px;
-					text-align: center;
-					font-style: normal;
-					margin: 2px 4px;
-					font-weight: bold;
-					letter-spacing: -0.08em;
-					@media #{$oxs} {
-						margin-top: 29px;
-					}
-				}
-				.inner-cell {
-					> span[class^="flaticon-"] {
-						display: block;
-						font-family: "Flaticon";
-						font-style: normal;
-						font-size: 27px;
-						vertical-align: middle;
-					}
-				}
-			}
-			.popover {
-				font-family: 'Exo 2', sans-serif;
-				z-index: 100;
-				font-size: 90%;
-				ul, ol {
-					list-style: none;
-					margin-bottom: 0;
-					padding-left: 0;
-				}
-				.popover-content {
-					line-height: 1.3em;
-					.tooltip-separator {
-						line-height: 230%;
-					}
-				}
-			}
-			@media #{$xs} {
-				display: table-row;
-				width: 100%;
-				h2 {position: relative;}
-				a {
-					width: 200px;
-					.inner-cell {
-						display: inline-block;
-						&:first-child {
-							width: 70%;
-							text-align: right;
-						}
-						&:last-child {
-							width: 30%;
-							text-align: left;
-						}
-						> span[class^="flaticon-"] {
-							display: inline-block;
-							font-size: 21px;
-							margin-right: 5px;
-						}
-					}
-					.badge {
-						margin: 5px 10px;
-					}
-				}
-
-			}
-			&:first-child {
-				width: 2.5%;
-				text-align: right;
-				padding: 0;
-				padding-right: 5px;
-				@media #{$usm} {
-					display: table-caption;
-					width: 100%;
-					text-align: center;
-					padding-right: 0;
-				}
-			}
-		}
-	}
-	.quote {
-		display: table;
-		table-layout: fixed;
-		width: 100%;
-		.disclamer-text {
-			display: table-cell;
-			width: 24%;
-			text-align: right;
-		}
-		.button-holder {
-			display: table-cell;
-			text-align: center;
-			vertical-align: top;
-		}
-		@media #{$usm} {
-			.disclamer-text,
-			.button-holder {
-				display: block;
-				width: 100%;
-				text-align: center;
-				margin-bottom: 10px;
-			}
-		}
 	}
 }
 
