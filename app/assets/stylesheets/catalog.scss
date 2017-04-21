@@ -119,7 +119,7 @@
 			margin-bottom: 15px;
 			a {
 				display: table;
-				table-layout: fixed;
+				//table-layout: fixed;
 				width: 100%;
 				padding-left: 0;
 				@media #{$oxs} {height: 180px;}
