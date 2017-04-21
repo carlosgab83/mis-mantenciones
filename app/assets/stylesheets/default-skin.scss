@@ -168,9 +168,101 @@ a {
 
 
 // Dashboard
-section#section-guideline {
-	background-color: $light-color;
-	color: $back-color;
+section#section-map {
+	.map-form {
+		background: rgba(saturate(darken($main-color,6%),8%),0.85);
+		color: $back-color;
+		box-shadow: 4px 4px 8px rgba($dark-color,0.1);
+		.form-control {
+			color: $back-color;
+			&::-webkit-input-placeholder {color: rgba($back-color, 0.6);}
+			&:-moz-placeholder {color: rgba($back-color, 0.6);}
+			&::-moz-placeholder {color: rgba($back-color, 0.6);}
+			&:-ms-input-placeholder {color: rgba($back-color, 0.6);}
+		}
+		.btn {
+			text-transform: none;
+			&:hover, &:active {
+				color: $main-color;
+			}
+		}
+	}
+	#right-map {
+		.open-sidebar {
+			background: rgba($light-color,0.85);
+			color: $main-color;
+			box-shadow: -4px 4px 8px rgba($dark-color,0.1);
+		}
+		background: rgba($light-color,0.85);
+		color: $dark-color;
+		box-shadow: -4px 4px 8px rgba($dark-color,0.1);
+		.panel-group {
+			border-top-color: rgba($main-color,0.2);
+			.panel {
+				border-bottom-color: rgba($main-color,0.2);
+				.panel-title {
+					color: $main-color;
+					&:hover, &:active, &:focus {
+						color: $main-color;
+					}
+				}
+				.panel-body {
+					background: rgba(darken($light-color, 30%),0.15);
+					.single-detail {
+						color: $dark-color;
+						&:hover, &:active, &:focus {
+							background-color: $main-color;
+							color: $back-color;
+						}
+					}
+				}
+			}
+		}
+	}
+	#left-map {
+		.open-sidebar {
+			background: rgba(saturate(darken($main-color,6%),8%),0.85);
+			color: $back-color;
+			box-shadow: 4px 4px 8px rgba($dark-color,0.1);
+		}
+		.panel-group {
+			border-top-color: rgba($light-color,0.2);
+			.panel {
+				border-bottom-color: rgba($light-color,0.2);
+				.panel-title {
+					&:hover, &:active, &:focus {
+						color: $back-color;
+					}
+				}
+				.panel-body {
+					background: rgba(darken($main-color, 30%),0.15);
+					.checkbox {
+						input[type="checkbox"] {
+							& + span {
+								color: $back-color;
+								&:before {
+									color: transparent;
+								}
+								&:after {
+									background-color: transparent;
+									border-color: $back-color;
+								}
+							}
+							&:checked + span {
+								&:before {
+									color: $main-color;
+								}
+								&:after {
+									background-color: $back-color;
+									border-color: $back-color;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
 section#section-promos {
 	background-color: $back-color;

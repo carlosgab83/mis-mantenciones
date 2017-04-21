@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:700');
 
 // Layout Variables
-$header-height: 70px;
+$header-height: 60px;
 $footer-height: 70px;
 
 //////////////////////////////////////////////////////////
@@ -142,7 +142,7 @@ textarea {
 //////////////////////////////////////////////////////////
 
 // Checkbox
-.checkbox {
+label.checkbox {
 	display: inline-block;
 	position: relative;
 	margin-top: 0;
@@ -153,7 +153,7 @@ textarea {
 		left: 0;
 		z-index: -1;
 		visibility: hidden;
-		+ label {
+		+ span {
 			padding-left: 0;
 			font-weight: 300;
 			color: $light-color;
@@ -188,7 +188,7 @@ textarea {
 				border: 1px solid darken($side-color,5%);
 			}
 		}
-		&:checked + label {
+		&:checked + span {
 			color: $main-color;
 			&:before {
 				opacity: 1;
@@ -236,7 +236,7 @@ body {
 
 #header {
 	min-height: $header-height;
-	padding: 20px 0 10px;
+	padding: 15px 0 5px;
 	position: fixed;
 	top: 0;
 	left: 0;
