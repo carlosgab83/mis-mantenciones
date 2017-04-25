@@ -7,12 +7,10 @@
 .catalog {
 	.inner {
 		height: auto;
-		padding: 120px 0 60px 0;
+		padding: 90px 0 40px 0;
 		@media #{$xs}{
-			padding-top: 140px;
 			padding-bottom: 10px;
 		}
-		@media #{$xxs}{padding-top: 110px;}
 		h1 {
 			font-size: 30px;
 			@media #{$xs}{

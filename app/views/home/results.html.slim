@@ -1,3 +1,5 @@
+- @body_class = 'home'
+
 = render 'shared/header'
 
 #wrapper
@@ -13,11 +15,13 @@
           form.form-inline
             .form-group
               label.sr-only for="county-field" Ciudad o Comuna
-              input#county-field.form-control.input-capital type="text" placeholder="Ciudad o Comuna"
+              input#county-field.form-control type="text" placeholder="Ciudad o Comuna"
             .form-group
               button#services-search.btn.btn-cta.btn-block type="button" 
                 | Busca Servicios
     #left-map.map-form
+      a.close-sidebar.visible-xs
+        i.fa.fa-times
       a.open-sidebar
         i.fa.fa-search
       #map-search.panel-group
@@ -29,7 +33,13 @@
               form
                 .form-group
                   label.sr-only for="county-field-2" Ciudad o Comuna
-                  input#county-field-2.form-control.input-capital type="text" placeholder="Ciudad o Comuna"
+                  input#county-field-2.form-control type="text" placeholder="Ciudad o Comuna"
+                .form-group
+                  label.sr-only for="search_brand" Marca
+                  input#search_brand.form-control type="text" placeholder="Marca"
+                .form-group
+                  label.sr-only for="search_model" Modelo
+                  input#search_model.form-control type="text" placeholder="Modelo"
                 .form-group
                   button#services-search.btn.btn-cta.btn-ghost.btn-block type="button" 
                     | Por ubicación
@@ -44,14 +54,14 @@
                   input#search_patent.form-control.input-capital type="text" placeholder="Patente"
                 .form-group
                   label.sr-only for="search_kms" Kilometraje
-                  input#csearch_kms.form-control.input-capital type="text" placeholder="Kilometraje"
+                  input#search_kms.form-control.input-capital type="text" placeholder="Kilometraje"
                 .form-group
                   button.btn.btn-cta.btn-ghost.btn-block type="submit"
                     | Por automóvil
         .panel
           .panel-heading
             a.panel-title data-toggle="collapse" data-parent="#map-search" href="#filters" Filtrar Resultados
-          #filters.panel-collapse.collapse
+          #filters.panel-collapse.in
             .panel-body
               form
                 .form-group
@@ -92,10 +102,12 @@
                     span Repuestos y accesorios
 
                 .form-group
-                  button.btn.btn-cta.btn-ghost.btn-block type="submit"
-                    | Filtrar mapa
+                  button#uncheck-checkboxes.btn.btn-link.btn-block type="button"
+                    | Deseleccionar todos
 
     #right-map.map-form
+      a.close-sidebar.visible-xs
+        i.fa.fa-times
       a.open-sidebar
         i.fa.fa-angle-left
       #marker-detail.panel-group
@@ -106,13 +118,12 @@
             .panel-body
               ul.list-unstyled
                 li
-                  = link_to "#", class: "single-detail" do
+                  .single-info
                     = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
-                    strong Nombre del Taller
+                    strong Taller
                     br
-                    span Direccion #4455, Comuna, Ciudad
-                    br
-                    span Lunes a Viernes de 9:00 a 18:00 hrs
+                    span Atención de Lunes a Viernes de 9:00 a 18:00 hrs
+                    = link_to "Contáctalos", "#", class: "btn btn-cta btn-block"
         .panel
           .panel-heading
             a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#promo" Promociones
@@ -180,56 +191,12 @@
 
     #map
 
-  section#section-promos
-    .container
-      .row
-        .col-md-12
-          h2
-            | Tus Promociones y Servicios
-      .row
-        .col-md-12
-          #promo-carousel
-            - @promotions.each do |promotion|
-              = render 'carousel_promotion', promotion: promotion
-      .row
-        .col-md-12.text-center
-          = link_to promotions_path do
-            .btn.btn-cta Ver todas las promociones
-
-  section#section-parts
-    .container
-      .row
-        .col-md-12
-          h2
-            | Piezas y repuestos
-          ul#part-list
-            li
-              a.active title='Neumáticos' style='background-image:url(  #{image_url("part-tires.jpg")} );'
-                span Neumáticos
-            li
-              a title='Baterías' style='background-image:url(  #{image_url("part-battery.jpg")} );'
-                span Baterías
-            li
-              a title='Accesorios' style='background-image:url(  #{image_url("part-accessories.jpg")} );'
-                span Accesorios
-
-          #parts-carousel
-            - @products.each do |product|
-              - from_price = product.min_price
-              - next if from_price.nil?
-              = render 'carousel_product', product: product, from_price: from_price
-          .row
-            .col-md-12.text-center
-              = link_to search_products_path do
-                .btn.btn-cta Ver todos los Productos
-
 = render 'shared/footer'
 
 javascript:
-
+  
   $('#services-search').on('click', function() {
-    $('#floating-form').addClass('next-step');
-    $('#left-map').addClass('open');
+    $('#floating-form').addClass('next-step').trigger('stepChange');
   });
 
   $('.open-sidebar').on('click', function() {
@@ -239,11 +206,25 @@ javascript:
     };
   });
 
+  $('.close-sidebar').on('click', function() {
+    $(this).parent().removeClass('open');
+  });
+
+  $(document).ready(function() {
+    $('#floating-form').on('stepChange', function(){
+      $('#left-map').addClass('open');
+    });
+  });
+
+  $('#uncheck-checkboxes').on('click', function() {
+    $('.checkbox input').attr('checked', false);
+  });
+
   function initMap() {
     var stgo = {lat: -33.455388, lng: -70.634216};
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 15,
-      scrollwheel: false,
+      //scrollwheel: false,
       center: stgo,
       styles: [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}]
     });
@@ -268,9 +249,10 @@ javascript:
       ['Taller 17', -33.453061, -70.632083, '#{image_url("markers/taller2.png")}'],
       ['Taller 18', -33.453607, -70.630538, '#{image_url("markers/lubricentro.png")}']
     ];
-    var count;
-    for (count = 0; count < locations.length; count++) {  
-      var marker = new google.maps.Marker({
+    var infowindow = new google.maps.InfoWindow();
+    var marker, count, currentIcon;
+    for (count = 0; count < locations.length; count++) {
+      marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[count][1], locations[count][2]),
         map: map,
         animation: google.maps.Animation.DROP,
@@ -279,14 +261,24 @@ javascript:
           scaledSize: new google.maps.Size(35,40)
         },
         title: locations[count][0],
+        id: count
       });
-      google.maps.event.addListener(marker, 'click', function() {
+      google.maps.event.addListener(marker, 'click', function () {
+        map.setCenter(marker.getPosition());
         document.getElementById('right-map').classList.add('open');
         document.getElementById('floating-form').classList.add('next-step');
-        if (marker.getAnimation() != null) {marker.setAnimation(null);} 
-        else {marker.setAnimation(google.maps.Animation.BOUNCE);}
+        toggleBounce(this);
       });
+      function toggleBounce(currentIcon) {
+        currentIcon.setAnimation(null);
+        if (currentIcon.getAnimation() != null) {
+          currentIcon.setAnimation(null);
+         } else {
+           currentIcon.setAnimation(google.maps.Animation.BOUNCE);
+           setTimeout(function(){ currentIcon.setAnimation(null); }, 2100);
+         }
+      };
     };
   }
 
-= javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initMap"
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3TLtUX8h4Y127UKpdeo-virPS211qZF4?sensor=false&callback=initMap"

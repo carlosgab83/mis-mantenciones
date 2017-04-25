@@ -105,7 +105,7 @@ a {
 			border-color: $back-color;
 		}
 	}
-	&:after {border-color: rgba($dark-color,0.95) transparent transparent transparent;}
+	&:after {border-color: rgba($dark-color,1) transparent transparent transparent;}
 	.btn-special {
 		color: lighten($main-color, 20%);
 		border-color: lighten($main-color, 20%);
@@ -117,10 +117,10 @@ a {
 	}
 }
 #footer {
-	&:before {border-color: transparent transparent rgba($dark-color,0.95) transparent;}
+	&:before {border-color: transparent transparent rgba($dark-color,1) transparent;}
 }
 #footer, #header {
-	background-color: rgba($dark-color,0.95);
+	background-color: rgba($dark-color,1);
 	color: $light-color;
 	a {
 		color: $light-color;
@@ -188,6 +188,7 @@ section#section-map {
 		}
 	}
 	#right-map {
+		.close-sidebar {color: $main-color;}
 		.open-sidebar {
 			background: rgba($light-color,0.85);
 			color: $main-color;
@@ -220,6 +221,7 @@ section#section-map {
 		}
 	}
 	#left-map {
+		.close-sidebar {color: $back-color;}
 		.open-sidebar {
 			background: rgba(saturate(darken($main-color,6%),8%),0.85);
 			color: $back-color;
@@ -227,6 +229,12 @@ section#section-map {
 		}
 		.panel-group {
 			border-top-color: rgba($light-color,0.2);
+			.btn-link {
+				color: $back-color;
+				&:hover, &:active, &:focus {
+					color: $side-color;
+				}
+			}
 			.panel {
 				border-bottom-color: rgba($light-color,0.2);
 				.panel-title {
