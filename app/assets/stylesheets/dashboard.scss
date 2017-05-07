@@ -93,9 +93,11 @@ section#section-parts {
 section#section-map {
 	position: relative;
 	min-height: 100vh;
-	padding: 60px 0 40px;
+	width: 100%;
+	padding: 60px 0 50px;
 	#map {
-		height: 100%;
+		height: calc(100vh - 110px);
+		width: 100%;
 		position: relative;
 		z-index: 0;
 	}
