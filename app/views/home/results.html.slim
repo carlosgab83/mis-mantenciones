@@ -7,8 +7,8 @@
     #floating-form.map-form
       .row
         .col-sm-3.col-md-4
-          p.lead 
-            | Encuentra servicios 
+          p.lead
+            | Encuentra servicios
             br
             | cerca tuyo
         .col-sm-9.col-md-8
@@ -17,7 +17,7 @@
               label.sr-only for="county-field" Ciudad o Comuna
               input#county-field.form-control type="text" placeholder="Ciudad o Comuna"
             .form-group
-              button#services-search.btn.btn-cta.btn-block type="button" 
+              button#services-search.btn.btn-cta.btn-block type="button"
                 | Busca Servicios
     #left-map.map-form
       a.close-sidebar.visible-xs
@@ -41,7 +41,7 @@
                   label.sr-only for="search_model" Modelo
                   input#search_model.form-control type="text" placeholder="Modelo"
                 .form-group
-                  button#services-search.btn.btn-cta.btn-ghost.btn-block type="button" 
+                  button#services-search.btn.btn-cta.btn-ghost.btn-block type="button"
                     | Por ubicación
         .panel
           .panel-heading
@@ -66,39 +66,39 @@
               form
                 .form-group
                   label.checkbox
-                    input type="checkbox" checked="checked" value="" 
+                    input type="checkbox" checked="checked" value=""
                     span Talleres de Marca
 
                   label.checkbox
-                    input type="checkbox" checked="checked" value="" 
+                    input type="checkbox" checked="checked" value=""
                     span Talleres Multimarca
 
                   label.checkbox
-                    input type="checkbox" checked="checked" value="" 
+                    input type="checkbox" checked="checked" value=""
                     span Concesionarios
 
                   label.checkbox
-                    input type="checkbox" checked="checked" value="" 
+                    input type="checkbox" checked="checked" value=""
                     span Lubricentros
 
                   label.checkbox
-                    input type="checkbox" checked="checked" value="" 
+                    input type="checkbox" checked="checked" value=""
                     span Neumáticos
 
                   label.checkbox
-                    input type="checkbox" checked="checked" value="" 
+                    input type="checkbox" checked="checked" value=""
                     span Llantas
 
                   label.checkbox
-                    input type="checkbox" checked="checked" value="" 
+                    input type="checkbox" checked="checked" value=""
                     span Carwash
 
                   label.checkbox
-                    input type="checkbox" checked="checked" value="" 
+                    input type="checkbox" checked="checked" value=""
                     span Estacionamientos
 
                   label.checkbox
-                    input type="checkbox" checked="checked" value="" 
+                    input type="checkbox" checked="checked" value=""
                     span Repuestos y accesorios
 
                 .form-group
@@ -133,15 +133,15 @@
                 li
                   = link_to "#", class: "single-detail" do
                     = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
-                    span 10% de descuento en la compra de tus Neumáticos + Instalación a Domicilio en Neumaline 
+                    span 10% de descuento en la compra de tus Neumáticos + Instalación a Domicilio en Neumaline
                 li
                   = link_to "#", class: "single-detail" do
                     = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
-                    span Paga $70.000 en vez de $87.900 por Servicio de Detailing Express en Pro-Lab Detailing 
+                    span Paga $70.000 en vez de $87.900 por Servicio de Detailing Express en Pro-Lab Detailing
                 li
                   = link_to "#", class: "single-detail" do
                     = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
-                    span Paga $180.000 en vez de $200.000 por Servicio de Detailing Pro en Pro-Lab Detailing 
+                    span Paga $180.000 en vez de $200.000 por Servicio de Detailing Pro en Pro-Lab Detailing
 
         .panel
           .panel-heading
@@ -194,7 +194,7 @@
 = render 'shared/footer'
 
 javascript:
-  
+
   $('#services-search').on('click', function() {
     $('#floating-form').addClass('next-step').trigger('stepChange');
   });
@@ -281,5 +281,5 @@ javascript:
     };
   }
 
-= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3TLtUX8h4Y127UKpdeo-virPS211qZF4&callback=initMap"
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgCfExuv-T3zGG0mkSuNx0z0tLhRPlHzw&callback=initMap"
 
