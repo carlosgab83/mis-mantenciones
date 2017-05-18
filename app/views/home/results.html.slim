@@ -1,123 +1,285 @@
+- @body_class = 'home'
+
 = render 'shared/header'
 
 #wrapper
-  section#section-guideline
-    .container
+  section#section-map
+    #floating-form.map-form
       .row
-        .col-md-12
-          ul#guideline-list
-            li
-              .inner-cell
-                h2
-                  | Mantenciones para tu <em>#{@vehicle.brand_name} #{@vehicle.rvm_model} #{@vehicle.manufacturing_year}</em>
-              .inner-cell
-                span.lead #{@pauta.name}
-            li
-              a class='#{manteinance_item_status_class(@pauta.engine_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.engine_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
-                .inner-cell
-                  span.flaticon-motor
-                  | Motor
-                .inner-cell
-                  span.badge #{@pauta.engine_manteinance_items.count}
-            li
-              a class='#{manteinance_item_status_class(@pauta.transmission_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.transmission_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
-                .inner-cell
-                  span.flaticon-transmision
-                  | Transmisión
-                .inner-cell
-                  span.badge #{@pauta.transmission_manteinance_items.count}
-            li
-              a class='#{manteinance_item_status_class(@pauta.brake_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.brake_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
-                .inner-cell
-                  span.flaticon-brake-disk
-                  | Frenos
-                .inner-cell
-                  span.badge #{@pauta.brake_manteinance_items.count}
-            li
-              a class='#{manteinance_item_status_class(@pauta.tyres_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.tyres_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
-                .inner-cell
-                  span.flaticon-wheel
-                  | Neumáticos
-                .inner-cell
-                  span.badge #{@pauta.tyres_manteinance_items.count}
-            li
-              a class='#{manteinance_item_status_class(@pauta.direction_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.direction_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
-                .inner-cell
-                  span.flaticon-steering-wheel
-                  | Dirección
-                .inner-cell
-                  span.badge #{@pauta.direction_manteinance_items.count}
-            li
-              a class='#{manteinance_item_status_class(@pauta.suspension_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.suspension_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
-                .inner-cell
-                  span.flaticon-shock-absorber
-                  | Suspensión
-                .inner-cell
-                  span.badge #{@pauta.suspension_manteinance_items.count}
-            li
-              a class='#{manteinance_item_status_class(@pauta.electric_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.electric_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
-                .inner-cell
-                  span.flaticon-battery
-                  | Sist. Eléctrico
-                .inner-cell
-                  span.badge #{@pauta.electric_manteinance_items.count}
-            li
-              a class='#{manteinance_item_status_class(@pauta.other_manteinance_items)}' data-toggle="popover" data-trigger="hover" data-content="#{manteinance_items_list(@pauta.other_manteinance_items)}" data-placement="bottom" data-html="true" tabindex="0"
-                .inner-cell
-                  span.flaticon-car-search
-                  | Otros
-                .inner-cell
-                  span.badge #{@pauta.other_manteinance_items.count}
-          .quote
-            .disclamer-text
-              .small * Estas actividades son solo de referencia de acuerdo al kilometraje y modelo de tu auto
-            .button-holder
-              - if @pauta.has_branches?
-                = link_to new_manteinance_coupon_path(manteinance_coupon: {id_pauta: @pauta.id_pauta}), remote: true
-                  button.btn.btn-cta type="button"
-                    | Cotiza estas mantenciones
+        .col-sm-3.col-md-4
+          p.lead
+            | Encuentra servicios
+            br
+            | cerca tuyo
+        .col-sm-9.col-md-8
+          form.form-inline
+            .form-group
+              label.sr-only for="county-field" Ciudad o Comuna
+              input#county-field.form-control type="text" placeholder="Ciudad o Comuna"
+            .form-group
+              button#services-search.btn.btn-cta.btn-block type="button"
+                | Busca Servicios
+    #left-map.map-form
+      a.close-sidebar.visible-xs
+        i.fa.fa-times
+      a.open-sidebar
+        i.fa.fa-search
+      #map-search.panel-group
+        .panel
+          .panel-heading
+            a.panel-title data-toggle="collapse" data-parent="#map-search" href="#normal" Búsqueda Normal
+          #normal.panel-collapse.in
+            .panel-body
+              form
+                .form-group
+                  label.sr-only for="county-field-2" Ciudad o Comuna
+                  input#county-field-2.form-control type="text" placeholder="Ciudad o Comuna"
+                .form-group
+                  label.sr-only for="search_brand" Marca
+                  input#search_brand.form-control type="text" placeholder="Marca"
+                .form-group
+                  label.sr-only for="search_model" Modelo
+                  input#search_model.form-control type="text" placeholder="Modelo"
+                .form-group
+                  button#services-search.btn.btn-cta.btn-ghost.btn-block type="button"
+                    | Por ubicación
+        .panel
+          .panel-heading
+            a.panel-title data-toggle="collapse" data-parent="#map-search" href="#advanced" Búsqueda Avanzada
+          #advanced.panel-collapse.collapse
+            .panel-body
+              form
+                .form-group
+                  label.sr-only for="search_patent" Patente
+                  input#search_patent.form-control.input-capital type="text" placeholder="Patente"
+                .form-group
+                  label.sr-only for="search_kms" Kilometraje
+                  input#search_kms.form-control.input-capital type="text" placeholder="Kilometraje"
+                .form-group
+                  button.btn.btn-cta.btn-ghost.btn-block type="submit"
+                    | Por automóvil
+        .panel
+          .panel-heading
+            a.panel-title data-toggle="collapse" data-parent="#map-search" href="#filters" Filtrar Resultados
+          #filters.panel-collapse.in
+            .panel-body
+              form
+                .form-group
+                  label.checkbox
+                    input type="checkbox" checked="checked" value=""
+                    span Talleres de Marca
 
-  section#section-promos
-    .container
-      .row
-        .col-md-12
-          h2
-            | Tus Promociones y Servicios
-      .row
-        .col-md-12
-          #promo-carousel
-            - @promotions.each do |promotion|
-              = render 'carousel_promotion', promotion: promotion
-      .row
-        .col-md-12.text-center
-          = link_to promotions_path do
-            .btn.btn-cta Ver todas las promociones
+                  label.checkbox
+                    input type="checkbox" checked="checked" value=""
+                    span Talleres Multimarca
 
-  section#section-parts
-    .container
-      .row
-        .col-md-12
-          h2
-            | Piezas y repuestos
-          ul#part-list
-            li
-              a.active title='Neumáticos' style='background-image:url(  #{image_url("part-tires.jpg")} );'
-                span Neumáticos
-            li
-              a title='Baterías' style='background-image:url(  #{image_url("part-battery.jpg")} );'
-                span Baterías
-            li
-              a title='Accesorios' style='background-image:url(  #{image_url("part-accessories.jpg")} );'
-                span Accesorios
+                  label.checkbox
+                    input type="checkbox" checked="checked" value=""
+                    span Concesionarios
 
-          #parts-carousel
-            - @products.each do |product|
-              - from_price = product.min_price
-              - next if from_price.nil?
-              = render 'carousel_product', product: product, from_price: from_price
-          .row
-            .col-md-12.text-center
-              = link_to search_products_path do
-                .btn.btn-cta Ver todos los Productos
+                  label.checkbox
+                    input type="checkbox" checked="checked" value=""
+                    span Lubricentros
+
+                  label.checkbox
+                    input type="checkbox" checked="checked" value=""
+                    span Neumáticos
+
+                  label.checkbox
+                    input type="checkbox" checked="checked" value=""
+                    span Llantas
+
+                  label.checkbox
+                    input type="checkbox" checked="checked" value=""
+                    span Carwash
+
+                  label.checkbox
+                    input type="checkbox" checked="checked" value=""
+                    span Estacionamientos
+
+                  label.checkbox
+                    input type="checkbox" checked="checked" value=""
+                    span Repuestos y accesorios
+
+                .form-group
+                  button#uncheck-checkboxes.btn.btn-link.btn-block type="button"
+                    | Deseleccionar todos
+
+    #right-map.map-form
+      a.close-sidebar.visible-xs
+        i.fa.fa-times
+      a.open-sidebar
+        i.fa.fa-angle-left
+      #marker-detail.panel-group
+        .panel
+          .panel-heading
+            a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#info" Información
+          #info.panel-collapse.collapse
+            .panel-body
+              ul.list-unstyled
+                li
+                  .single-info
+                    = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
+                    strong Taller
+                    br
+                    span Atención de Lunes a Viernes de 9:00 a 18:00 hrs
+                    = link_to "Contáctalos", "#", class: "btn btn-cta btn-block"
+        .panel
+          .panel-heading
+            a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#promo" Promociones
+          #promo.panel-collapse.in
+            .panel-body
+              ul.list-unstyled
+                li
+                  = link_to "#", class: "single-detail" do
+                    = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
+                    span 10% de descuento en la compra de tus Neumáticos + Instalación a Domicilio en Neumaline
+                li
+                  = link_to "#", class: "single-detail" do
+                    = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
+                    span Paga $70.000 en vez de $87.900 por Servicio de Detailing Express en Pro-Lab Detailing
+                li
+                  = link_to "#", class: "single-detail" do
+                    = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
+                    span Paga $180.000 en vez de $200.000 por Servicio de Detailing Pro en Pro-Lab Detailing
+
+        .panel
+          .panel-heading
+            a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#tires" Neumáticos
+          #tires.panel-collapse.collapse
+            .panel-body
+              ul.list-unstyled
+                li
+                  = link_to "#", class: "single-detail" do
+                    = image_tag("part-tires.jpg", :alt => "promo", :class => "img-responsive")
+                    span MICHELIN ENERGY XM2 175/70 R13 82T
+                    br
+                    strong Desde $60.000
+                li
+                  = link_to "#", class: "single-detail" do
+                    = image_tag("part-tires.jpg", :alt => "promo", :class => "img-responsive")
+                    span YOKOHA MAG98A 225/65 R17 102V
+                    br
+                    strong Desde $80.000
+                li
+                  = link_to "#", class: "single-detail" do
+                    = image_tag("part-tires.jpg", :alt => "promo", :class => "img-responsive")
+                    span BRIDGESTONE TURANZA ER300 RFT 205/55 R16 91V
+                    br
+                    strong Desde $70.000
+        .panel
+          .panel-heading
+            a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#parts" Partes
+          #parts.panel-collapse.collapse
+            .panel-body
+              ul.list-unstyled
+                li
+                  = link_to "#", class: "single-detail" do
+                    = image_tag("part-tires.jpg", :alt => "promo", :class => "img-responsive")
+                    span MICHELIN ENERGY XM2 175/70 R13 82T
+                    strong Desde $60.000
+                li
+                  = link_to "#", class: "single-detail" do
+                    = image_tag("part-tires.jpg", :alt => "promo", :class => "img-responsive")
+                    span YOKOHA MAG98A 225/65 R17 102V
+                    strong Desde $80.000
+                li
+                  = link_to "#", class: "single-detail" do
+                    = image_tag("part-tires.jpg", :alt => "promo", :class => "img-responsive")
+                    span BRIDGESTONE TURANZA ER300 RFT 205/55 R16 91V
+                    strong Desde $70.000
+
+    #map
 
 = render 'shared/footer'
+
+javascript:
+
+  $('#services-search').on('click', function() {
+    $('#floating-form').addClass('next-step').trigger('stepChange');
+  });
+
+  $('.open-sidebar').on('click', function() {
+    $(this).parent().toggleClass('open');
+    if ($(this).parent().attr('id') == "left-map") {
+      $('#floating-form').addClass('next-step');
+    };
+  });
+
+  $('.close-sidebar').on('click', function() {
+    $(this).parent().removeClass('open');
+  });
+
+  $(document).ready(function() {
+    $('#floating-form').on('stepChange', function(){
+      $('#left-map').addClass('open');
+    });
+  });
+
+  $('#uncheck-checkboxes').on('click', function() {
+    $('.checkbox input').attr('checked', false);
+  });
+
+  function initMap() {
+    var stgo = {lat: -33.455388, lng: -70.634216};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      //scrollwheel: false,
+      center: stgo,
+      styles: [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}]
+    });
+    var locations = [
+      ['Taller 1', -33.451657, -70.633008, '#{image_url("markers/neumaticos.png")}'],
+      ['Taller 2', -33.452467, -70.627944, '#{image_url("markers/taller2.png")}'],
+      ['Taller 3', -33.451438, -70.629392, '#{image_url("markers/taller.png")}'],
+      ['Taller 4', -33.451715, -70.634789, '#{image_url("markers/taller.png")}'],
+      ['Taller 5', -33.452100, -70.638340, '#{image_url("markers/taller2.png")}'],
+      ['Taller 6', -33.452785, -70.640802, '#{image_url("markers/estacionamiento.png")}'],
+      ['Taller 7', -33.451547, -70.633517, '#{image_url("markers/taller.png")}'],
+      ['Taller 8', -33.451547, -70.633517, '#{image_url("markers/lubricentro.png")}'],
+      ['Taller 9', -33.451808, -70.632231, '#{image_url("markers/taller2.png")}'],
+
+      ['Taller 10', -33.451951, -70.636902, '#{image_url("markers/taller.png")}'],
+      ['Taller 11', -33.453603, -70.638624, '#{image_url("markers/taller2.png")}'],
+      ['Taller 12', -33.454988, -70.639962, '#{image_url("markers/estacionamiento.png")}'],
+      ['Taller 13', -33.456319, -70.633350, '#{image_url("markers/neumaticos.png")}'],
+      ['Taller 14', -33.454278, -70.631741, '#{image_url("markers/taller2.png")}'],
+      ['Taller 15', -33.454937, -70.626379, '#{image_url("markers/taller.png")}'],
+      ['Taller 16', -33.454480, -70.630327, '#{image_url("markers/concesionario.png")}'],
+      ['Taller 17', -33.453061, -70.632083, '#{image_url("markers/taller2.png")}'],
+      ['Taller 18', -33.453607, -70.630538, '#{image_url("markers/lubricentro.png")}']
+    ];
+    var infowindow = new google.maps.InfoWindow();
+    var marker, count, currentIcon;
+    for (count = 0; count < locations.length; count++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[count][1], locations[count][2]),
+        map: map,
+        animation: google.maps.Animation.DROP,
+        icon: marker = {
+          url: locations[count][3],
+          scaledSize: new google.maps.Size(35,40)
+        },
+        title: locations[count][0],
+        id: count
+      });
+      google.maps.event.addListener(marker, 'click', function () {
+        map.setCenter(marker.getPosition());
+        document.getElementById('right-map').classList.add('open');
+        document.getElementById('floating-form').classList.add('next-step');
+        toggleBounce(this);
+      });
+      function toggleBounce(currentIcon) {
+        currentIcon.setAnimation(null);
+        if (currentIcon.getAnimation() != null) {
+          currentIcon.setAnimation(null);
+         } else {
+           currentIcon.setAnimation(google.maps.Animation.BOUNCE);
+           setTimeout(function(){ currentIcon.setAnimation(null); }, 2100);
+         }
+      };
+    };
+  }
+
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgCfExuv-T3zGG0mkSuNx0z0tLhRPlHzw&callback=initMap"
+

@@ -6,8 +6,8 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:700');
 
 // Layout Variables
-$header-height: 70px;
-$footer-height: 70px;
+$header-height: 50px;
+$footer-height: 45px;
 
 //////////////////////////////////////////////////////////
 // General Styles
@@ -236,7 +236,7 @@ body {
 
 #header {
 	min-height: $header-height;
-	padding: 20px 0 10px;
+	padding: 15px 0 5px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -266,15 +266,15 @@ body {
 			width: 100%;
 			text-align: center;
 			margin-top: 0;
-			margin-bottom: 14px;
+			margin-bottom: 0;
 			max-width: none;
 			img {
 				display: inline-block;
-				max-width: 260px;
+				max-width: 240px;
 			}
 		}
 		@media #{$xxs}{
-			margin-bottom: 10px;
+			margin-bottom: 5px;
 			img {
 				max-width: 190px;
 			}
@@ -348,7 +348,19 @@ body {
 		&:hover, &:active, &:focus {
 			text-decoration: none;
 		}
-		
+	}
+	.list-inline {
+		margin-bottom: 0;
+		@media #{$oxs}{
+			padding-top: 4px;
+		}
+		a {
+			display: inline-block;
+			padding: 5px 10px;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: -0.01em;
+		}
 	}
 }
 
@@ -407,7 +419,9 @@ body {
 
 #footer {
 	min-height: $footer-height;
-	padding: 20px 0;
+	padding: 6px 0 4px;
+	position: relative;
+	z-index: 1;
 	@media #{$xs}{
 		padding: 10px 0;
 		min-height: $footer-height - 30;
@@ -427,11 +441,10 @@ body {
 		margin-bottom: 0;
 		a {
 			display: inline-block;
-			padding: 6px 0;
+			padding: 8px 0;
 			vertical-align: middle;
-			min-height: 34px;
+			min-height: 20px;
 			@media #{$xxs}{
-				min-height: 29px;
 				padding: 6px 0 0 0;
 			}
 			@media #{$xxxs}{padding-top: 0;}
@@ -440,10 +453,8 @@ body {
 				padding: 0;
 				> img {
 					vertical-align: middle;
-					height: 26px;
-					@media #{$sm}{height: 24px;}
-					@media #{$xs}{height: 21px;}
-					@media #{$xxs}{height: 18px;}
+					height: 20px;
+					@media #{$xs}{height: 18px;}
 				}
 			}
 		}

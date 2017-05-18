@@ -1,0 +1,26 @@
+header#header
+  .container
+    .row
+      .col-xs-12.col-sm-6.col-lg-7
+        = link_to new_shop_inscription_path, class: 'btn btn-link btn-special pull-right hidden-xs', remote: true
+          strong
+            | Publica tu Taller
+        figure#logo
+          = link_to :root do
+            = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive")
+
+      .col-xs-12.col-sm-6.col-lg-5.text-right
+        = form_tag(:results_home, method: :post, class: 'form-inline search-patent') do
+          .form-group
+            label.sr-only for="exampleInputName2" Patente
+            - patent = (session[:vehicle].try(:patent) == Vehicle::DEFAULT_PATENT ? '' : session[:vehicle].try(:patent))
+            = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Patente', value: patent, maxlength: 6)
+          .form-group
+            label.sr-only for="exampleInputEmail2" Kilometraje
+            .input-group
+              = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Kilometraje', value: session[:vehicle].try(:kms), maxlength: 8)
+              .input-group-addon kms
+
+          .form-group
+            button.btn.btn-cta.btn-ghost.btn-block type="submit"
+              | Consultar

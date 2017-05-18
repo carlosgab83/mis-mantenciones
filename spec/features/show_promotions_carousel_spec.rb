@@ -11,6 +11,7 @@ describe "Show promotions on carousel", :type => :feature do
     end
 
     it 'render results page with generic promotions' do
+      pending('due to future (soon) refactor')
       allow_any_instance_of(VehicleFinder).to receive(:execute).and_return([Rvm.first.attributes.merge(Vme.first.attributes)])
       visit '/'
       within '.search-patent' do
@@ -32,6 +33,7 @@ describe "Show promotions on carousel", :type => :feature do
     end
 
     it 'render results page with specific promotions' do
+      pending('due to future (soon) refactor')
       allow_any_instance_of(VehicleFinder).to receive(:execute).and_return([Rvm.first.attributes.merge(Vme.first.attributes)])
       visit '/'
       within '.search-patent' do

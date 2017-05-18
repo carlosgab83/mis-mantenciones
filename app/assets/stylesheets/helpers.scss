@@ -67,12 +67,12 @@ $xxxs: '(max-width: 320px)';
 .upper-triangle {
 	@extend .half-triangle;
 	bottom: 100%;
-	border-width: 0 0 30px 100vw ;
+	border-width: 0 0 20px 100vw ;
 }
 .bottom-triangle {
 	@extend .half-triangle;
 	top: 100%;
-	border-width: 30px 100vw 0 0;
+	border-width: 20px 100vw 0 0;
 }
 
 // place holder
