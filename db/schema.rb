@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228003124) do
+ActiveRecord::Schema.define(version: 20170518024120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -295,9 +295,11 @@ ActiveRecord::Schema.define(version: 20170228003124) do
     t.text     "preview_text"
     t.string   "image_url"
     t.string   "slug"
+    t.string   "type"
     t.index ["category_id"], name: "index_promotions_on_category_id", using: :btree
     t.index ["name"], name: "promotions_business_index", unique: true, using: :btree
     t.index ["slug"], name: "index_promotions_on_slug", using: :btree
+    t.index ["type"], name: "index_promotions_on_type", using: :btree
   end
 
   create_table "promotions_vmes", force: :cascade do |t|
