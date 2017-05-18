@@ -1,0 +1,3 @@
+class Manteinance < GeneralPromotion
+
+end
