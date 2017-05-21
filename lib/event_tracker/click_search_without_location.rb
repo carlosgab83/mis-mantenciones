@@ -1,11 +1,11 @@
 module EventTracker
-  class ClickSearchWithoutPatent < Base
+  class ClickSearchWithoutLocation < Base
     def initialize(options = {})
       super(options)
     end
 
     def track
-      super("Click search without patent")
+      super("Click search without location")
     end
   end
 end

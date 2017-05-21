@@ -27,7 +27,7 @@ $(document).ready(function(){
       placement: popoverPlacement,
       trigger: "manual",
       html: true,
-      content: "También puedes entrar sin patente!" 
+      content: "También puedes entrar sin patente!"
     });
     setTimeout(function(){
       $(".get-in-advise").popover('show');
@@ -41,7 +41,7 @@ $(document).ready(function(){
       trigger: "manual",
       html: true,
       container: "body",
-      content: "<strong>¡No te preocupes!</strong><br> No pagarás nada por apretar este botón" 
+      content: "<strong>¡No te preocupes!</strong><br> No pagarás nada por apretar este botón"
     });
     setTimeout(function(){
       $("#contact-submit").popover('show');
@@ -49,41 +49,6 @@ $(document).ready(function(){
   });
   $("#contact-modal").on('hide.bs.modal', function(){
     $("#contact-submit").popover('hide');
-  });
-
-  // Sliders
-  $('#promo-carousel, #parts-carousel').slick({
-    dots: false,
-    infinite: true,
-    speed: 1000,
-    respondTo: 'slider',
-    autoplay: true,
-    autoplaySpeed: 7000,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    prevArrow: '<button class="left" type="button" role="button" aria-label="Previous"><span class="fa fa-angle-left"></span></button>',
-    nextArrow: '<button class="right" type="button" role="button" aria-label="Next"><span class="fa fa-angle-right"></span></button>',
-    responsive: [
-      {
-        breakpoint: 780,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        }
-      }
-    ]
-  });
-
-  $('#quote-modal').on('shown.bs.modal', function () {
-    var toppadding = $('.quote-selector > ul > li.active > a').height();
-    $('.quote-selector > ul').css({'margin-top':toppadding});
   });
 
   $('.input-capital').on('input', function(evt) {

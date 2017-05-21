@@ -2,6 +2,8 @@ require 'rails_helper'
 require 'contexts/show_promotions_carousel.rb'
 require 'capybara/rspec'
 
+# TODO: Rename tests for looking on left and right panels when user search. Not yet.
+
 describe "Show promotions on carousel", :type => :feature do
 
   context 'With generic promotions' do

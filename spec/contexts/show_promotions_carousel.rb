@@ -10,8 +10,6 @@ def create_show_prmotions_carousel_context
     create_models
     create_vehicle_type
     create_vmes
-    create_generic_pautas
-    create_specific_pautas
     create_categories
     create_promotions
 end
