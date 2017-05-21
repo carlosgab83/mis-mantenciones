@@ -11,34 +11,28 @@ class HomeController < ApplicationController
   # Testing patente: RK1478 # GOLF
   # Testing patente: BYKP82 # BORA
   def results
-    session[:search] = {} if session[:search].nil?
+    if session[:search].nil?
+      session[:search] = {}
+    end
+
     if params[:search].present?
-      session[:search]['patent'] = params[:search][:patent]
-      session[:search]['kms']    = params[:search][:kms]
+      session[:search]['location'] = params[:search][:location]
+      session[:search]['latitude'] = params[:search][:latitude]
+      session[:search]['longitude'] = params[:search][:longitude]
     end
 
-    if session[:search]['patent'].nil? or session[:search]['patent'].blank?
-      EventTracker::ClickSearchWithoutPatent.new(controller: self).track
+    if session[:search]['location'].nil? or session[:search]['location'].blank?
+      EventTracker::ClickSearchWithoutLocation.new(controller: self).track
     end
-    if session[:search].nil? or session[:search]['patent'].nil? or session[:search]['kms'].nil?
-      session[:rvm_id] = nil
-      redirect_to :search_home
-      return
-    end
-    begin
-      @vehicle = VehicleFinder.new(SearchVehicleForm.new(session[:search])).call
-      # If not vehicle found, @vehicle.vme is nil
-      @pauta   = PautaFinder.new(vehicle: @vehicle).call
-      session[:vehicle] = @vehicle
-      @promotions = CarouselPromotionsFinder.new(vehicle: session[:vehicle]).call
-      @products   = CarouselProductsFinder.new(vehicle: session[:vehicle]).call
 
-      EventTracker::SearchPatent.new(controller: self, vehicle: @vehicle, pauta: @pauta, promotions: @promotions, products: @products).track
-    rescue AppExceptions::PautaNotFound => e
-      puts e.message
-      puts e.backtrace
-      redirect_to :search_home, flash: {error: I18n.t('home.pauta_not_found')}
-      return
-    end
+    # TODO: Search with location | Latitude | Longitude ...
+
+    # TODO: Track event:
+    # EventTracker::ClickSeachWithLocation.new(
+    #   controller: self,
+    #   location: session[:search]['location'],
+    #   latitude: session[:search]['location'],
+    #   longitude: session[:search]['longitude']
+    # ).track
   end
 end
