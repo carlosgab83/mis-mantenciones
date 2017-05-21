@@ -1,6 +1,8 @@
 class Branch < ApplicationRecord
   belongs_to :shop
   belongs_to :comune
+  belongs_to :branch_type
+  belongs_to :plan
   has_many :branches_products
   has_many :products, through: :branches_products
   has_many :branches_manteinance_items

@@ -1,0 +1,2 @@
+class BranchType < ApplicationRecord
+end
