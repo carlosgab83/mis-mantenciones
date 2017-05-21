@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 
   def search
     session[:client] = nil
+    render action: :results
   end
 
   # Testing patente: BLDR68 # PASSAT
@@ -19,7 +20,6 @@ class HomeController < ApplicationController
     if session[:search]['patent'].nil? or session[:search]['patent'].blank?
       EventTracker::ClickSearchWithoutPatent.new(controller: self).track
     end
-
     if session[:search].nil? or session[:search]['patent'].nil? or session[:search]['kms'].nil?
       session[:rvm_id] = nil
       redirect_to :search_home
