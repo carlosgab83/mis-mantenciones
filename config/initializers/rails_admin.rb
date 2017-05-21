@@ -127,6 +127,8 @@
         field :id
         field :name
         field :shop
+        field :branch_type
+        field :plan
       end
 
       edit do
@@ -140,6 +142,11 @@
         field :deleted
         field :shop
         field :commune_id
+        field :latitude
+        field :longitude
+        field :branch_type
+        field :plan
+        field :interval_between_jumps
       end
     end
 
