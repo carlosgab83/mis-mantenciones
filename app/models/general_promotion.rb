@@ -11,7 +11,6 @@ class GeneralPromotion < ApplicationRecord
   self.table_name = 'promotions'
 
   extend FriendlyId
-  extend PromotionsSerializer
   include PromotionSerializer
 
   belongs_to :category
