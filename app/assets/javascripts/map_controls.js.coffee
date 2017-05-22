@@ -45,7 +45,7 @@ mapControls.initMap = () ->
 
   autocomplete.addListener 'place_changed', ->
     infowindow.close()
-    mapControls.userSearchAction(marker, autocomplete)
+    $('.map-search').click()
 
   $('.map-search').click ->
     infowindow.close()
