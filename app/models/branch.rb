@@ -9,6 +9,7 @@ class Branch < ApplicationRecord
   HIDE_BRANCH_PRICE_VALUE = -999
 
   include BranchSerializer
+  extend BranchesSerializer
 
   scope :for_pauta, -> (pauta) do
     actives.includes(:shop).where(id: ids_for_pauta(pauta))
