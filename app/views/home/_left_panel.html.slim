@@ -1,0 +1,86 @@
+a.close-sidebar.visible-xs
+  i.fa.fa-times
+a.open-sidebar
+  i.fa.fa-search
+#map-search.panel-group
+  .panel
+    .panel-body
+      .form-group
+        label.sr-only for="county-field-2" Ciudad o Comuna
+        input#search-input-left-panel.form-control.search-input type="text" placeholder="Ciudad o Comuna"
+    .panel-heading
+      a.panel-title data-toggle="collapse" data-parent="#map-search" href="#normal" Búsqueda Normal
+    #normal.panel-collapse.in
+      .panel-body
+        = form_tag results_home_path, remote: true, id: 'basic-search-form'
+          .form-group
+            label.sr-only for="search_brand" Marca
+            = text_field('search', 'brand_id', class: 'form-control', placeholder:'Marca')
+          .form-group
+            label.sr-only for="search_brand" Modelo
+            = text_field('search', 'model_id', class: 'form-control', placeholder:'Modelo')
+          .form-group
+            button.btn.btn-cta.btn-ghost.btn-block.map-search-left-panel
+              | Buscar
+
+  .panel
+    .panel-heading
+      a.panel-title data-toggle="collapse" data-parent="#map-search" href="#advanced" Búsqueda Avanzada
+    #advanced.panel-collapse.collapse
+      .panel-body
+         = form_tag results_home_path, remote: true, id: 'advanced-search-form'
+          .form-group
+            label.sr-only for="search_brand" Patente
+            = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Patente')
+          .form-group
+            label.sr-only for="search_brand" Kilometraje
+            = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Kilometraje')
+          .form-group
+            button.btn.btn-cta.btn-ghost.btn-block.advanced-map-search-left-panel
+              | Por automóvil
+  .panel
+    .panel-heading
+      a.panel-title data-toggle="collapse" data-parent="#map-search" href="#filters" Filtrar Resultados
+    #filters.panel-collapse.in
+      .panel-body
+        form
+          .form-group
+            label.checkbox
+              input type="checkbox" checked="checked" value=""
+              span Talleres de Marca
+
+            label.checkbox
+              input type="checkbox" checked="checked" value=""
+              span Talleres Multimarca
+
+            label.checkbox
+              input type="checkbox" checked="checked" value=""
+              span Concesionarios
+
+            label.checkbox
+              input type="checkbox" checked="checked" value=""
+              span Lubricentros
+
+            label.checkbox
+              input type="checkbox" checked="checked" value=""
+              span Neumáticos
+
+            label.checkbox
+              input type="checkbox" checked="checked" value=""
+              span Llantas
+
+            label.checkbox
+              input type="checkbox" checked="checked" value=""
+              span Carwash
+
+            label.checkbox
+              input type="checkbox" checked="checked" value=""
+              span Estacionamientos
+
+            label.checkbox
+              input type="checkbox" checked="checked" value=""
+              span Repuestos y accesorios
+
+          .form-group
+            button#uncheck-checkboxes.btn.btn-link.btn-block type="button"
+              | Deseleccionar todos
