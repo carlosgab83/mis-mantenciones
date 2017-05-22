@@ -15,9 +15,9 @@
           form.form-inline
             .form-group
               label.sr-only for="county-field" Ciudad o Comuna
-              input#county-field.form-control type="text" placeholder="Ciudad o Comuna"
+              input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna"
             .form-group
-              button#services-search.btn.btn-cta.btn-block type="button"
+              button#services-search.btn.btn-cta.btn-block.map-search type="button"
                 | Busca Servicios
     #left-map.map-form
       a.close-sidebar.visible-xs
@@ -33,7 +33,7 @@
               form
                 .form-group
                   label.sr-only for="county-field-2" Ciudad o Comuna
-                  input#county-field-2.form-control type="text" placeholder="Ciudad o Comuna"
+                  input#search-input-left-panel.form-control.search-input type="text" placeholder="Ciudad o Comuna"
                 .form-group
                   label.sr-only for="search_brand" Marca
                   input#search_brand.form-control type="text" placeholder="Marca"
@@ -41,7 +41,7 @@
                   label.sr-only for="search_model" Modelo
                   input#search_model.form-control type="text" placeholder="Modelo"
                 .form-group
-                  button#services-search.btn.btn-cta.btn-ghost.btn-block type="button"
+                  button#services-search.btn.btn-cta.btn-ghost.btn-block.map-search-left-panel type="button"
                     | Por ubicación
         .panel
           .panel-heading
@@ -195,91 +195,4 @@
 
 javascript:
 
-  $('#services-search').on('click', function() {
-    $('#floating-form').addClass('next-step').trigger('stepChange');
-  });
-
-  $('.open-sidebar').on('click', function() {
-    $(this).parent().toggleClass('open');
-    if ($(this).parent().attr('id') == "left-map") {
-      $('#floating-form').addClass('next-step');
-    };
-  });
-
-  $('.close-sidebar').on('click', function() {
-    $(this).parent().removeClass('open');
-  });
-
-  $(document).ready(function() {
-    $('#floating-form').on('stepChange', function(){
-      $('#left-map').addClass('open');
-    });
-  });
-
-  $('#uncheck-checkboxes').on('click', function() {
-    $('.checkbox input').attr('checked', false);
-  });
-
-  function initMap() {
-    var stgo = {lat: -33.455388, lng: -70.634216};
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
-      //scrollwheel: false,
-      center: stgo,
-      styles: [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}]
-    });
-    var locations = [
-      ['Taller 1', -33.451657, -70.633008, '#{image_url("markers/neumaticos.png")}'],
-      ['Taller 2', -33.452467, -70.627944, '#{image_url("markers/taller2.png")}'],
-      ['Taller 3', -33.451438, -70.629392, '#{image_url("markers/taller.png")}'],
-      ['Taller 4', -33.451715, -70.634789, '#{image_url("markers/taller.png")}'],
-      ['Taller 5', -33.452100, -70.638340, '#{image_url("markers/taller2.png")}'],
-      ['Taller 6', -33.452785, -70.640802, '#{image_url("markers/estacionamiento.png")}'],
-      ['Taller 7', -33.451547, -70.633517, '#{image_url("markers/taller.png")}'],
-      ['Taller 8', -33.451547, -70.633517, '#{image_url("markers/lubricentro.png")}'],
-      ['Taller 9', -33.451808, -70.632231, '#{image_url("markers/taller2.png")}'],
-
-      ['Taller 10', -33.451951, -70.636902, '#{image_url("markers/taller.png")}'],
-      ['Taller 11', -33.453603, -70.638624, '#{image_url("markers/taller2.png")}'],
-      ['Taller 12', -33.454988, -70.639962, '#{image_url("markers/estacionamiento.png")}'],
-      ['Taller 13', -33.456319, -70.633350, '#{image_url("markers/neumaticos.png")}'],
-      ['Taller 14', -33.454278, -70.631741, '#{image_url("markers/taller2.png")}'],
-      ['Taller 15', -33.454937, -70.626379, '#{image_url("markers/taller.png")}'],
-      ['Taller 16', -33.454480, -70.630327, '#{image_url("markers/concesionario.png")}'],
-      ['Taller 17', -33.453061, -70.632083, '#{image_url("markers/taller2.png")}'],
-      ['Taller 18', -33.453607, -70.630538, '#{image_url("markers/lubricentro.png")}']
-    ];
-    var infowindow = new google.maps.InfoWindow();
-    var marker, count, currentIcon;
-    for (count = 0; count < locations.length; count++) {
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[count][1], locations[count][2]),
-        map: map,
-        animation: google.maps.Animation.DROP,
-        icon: marker = {
-          url: locations[count][3],
-          scaledSize: new google.maps.Size(35,40)
-        },
-        title: locations[count][0],
-        id: count
-      });
-      google.maps.event.addListener(marker, 'click', function () {
-        map.setCenter(marker.getPosition());
-        document.getElementById('right-map').classList.add('open');
-        document.getElementById('floating-form').classList.add('next-step');
-        toggleBounce(this);
-      });
-      function toggleBounce(currentIcon) {
-        currentIcon.setAnimation(null);
-        if (currentIcon.getAnimation() != null) {
-          currentIcon.setAnimation(null);
-         } else {
-           currentIcon.setAnimation(google.maps.Animation.BOUNCE);
-           setTimeout(function(){ currentIcon.setAnimation(null); }, 2100);
-         }
-      };
-    };
-  }
-
-= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgCfExuv-T3zGG0mkSuNx0z0tLhRPlHzw&callback=initMap"
-
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgCfExuv-T3zGG0mkSuNx0z0tLhRPlHzw&libraries=places&callback=mapControls.initMap"
