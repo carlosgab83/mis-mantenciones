@@ -22,7 +22,7 @@ leftPanelControls.initilization = () ->
     $('#left-map').addClass('open')
 
   $('.open-sidebar').on 'click', ->
-    $(this).parent().toggleClass('open');
+    $(this).parent().toggleClass('open')
     if ($(this).parent().attr('id') == "left-map")
       $('#floating-form').addClass('next-step')
 

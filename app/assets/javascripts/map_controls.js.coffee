@@ -28,10 +28,10 @@ mapControls.initMap = () ->
   # Bind the map's bounds (viewport) property to the autocomplete object,
   # so that the autocomplete requests use the current map bounds for the
   # bounds option in the request.
-  autocomplete.bindTo('bounds', mapControls.map);
-  autocompleteLeftPanel.bindTo('bounds', mapControls.map);
+  autocomplete.bindTo('bounds', mapControls.map)
+  autocompleteLeftPanel.bindTo('bounds', mapControls.map)
 
-  infowindow = new google.maps.InfoWindow();
+  infowindow = new google.maps.InfoWindow()
 
   marker = new (google.maps.Marker)(
     map: mapControls.map
