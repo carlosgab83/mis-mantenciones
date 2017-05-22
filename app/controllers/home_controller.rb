@@ -15,17 +15,26 @@ class HomeController < ApplicationController
       session[:search] = {}
     end
 
-    if params[:search].present?
-      session[:search]['location'] = params[:search][:location]
-      session[:search]['latitude'] = params[:search][:latitude]
-      session[:search]['longitude'] = params[:search][:longitude]
-    end
-
     if session[:search]['location'].nil? or session[:search]['location'].blank?
       EventTracker::ClickSearchWithoutLocation.new(controller: self).track
     end
 
-    # TODO: Search with location | Latitude | Longitude ...
+    if params[:search].present?
+      session[:search]['location'] = params[:search][:location]
+      session[:search]['latitude'] = params[:search][:latitude]
+      session[:search]['longitude'] = params[:search][:longitude]
+      session[:search]['brand_id'] = params[:search][:brand_id]
+      session[:search]['model_id'] = params[:search][:model_id]
+      session[:search]['patent'] = params[:search][:patent]
+      session[:search]['kms'] = params[:search][:kms]
+
+      @branches = BranchesFinder.new(search_input: session[:search]).call
+    end
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
 
     # TODO: Track event:
     # EventTracker::ClickSeachWithLocation.new(
