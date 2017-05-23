@@ -13,9 +13,9 @@ $(document).on('page:load', mapControls.ready)
 
 #############################################################################
 
-mapControls.initMap = () ->
-  mapControls.defaultLocation = {lat: -33.455388, lng: -70.634216}
-  mapControls.defaultZoom = 15
+mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->
+  mapControls.defaultLocation = {lat: defaultLatitude, lng: defaultLongitude}
+  mapControls.defaultZoom = defaultZoom
   mapControls.map = new (google.maps.Map)(document.getElementById('map'),
   zoom: mapControls.defaultZoom
   center: mapControls.defaultLocation
