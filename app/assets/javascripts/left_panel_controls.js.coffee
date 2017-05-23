@@ -28,3 +28,6 @@ leftPanelControls.initilization = () ->
 
   $('.close-sidebar').on 'click', ->
     $(this).parent().removeClass('open')
+
+  $('#search-input-left-panel').on 'focus', ->
+    $(this).select()
