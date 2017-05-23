@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521192801) do
+ActiveRecord::Schema.define(version: 20170523043002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -268,7 +268,7 @@ ActiveRecord::Schema.define(version: 20170521192801) do
     t.index ["promotion_id"], name: "index_promotions_vmes_on_promotion_id", using: :btree
   end
 
-  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, force: :cascade, comment: "Rut taller" do |t|
+  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, comment: "Rut taller", force: :cascade do |t|
     t.string  "ide_dv",        limit: 1,               null: false
     t.text    "ide_nombre_rz",                         null: false
     t.integer "ide_estado",              default: 1,   null: false
@@ -286,6 +286,7 @@ ActiveRecord::Schema.define(version: 20170521192801) do
     t.integer "v_pro_rut"
     t.text    "v_pro_dv"
     t.text    "v_pro_nombre"
+    t.index ["v_rvm"], name: "idx_v_rvm", unique: true, using: :btree
     t.index ["v_rvm"], name: "index_v_rvm", using: :btree
   end
 
@@ -343,6 +344,9 @@ ActiveRecord::Schema.define(version: 20170521192801) do
     t.integer  "product_scraping_caching_minutes", null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.float    "default_latitude"
+    t.float    "default_longitude"
+    t.integer  "default_zoom"
   end
 
   create_table "tipo_seccion", primary_key: "id_tiposeccion", id: :integer, force: :cascade do |t|
