@@ -25,9 +25,30 @@ branchesControls.drawBranches = () ->
       title: branch[1]
       id: branch[0])
     branchesControls.markers.push(marker)
+    branchesControls.setJumpingmarker(marker, branch[5])
 
+#############################################################################
 
 branchesControls.removeMarkers = () ->
   for marker in branchesControls.markers
     marker.setMap(null)
   branchesControls.markers = []
+
+#############################################################################
+
+branchesControls.setJumpingmarker = (marker, milliseconds_between_jumps) ->
+  setTimeout (->
+    branchesControls.jumpOnce(marker)
+    branchesControls.setJumpingmarker(marker, milliseconds_between_jumps)
+  ), milliseconds_between_jumps
+
+#############################################################################
+
+branchesControls.jumpOnce = (marker) ->
+  if marker.getAnimation() != null
+    marker.setAnimation(null)
+  else
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+    setTimeout (->
+      marker.setAnimation null
+    ), 700
