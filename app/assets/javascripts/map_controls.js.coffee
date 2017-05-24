@@ -38,8 +38,6 @@ mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->
 
   mapControls.infowindow = new google.maps.InfoWindow()
 
-
-
 #############################################################################
 
 mapControls.buttonListeners = () ->
@@ -69,6 +67,10 @@ mapControls.buttonListeners = () ->
   $('.advanced-map-search-left-panel').click ->
     mapControls.userSearchAction(mapControls.autocompleteLeftPanel, 'advanced-search-form')
 
+  # For mobile devices, set to mobile location
+  $('#mobile-ask-location').click ->
+    mapControls.setMobileLocation()
+
 #############################################################################
 
 mapControls.userSearchAction = (autocomplete, formToSubmit) ->
@@ -88,3 +90,22 @@ mapControls.goToNewPlace = (autocomplete) ->
     mapControls.map.fitBounds place.geometry.viewport
   else if place
     mapControls.map.setCenter place.geometry.location
+
+#############################################################################
+
+mapControls.setMobileLocation = () ->
+  if navigator.geolocation
+    navigator.geolocation.getCurrentPosition(mapControls.successObtainPosition, mapControls.errorObtainPosition)
+
+#############################################################################
+
+mapControls.successObtainPosition = (location) ->
+  latitude = location.coords.latitude
+  longitude = location.coords.longitude
+  latlng = new google.maps.LatLng(latitude, longitude);
+  mapControls.map.setCenter latlng
+
+#############################################################################
+
+mapControls.errorObtainPosition = (error) ->
+  alert('No pudimos obtener tu ubicación. Recuerda que debes activar la geolocalización en tu dispositivo')
