@@ -38,9 +38,6 @@ mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->
 
   mapControls.infowindow = new google.maps.InfoWindow()
 
-  mapControls.marker = new (google.maps.Marker)(
-    map: mapControls.map
-    anchorPoint: new (google.maps.Point)(0, -29))
 
 
 #############################################################################
@@ -60,29 +57,28 @@ mapControls.buttonListeners = () ->
 
   # When user click on floating initial modal
   $('.map-search').click ->
-    mapControls.userSearchAction(mapControls.marker, mapControls.autocomplete, 'basic-search-form')
+    mapControls.userSearchAction(mapControls.autocomplete, 'basic-search-form')
     leftIinput = document.getElementById('search-input-left-panel')
     leftIinput.value = document.getElementById('search-input').value
 
   # when user click on basic search type on left panel
   $('.map-search-left-panel').click ->
-    mapControls.userSearchAction(mapControls.marker, mapControls.autocompleteLeftPanel, 'basic-search-form')
+    mapControls.userSearchAction(mapControls.autocompleteLeftPanel, 'basic-search-form')
 
   # when user click on advanced search type on left panel
   $('.advanced-map-search-left-panel').click ->
-    mapControls.userSearchAction(mapControls.marker, mapControls.autocompleteLeftPanel, 'advanced-search-form')
+    mapControls.userSearchAction(mapControls.autocompleteLeftPanel, 'advanced-search-form')
 
 #############################################################################
 
-mapControls.userSearchAction = (marker, autocomplete, formToSubmit) ->
+mapControls.userSearchAction = (autocomplete, formToSubmit) ->
   mapControls.infowindow.close()
-  mapControls.goToNewPlace(marker, autocomplete)
+  mapControls.goToNewPlace(autocomplete)
   $('#'+formToSubmit).submit()
 
 #############################################################################
 
-mapControls.goToNewPlace = (marker, autocomplete) ->
-  marker.setVisible false
+mapControls.goToNewPlace = (autocomplete) ->
   place = autocomplete.getPlace()
 
   if !place && document.getElementById('search-input-left-panel').value == ''
@@ -92,7 +88,3 @@ mapControls.goToNewPlace = (marker, autocomplete) ->
     mapControls.map.fitBounds place.geometry.viewport
   else if place
     mapControls.map.setCenter place.geometry.location
-
-  if place
-    marker.setPosition place.geometry.location
-    marker.setVisible false
