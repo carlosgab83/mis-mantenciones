@@ -38,8 +38,6 @@ mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->
 
   mapControls.infowindow = new google.maps.InfoWindow()
 
-
-
 #############################################################################
 
 mapControls.buttonListeners = () ->
@@ -99,12 +97,15 @@ mapControls.setMobileLocation = () ->
   if navigator.geolocation
     navigator.geolocation.getCurrentPosition(mapControls.successObtainPosition, mapControls.errorObtainPosition)
 
+#############################################################################
+
 mapControls.successObtainPosition = (location) ->
   latitude = location.coords.latitude
   longitude = location.coords.longitude
   latlng = new google.maps.LatLng(latitude, longitude);
   mapControls.map.setCenter latlng
 
+#############################################################################
 
 mapControls.errorObtainPosition = (error) ->
-  alert('Debes activar la geolalización en tu dispositivo')
+  alert('No pudimos obtener tu ubicación. Recuerda que debes activar la geolocalización en tu dispositivo')
