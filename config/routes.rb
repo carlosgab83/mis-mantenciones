@@ -34,6 +34,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :search_branches, :path => '/search-branches', only: [:create] do
+    collection do
+      get :model_collection
+    end
+  end
+
   resources :shop_inscriptions, only: [:new, :create, :update]
 
   # Error Handling

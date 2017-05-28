@@ -16,7 +16,9 @@ leftPanelControls.initilization = () ->
     $('#floating-form').addClass('next-step').trigger 'stepChange'
 
   $('#uncheck-checkboxes').on 'click', ->
-    $('.checkbox input').attr('checked', false)
+    $('#branch_types-filters input').attr('checked', false)
+    $('#branch_types-filters input').each () ->
+      branchesControls.filterBranches(this)
 
   $('#floating-form').on 'stepChange', ->
     $('#left-map').addClass('open')
@@ -31,3 +33,18 @@ leftPanelControls.initilization = () ->
 
   $('#search-input-left-panel').on 'focus', ->
     $(this).select()
+
+  $('#search_brand_id').on 'change', ->
+    leftPanelControls.getModelsByBrand($(this).val())
+
+#############################################################################
+
+leftPanelControls.getModelsByBrand = (selectedBrandId) ->
+  params = {}
+  params['brand_id'] = selectedBrandId
+  url = '/search-branches/model_collection'
+  method ="GET"
+  success_function = ->
+  generalControls.sendAjax(params, url, success_function, method)
+
+#############################################################################
