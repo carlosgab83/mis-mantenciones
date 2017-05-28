@@ -14,9 +14,9 @@ a.open-sidebar
       .panel-body
         = form_tag search_branches_path, remote: true, id: 'basic-search-form'
           .form-group
-            = select_tag "search[brand_id]", options_from_collection_for_select(Brand.actives, "id_marca", "descripcion"), class: 'selectpicker form-control', include_blank: true, title: 'Marca', 'data-live-search' => 'true', 'data-none-results-text'=>'No se encontraron resultados para {0}'
+            = select_tag "search[brand_id]", options_from_collection_for_select(Brand.actives, "id_marca", "descripcion"), class: 'selectpicker form-control like-input', include_blank: true, title: 'Marca', 'data-live-search' => 'true', 'data-none-results-text'=>'No se encontraron resultados para {0}'
           .form-group
-            = select_tag "search[model_id]", options_from_collection_for_select([], "id_marca", "descripcion"), class: 'selectpicker form-control', include_blank: true, title: 'Modelo', 'data-live-search' => 'true', 'data-none-results-text'=>'No se encontraron resultados para {0}'
+            = select_tag "search[model_id]", options_from_collection_for_select([], "id_marca", "descripcion"), class: 'selectpicker form-control like-input', include_blank: true, title: 'Modelo', 'data-live-search' => 'true', 'data-none-results-text'=>'No se encontraron resultados para {0}'
           .form-group
             button.btn.btn-cta.btn-ghost.btn-block.map-search-left-panel type="button"
               | Buscar
