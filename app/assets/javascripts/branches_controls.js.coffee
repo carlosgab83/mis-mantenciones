@@ -38,9 +38,8 @@ branchesControls.drawBranches = () ->
     if(oldMarker)
       branchesControls.updateOldMarker(oldMarker, branch)
       oldMarker.customInfo['timestamp'] = timestamp
-      console.log('appliyng timestamp to'+branch[branchesControls.ID])
     else
-      # Is a non-existent (new) marker. Must to be inserted
+      # Is a non-existent (new) marker. Must be inserted
       marker = branchesControls.insertNewMarker(branch)
       branchesControls.associativeMarkers[branch[branchesControls.ID]] = marker
       marker.customInfo['timestamp'] = timestamp
