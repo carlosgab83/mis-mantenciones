@@ -61,3 +61,11 @@ input.accept-terms-check.error {
  opacity: 0;
  }
 }
+
+#map-search.panel-group .bs-searchbox input{
+  color: blue;
+}
+
+#map-search.panel-group .no-results{
+ color: blue;
+}
