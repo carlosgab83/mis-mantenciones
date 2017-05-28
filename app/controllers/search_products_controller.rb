@@ -1,7 +1,5 @@
 class SearchProductsController < ApplicationController
 
-  # Follow Pattern Only CRUD Controllers
-
   # When calling this controller without any category
   # Simply redirect to show with first root category
   def index
