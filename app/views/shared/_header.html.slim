@@ -3,7 +3,7 @@ header#header
     .row
       -if action_name == 'results'
         / Section MY PAUTA
-        .col-xs-12.col-sm-6.col-lg-7
+        .col-xs-12.col-sm-6.col-lg-5.text-right
           = form_tag(:results_home, method: :post, class: 'form-inline search-patent') do
             .form-group
               label.sr-only for="exampleInputName2" Patente

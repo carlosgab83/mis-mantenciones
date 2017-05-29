@@ -129,6 +129,14 @@ a {
 		}
 	}
 }
+body.home {
+	#header {
+		@media #{$xs} {
+			background-color: rgba($dark-color,0.85);
+			&:after {border-color: rgba($dark-color,0.85) transparent transparent transparent;}
+		}
+	}
+}
 
 // Home
 #wrapper.homepage {
@@ -169,6 +177,11 @@ a {
 
 // Dashboard
 section#section-map {
+	#center-map {
+		background: rgba($main-color,0.8);
+		border-color: $main-color;
+		color: $light-color;
+	}
 	.map-form {
 		background: rgba(saturate(darken($main-color,6%),8%),0.85);
 		color: $back-color;
@@ -226,6 +239,9 @@ section#section-map {
 			background: rgba(saturate(darken($main-color,6%),8%),0.85);
 			color: $back-color;
 			box-shadow: 4px 4px 8px rgba($dark-color,0.1);
+			@media #{$xs}{
+				background-color: rgba($dark-color,0.85);
+			}
 		}
 		.panel-group {
 			border-top-color: rgba($light-color,0.2);

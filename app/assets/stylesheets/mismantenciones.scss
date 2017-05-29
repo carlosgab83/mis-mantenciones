@@ -245,9 +245,6 @@ body {
 	@media #{$xs}{
 		padding-bottom: 0;
 	}
-	@media #{$xxs}{
-		padding-top: 10px;
-	}
 	&:after {@extend .bottom-triangle;}
 	div.text-right[class*='col-'] {
 		@media #{$xs}{
@@ -265,17 +262,10 @@ body {
 		@media #{$xs}{
 			width: 100%;
 			text-align: center;
-			margin-top: 0;
-			margin-bottom: 0;
+			margin: 0;
 			max-width: none;
 			img {
 				display: inline-block;
-				max-width: 240px;
-			}
-		}
-		@media #{$xxs}{
-			margin-bottom: 5px;
-			img {
 				max-width: 190px;
 			}
 		}
