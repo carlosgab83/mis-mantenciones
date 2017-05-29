@@ -287,9 +287,13 @@ javascript:
         document.getElementById('map').classList.add('right-open');
         toggleBounce(this);
       });
+
+      // agregué esto para centrar el mapa
       google.maps.event.addDomListener(document.getElementById('center-map'), 'click', function () {
         map.setCenter(new google.maps.LatLng(stgo));
       });
+
+      
       function toggleBounce(currentIcon) {
         currentIcon.setAnimation(null);
         if (currentIcon.getAnimation() != null) {

@@ -27,9 +27,14 @@ leftPanelControls.initilization = () ->
     $(this).parent().toggleClass('open')
     if ($(this).parent().attr('id') == "left-map")
       $('#floating-form').addClass('next-step')
+    if ($(this).parent().attr('id') == "right-map")
+      $('#map').toggleClass('right-open')
+    if ($(this).css('position') == 'fixed') 
+      $('#right-map').removeClass('open')
 
   $('.close-sidebar').on 'click', ->
     $(this).parent().removeClass('open')
+    $('#map').removeClass('right-open')
 
   $('#search-input-left-panel').on 'focus', ->
     $(this).select()
