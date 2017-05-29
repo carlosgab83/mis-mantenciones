@@ -35,21 +35,16 @@ $(document).ready(function(){
   });
 
   // Send advise Popover
-  $("#contact-modal").on('shown.bs.modal', function(){
-    $("#contact-submit").popover({
-      placement: "bottom",
-      trigger: "manual",
-      html: true,
-      container: "body",
-      content: "<strong>¡No te preocupes!</strong><br> No pagarás nada por apretar este botón"
-    });
-    setTimeout(function(){
-      $("#contact-submit").popover('show');
-    }, 2000);
+  $("#buy-promotion").popover({
+    placement: "bottom",
+    trigger: "manual",
+    html: true,
+    container: "body",
+    content: "<strong>¡No te preocupes!</strong><br> No pagarás nada por apretar este botón" 
   });
-  $("#contact-modal").on('hide.bs.modal', function(){
-    $("#contact-submit").popover('hide');
-  });
+  setTimeout(function(){
+    $("#buy-promotion").popover('show');
+  }, 2000);
 
   $('.input-capital').on('input', function(evt) {
     $(this).val(function (_, val) {

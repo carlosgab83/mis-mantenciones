@@ -1,17 +1,26 @@
 header#header
   .container
     .row
-      .col-xs-12.col-sm-6.col-lg-7
+      .col-xs-2.col-sm-6.col-lg-7.fixed-xs
         = link_to new_shop_inscription_path, class: 'btn btn-link btn-special pull-right hidden-xs', remote: true
           strong
             | Publica tu Taller
         figure#logo
           = link_to :root do
-            = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive")
+            = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive hidden-xs")
+            = image_tag("logo-mm-xs.png", :alt => "Mis Mantenciones", :class => "img-responsive visible-xs")
 
       .col-xs-12.col-sm-6.col-lg-5.text-right
-        ul.list-inline
-          li
-            = link_to 'Promociones', promotions_path
-          li
-            = link_to 'Repuestos', search_products_path
+
+        .navbar-header
+          button.navbar-toggle type="button" data-toggle="collapse" data-target="#mm-navbar"
+            i.fa.fa-bars
+
+        #mm-navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              = link_to 'Promociones', promotions_path
+            li
+              = link_to 'Repuestos', search_products_path
+            li.visible-xs
+              = link_to "Términos y Condiciones", "http://files.mismantenciones.com/pdf/Términos-y-Condiciones-MisMantenciones.pdf", target: :_blank
