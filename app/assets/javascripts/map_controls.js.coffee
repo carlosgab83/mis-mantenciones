@@ -6,6 +6,7 @@ mapControls.ready = ->
   # Insert initilization code here
   document.getElementById('search-input').focus()
   mapControls.branches = []
+  mapControls.markerClustererImagePath = ''
   mapControls.buttonListeners()
 
 $(document).ready(mapControls.ready)

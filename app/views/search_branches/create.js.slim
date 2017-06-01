@@ -1,8 +1,11 @@
 |
+  //sets MarkerClusterer Image path
+  mapControls.markerClustererImagePath = '#{root_url + 'assets/markerclusterer/m'}';
   // It sets to js variable the whole list of branches
   tmpBranches = #{raw Branch.to_map_builder(@branches).target!};
   if(!generalControls.arraysEqual(tmpBranches, branchesControls.branches)){
+    branchesControls.makeCluster([]);
     branchesControls.branches = tmpBranches;
-    branchesControls.drawBranches();
+    markers = branchesControls.drawBranches();
   }
 

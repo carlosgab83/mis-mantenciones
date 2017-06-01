@@ -23,9 +23,11 @@ branchesControls.initilization = () ->
 
   branchesControls.branches = []
   branchesControls.associativeMarkers = {}
+  branchesControls.markerClusterer = branchesControls.markerClusterer = new MarkerClusterer(mapControls.map, [], {imagePath: ''})
+
 
   $('#branch_types-filters input').click ->
-    branchesControls.filterBranches(this)
+    branchesControls.drawBranches()
 
 #############################################################################
 
@@ -41,14 +43,27 @@ branchesControls.drawBranches = () ->
     else
       # Is a non-existent (new) marker. Must be inserted
       marker = branchesControls.insertNewMarker(branch)
-      branchesControls.associativeMarkers[branch[branchesControls.ID]] = marker
-      marker.customInfo['timestamp'] = timestamp
+      if marker
+        branchesControls.associativeMarkers[branch[branchesControls.ID]] = marker
+        marker.customInfo['timestamp'] = timestamp
 
   # Delete deprecated markers (not longer nedeed because last search)
   for markerId, marker of branchesControls.associativeMarkers
     if branchesControls.associativeMarkers[markerId].customInfo['timestamp'] != timestamp
       branchesControls.associativeMarkers[markerId].setMap(null)
       delete(branchesControls.associativeMarkers[markerId])
+
+  markers = []
+  for markerId, marker of branchesControls.associativeMarkers
+    markers.push(marker)
+
+  return markers
+
+#############################################################################
+
+branchesControls.makeCluster = (markers) ->
+  branchesControls.markerClusterer.clearMarkers()
+  branchesControls.markerClusterer = new MarkerClusterer(mapControls.map, markers, {imagePath: mapControls.markerClustererImagePath})
 
 #############################################################################
 
@@ -62,10 +77,12 @@ branchesControls.updateOldMarker = (marker, branch) ->
 
   # marker must be drawn depending on left filter selection (branch type)
   if branchesControls.markerMustBeDrawn(marker)
-    if marker.getMap() == null
-      marker.setMap(mapControls.map)
+    if !branchesControls.associativeMarkers[marker.id]
+      branchesControls.markerClusterer.addMarker(marker)
+      return marker
   else
-    marker.setMap(null)
+    delete(branchesControls.associativeMarkers[marker.id])
+    branchesControls.markerClusterer.removeMarker(marker)
 
 #############################################################################
 
@@ -81,11 +98,9 @@ branchesControls.insertNewMarker = (branch) ->
     customInfo: {branch: branch})
 
   if branchesControls.markerMustBeDrawn(marker)
-    marker.setMap(mapControls.map)
+    branchesControls.markerClusterer.addMarker(marker)
   else
-    marker.setMap(null)
-
-  branchesControls.setJumpingMarker(marker)
+    return null
   return marker
 
 #############################################################################
@@ -99,7 +114,12 @@ branchesControls.markerMustBeDrawn = (marker) ->
 
 #############################################################################
 
+# This method is called from markerclusterer.js
 branchesControls.setJumpingMarker = (marker) ->
+  # if marker.getMap() != null
+    # marker.setMap(null);
+    # marker.setMap(mapControls.map)
+
   setTimeout (->
     if marker.getMap() != null && marker.customInfo['branch'][branchesControls.INTERVAL_BETWEEN_JUMPS] > 0
       branchesControls.jumpOnce(marker)
@@ -116,18 +136,5 @@ branchesControls.jumpOnce = (marker) ->
     setTimeout (->
       marker.setAnimation null
     ), 700
-
-##############################################################################
-
-branchesControls.filterBranches = (checkbox) ->
-  branchTypeId = checkbox.value
-  checked = checkbox.checked
-  for markerId, marker of branchesControls.associativeMarkers
-    if String(branchesControls.associativeMarkers[markerId].customInfo['branch'][branchesControls.BRANCH_TYPE_ID]) == branchTypeId
-      if checked
-        branchesControls.associativeMarkers[markerId].setMap(mapControls.map)
-        branchesControls.setJumpingMarker(marker)
-      else
-        branchesControls.associativeMarkers[markerId].setMap(null)
 
 ##############################################################################
