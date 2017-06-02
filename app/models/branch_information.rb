@@ -1,3 +1,3 @@
-class BranchInformation < GeneralPromotion
+class BranchInformation < Promotion
 
 end
