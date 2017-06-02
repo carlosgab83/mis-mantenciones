@@ -77,9 +77,11 @@ branchesControls.updateOldMarker = (marker, branch) ->
 
   # marker must be drawn depending on left filter selection (branch type)
   if branchesControls.markerMustBeDrawn(marker)
-    if !branchesControls.associativeMarkers[marker.id]
-      branchesControls.markerClusterer.addMarker(marker)
-      return marker
+    if branchesControls.associativeMarkers[marker.id]
+      branchesControls.markerClusterer.removeMarker(marker)
+
+    branchesControls.markerClusterer.addMarker(marker)
+    return marker
   else
     delete(branchesControls.associativeMarkers[marker.id])
     branchesControls.markerClusterer.removeMarker(marker)
