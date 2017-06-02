@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523043002) do
+ActiveRecord::Schema.define(version: 20170601151321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -250,6 +250,7 @@ ActiveRecord::Schema.define(version: 20170523043002) do
     t.string   "image_url"
     t.string   "slug"
     t.string   "type"
+    t.integer  "kms"
     t.index ["category_id"], name: "index_promotions_on_category_id", using: :btree
     t.index ["name"], name: "promotions_business_index", unique: true, using: :btree
     t.index ["slug"], name: "index_promotions_on_slug", using: :btree
@@ -268,7 +269,7 @@ ActiveRecord::Schema.define(version: 20170523043002) do
     t.index ["promotion_id"], name: "index_promotions_vmes_on_promotion_id", using: :btree
   end
 
-  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, comment: "Rut taller", force: :cascade do |t|
+  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, force: :cascade, comment: "Rut taller" do |t|
     t.string  "ide_dv",        limit: 1,               null: false
     t.text    "ide_nombre_rz",                         null: false
     t.integer "ide_estado",              default: 1,   null: false
@@ -286,7 +287,6 @@ ActiveRecord::Schema.define(version: 20170523043002) do
     t.integer "v_pro_rut"
     t.text    "v_pro_dv"
     t.text    "v_pro_nombre"
-    t.index ["v_rvm"], name: "idx_v_rvm", unique: true, using: :btree
     t.index ["v_rvm"], name: "index_v_rvm", using: :btree
   end
 
