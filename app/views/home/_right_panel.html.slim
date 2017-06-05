@@ -1,0 +1,54 @@
+- if @branch_items.information
+  .panel
+    .panel-heading
+      a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#info" Información
+    #info.panel-collapse.collapse
+      .panel-body
+        ul.list-unstyled
+          li
+            .single-info
+              = image_tag(@branch_items.information.image_url, :alt => @branch_items.information.name, :class => "img-responsive")
+              strong #{@branch.branch_type.name} #{@branch.name}
+              br
+              /span Atención de Lunes a Viernes de 9:00 a 18:00 hrs
+              /= link_to "Contáctalos", "#", class: "btn btn-cta btn-block"
+
+- if @branch_items.promotions.any?
+  .panel
+    .panel-heading
+      a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#promo" Promociones
+    #promo.panel-collapse.in
+      .panel-body
+        ul.list-unstyled
+          - @branch_items.promotions.each do |promotion|
+            li
+              = link_to promotion_path(promotion), class: "single-detail" do
+                = image_tag(promotion.image_url, :alt => promotion.name, :class => "img-responsive")
+                span #{promotion.name}
+
+-if @branch_items.manteinances.any?
+  .panel
+    .panel-heading
+      a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#tires" Mantenciones
+    #tires.panel-collapse.collapse
+      .panel-body
+        ul.list-unstyled
+          - @branch_items.manteinances.each do |manteinance|
+            li
+              = link_to promotion_path(manteinance), class: "single-detail", target: :blank do
+                = image_tag(manteinance.image_url, :alt => manteinance.name, :class => "img-responsive")
+                span #{manteinance.name}
+
+- @branch_items.categories.each do |category|
+  .panel
+    .panel-heading
+      a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#parts" #{category.name}
+    #parts.panel-collapse.collapse
+      .panel-body
+        ul.list-unstyled
+          - category.products.each do |product|
+            li
+              = link_to product_path(product), class: "single-detail", target: :blank do
+                = image_tag(product.image_url, :alt => product.name, :class => "img-responsive")
+                span #{product.name}
+                strong Desde #{number_to_currency product.price}
