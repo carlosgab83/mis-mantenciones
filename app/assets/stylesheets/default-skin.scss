@@ -318,6 +318,62 @@ section#section-parts {
 	}
 }
 
+// Guideline & Carousels
+section#section-guideline {
+	background-image: image-url("background-image.jpg");
+	&:after {
+		background: $main-color;
+		background: rgba($main-color,0.93);
+		background: -moz-linear-gradient(left, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		box-shadow: inset 0 0 200px rgba(darken($main-color,10%),0.4);
+	}
+	color: $back-color;
+	#guideline-list {
+		border-bottom-color: rgba($dark-color,0.25);
+		h2:after {border-bottom-color: rgba($dark-color,0.25);}
+		a {
+			color: $back-color;
+			.badge {
+				background-color: $back-color;
+				color: $main-color;
+			}
+			&:not(.disabled) {
+				&:hover, &:active, &:focus {
+					text-shadow: 0 2px 0 rgba($dark-color,0.2);
+					.badge {box-shadow: 0 2px 0 rgba($dark-color,0.2);}
+				}
+			}
+		}
+		.popover {
+			color: $dark-color;
+			box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+		}
+	}
+}
+section#section-promos {
+	background-color: $back-color;
+	&:before {border-color: transparent transparent $back-color transparent;}
+	&:after {border-color: $back-color transparent transparent transparent;}
+}
+section#section-parts {
+	background-image: image-url("guideline-background.jpg");
+	&:after {
+		background: $light-color;
+		background: rgba($light-color,0.94);
+	}
+	#part-list {
+		li {
+			a {
+				border-color: $dark-color;
+				color: $dark-color;
+				background-color: $back-color;
+			}
+		}
+	}
+}
+
 // Catalog
 .catalog {
 	background-color: $light-color;
