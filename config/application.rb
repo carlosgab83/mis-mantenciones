@@ -14,6 +14,7 @@ module MisMantenciones
     config.eager_load_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths += Dir["#{config.root}/app/**/"]
+    config.autoload_paths += Dir["#{config.root}/app/models/view_models/"]
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.assets.paths << Rails.root.join("vendor", "assets", "images")
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/

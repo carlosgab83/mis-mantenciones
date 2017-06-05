@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :search_branches, :path => '/search-branches', only: [:create] do
+  resources :search_branches, :path => '/search-branches', only: [:create, :show] do
     collection do
       get :model_collection
     end
