@@ -1,7 +1,7 @@
 class BranchItems
 
   attr_accessor :branch_items
-  attr_reader :information, :promotions, :manteinances, :categories
+  attr_reader :information, :promotions, :manteinances, :categories, :show_info_button
 
   def initialize(params = {})
     self.branch_items = params[:branch_items]
@@ -9,12 +9,13 @@ class BranchItems
     self.promotions = []
     self.manteinances = []
     self.categories = []
+    self.show_info_button = (params[:branch_items].try(:[], :show_info_button) != false)
     fill_object
   end
 
   private
 
-  attr_writer :information, :promotions, :manteinances, :categories
+  attr_writer :information, :promotions, :manteinances, :categories, :show_info_button
 
   def fill_object
     fill_promotions

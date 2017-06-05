@@ -11,7 +11,8 @@
               strong #{@branch.branch_type.name} #{@branch.name}
               br
               /span Atención de Lunes a Viernes de 9:00 a 18:00 hrs
-              /= link_to "Contáctalos", "#", class: "btn btn-cta btn-block"
+              - if @branch_items.show_info_button
+                = link_to "Contáctalos", "#", class: "btn btn-cta btn-block"
 
 - if @branch_items.promotions.any?
   .panel
