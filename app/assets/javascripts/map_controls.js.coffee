@@ -4,10 +4,11 @@ window.mapControls ?= {}
 # Event listener:
 mapControls.ready = ->
   # Insert initilization code here
-  document.getElementById('search-input').focus()
-  mapControls.branches = []
-  mapControls.markerClustererImagePath = ''
-  mapControls.buttonListeners()
+  if typeof google != 'undefined'
+    document.getElementById('search-input').focus()
+    mapControls.branches = []
+    mapControls.markerClustererImagePath = ''
+    mapControls.buttonListeners()
 
 $(document).ready(mapControls.ready)
 $(document).on('page:load', mapControls.ready)

@@ -4,7 +4,8 @@ window.branchesControls ?= {}
 # Event listener:
 branchesControls.ready = ->
   # Insert initilization code here
-  branchesControls.initilization()
+  if typeof google != 'undefined'
+    branchesControls.initilization()
 
 $(document).ready(branchesControls.ready)
 $(document).on('page:load', branchesControls.ready)
@@ -75,7 +76,7 @@ branchesControls.updateOldMarker = (marker, branch) ->
   marker.title = branch[branchesControls.NAME]
   marker.customInfo = {branch: branch}
 
-  # marker must be drawn depending on left filter selection (branch type)
+  # Marker must be drawn depending on left filter selection (branch type)
   if branchesControls.markerMustBeDrawn(marker)
     if branchesControls.associativeMarkers[marker.id]
       branchesControls.markerClusterer.removeMarker(marker)
@@ -99,6 +100,10 @@ branchesControls.insertNewMarker = (branch) ->
     id: branch[branchesControls.ID]
     customInfo: {branch: branch})
 
+  marker.addListener('click', ->
+    branchesControls.clickOnMarker(marker)
+    )
+
   if branchesControls.markerMustBeDrawn(marker)
     branchesControls.markerClusterer.addMarker(marker)
   else
@@ -118,10 +123,6 @@ branchesControls.markerMustBeDrawn = (marker) ->
 
 # This method is called from markerclusterer.js
 branchesControls.setJumpingMarker = (marker) ->
-  # if marker.getMap() != null
-    # marker.setMap(null);
-    # marker.setMap(mapControls.map)
-
   setTimeout (->
     if marker.getMap() != null && marker.customInfo['branch'][branchesControls.INTERVAL_BETWEEN_JUMPS] > 0
       branchesControls.jumpOnce(marker)
@@ -138,5 +139,14 @@ branchesControls.jumpOnce = (marker) ->
     setTimeout (->
       marker.setAnimation null
     ), 700
+
+##############################################################################
+
+branchesControls.clickOnMarker = (marker) ->
+  params = {}
+  url = '/search-branches/' + marker.id
+  method ="GET"
+  success_function = ->
+  generalControls.sendAjax(params, url, success_function, method)
 
 ##############################################################################
