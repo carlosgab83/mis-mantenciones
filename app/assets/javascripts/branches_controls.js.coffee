@@ -24,11 +24,17 @@ branchesControls.initilization = () ->
 
   branchesControls.branches = []
   branchesControls.associativeMarkers = {}
+  branchesControls.timersForMarkers = {}
+
   branchesControls.markerClusterer = branchesControls.markerClusterer = new MarkerClusterer(mapControls.map, [], {imagePath: ''})
 
 
   $('#branch_types-filters input').click ->
-    branchesControls.drawBranches()
+    generalControls.showLoadingEffect()
+    setTimeout (->
+      branchesControls.drawBranches()
+      generalControls.hideLoadingEffect()
+    ), 500
 
 #############################################################################
 
@@ -36,6 +42,7 @@ branchesControls.drawBranches = () ->
   timestamp = new Date().getTime()
 
   # Insert or update markers
+  branchesControls.stopAllJumpingMarkers()
   for branch in branchesControls.branches
     oldMarker = branchesControls.associativeMarkers[branch[branchesControls.ID]]
     if(oldMarker)
@@ -64,6 +71,7 @@ branchesControls.drawBranches = () ->
 
 branchesControls.makeCluster = (markers) ->
   branchesControls.markerClusterer.clearMarkers()
+  branchesControls.stopAllJumpingMarkers()
   branchesControls.markerClusterer = new MarkerClusterer(mapControls.map, markers, {imagePath: mapControls.markerClustererImagePath})
 
 #############################################################################
@@ -121,12 +129,18 @@ branchesControls.markerMustBeDrawn = (marker) ->
 
 #############################################################################
 
+branchesControls.stopAllJumpingMarkers = () ->
+  for markerId, timer of branchesControls.timersForMarkers
+    clearTimeout(timer)
+
+#############################################################################
+
 # This method is called from markerclusterer.js
 branchesControls.setJumpingMarker = (marker) ->
-  setTimeout (->
+  return setTimeout (->
     if marker.getMap() != null && marker.customInfo['branch'][branchesControls.INTERVAL_BETWEEN_JUMPS] > 0
       branchesControls.jumpOnce(marker)
-      branchesControls.setJumpingMarker(marker, marker.customInfo['branch'][branchesControls.INTERVAL_BETWEEN_JUMPS])
+      branchesControls.timersForMarkers[marker.id] = branchesControls.setJumpingMarker(marker, marker.customInfo['branch'][branchesControls.INTERVAL_BETWEEN_JUMPS])
   ), marker.customInfo['branch'][branchesControls.INTERVAL_BETWEEN_JUMPS]
 
 #############################################################################
