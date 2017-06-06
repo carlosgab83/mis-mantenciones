@@ -145,6 +145,10 @@ branchesControls.jumpOnce = (marker) ->
 branchesControls.clickOnMarker = (marker) ->
   params = {}
   url = '/search-branches/' + marker.id
+  url = url + '?search[brand_id]=' + $('#search_brand_id').val()
+  url = url + '&search[model_id]=' + $('#search_model_id').val()
+  url = url + '&search[patent]=' + $('#search_patent').val()
+  url = url + '&search[kms]=' + $('#search_kms').val()
   method ="GET"
   success_function = ->
   generalControls.sendAjax(params, url, success_function, method)

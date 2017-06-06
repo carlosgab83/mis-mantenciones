@@ -18,7 +18,7 @@ class SearchBranchesController < ApplicationController
   end
 
   def show
-    @branch_items = BranchItemsFinder.new(branch: branch).call
+    @branch_items = BranchItemsFinder.new(branch: branch, form: search_branches_form).call
     respond_to do |format|
       format.js
     end
@@ -40,5 +40,4 @@ class SearchBranchesController < ApplicationController
   def branch
     @branch ||= Branch.includes(:branch_type).find params[:id]
   end
-
 end

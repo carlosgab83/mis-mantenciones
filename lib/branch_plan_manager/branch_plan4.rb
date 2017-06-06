@@ -1,4 +1,4 @@
 module BranchPlanManager
-  class BranchPlan4 < Base
+  class BranchPlan4 < BranchPlan3
   end
 end

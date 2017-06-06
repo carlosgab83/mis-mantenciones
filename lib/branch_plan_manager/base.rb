@@ -4,15 +4,16 @@ module BranchPlanManager
   PRODUCTS_LIMIT = 3
   PROMOTIONS_LIMIT = 3
 
-    attr_reader :branch
+    attr_reader :branch, :user_input
 
     def initialize(params = {})
       self.branch = params[:branch]
+      self.user_input = params[:user_input]
       return branch_plan_class
     end
 
     def branch_plan_instance
-      branch_plan_class.new(branch: branch)
+      branch_plan_class.new(branch: branch, user_input: user_input)
     end
 
     protected
@@ -38,19 +39,26 @@ module BranchPlanManager
       }.call
     end
 
+    def generic_promotions
+      generic_promotions = OtherPromotion.availables.actives.with_stock.not_deleted
+        .joins(branches_promotions: :branch)
+        .where("branches.id = ?", branch.id)
+        .order("promotions.priority desc, promotions.promo_price asc, promotions.created_at desc")
+    end
+
     private
 
-    attr_accessor :branch
+    attr_writer :branch, :user_input
 
     def branch_plan_class
       case branch.plan.try(:name)
-        when 'Plan 1'
+        when Plan::PLAN1
           BranchPlan1
-        when 'Plan 2'
+        when Plan::PLAN2
           BranchPlan2
-        when 'Plan 3'
+        when Plan::PLAN3
           BranchPlan3
-        when 'Plan 4'
+        when Plan::PLAN4
           BranchPlan4
         else
           BranchPlan1
