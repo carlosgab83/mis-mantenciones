@@ -2,7 +2,7 @@
   .panel
     .panel-heading
       a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#info" Información
-    #info.panel-collapse.collapse
+    #info.panel-collapse.in
       .panel-body
         ul.list-unstyled
           li
@@ -18,7 +18,7 @@
   .panel
     .panel-heading
       a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#promo" Promociones
-    #promo.panel-collapse.in
+    #promo.panel-collapse.collapse
       .panel-body
         ul.list-unstyled
           - @branch_items.promotions.each do |promotion|
