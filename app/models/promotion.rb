@@ -1,8 +1,8 @@
 class Promotion < ApplicationRecord
 
   # Class Promotion was refactorized when client request for reutilize
-  # table promotions to store [OtherPromotions, BranchInformation and Manteinance].
-  # Since, a promotions concept already used, Promotion go to parent and [OtherPromotions, BranchInformation and Manteinance]
+  # table promotions to store [OtherPromotion, BranchInformation and Manteinance].
+  # Since, a promotions concept already used, Promotion go to parent and [OtherPromotion, BranchInformation and Manteinance]
   # form a STI.
 
   # You can do BrnachInformation.last.branches_promotions or
@@ -29,6 +29,9 @@ class Promotion < ApplicationRecord
 
   # Types for concepts of re-utilization of this model
   TYPES = ['OhterPromotion', 'BranchInformation', 'Manteinance']
+
+  # Validations
+  validates :priority, :image_url, :name, :description, :from_date, :to_date, presence: true
 
   def shops_details
     branches.collect do |b|
