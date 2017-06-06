@@ -27,7 +27,7 @@ class SearchBranchesForm < BaseForm
   end
 
   def kms
-    @kms ||= params['kms']
+    @kms ||= params['kms'].try(:delete, '.')
   end
 
   def basic_search?
