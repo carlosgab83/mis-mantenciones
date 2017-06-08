@@ -48,3 +48,19 @@ leftPanelControls.getModelsByBrand = (selectedBrandId) ->
   generalControls.sendAjax(params, url, success_function, method)
 
 #############################################################################
+
+leftPanelControls.resetBasicForm = () ->
+  document.getElementById("basic-search-form").reset();
+  brandPiker = $("#search_brand_id")
+  $(brandPiker).val('default');
+  $(brandPiker).selectpicker("refresh");
+  modelPiker = $("#search_model_id")
+  $(modelPiker).val('default');
+  $(modelPiker).selectpicker("refresh");
+
+#############################################################################
+
+leftPanelControls.resetAdvancedForm = () ->
+  document.getElementById("advanced-search-form").reset();
+
+#############################################################################
