@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601151321) do
+ActiveRecord::Schema.define(version: 20170608034301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20170601151321) do
     t.float    "latitude"
     t.float    "longitude"
     t.float    "interval_between_jumps"
+    t.string   "slug"
     t.index ["branch_type_id"], name: "index_branches_on_branch_type_id", using: :btree
     t.index ["name"], name: "branches_business_index", unique: true, using: :btree
     t.index ["plan_id"], name: "index_branches_on_plan_id", using: :btree
@@ -269,7 +270,7 @@ ActiveRecord::Schema.define(version: 20170601151321) do
     t.index ["promotion_id"], name: "index_promotions_vmes_on_promotion_id", using: :btree
   end
 
-  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, force: :cascade, comment: "Rut taller" do |t|
+  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, comment: "Rut taller", force: :cascade do |t|
     t.string  "ide_dv",        limit: 1,               null: false
     t.text    "ide_nombre_rz",                         null: false
     t.integer "ide_estado",              default: 1,   null: false
@@ -287,6 +288,7 @@ ActiveRecord::Schema.define(version: 20170601151321) do
     t.integer "v_pro_rut"
     t.text    "v_pro_dv"
     t.text    "v_pro_nombre"
+    t.index ["v_rvm"], name: "idx_v_rvm", unique: true, using: :btree
     t.index ["v_rvm"], name: "index_v_rvm", using: :btree
   end
 
@@ -336,6 +338,7 @@ ActiveRecord::Schema.define(version: 20170601151321) do
     t.string   "email"
     t.boolean  "status",     default: false
     t.string   "image_url"
+    t.string   "slug"
     t.index ["name"], name: "shops_business_index", unique: true, using: :btree
     t.index ["rut"], name: "index_shops_on_rut", unique: true, using: :btree
   end
