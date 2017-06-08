@@ -18,7 +18,7 @@
   .panel
     .panel-heading
       a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#promo" Promociones
-    #promo.panel-collapse.collapse
+    #promo.panel-collapse.in
       .panel-body
         ul.list-unstyled
           - @branch_items.promotions.each do |promotion|
@@ -31,7 +31,7 @@
   .panel
     .panel-heading
       a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#tires" Mantenciones
-    #tires.panel-collapse.collapse
+    #tires.panel-collapse.in
       .panel-body
         ul.list-unstyled
           - @branch_items.manteinances.each do |manteinance|
@@ -44,7 +44,7 @@
   .panel
     .panel-heading
       a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#parts" #{category.name}
-    #parts.panel-collapse.collapse
+    #parts.panel-collapse.in
       .panel-body
         ul.list-unstyled
           - category.products.each do |product|
