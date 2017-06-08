@@ -18,6 +18,7 @@ class Promotion < ApplicationRecord
   has_many :promotion_attributes, through: :attributes_promotions
   has_many :promotions_vmes, foreign_key: :promotion_id
   has_many :vmes, through: :promotions_vmes
+  has_many :shops, through: :branches
 
   scope :availables, -> {where("? between from_date and to_date", Date.today)}
   scope :actives, -> {where("status is true")}
@@ -41,6 +42,14 @@ class Promotion < ApplicationRecord
 
   def show_button?
     promo_price != -999
+  end
+
+  def first_branch
+    branches.first
+  end
+
+  def first_shop
+    first_branch.try(:shop)
   end
 
 end

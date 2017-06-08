@@ -12,6 +12,10 @@ class Branch < ApplicationRecord
 
   include BranchSerializer
   extend BranchesSerializer
+  extend FriendlyId
+
+  # Use friendly id based on name
+  friendly_id :name, use: :slugged
 
   scope :for_pauta, -> (pauta) do
     actives.includes(:shop).where(id: ids_for_pauta(pauta))
