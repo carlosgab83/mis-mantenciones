@@ -85,6 +85,20 @@ ActiveRecord::Schema.define(version: 20170608034301) do
     t.index ["shop_id"], name: "index_branches_on_shop_id", using: :btree
   end
 
+  create_table "branches_manteinance_items", force: :cascade do |t|
+    t.integer  "manteinance_item_id",                 null: false
+    t.integer  "pauta_id",                            null: false
+    t.float    "full_price",                          null: false
+    t.float    "promo_price",                         null: false
+    t.float    "discount_percentage"
+    t.boolean  "deleted",             default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "branch_id",                           null: false
+    t.index ["branch_id"], name: "index_branches_manteinance_items_on_branch_id", using: :btree
+    t.index ["manteinance_item_id", "pauta_id", "branch_id"], name: "branches_manteinance_items_business_index", unique: true, using: :btree
+  end
+
   create_table "branches_products", force: :cascade do |t|
     t.float    "price"
     t.date     "from_date"
@@ -159,6 +173,38 @@ ActiveRecord::Schema.define(version: 20170608034301) do
     t.index ["promotion_id"], name: "index_coupons_on_promotion_id", using: :btree
   end
 
+  create_table "item_mantencion", primary_key: "id_item_mantencion", id: :integer, force: :cascade do |t|
+    t.text    "desc_mantencion",                 null: false
+    t.integer "id_tipo_seccion",                 null: false
+    t.boolean "deleted",         default: false
+    t.index ["id_item_mantencion"], name: "item_mantencion_business_index", unique: true, using: :btree
+    t.index ["id_tipo_seccion"], name: "idx_item_seccion", using: :btree
+  end
+
+  create_table "manteinance_coupons", force: :cascade do |t|
+    t.float    "price",                      null: false
+    t.date     "date",                       null: false
+    t.integer  "pauta_id",                   null: false
+    t.boolean  "deleted",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "branch_id",                  null: false
+    t.integer  "client_id",                  null: false
+    t.index ["branch_id"], name: "index_manteinance_coupons_on_branch_id", using: :btree
+    t.index ["client_id"], name: "index_manteinance_coupons_on_client_id", using: :btree
+  end
+
+  create_table "manteinance_coupons_items", force: :cascade do |t|
+    t.integer  "manteinance_item_id",                   null: false
+    t.float    "price",                                 null: false
+    t.boolean  "deleted",               default: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "manteinance_coupon_id",                 null: false
+    t.index ["manteinance_coupon_id"], name: "index_manteinance_coupons_items_on_manteinance_coupon_id", using: :btree
+    t.index ["manteinance_item_id", "manteinance_coupon_id"], name: "manteinance_coupons_items_business_index", unique: true, using: :btree
+  end
+
   create_table "marca", primary_key: "id_marca", id: :integer, force: :cascade do |t|
     t.text    "descripcion",              null: false
     t.integer "marca_estado", default: 1, null: false
@@ -184,6 +230,31 @@ ActiveRecord::Schema.define(version: 20170608034301) do
     t.text    "modelo_descripcion",             null: false
     t.integer "id_marca",                       null: false
     t.integer "modelo_estado",      default: 1, null: false
+  end
+
+  create_table "pauta", primary_key: "id_pauta", force: :cascade do |t|
+    t.text    "pauta_descripcion",                      null: false
+    t.integer "kilometraje",                            null: false
+    t.integer "id_marca"
+    t.integer "id_modelo"
+    t.text    "url_logo"
+    t.float   "vme_id"
+    t.boolean "deleted",                default: false
+    t.boolean "diesel_engine"
+    t.boolean "double_traction"
+    t.boolean "automatic_transmission"
+    t.integer "from_year"
+    t.integer "to_year"
+    t.index ["kilometraje", "vme_id", "diesel_engine", "double_traction", "automatic_transmission"], name: "pauta_business_index", unique: true, using: :btree
+  end
+
+  create_table "pauta_detalle", force: :cascade do |t|
+    t.integer  "id_pauta",                           null: false
+    t.integer  "id_item_mantencion",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "deleted",            default: false
+    t.index ["id_pauta", "id_item_mantencion"], name: "pauta_detalle_business_index", unique: true, using: :btree
   end
 
   create_table "plans", force: :cascade do |t|
@@ -270,7 +341,7 @@ ActiveRecord::Schema.define(version: 20170608034301) do
     t.index ["promotion_id"], name: "index_promotions_vmes_on_promotion_id", using: :btree
   end
 
-  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, comment: "Rut taller", force: :cascade do |t|
+  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, force: :cascade, comment: "Rut taller" do |t|
     t.string  "ide_dv",        limit: 1,               null: false
     t.text    "ide_nombre_rz",                         null: false
     t.integer "ide_estado",              default: 1,   null: false
@@ -288,7 +359,6 @@ ActiveRecord::Schema.define(version: 20170608034301) do
     t.integer "v_pro_rut"
     t.text    "v_pro_dv"
     t.text    "v_pro_nombre"
-    t.index ["v_rvm"], name: "idx_v_rvm", unique: true, using: :btree
     t.index ["v_rvm"], name: "index_v_rvm", using: :btree
   end
 
@@ -396,6 +466,9 @@ ActiveRecord::Schema.define(version: 20170608034301) do
   add_foreign_key "branches", "comuna", column: "commune_id", primary_key: "id_comuna"
   add_foreign_key "branches", "plans"
   add_foreign_key "branches", "shops"
+  add_foreign_key "branches_manteinance_items", "branches"
+  add_foreign_key "branches_manteinance_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
+  add_foreign_key "branches_manteinance_items", "pauta", column: "pauta_id", primary_key: "id_pauta"
   add_foreign_key "branches_products", "branches"
   add_foreign_key "branches_products", "products"
   add_foreign_key "branches_promotions", "branches"
@@ -404,7 +477,18 @@ ActiveRecord::Schema.define(version: 20170608034301) do
   add_foreign_key "clients", "rvm", primary_key: "v_rvm"
   add_foreign_key "coupons", "clients"
   add_foreign_key "coupons", "promotions"
+  add_foreign_key "item_mantencion", "tipo_seccion", column: "id_tipo_seccion", primary_key: "id_tiposeccion", name: "fk_tiposeccion"
+  add_foreign_key "manteinance_coupons", "branches"
+  add_foreign_key "manteinance_coupons", "clients"
+  add_foreign_key "manteinance_coupons", "pauta", column: "pauta_id", primary_key: "id_pauta"
+  add_foreign_key "manteinance_coupons_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
+  add_foreign_key "manteinance_coupons_items", "manteinance_coupons"
   add_foreign_key "modelo", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_marca"
+  add_foreign_key "pauta", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_id_marca"
+  add_foreign_key "pauta", "modelo", column: "id_modelo", primary_key: "id_modelo", name: "fk_id_modelo"
+  add_foreign_key "pauta", "vehiculo_modelo_especifico", column: "vme_id", primary_key: "vme_id"
+  add_foreign_key "pauta_detalle", "item_mantencion", column: "id_item_mantencion", primary_key: "id_item_mantencion", name: "fk_item_mantencion"
+  add_foreign_key "pauta_detalle", "pauta", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "product_brands"
   add_foreign_key "products_vmes", "products"
