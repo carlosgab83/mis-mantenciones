@@ -27,6 +27,17 @@ def create_vmes
   create(:vme_corolla, tv_id: vehicle_type.tv_id)
 end
 
+def create_generic_pautas
+  create(:pauta, kilometraje: 10000)
+end
+
+def create_specific_pautas
+  model_land_cruiser = Model.find_by(modelo_descripcion: 'LAND CRUISER')
+  vme = Vme.where(id_modelo: model_land_cruiser.id_modelo).first
+  create(:pauta, kilometraje: 10000, vme_id: vme.id, id_modelo: model_land_cruiser.id_modelo)
+  create(:pauta, kilometraje: 20000, vme_id: vme.id, id_modelo: model_land_cruiser.id_modelo)
+end
+
 def create_categories
   create(:category, name: 'Vehículos')
   create(:category, name: 'Servicios')
