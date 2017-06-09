@@ -5,4 +5,5 @@ class Vme < ApplicationRecord
   has_one :brand, through: :model
   has_many :promotions_vmes
   has_many :promotions, through: :promotions_vmes
+  has_many :pautas, class_name: Pauta
 end
