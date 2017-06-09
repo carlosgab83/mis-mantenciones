@@ -58,5 +58,4 @@ class Branch < ApplicationRecord
   def full_price(pauta)
     branch_pauta(pauta).full_price
   end
->>>>>>> parent of 6da1c9c... delete references to deprecated models
 end
