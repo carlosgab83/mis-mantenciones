@@ -4,9 +4,11 @@ window.mapControls ?= {}
 # Event listener:
 mapControls.ready = ->
   # Insert initilization code here
-  document.getElementById('search-input').focus()
-  mapControls.branches = []
-  mapControls.buttonListeners()
+  if typeof google != 'undefined'
+    document.getElementById('search-input').focus()
+    mapControls.branches = []
+    mapControls.markerClustererImagePath = ''
+    mapControls.buttonListeners()
 
 $(document).ready(mapControls.ready)
 $(document).on('page:load', mapControls.ready)
@@ -63,13 +65,15 @@ mapControls.buttonListeners = () ->
     leftIinput = document.getElementById('search-input-left-panel')
     leftIinput.value = document.getElementById('search-input').value
 
-  # when user click on basic search type on left panel
+  # when user click on basic search type on left panel, reset other form
   $('.map-search-left-panel').click ->
     mapControls.userSearchAction(mapControls.autocompleteLeftPanel, 'basic-search-form')
+    leftPanelControls.resetAdvancedForm()
 
-  # when user click on advanced search type on left panel
+  # when user click on advanced search type on left panel, reset other form
   $('.advanced-map-search-left-panel').click ->
     mapControls.userSearchAction(mapControls.autocompleteLeftPanel, 'advanced-search-form')
+    leftPanelControls.resetBasicForm()
 
   # For mobile devices, set to mobile location
   $('#mobile-ask-location').click ->

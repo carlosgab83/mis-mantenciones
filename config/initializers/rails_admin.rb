@@ -24,6 +24,7 @@
   # config.show_gravatar true
 
   RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::XlsUpload)
+  RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::XlsMatrixUpload)
 
   config.actions do
     dashboard do
@@ -42,6 +43,12 @@
 
     ###########################
     ### CUSTOM ACTIONS ########
+    root :xls_matrix_import do
+      register_instance_option :link_icon do
+          'icon-upload'
+        end
+    end
+    xls_matrix_upload
 
     root :xls_import do
       register_instance_option :link_icon do
@@ -140,6 +147,7 @@
         field :branch_type
         field :plan
         field :interval_between_jumps
+        field :slug
       end
     end
 
@@ -159,6 +167,7 @@
         field :name
         field :rut
         field :status
+        field :slug
       end
     end
 

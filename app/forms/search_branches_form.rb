@@ -15,11 +15,11 @@ class SearchBranchesForm < BaseForm
   end
 
   def brand_id
-    @brand_id ||= -> {params['brand_id'].blank? ? nil : params['brand_id'].to_i}.call
+    @brand_id ||= -> {(params['brand_id'].blank? or params['brand_id'].try(:to_i) == 0) ? nil : params['brand_id'].to_i}.call
   end
 
   def model_id
-    @model_id ||= -> {params['model_id'].blank? ? nil : params['model_id'].to_i}.call
+    @model_id ||= -> {(params['model_id'].blank? or params['model_id'].try(:to_i) == 0) ? nil : params['model_id'].to_i}.call
   end
 
   def patent
@@ -27,7 +27,7 @@ class SearchBranchesForm < BaseForm
   end
 
   def kms
-    @kms ||= params['kms']
+    @kms ||= params['kms'].try(:delete, '.')
   end
 
   def basic_search?

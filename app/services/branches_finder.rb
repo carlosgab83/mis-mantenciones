@@ -21,8 +21,26 @@ class BranchesFinder < BaseService
 
   def advanced_search(branches)
     vehicle = VehicleFinder.new(SearchVehicleForm.new('patent'=> user_input.patent)).call
+
     if vehicle.vme.present?
-      branches = branches.joins(promotions: :vmes).where("vehiculo_modelo_especifico.vme_id = ?", vehicle.vme.vme_id)
+      branches1 = branches
+                  .joins(promotions: :vmes)
+                  .joins(:plan)
+                  .where("vehiculo_modelo_especifico.vme_id = ?", vehicle.vme.vme_id)
+                  .where("promotions.type in ('#{OtherPromotion}', '#{BranchInformation}', '#{Manteinance}')")
+                  .where("plans.name not in ('#{Plan::PLAN1}')")
+
+      branches2 = Branch.where('1<>1')
+      if user_input.kms.present?
+        branches2 = branches
+                      .joins(promotions: :vmes)
+                      .joins(:plan)
+                      .where("vehiculo_modelo_especifico.vme_id = ?", vehicle.vme.vme_id)
+                      .where("promotions.kms IS NOT NULL and promotions.type in ('#{Manteinance}')")
+                      .where("plans.name not in ('#{Plan::PLAN1}', '#{Plan::PLAN2}')")
+      end
+
+      Branch.from("(#{branches1.to_sql} union #{branches2.to_sql}) as branches")
     else
       # What to do here?
       branches

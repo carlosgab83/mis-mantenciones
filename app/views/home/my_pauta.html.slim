@@ -1,0 +1,63 @@
+#wrapper.homepage
+  #home-upper
+    .container
+      .row
+        .col-sm-12
+          h1
+            = image_tag("logo-mm.png", :alt => "Mis Mantenciones", :class => "img-logo")
+          br
+          h4 Revisa las Mantenciones para tu Auto, Descaga Cupones y Cotiza Repuestos
+  #home-middle
+    .container
+      .row
+        .col-sm-12
+          .row
+            .col-sm-12.col-md-4
+              h3
+                | PERSONALIZA TU BÚSQUEDA&nbsp;
+            .col-sm-12.col-md-8
+              = form_tag results_home_path, class: 'form-inline search-patent'
+                .form-group
+                  = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Tu Patente', maxlength: 6)
+                .form-group
+                  .input-group
+                    = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Tu Kilometraje', maxlength: 8)
+                    .input-group-addon kms
+                .form-group
+                  button.btn.btn-cta.btn-block.get-in-advise type="submit" Comenzar
+  #home-bottom
+    .container
+      .row
+        .col-md-12
+          .row
+            .col-sm-12.col-md-3
+              h3 Hazlo Simple
+            .col-sm-12.col-md-9
+              ul.list-unstyled.list-inline
+                li
+                  i.fa.fa-search
+                  | Busca
+                  br
+                  | Talleres
+                li
+                  i.fa.fa-check-square-o
+                  | Cotiza
+                  br
+                  | Mantenciones
+                li
+                  i.fa.fa-calendar
+                  | Agenda
+                  br
+                  | tu Atención
+                li
+                  i.fa.fa-wrench
+                  | Compra
+                  br
+                  | Repuestos
+                li
+                  i.fa.fa-tag
+                  | Obtén
+                  br
+                  | Promociones
+
+= render 'shared/footer'

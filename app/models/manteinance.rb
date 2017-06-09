@@ -1,3 +1,3 @@
-class Manteinance < GeneralPromotion
-
+class Manteinance < Promotion
+  validates :kms, presence: true
 end

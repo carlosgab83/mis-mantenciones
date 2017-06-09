@@ -24,91 +24,12 @@
                 | Buscar por mi ubicación
     #left-map.map-form
       = render 'left_panel'
-
     #right-map.map-form
       a.close-sidebar.visible-xs
         i.fa.fa-times
       a.open-sidebar
         i.fa.fa-angle-left
       #marker-detail.panel-group
-        .panel
-          .panel-heading
-            a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#info" Información
-          #info.panel-collapse.collapse
-            .panel-body
-              ul.list-unstyled
-                li
-                  .single-info
-                    = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
-                    strong Taller
-                    br
-                    span Atención de Lunes a Viernes de 9:00 a 18:00 hrs
-                    = link_to "Contáctalos", "#", class: "btn btn-cta btn-block"
-        .panel
-          .panel-heading
-            a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#promo" Promociones
-          #promo.panel-collapse.in
-            .panel-body
-              ul.list-unstyled
-                li
-                  = link_to "#", class: "single-detail" do
-                    = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
-                    span 10% de descuento en la compra de tus Neumáticos + Instalación a Domicilio en Neumaline
-                li
-                  = link_to "#", class: "single-detail" do
-                    = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
-                    span Paga $70.000 en vez de $87.900 por Servicio de Detailing Express en Pro-Lab Detailing
-                li
-                  = link_to "#", class: "single-detail" do
-                    = image_tag("promo-image.jpg", :alt => "promo", :class => "img-responsive")
-                    span Paga $180.000 en vez de $200.000 por Servicio de Detailing Pro en Pro-Lab Detailing
-
-        .panel
-          .panel-heading
-            a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#tires" Neumáticos
-          #tires.panel-collapse.collapse
-            .panel-body
-              ul.list-unstyled
-                li
-                  = link_to "#", class: "single-detail" do
-                    = image_tag("part-tires.jpg", :alt => "promo", :class => "img-responsive")
-                    span MICHELIN ENERGY XM2 175/70 R13 82T
-                    br
-                    strong Desde $60.000
-                li
-                  = link_to "#", class: "single-detail" do
-                    = image_tag("part-tires.jpg", :alt => "promo", :class => "img-responsive")
-                    span YOKOHA MAG98A 225/65 R17 102V
-                    br
-                    strong Desde $80.000
-                li
-                  = link_to "#", class: "single-detail" do
-                    = image_tag("part-tires.jpg", :alt => "promo", :class => "img-responsive")
-                    span BRIDGESTONE TURANZA ER300 RFT 205/55 R16 91V
-                    br
-                    strong Desde $70.000
-        .panel
-          .panel-heading
-            a.panel-title data-toggle="collapse" data-parent="#marker-detail" href="#parts" Partes
-          #parts.panel-collapse.collapse
-            .panel-body
-              ul.list-unstyled
-                li
-                  = link_to "#", class: "single-detail" do
-                    = image_tag("part-tires.jpg", :alt => "promo", :class => "img-responsive")
-                    span MICHELIN ENERGY XM2 175/70 R13 82T
-                    strong Desde $60.000
-                li
-                  = link_to "#", class: "single-detail" do
-                    = image_tag("part-tires.jpg", :alt => "promo", :class => "img-responsive")
-                    span YOKOHA MAG98A 225/65 R17 102V
-                    strong Desde $80.000
-                li
-                  = link_to "#", class: "single-detail" do
-                    = image_tag("part-tires.jpg", :alt => "promo", :class => "img-responsive")
-                    span BRIDGESTONE TURANZA ER300 RFT 205/55 R16 91V
-                    strong Desde $70.000
-
     #map
 
 = render 'shared/footer'

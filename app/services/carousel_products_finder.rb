@@ -23,7 +23,6 @@ class CarouselProductsFinder < BaseService
   def get_products_base
     Product.actives.not_deleted
     .includes(:branches, :category)
-    .joins(:products_vmes)
     .order("products.created_at desc")
     .limit(PRODUCTS_TO_SHOW_IN_CAROUSEL)
   end
@@ -31,7 +30,7 @@ class CarouselProductsFinder < BaseService
   def get_products_with_vmes_with_year
     products = []
     if params[:vehicle].present? and params[:vehicle].vme.present? and params[:vehicle].manufacturing_year.present?
-      products = get_products_base.where("products_vmes.vme_id in (?) and (
+      products = get_products_base.joins(:products_vmes).where("products_vmes.vme_id in (?) and (
           '?' between products_vmes.from_year and products_vmes.to_year or
           '?' > products_vmes.from_year or
           '?' < products_vmes.to_year
@@ -48,13 +47,13 @@ class CarouselProductsFinder < BaseService
   def get_products_with_vmes_without_year
     products = []
     if params[:vehicle].present? and params[:vehicle].vme.present?
-      products = get_products_base.where("(products_vmes.vme_id in (?))", params[:vehicle].vme.vme_id).to_a
+      products = get_products_base.joins(:products_vmes).where("(products_vmes.vme_id in (?))", params[:vehicle].vme.vme_id).to_a
     end
     products
   end
 
   def get_products_without_vmes_without_year
-    get_products_base.where("products_vmes.vme_id IS NULL").to_a
+    get_products_base.to_a
   end
 
   def get_category_array

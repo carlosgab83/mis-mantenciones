@@ -4,7 +4,8 @@ window.branchesControls ?= {}
 # Event listener:
 branchesControls.ready = ->
   # Insert initilization code here
-  branchesControls.initilization()
+  if typeof google != 'undefined'
+    branchesControls.initilization()
 
 $(document).ready(branchesControls.ready)
 $(document).on('page:load', branchesControls.ready)
@@ -23,9 +24,17 @@ branchesControls.initilization = () ->
 
   branchesControls.branches = []
   branchesControls.associativeMarkers = {}
+  branchesControls.timersForMarkers = {}
+
+  branchesControls.markerClusterer = branchesControls.markerClusterer = new MarkerClusterer(mapControls.map, [], {imagePath: ''})
+
 
   $('#branch_types-filters input').click ->
-    branchesControls.filterBranches(this)
+    generalControls.showLoadingEffect()
+    setTimeout (->
+      branchesControls.drawBranches()
+      generalControls.hideLoadingEffect()
+    ), 500
 
 #############################################################################
 
@@ -33,6 +42,7 @@ branchesControls.drawBranches = () ->
   timestamp = new Date().getTime()
 
   # Insert or update markers
+  branchesControls.stopAllJumpingMarkers()
   for branch in branchesControls.branches
     oldMarker = branchesControls.associativeMarkers[branch[branchesControls.ID]]
     if(oldMarker)
@@ -41,14 +51,28 @@ branchesControls.drawBranches = () ->
     else
       # Is a non-existent (new) marker. Must be inserted
       marker = branchesControls.insertNewMarker(branch)
-      branchesControls.associativeMarkers[branch[branchesControls.ID]] = marker
-      marker.customInfo['timestamp'] = timestamp
+      if marker
+        branchesControls.associativeMarkers[branch[branchesControls.ID]] = marker
+        marker.customInfo['timestamp'] = timestamp
 
   # Delete deprecated markers (not longer nedeed because last search)
   for markerId, marker of branchesControls.associativeMarkers
     if branchesControls.associativeMarkers[markerId].customInfo['timestamp'] != timestamp
       branchesControls.associativeMarkers[markerId].setMap(null)
       delete(branchesControls.associativeMarkers[markerId])
+
+  markers = []
+  for markerId, marker of branchesControls.associativeMarkers
+    markers.push(marker)
+
+  return markers
+
+#############################################################################
+
+branchesControls.makeCluster = (markers) ->
+  branchesControls.markerClusterer.clearMarkers()
+  branchesControls.stopAllJumpingMarkers()
+  branchesControls.markerClusterer = new MarkerClusterer(mapControls.map, markers, {imagePath: mapControls.markerClustererImagePath})
 
 #############################################################################
 
@@ -60,12 +84,16 @@ branchesControls.updateOldMarker = (marker, branch) ->
   marker.title = branch[branchesControls.NAME]
   marker.customInfo = {branch: branch}
 
-  # marker must be drawn depending on left filter selection (branch type)
+  # Marker must be drawn depending on left filter selection (branch type)
   if branchesControls.markerMustBeDrawn(marker)
-    if marker.getMap() == null
-      marker.setMap(mapControls.map)
+    if branchesControls.associativeMarkers[marker.id]
+      branchesControls.markerClusterer.removeMarker(marker)
+
+    branchesControls.markerClusterer.addMarker(marker)
+    return marker
   else
-    marker.setMap(null)
+    delete(branchesControls.associativeMarkers[marker.id])
+    branchesControls.markerClusterer.removeMarker(marker)
 
 #############################################################################
 
@@ -80,12 +108,14 @@ branchesControls.insertNewMarker = (branch) ->
     id: branch[branchesControls.ID]
     customInfo: {branch: branch})
 
-  if branchesControls.markerMustBeDrawn(marker)
-    marker.setMap(mapControls.map)
-  else
-    marker.setMap(null)
+  marker.addListener('click', ->
+    branchesControls.clickOnMarker(marker)
+    )
 
-  branchesControls.setJumpingMarker(marker)
+  if branchesControls.markerMustBeDrawn(marker)
+    branchesControls.markerClusterer.addMarker(marker)
+  else
+    return null
   return marker
 
 #############################################################################
@@ -99,11 +129,18 @@ branchesControls.markerMustBeDrawn = (marker) ->
 
 #############################################################################
 
+branchesControls.stopAllJumpingMarkers = () ->
+  for markerId, timer of branchesControls.timersForMarkers
+    clearTimeout(timer)
+
+#############################################################################
+
+# This method is called from markerclusterer.js
 branchesControls.setJumpingMarker = (marker) ->
-  setTimeout (->
+  return setTimeout (->
     if marker.getMap() != null && marker.customInfo['branch'][branchesControls.INTERVAL_BETWEEN_JUMPS] > 0
       branchesControls.jumpOnce(marker)
-      branchesControls.setJumpingMarker(marker, marker.customInfo['branch'][branchesControls.INTERVAL_BETWEEN_JUMPS])
+      branchesControls.timersForMarkers[marker.id] = branchesControls.setJumpingMarker(marker, marker.customInfo['branch'][branchesControls.INTERVAL_BETWEEN_JUMPS])
   ), marker.customInfo['branch'][branchesControls.INTERVAL_BETWEEN_JUMPS]
 
 #############################################################################
@@ -119,15 +156,15 @@ branchesControls.jumpOnce = (marker) ->
 
 ##############################################################################
 
-branchesControls.filterBranches = (checkbox) ->
-  branchTypeId = checkbox.value
-  checked = checkbox.checked
-  for markerId, marker of branchesControls.associativeMarkers
-    if String(branchesControls.associativeMarkers[markerId].customInfo['branch'][branchesControls.BRANCH_TYPE_ID]) == branchTypeId
-      if checked
-        branchesControls.associativeMarkers[markerId].setMap(mapControls.map)
-        branchesControls.setJumpingMarker(marker)
-      else
-        branchesControls.associativeMarkers[markerId].setMap(null)
+branchesControls.clickOnMarker = (marker) ->
+  params = {}
+  url = '/search-branches/' + marker.id
+  url = url + '?search[brand_id]=' + $('#search_brand_id').val()
+  url = url + '&search[model_id]=' + $('#search_model_id').val()
+  url = url + '&search[patent]=' + $('#search_patent').val()
+  url = url + '&search[kms]=' + $('#search_kms').val()
+  method ="GET"
+  success_function = ->
+  generalControls.sendAjax(params, url, success_function, method)
 
 ##############################################################################

@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   extend FriendlyId
   include ProductSerializer
+  extend ProductsSerializer
 
    self.per_page = 5
 

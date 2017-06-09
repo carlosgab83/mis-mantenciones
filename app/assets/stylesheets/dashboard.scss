@@ -10,11 +10,56 @@ body.home {
 		margin-bottom: 0;
 		padding-bottom: 0;
 	}
+	.fixed-xs {
+		@media #{$xs} {
+			position: fixed;
+			z-index: 1;
+			top: 15px;
+			left: 0;
+		}
+	}
+	#header {
+		.navbar-toggle {
+			height: 40px;
+			margin: 0;
+			padding: 0 15px;
+			font-size: 150%;
+			position: relative;
+			top: -8px;
+		}
+	}
+	#mm-navbar {
+		.nav.navbar-nav {
+			display: block;
+			text-align: right;
+			float: none;
+			@media #{$xs} {
+				text-align: center;
+			}
+			> li {
+				display: inline-block;
+				float: none;
+				@media #{$xs} {
+					display: block;
+				}
+				> a {
+					padding: 8px 10px;
+					text-transform: uppercase;
+					&:hover, &:active, &:focus {
+						background-color: transparent;
+					}
+				}
+			}
+		}
+	}
 	#footer {
 		position: fixed;
 		left: 0;
 		bottom: 0;
 		width: 100%;
+		@media #{$xs} {
+			display: none;
+		}
 	}
 	// Checkbox
 	label.checkbox {
@@ -95,11 +140,53 @@ section#section-map {
 	min-height: 100vh;
 	width: 100%;
 	padding: 60px 0 50px;
+	@media #{$xs} {
+		padding: 0;
+	}
+	#center-map {
+		position: fixed;
+		bottom: 60px;
+		left: 10px;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		padding: 5px;
+		line-height: 30px;
+		z-index: -1;
+		border-width: 1px;
+		box-shadow: none;
+		border-style: solid;
+		@include transition(left 0.3s ease-in-out);
+		.fa {
+			top: -2px;
+			position: relative;
+		}
+	}
 	#map {
 		height: calc(100vh - 110px);
 		width: 100%;
 		position: relative;
 		z-index: 0;
+		.gm-svpc, .gmnoprint {
+			@include transition(right 0.3s ease-in-out);
+		}
+		@media #{$oxs} {
+			&.right-open {
+				.gm-svpc, .gmnoprint {
+					right: 250px!important;
+				}
+			}
+		}
+		@media #{$xs} {
+			height: 100vh;
+			.gm-svpc {
+				display: none;
+			}
+			.gmnoprint {
+				top: auto!important;
+				bottom: -65px;
+			}
+		}
 	}
 	#floating-form {
 		max-width: 800px;
@@ -110,6 +197,10 @@ section#section-map {
 		left: 20%;
 		margin-top: -47px; 
 		text-align: center;
+		@media #{$lg} {
+			left: 50%;
+			margin-left: -400px;
+		}
 		@media #{$xs} {
 			margin-top: -90px; 
 		}
@@ -139,12 +230,12 @@ section#section-map {
 	}
 	#left-map, #right-map {
 		width: 220px;
-		height: 100%;
+		height: auto;
+		max-height: calc(100%-70px);
 		top: 0;
-		padding: 90px 0 70px;
-		@include transition(all 0.3s ease-in-out);
+		padding: 90px 0 0;
 		@media #{$xs} {
-			padding-top: 110px;
+			padding-top: 90px;
 			&.open {width: 100%;}
 		}
 		.open-sidebar {
@@ -174,6 +265,9 @@ section#section-map {
 			opacity: 0.5;
 			&:hover, &:active, &:focus {
 				opacity: 1;
+			}
+			@media #{$xs} {
+				top: 50px;
 			}
 		}
 		.panel-group {
@@ -240,23 +334,78 @@ section#section-map {
 	}
 	#left-map {
 		left: -220px;
+		@media #{$oxs} {
+			@include transition(left 0.3s ease-in-out);
+		}
+		@media #{$xs} {
+			@include transition(top 0.3s ease-in-out);
+			left: 0;
+			top: 100%;
+			width: 100%;
+			padding-bottom: 40px;
+			height: 100%;
+		}
 		&.open {
 			left: 0;
+			@media #{$oxs} {
+				#center-map {
+					left: 230px;
+				}
+			}
+			@media #{$xs} {
+				top: 0;
+				#center-map {
+					opacity: 0;
+				}
+			}
 		}
 		.open-sidebar {
 			border-radius: 0 5px 5px 0;
 			left: 100%;
+			@media #{$oxs} {
+				@include transition(left 0.3s ease-in-out);
+				.text {display: none;}
+			}
+			@media #{$xs} {
+				@include transition(top 0.3s ease-in-out);
+				border-radius: 0;
+				bottom: 0;
+				left: 0;
+				position: fixed;
+				z-index: 5;
+				top: auto;
+				width: 100%;
+				.text {
+					display: inline-block;
+					margin-left: 5px;
+					font-size: 90%;
+				}
+			}
 		}
 	}
 	#right-map {
 		right: -220px;
 		&.open {
 			right: 0;
+			@media #{$xs} {
+				top: 0;
+			}
+		}
+		@media #{$oxs} {
+			@include transition(right 0.3s ease-in-out);
+		}
+		@media #{$xs} {
+			@include transition(top 0.3s ease-in-out);
+			left: 0;
+			top: 100%;
+			width: 100%;
+			height: calc(100% - 40px);
 		}
 		.open-sidebar {
 			border-radius: 5px 0 0 5px;
 			right: 100%;
 			@media #{$xs} {
+				display: none;
 				top: 130px;
 			}
 		}

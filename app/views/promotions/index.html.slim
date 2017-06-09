@@ -13,16 +13,22 @@
           #collapse-list.collapse
             ul.categories-list
               li
-                = link_to "Ver todas", promotions_path
+                - if @branch.present?
+                  = link_to "Ver todas", shop_branch_promotions_path(@shop.slug, @branch.slug)
+                - else
+                  = link_to "Ver todas", promotions_path
               - @categories.each do |category|
                 li
-                  = link_to category.name, promotions_path(category_id: category.id)
+                  - if @branch.present?
+                    = link_to category.name, shop_branch_promotions_path(@shop.slug, @branch.slug, category_id: category.id)
+                  - else
+                    = link_to category.name, promotions_path(category_id: category.id)
 
         .col-sm-9
           ul.promo-list
             - @promotions.each do |promotion|
               li
-                = link_to promotion do
+                = link_to shop_branch_promotion_path(promotion.first_shop.slug, promotion.first_branch.slug, promotion.slug) do
                   .promo-image style='background-image:url(#{image_url(promotion.image_url || "promo-image.jpg")});'
                     = image_tag(promotion.branches.try(:last).try(:shop).try(:image_url) || "", :alt => "", :class => "brand-logo")
                   .promo-description

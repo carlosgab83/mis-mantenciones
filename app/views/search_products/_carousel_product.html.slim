@@ -1,0 +1,8 @@
+a.single-part href="#{product_path(product)}"
+  .single-part-image
+    = image_tag(product.image_url || "part-image.jpg", :alt => product.product_brand.name + " " + product.name)
+  .single-part-text
+    span class="brand #{product.product_brand.name.downcase.tr(" ","-")}" #{product.product_brand.name}
+    span #{truncate(product.model_attribute_value, length: 45, omission: '...')}
+    strong desde
+    strong.price #{mismantenciones_number_to_currency(from_price)}

@@ -27,9 +27,14 @@ leftPanelControls.initilization = () ->
     $(this).parent().toggleClass('open')
     if ($(this).parent().attr('id') == "left-map")
       $('#floating-form').addClass('next-step')
+    if ($(this).parent().attr('id') == "right-map")
+      $('#map').toggleClass('right-open')
+    if ($(this).css('position') == 'fixed')
+      $('#right-map').removeClass('open')
 
   $('.close-sidebar').on 'click', ->
     $(this).parent().removeClass('open')
+    $('#map').removeClass('right-open')
 
   $('#search-input-left-panel').on 'focus', ->
     $(this).select()
@@ -46,5 +51,21 @@ leftPanelControls.getModelsByBrand = (selectedBrandId) ->
   method ="GET"
   success_function = ->
   generalControls.sendAjax(params, url, success_function, method)
+
+#############################################################################
+
+leftPanelControls.resetBasicForm = () ->
+  document.getElementById("basic-search-form").reset();
+  brandPiker = $("#search_brand_id")
+  $(brandPiker).val('default');
+  $(brandPiker).selectpicker("refresh");
+  modelPiker = $("#search_model_id")
+  $(modelPiker).val('default');
+  $(modelPiker).selectpicker("refresh");
+
+#############################################################################
+
+leftPanelControls.resetAdvancedForm = () ->
+  document.getElementById("advanced-search-form").reset();
 
 #############################################################################
