@@ -29,7 +29,7 @@ leftPanelControls.initilization = () ->
       $('#floating-form').addClass('next-step')
     if ($(this).parent().attr('id') == "right-map")
       $('#map').toggleClass('right-open')
-    if ($(this).css('position') == 'fixed') 
+    if ($(this).css('position') == 'fixed')
       $('#right-map').removeClass('open')
 
   $('.close-sidebar').on 'click', ->
