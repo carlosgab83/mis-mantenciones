@@ -1,8 +1,12 @@
 class HomeController < ApplicationController
 
-  skip_before_action :set_default_vehicle, :only => [:search]
+  skip_before_action :set_default_vehicle, :only => [:search, :my_pauta]
 
   def search
+    session[:client] = nil
+  end
+
+  def my_pauta
     session[:client] = nil
   end
 
@@ -21,7 +25,7 @@ class HomeController < ApplicationController
     end
     if session[:search].nil? or session[:search]['patent'].nil? or session[:search]['kms'].nil?
       session[:rvm_id] = nil
-      redirect_to :search_home
+      redirect_to :my_pauta_home
       return
     end
     begin
@@ -36,7 +40,7 @@ class HomeController < ApplicationController
     rescue AppExceptions::PautaNotFound => e
       puts e.message
       puts e.backtrace
-      redirect_to :search_home, flash: {error: I18n.t('home.pauta_not_found')}
+      redirect_to :my_pauta_home, flash: {error: I18n.t('home.pauta_not_found')}
       return
     end
   end

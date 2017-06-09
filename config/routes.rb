@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get 'index' => 'home#search'
   get 'search' => 'home#search', as: :search_home
+  get 'my_pauta' => 'home#my_pauta', as: :my_pauta_home
   match 'results' => 'home#results', as: :results_home, via: [:get, :post]
 
   resources :manteinance_coupons, only: [:new, :create] do
