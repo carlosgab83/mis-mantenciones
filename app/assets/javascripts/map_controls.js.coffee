@@ -35,6 +35,7 @@ mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->
 
   mapControls.autocomplete = new google.maps.places.Autocomplete(input, options)
   mapControls.autocompleteLeftPanel = new google.maps.places.Autocomplete(inputLeftPanel, options)
+  mapControls.autocompleteLastSelecction = mapControls.autocomplete
 
   # Bind the map's bounds (viewport) property to the autocomplete object,
   # so that the autocomplete requests use the current map bounds for the
@@ -54,6 +55,9 @@ mapControls.buttonListeners = () ->
       e.preventDefault()
       e.stopPropagation()
 
+  $('#center-map').click ->
+    mapControls.buttonListeners.centerMap()
+
   # Enable map change if user press enter instead button on floating initial modal
   mapControls.autocomplete.addListener 'place_changed', ->
     mapControls.infowindow.close()
@@ -64,15 +68,18 @@ mapControls.buttonListeners = () ->
     mapControls.userSearchAction(mapControls.autocomplete, 'basic-search-form')
     leftIinput = document.getElementById('search-input-left-panel')
     leftIinput.value = document.getElementById('search-input').value
+    mapControls.autocompleteLastSelecction = mapControls.autocomplete
 
   # when user click on basic search type on left panel, reset other form
   $('.map-search-left-panel').click ->
     mapControls.userSearchAction(mapControls.autocompleteLeftPanel, 'basic-search-form')
+    mapControls.autocompleteLastSelecction = mapControls.autocompleteLeftPanel
     leftPanelControls.resetAdvancedForm()
 
   # when user click on advanced search type on left panel, reset other form
   $('.advanced-map-search-left-panel').click ->
     mapControls.userSearchAction(mapControls.autocompleteLeftPanel, 'advanced-search-form')
+    mapControls.autocompleteLastSelecction = mapControls.autocompleteLeftPanel
     leftPanelControls.resetBasicForm()
 
   # For mobile devices, set to mobile location
@@ -117,3 +124,8 @@ mapControls.successObtainPosition = (location) ->
 
 mapControls.errorObtainPosition = (error) ->
   alert('No pudimos obtener tu ubicación. Recuerda que debes activar la geolocalización en tu dispositivo')
+
+#############################################################################
+
+mapControls.buttonListeners.centerMap = ->
+  mapControls.goToNewPlace(mapControls.autocompleteLastSelecction)
