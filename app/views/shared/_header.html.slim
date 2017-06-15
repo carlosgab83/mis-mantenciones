@@ -30,11 +30,12 @@ header#header
 
       .col-xs-12.col-sm-6.col-lg-5.text-right
         ul.list-inline
-          li
-            - if action_name == 'results'
+          - if action_name != 'search'
+            li
               = link_to 'Explorar mapa', search_home_path
-            - else
-              = link_to 'Mi Pauta', my_pauta_home_path
+          - if action_name != 'results'
+            li
+              = link_to 'Mi Pauta', results_home_path
           li
             = link_to 'Promociones', promotions_path
           li

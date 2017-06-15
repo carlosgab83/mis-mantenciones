@@ -13,7 +13,8 @@
               /span Atención de Lunes a Viernes de 9:00 a 18:00 hrs
               - if @branch_items.show_info_button
                 = link_to "Contáctalos", "#", class: "btn btn-cta btn-block"
-                = link_to "Ir con Google Maps", "#", class: "btn btn-link btn-block"
+                - if @branch.address.present?
+                  = link_to "Ir con Google Maps", "#{google_map_indications_url(@branch.address)}", target: :blank, class: "btn btn-link btn-block"
 
 - if @branch_items.promotions.any?
   .panel

@@ -32,7 +32,10 @@
                 - @product.branches_products_with_prices.each do |bp|
                   tr
                     td.branch-name
-                      = link_to open_url_branches_product_path(bp), target: '_blank' do
+                      - if not bp.url.blank?
+                        = link_to open_url_branches_product_path(bp), target: '_blank' do
+                          = "#{bp.branch.name}"
+                      - else
                         = "#{bp.branch.name}"
                     td.branch-price
                       = "#{mismantenciones_number_to_currency(bp.price) || '-'}"
