@@ -24,12 +24,16 @@ leftPanelControls.initilization = () ->
     $('#left-map').addClass('open')
 
   $('.open-sidebar').on 'click', ->
-    $(this).parent().toggleClass('open')
     if ($(this).parent().attr('id') == "left-map")
+      $(this).parent().toggleClass('open')
       $('#floating-form').addClass('next-step')
-    if ($(this).parent().attr('id') == "right-map")
-      $('#map').toggleClass('right-open')
-    if ($(this).css('position') == 'fixed')
+      if ($(this).css('position') == 'fixed')
+        $('#right-map').removeClass('open')
+
+    if (($(this).parent().attr('id') == "right-map") && ($('#right-map .panel').html()?))
+     $(this).parent().toggleClass('open')
+     $('#map').toggleClass('right-open')
+     if ($(this).css('position') == 'fixed')
       $('#right-map').removeClass('open')
 
   $('.close-sidebar').on 'click', ->
