@@ -17,6 +17,8 @@ a {
 		color: darken($main-color, 10%);
 	}
 }
+.step-text {color: $main-color;}
+
 // Selection
 ::-moz-selection {
 	background: $main-color;
@@ -599,7 +601,7 @@ section#section-parts {
 		}
 	}
 }
-.modal-backdrop {
+.modal-backdrop, .btn {
 	& + .popover {
 		background-color: lighten(desaturate($side-color,10%), 10%);
 		&.bottom .arrow:after {
