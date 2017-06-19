@@ -21,7 +21,7 @@ leftPanelControls.initilization = () ->
       branchesControls.filterBranches(this)
 
   $('#floating-form').on 'stepChange', ->
-    if ($(this).css('position') != 'fixed')
+    if ($('#floating-form').css('margin-top') != '-90px')
       $('#left-map').addClass('open')
 
   $('.open-sidebar').on 'click', ->
