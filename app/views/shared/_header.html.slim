@@ -3,7 +3,7 @@ header#header
     .row
       -if action_name == 'results'
         / Section MY PAUTA
-        .col-xs-12.col-sm-6.col-lg-5.text-right
+        .col-xs-12.col-sm-6.col-lg-7.text-right
           = form_tag(:results_home, method: :post, class: 'form-inline search-patent') do
             .form-group
               label.sr-only for="exampleInputName2" Patente
@@ -20,23 +20,31 @@ header#header
                 | Consultar
       - else
         / Section Map
-        .col-xs-12.col-sm-6.col-lg-7
+        .col-xs-2.col-sm-6.col-lg-7.fixed-xs
           = link_to new_shop_inscription_path, class: 'btn btn-link btn-special pull-right hidden-xs', remote: true
             strong
               | Publica tu Taller
           figure#logo
             = link_to :root do
-              = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive")
+              = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive hidden-xs")
+              = image_tag("logo-mm-xs.png", :alt => "Mis Mantenciones", :class => "img-responsive visible-xs")
 
       .col-xs-12.col-sm-6.col-lg-5.text-right
-        ul.list-inline
-          - if action_name != 'search'
+        .navbar-header
+          button.navbar-toggle type="button" data-toggle="collapse" data-target="#mm-navbar"
+            i.fa.fa-bars
+
+        #mm-navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            - if action_name != 'search'
+              li
+                = link_to 'Explorar mapa', search_home_path
+            - if action_name != 'results'
+              li
+                = link_to 'Mi Pauta', results_home_path
             li
-              = link_to 'Explorar mapa', search_home_path
-          - if action_name != 'results'
+              = link_to 'Promociones', promotions_path
             li
-              = link_to 'Mi Pauta', results_home_path
-          li
-            = link_to 'Promociones', promotions_path
-          li
-            = link_to 'Repuestos', search_products_path
+              = link_to 'Repuestos', search_products_path
+            li.visible-xs
+              = link_to "Términos y Condiciones", "http://files.mismantenciones.com/pdf/Términos-y-Condiciones-MisMantenciones.pdf", target: :_blank
