@@ -90,6 +90,7 @@ textarea {
 	width: 200px;
 	border: none;
 	line-height: 1.2em;
+	z-index: 1040;
 	.popover-content {
 		padding: 10px;
 		strong {
@@ -114,6 +115,9 @@ textarea {
 			}
 		}
 	}
+}
+.modal .popover {
+	z-index: 1060;
 }
 
 //////////////////////////////////////////////////////////
