@@ -6,10 +6,9 @@
       .text-center.text-primary
         |
           Paso 2 de 2.
-        - if @coupon.promotion.category.vehicle?
-          .what Te enviaremos un correo electrónico con más información de este modelo
-        - else
-          .what Tu número de cupón es: #{@coupon.id} para la promoción #{@coupon.promotion.name}
+        .what
+          = "#{@coupon.promotion.done_text(@coupon)}"
+        - if not @coupon.promotion.category.vehicle? and not @coupon.promotion.is_a?(BranchInformation)
           .how-much
             strong &nbsp;en #{@coupon.promotion.shops_details}
             - if @coupon.price.present?

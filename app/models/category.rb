@@ -57,9 +57,17 @@ class Category < ApplicationRecord
   def promotion_confirmed_text
     case vehicle?
     when true
-      'Que ponemos aqui'
+      'Confirma para generar tu Cupón'
     else
       'Confirma para generar tu Cupón de Descuento por el servicio'
     end
+  end
+
+  def promotion_done_vehicle_text
+    "Te enviaremos un correo electrónico con más información de este modelo"
+  end
+
+  def promotion_done_text(coupon)
+    "Tu número de cupón es: #{coupon.id} para la promoción #{coupon.promotion.name}"
   end
 end
