@@ -1,5 +1,5 @@
 - promotion = Promotion.includes(:category).where(id: params[:promotion_id]).first
 .text-center.text-primary
-  .what Paso 1 de 2. #{promotion.category.promotion_before_registration_text} #{promotion.name}, disponible en
+  .what Paso 1 de 2. #{promotion.before_registration_text}
   .how-much
     strong #{promotion.shops_details}

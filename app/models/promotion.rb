@@ -53,4 +53,19 @@ class Promotion < ApplicationRecord
     first_branch.try(:shop)
   end
 
+  def before_registration_text
+    "#{category.promotion_before_registration_text} #{name}, disponible en"
+  end
+
+  def confirmed_text
+    "#{category.promotion_confirmed_text} #{promotion.name}"
+  end
+
+  def done_text(coupon)
+    if category.vehicle?
+      category.promotion_done_vehicle_text
+    else
+      category.promotion_done_text(coupon)
+    end
+  end
 end

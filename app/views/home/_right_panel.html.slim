@@ -12,7 +12,7 @@
               br
               /span Atención de Lunes a Viernes de 9:00 a 18:00 hrs
               - if @branch_items.show_info_button
-                = link_to "Contáctalos", "#", class: "btn btn-cta btn-block"
+                = link_to "Contáctalos", "#", 'id'=> "request-information-#{@branch_items.information.id}", 'data-id'=> "#{@branch_items.information.id}", 'class'=> "btn btn-cta btn-block"
                 - if @branch.address.present?
                   = link_to "Ir con Google Maps", "#{google_map_indications_url(@branch.address)}", target: :blank, class: "btn btn-link btn-block"
 
@@ -42,7 +42,7 @@
         ul.list-unstyled
           - @branch_items.manteinances.each do |manteinance|
             li
-              = link_to promotion_path(manteinance), class: "single-detail", target: :blank do
+              = link_to shop_branch_promotion_path(@branch.shop.slug, @branch.slug, manteinance.slug), class: "single-detail", target: :blank do
                 = image_tag(manteinance.image_url, :alt => manteinance.name, :class => "img-responsive")
                 span #{manteinance.name}
           li
@@ -67,3 +67,10 @@
             = link_to search_products_path, class: "single-detail", target: :blank do
               span
               | Ver todos
+
+
+javascript:
+  // Request information (similar to buy promotion)
+  $("#request-information-#{@branch_items.information.id}").click(function(event) {
+    couponsControls.buyPromotion(this);
+  });

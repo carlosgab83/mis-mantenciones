@@ -6,7 +6,7 @@
       - promotion = Promotion.where(id: @context_params[:promotion_id]).first
       - client_id  = @context_params[:client_id]
       .text-center.text-primary
-        .what #{promotion.category.promotion_confirmed_text} #{promotion.name}
+        .what
         .how-much
           strong &nbsp;por un valor final de #{mismantenciones_number_to_currency(promotion.promo_price)}
           strong &nbsp;en #{promotion.shops_details}&nbsp;
