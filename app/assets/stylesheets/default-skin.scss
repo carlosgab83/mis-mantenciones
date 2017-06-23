@@ -601,14 +601,14 @@ section#section-parts {
 		}
 	}
 }
-.modal-backdrop, .btn {
-	& + .popover {
-		background-color: lighten(desaturate($side-color,10%), 10%);
+.modal-backdrop, .catalog {
+	& ~ .popover {
+		background-color: lighten(desaturate($side-color,10%), 30%);
 		&.bottom .arrow:after {
-			border-bottom-color: lighten(desaturate($side-color,10%), 10%);
+			border-bottom-color: lighten(desaturate($side-color,10%), 30%);
 		}
 		&.top .arrow:after {
-			border-top-color: lighten(desaturate($side-color,10%), 10%);
+			border-top-color: lighten(desaturate($side-color,10%), 30%);
 		}
 	}
 }
