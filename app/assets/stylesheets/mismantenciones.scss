@@ -90,7 +90,7 @@ textarea {
 	width: 200px;
 	border: none;
 	line-height: 1.2em;
-	z-index: 1040;
+	z-index: 1000;
 	.popover-content {
 		padding: 10px;
 		strong {
@@ -252,7 +252,7 @@ body {
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 3;
+	z-index: 1040;
 	@media #{$xs}{
 		padding-bottom: 0;
 	}
@@ -266,9 +266,13 @@ body {
 		display: inline-block;
 		max-width: 300px;
 		margin: 6px 0;
+		img, a {
+			display: inline-block;
+			vertical-align: top;
+		}
 		@media #{$sm}{
 			margin: 10px 0;
-    		max-width: 220px;
+    		max-width: 170px;
 		}
 		@media #{$xs}{
 			width: 100%;
@@ -276,7 +280,6 @@ body {
 			margin: 0;
 			max-width: none;
 			img {
-				display: inline-block;
 				max-width: 190px;
 			}
 		}

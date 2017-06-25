@@ -50,6 +50,16 @@
 	}
 	.btn-cta {
 		margin: 5px 0;
+		&#buy-promotion {
+			@media #{$oxs}{
+				margin-top: 20px;
+			}
+		}
+	}
+	& ~ .popover {
+		@media #{$xs}{
+			display: none!important;
+		}
 	}
 }
 

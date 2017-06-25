@@ -4,8 +4,7 @@
       h4.modal-title #{image_tag('logo-mm.png')}
     .modal-body
       .text-center.text-primary
-        |
-          Paso 2 de 2.
+        span.step-text Paso 2 de 2.
         .what
           = "#{@coupon.promotion.done_text(@coupon)}"
         - if not @coupon.promotion.category.vehicle? and not @coupon.promotion.is_a?(BranchInformation)
@@ -16,4 +15,5 @@
               strong #{mismantenciones_number_to_currency(@coupon.price)}
     .modal-footer
       .row
+        .col-sm-12
           button.btn.btn-cta.btn-block#modal-done-button type="submit" Listo, continuar viendo mismantenciones.com
