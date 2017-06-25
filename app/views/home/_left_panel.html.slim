@@ -30,7 +30,7 @@ a.open-sidebar
          = form_tag search_branches_path, remote: true, id: 'advanced-search-form'
           .form-group
             label.sr-only for="search_brand" Patente
-            = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Patente')
+            = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Patente', maxlength: 6)
           .form-group
             label.sr-only for="search_brand" Kilometraje
             = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Kilometraje')
