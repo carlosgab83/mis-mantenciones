@@ -8,7 +8,6 @@ class CarouselProductsFinder < BaseService
   def call
     carousel_products(
       get_products_with_vmes_with_year +
-      # get_products_with_vmes_without_year +
       get_products_without_vmes_without_year,
       get_category_array
     )
@@ -40,14 +39,6 @@ class CarouselProductsFinder < BaseService
         params[:vehicle].manufacturing_year.to_i,
         params[:vehicle].manufacturing_year.to_i
       ).to_a
-    end
-    products
-  end
-
-  def get_products_with_vmes_without_year
-    products = []
-    if params[:vehicle].present? and params[:vehicle].vme.present?
-      products = get_products_base.joins(:products_vmes).where("(products_vmes.vme_id in (?))", params[:vehicle].vme.vme_id).to_a
     end
     products
   end

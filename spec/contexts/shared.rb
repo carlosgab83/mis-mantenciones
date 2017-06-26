@@ -64,3 +64,16 @@ def create_system_setting_values
     product_scraping_caching_minutes: 1
   )
 end
+
+def create_branch
+  create(:branch)
+end
+
+def associate_branch_to_promotion
+  branch = Branch.first
+  # branch.promotions = []
+  Promotion.all.each do |promotion|
+    next if promotion.branches.any?
+    branch.promotions << promotion
+  end
+end
