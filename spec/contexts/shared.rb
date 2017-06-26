@@ -55,3 +55,12 @@ def toyota_land_cruiser_finder_attributes
   vme = Vme.first
   [rvm.attributes.merge(vme.attributes).merge(v_cod_marca: vme.model.id_marca, v_cod_modelo: vme.id_modelo)]
 end
+
+def create_system_setting_values
+  SystemSetting.create(
+    default_latitude: 0,
+    default_longitude: 0,
+    default_zoom: 10,
+    product_scraping_caching_minutes: 1
+  )
+end

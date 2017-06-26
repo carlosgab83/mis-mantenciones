@@ -243,8 +243,6 @@ ActiveRecord::Schema.define(version: 20170608034301) do
     t.boolean "diesel_engine"
     t.boolean "double_traction"
     t.boolean "automatic_transmission"
-    t.integer "from_year"
-    t.integer "to_year"
     t.index ["kilometraje", "vme_id", "diesel_engine", "double_traction", "automatic_transmission"], name: "pauta_business_index", unique: true, using: :btree
   end
 
@@ -341,7 +339,7 @@ ActiveRecord::Schema.define(version: 20170608034301) do
     t.index ["promotion_id"], name: "index_promotions_vmes_on_promotion_id", using: :btree
   end
 
-  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, force: :cascade, comment: "Rut taller" do |t|
+  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, comment: "Rut taller", force: :cascade do |t|
     t.string  "ide_dv",        limit: 1,               null: false
     t.text    "ide_nombre_rz",                         null: false
     t.integer "ide_estado",              default: 1,   null: false
@@ -359,6 +357,7 @@ ActiveRecord::Schema.define(version: 20170608034301) do
     t.integer "v_pro_rut"
     t.text    "v_pro_dv"
     t.text    "v_pro_nombre"
+    t.index ["v_rvm"], name: "idx_v_rvm", unique: true, using: :btree
     t.index ["v_rvm"], name: "index_v_rvm", using: :btree
   end
 
@@ -466,7 +465,6 @@ ActiveRecord::Schema.define(version: 20170608034301) do
   add_foreign_key "branches", "comuna", column: "commune_id", primary_key: "id_comuna"
   add_foreign_key "branches", "plans"
   add_foreign_key "branches", "shops"
-  add_foreign_key "branches_manteinance_items", "branches"
   add_foreign_key "branches_manteinance_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
   add_foreign_key "branches_manteinance_items", "pauta", column: "pauta_id", primary_key: "id_pauta"
   add_foreign_key "branches_products", "branches"
@@ -479,7 +477,6 @@ ActiveRecord::Schema.define(version: 20170608034301) do
   add_foreign_key "coupons", "promotions"
   add_foreign_key "item_mantencion", "tipo_seccion", column: "id_tipo_seccion", primary_key: "id_tiposeccion", name: "fk_tiposeccion"
   add_foreign_key "manteinance_coupons", "branches"
-  add_foreign_key "manteinance_coupons", "clients"
   add_foreign_key "manteinance_coupons", "pauta", column: "pauta_id", primary_key: "id_pauta"
   add_foreign_key "manteinance_coupons_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
   add_foreign_key "manteinance_coupons_items", "manteinance_coupons"

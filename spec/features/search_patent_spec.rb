@@ -13,9 +13,10 @@ describe "Search Patent", :type => :feature do
     context 'With no kms input' do
 
       it 'render results page with vehicle\'s data' do
-        pending('due to future (soon) refactor')
         create_search_patent_stub_proc.call(toyota_land_cruiser_finder_attributes)
         visit '/'
+        click_button 'Busca Servicios'
+        click_link 'Mi Pauta'
         within '.search-patent' do
           fill_in 'search_patent', with: 'AAA000'
           click_button 'Comenzar'
@@ -31,9 +32,10 @@ describe "Search Patent", :type => :feature do
     context 'With kms input' do
 
       it 'render results page with vehicle\'s data' do
-        pending('due to future (soon) refactor')
         create_search_patent_stub_proc.call(toyota_land_cruiser_finder_attributes)
         visit '/'
+        click_button 'Busca Servicios'
+        click_link 'Mi Pauta'
         within '.search-patent' do
           fill_in 'search_patent', with: 'AAA000'
           fill_in 'search_kms', with: '18000' # The closest pauta is 20.000
@@ -55,9 +57,10 @@ describe "Search Patent", :type => :feature do
     end
 
     it 'render results page with general vehicle\'s data' do
-      pending('due to future (soon) refactor')
       create_search_patent_stub_proc.call([])
       visit '/'
+      click_button 'Busca Servicios'
+      click_link 'Mi Pauta'
       within '.search-patent' do
         fill_in 'search_patent', with: 'XAA000' # Patent not found in database
         click_button 'Comenzar'
