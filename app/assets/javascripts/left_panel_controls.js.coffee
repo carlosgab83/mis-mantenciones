@@ -32,10 +32,10 @@ leftPanelControls.initilization = () ->
         $('#right-map').removeClass('open')
 
     if (($(this).parent().attr('id') == "right-map") && ($('#right-map .panel').html()?))
-     $(this).parent().toggleClass('open')
-     $('#map').toggleClass('right-open')
-     if ($(this).css('position') == 'fixed')
-      $('#right-map').removeClass('open')
+      $(this).parent().toggleClass('open')
+      $('#map').toggleClass('right-open')
+      if ($(this).css('position') == 'absolute')
+        $('#right-map').removeClass('open')
 
   $('.close-sidebar').on 'click', ->
     $(this).parent().removeClass('open')
