@@ -8,7 +8,6 @@ class CarouselPromotionsFinder < BaseService
   def call
     carousel_promotions(
       get_promotions_with_vmes_with_year +
-      # get_promotions_with_vmes_without_year +
       get_promotions_without_vmes_without_year,
       get_category_array
     )
@@ -39,16 +38,6 @@ class CarouselPromotionsFinder < BaseService
         params[:vehicle].manufacturing_year.to_i,
         params[:vehicle].manufacturing_year.to_i,
         params[:vehicle].manufacturing_year.to_i
-      ).to_a
-    end
-    promotions
-  end
-
-  def get_promotions_with_vmes_without_year
-    promotions = []
-    if params[:vehicle].present? and params[:vehicle].vme.present?
-      promotions = get_promotions_base.joins(:promotions_vmes).where("(promotions_vmes.vme_id in (?))",
-        params[:vehicle].vme.vme_id
       ).to_a
     end
     promotions

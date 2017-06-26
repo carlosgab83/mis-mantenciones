@@ -1,7 +1,7 @@
 # encoding: utf-8
 class ProductFilters
 
-  def attributes_by_category(attributes_ids, category, attrs_values)
+  def attributes_by_category(attributes_ids, category, _attrs_values)
     struct = Struct.new(:attribute, :values)
     attributes_and_values_list(attributes_ids, category).collect do |attribute_hash|
       struct.new(attribute_hash[:attribute], attribute_hash[:values].sort)
@@ -24,7 +24,7 @@ class ProductFilters
   def sort(result, attributes_ids)
     result.keys
     attributes_ids.collect do |attribute_id|
-      key = result.keys.select{|key| key.id == attribute_id}.first
+      key = result.keys.select{|kkey| kkey.id == attribute_id}.first
       {attribute: key, values: result[key]}
     end
   end

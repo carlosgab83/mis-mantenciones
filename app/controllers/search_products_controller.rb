@@ -1,4 +1,5 @@
 class SearchProductsController < ApplicationController
+  include ModelSelector
 
   # When calling this controller without any category
   # Simply redirect to show with first root category
@@ -29,12 +30,5 @@ class SearchProductsController < ApplicationController
   def update
     show
     render action: :show
-  end
-
-  def model_collection
-    @models = Model.actives.where(id_marca: params[:brand_id]).order(:modelo_descripcion)
-    respond_to do |format|
-      format.js
-    end
   end
 end

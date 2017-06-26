@@ -36,17 +36,17 @@ class BranchItems
 
   def fill_products
     # This hash is or performance purposes while fill categories object
-    _product_category_hash = {}
+    product_category_hash = {}
 
     struct = Struct.new(:id, :name, :products)
 
     branch_items[:products].each do |product|
       position = -1
-      if _product_category_hash[product.category_id].present?
-        position = _product_category_hash[product.category_id]
+      if product_category_hash[product.category_id].present?
+        position = product_category_hash[product.category_id]
       else
         position = @categories.size # next position on array
-        _product_category_hash[product.category_id] = position
+        product_category_hash[product.category_id] = position
         @categories[position] = struct.new(product.category.id, product.category.name, [])
       end
       @categories[position].products << product

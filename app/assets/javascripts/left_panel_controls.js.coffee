@@ -60,17 +60,17 @@ leftPanelControls.getModelsByBrand = (selectedBrandId) ->
 #############################################################################
 
 leftPanelControls.resetBasicForm = () ->
-  document.getElementById("basic-search-form").reset();
+  document.getElementById("basic-search-form").reset()
   brandPiker = $("#search_brand_id")
-  $(brandPiker).val('default');
-  $(brandPiker).selectpicker("refresh");
+  $(brandPiker).val('default')
+  $(brandPiker).selectpicker("refresh")
   modelPiker = $("#search_model_id")
-  $(modelPiker).val('default');
-  $(modelPiker).selectpicker("refresh");
+  $(modelPiker).val('default')
+  $(modelPiker).selectpicker("refresh")
 
 #############################################################################
 
 leftPanelControls.resetAdvancedForm = () ->
-  document.getElementById("advanced-search-form").reset();
+  document.getElementById("advanced-search-form").reset()
 
 #############################################################################

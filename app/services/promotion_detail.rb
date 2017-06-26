@@ -5,7 +5,4 @@ class PromotionDetail < BaseService
   rescue ActiveRecord::RecordNotFound
     return nil
   end
-
-  private
-
 end

@@ -1,4 +1,5 @@
 class SearchBranchesController < ApplicationController
+  include ModelSelector
 
   # Make new search based on user criteria
   def create
@@ -26,13 +27,6 @@ class SearchBranchesController < ApplicationController
       search_branches_form: search_branches_form
     ).track
 
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def model_collection
-    @models = Model.actives.where(id_marca: params[:brand_id]).order(:modelo_descripcion)
     respond_to do |format|
       format.js
     end
