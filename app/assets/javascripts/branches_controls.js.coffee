@@ -72,7 +72,7 @@ branchesControls.drawBranches = () ->
 branchesControls.makeCluster = (markers) ->
   branchesControls.markerClusterer.clearMarkers()
   branchesControls.stopAllJumpingMarkers()
-  branchesControls.markerClusterer = new MarkerClusterer(mapControls.map, markers, {imagePath: mapControls.markerClustererImagePath})
+  branchesControls.markerClusterer = new MarkerClusterer(mapControls.map, markers, {imagePath: mapControls.markerClustererImagePath, minimumClusterSize: 8})
 
 #############################################################################
 
