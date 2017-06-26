@@ -61,3 +61,23 @@ input.accept-terms-check.error {
  opacity: 0;
  }
 }
+
+#map-search.panel-group .bs-searchbox input{
+  color: #66afe9;
+}
+
+#map-search.panel-group .no-results{
+ color: #66afe9;
+}
+
+.like-input button, .like-input button:hover{
+  color: #ddd !important;
+  border-color: #0a82af !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0px !important;
+  font-family: inherit !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  border-bottom: 1px solid #ccc !important;
+}

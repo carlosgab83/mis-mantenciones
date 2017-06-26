@@ -17,6 +17,8 @@ a {
 		color: darken($main-color, 10%);
 	}
 }
+.step-text {color: $main-color;}
+
 // Selection
 ::-moz-selection {
 	background: $main-color;
@@ -105,7 +107,7 @@ a {
 			border-color: $back-color;
 		}
 	}
-	&:after {border-color: rgba($dark-color,0.95) transparent transparent transparent;}
+	&:after {border-color: rgba($dark-color,1) transparent transparent transparent;}
 	.btn-special {
 		color: lighten($main-color, 20%);
 		border-color: lighten($main-color, 20%);
@@ -117,15 +119,23 @@ a {
 	}
 }
 #footer {
-	&:before {border-color: transparent transparent rgba($dark-color,0.95) transparent;}
+	&:before {border-color: transparent transparent rgba($dark-color,1) transparent;}
 }
 #footer, #header {
-	background-color: rgba($dark-color,0.95);
+	background-color: rgba($dark-color,1);
 	color: $light-color;
 	a {
 		color: $light-color;
 		&:hover, &:active, &:focus {
 			color: $main-color;
+		}
+	}
+}
+body.home {
+	#header {
+		@media #{$xs} {
+			background-color: rgba($dark-color,0.85);
+			&:after {border-color: rgba($dark-color,0.85) transparent transparent transparent;}
 		}
 	}
 }
@@ -168,6 +178,165 @@ a {
 
 
 // Dashboard
+section#section-map {
+	#center-map {
+		background: rgba($main-color,0.8);
+		border-color: $main-color;
+		color: $light-color;
+	}
+	.map-form {
+		background: rgba(saturate(darken($main-color,6%),8%),0.85);
+		color: $back-color;
+		box-shadow: 4px 4px 8px rgba($dark-color,0.1);
+		.form-control {
+			color: $back-color;
+			&::-webkit-input-placeholder {color: rgba($back-color, 0.6);}
+			&:-moz-placeholder {color: rgba($back-color, 0.6);}
+			&::-moz-placeholder {color: rgba($back-color, 0.6);}
+			&:-ms-input-placeholder {color: rgba($back-color, 0.6);}
+		}
+		.btn {
+			text-transform: none;
+			&:hover, &:active {
+				color: $main-color;
+			}
+		}
+	}
+	#right-map {
+		.close-sidebar {color: $main-color;}
+		.open-sidebar {
+			background: rgba($light-color,0.85);
+			color: $main-color;
+			box-shadow: -4px 4px 8px rgba($dark-color,0.1);
+		}
+		background: rgba($light-color,0.85);
+		color: $dark-color;
+		box-shadow: -4px 4px 8px rgba($dark-color,0.1);
+		.panel-group {
+			border-top-color: rgba($main-color,0.2);
+			.panel {
+				border-bottom-color: rgba($main-color,0.2);
+				.panel-title {
+					color: $main-color;
+					&:hover, &:active, &:focus {
+						color: $main-color;
+					}
+				}
+				.panel-body {
+					background: rgba(darken($light-color, 30%),0.15);
+					.single-detail {
+						color: $dark-color;
+						&:hover, &:active, &:focus {
+							background-color: $main-color;
+							color: $back-color;
+						}
+					}
+				}
+			}
+		}
+	}
+	#left-map {
+		.close-sidebar {color: $back-color;}
+		.open-sidebar {
+			background: rgba(saturate(darken($main-color,6%),8%),0.85);
+			color: $back-color;
+			box-shadow: 4px 4px 8px rgba($dark-color,0.1);
+			@media #{$xs}{
+				background-color: rgba($dark-color,0.85);
+			}
+		}
+		.panel-group {
+			border-top-color: rgba($light-color,0.2);
+			.btn-link {
+				color: $back-color;
+				&:hover, &:active, &:focus {
+					color: $side-color;
+				}
+			}
+			.panel {
+				border-bottom-color: rgba($light-color,0.2);
+				.panel-title {
+					&:hover, &:active, &:focus {
+						color: $back-color;
+					}
+				}
+				.panel-body {
+					background: rgba(darken($main-color, 30%),0.15);
+					.checkbox {
+						input[type="checkbox"] {
+							& + span {
+								color: $back-color;
+								&:before {
+									color: transparent;
+								}
+								&:after {
+									background-color: transparent;
+									border-color: $back-color;
+								}
+							}
+							&:checked + span {
+								&:before {
+									color: $main-color;
+								}
+								&:after {
+									background-color: $back-color;
+									border-color: $back-color;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+section#section-promos {
+	background-color: $back-color;
+	&:before {border-color: transparent transparent $back-color transparent;}
+	&:after {border-color: $back-color transparent transparent transparent;}
+}
+section#section-parts {
+	background-image: image-url("guideline-background.jpg");
+	&:after {
+		background: $light-color;
+		background: rgba($light-color,0.94);
+	}
+	#part-list {
+		li {
+			a {
+				border-color: $dark-color;
+				color: $dark-color;
+				background-color: $back-color;
+			}
+		}
+	}
+}
+
+.promo-image-text {
+	background-color: rgba($dark-color, 0.8);
+	color: $back-color;
+}
+.promo-description {
+	color: $dark-color;
+	h6 {color: lighten($dark-color, 15%)}
+	span { color: $main-color;}
+	ul,ol {
+		padding-left: 15px;
+		margin-bottom: 19px;
+	}
+}
+
+.single-part {
+	background-color: rgba($back-color, 0.8);
+	> div.single-part-text {
+		color: $dark-color;
+	}
+	&:hover, &:active, &:focus {
+		box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+	}
+}
+
+// Guideline & Carousels
 section#section-guideline {
 	background-image: image-url("background-image.jpg");
 	&:after {
@@ -220,30 +389,6 @@ section#section-parts {
 				background-color: $back-color;
 			}
 		}
-	}
-}
-
-.promo-image-text {
-	background-color: rgba($dark-color, 0.8);
-	color: $back-color;
-}
-.promo-description {
-	color: $dark-color;
-	h6 {color: lighten($dark-color, 15%)}
-	span { color: $main-color;}
-	ul,ol {
-		padding-left: 15px;
-		margin-bottom: 19px;
-	}
-}
-
-.single-part {
-	background-color: rgba($back-color, 0.8);
-	> div.single-part-text {
-		color: $dark-color;
-	}
-	&:hover, &:active, &:focus {
-		box-shadow: 3px 3px 0 rgba($dark-color,0.2);
 	}
 }
 
@@ -456,14 +601,14 @@ section#section-parts {
 		}
 	}
 }
-.modal-backdrop {
-	& + .popover {
-		background-color: lighten(desaturate($side-color,10%), 10%);
+.modal-backdrop, .catalog {
+	& ~ .popover {
+		background-color: lighten(desaturate($side-color,10%), 30%);
 		&.bottom .arrow:after {
-			border-bottom-color: lighten(desaturate($side-color,10%), 10%);
+			border-bottom-color: lighten(desaturate($side-color,10%), 30%);
 		}
 		&.top .arrow:after {
-			border-top-color: lighten(desaturate($side-color,10%), 10%);
+			border-top-color: lighten(desaturate($side-color,10%), 30%);
 		}
 	}
 }

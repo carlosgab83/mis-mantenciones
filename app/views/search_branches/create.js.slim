@@ -1,0 +1,11 @@
+|
+  //sets MarkerClusterer Image path
+  mapControls.markerClustererImagePath = 'https://s3.amazonaws.com/mismantenciones-files/images/markerclusterer/m';
+  // It sets to js variable the whole list of branches
+  tmpBranches = #{raw Branch.to_map_builder(@branches).target!};
+  if(!generalControls.arraysEqual(tmpBranches, branchesControls.branches)){
+    branchesControls.makeCluster([]);
+    branchesControls.branches = tmpBranches;
+    markers = branchesControls.drawBranches();
+  }
+

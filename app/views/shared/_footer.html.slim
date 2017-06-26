@@ -1,14 +1,19 @@
 footer#footer
   .container
     .row
-      .col-xs-6.col-sm-6.col-md-8
+      .col-xs-6.col-sm-8
         ul.list-inline
           li
             = link_to "Términos y Condiciones", "http://files.mismantenciones.com/pdf/Términos-y-Condiciones-MisMantenciones.pdf", target: :_blank
-
-      .col-xs-6.col-sm-6.col-md-4.text-right
-        ul.list-inline
           li
+            span.hidden-xs 
+              | ¿Necesitas ayuda? escribe a 
+              br
+              | soporte@mismantenciones.com
+
+      .col-xs-6.col-sm-4.text-right
+        ul.list-inline
+          li.acid-container
             | Boosted By
             = link_to "http://www.acid.cl/", :class => "acid", :target => "_blank" do
               = image_tag("acidlabs-logo.png", :alt => "Acid Labs")

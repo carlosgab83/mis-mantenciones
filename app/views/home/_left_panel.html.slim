@@ -1,0 +1,55 @@
+button#center-map
+  = image_tag("center.png", :class => "center-image")
+a.open-sidebar
+  i.fa.fa-search
+  i.fa.fa-chevron-down
+#map-search.panel-group
+  .panel
+    .panel-body
+      .form-group
+        label.sr-only for="county-field-2" Ciudad o Comuna
+        input#search-input-left-panel.form-control.search-input type="text" placeholder="Ciudad o Comuna"
+    .panel-heading
+      a.panel-title data-toggle="collapse" data-parent="#map-search" href="#normal" Búsqueda Normal
+    #normal.panel-collapse.in
+      .panel-body
+        = form_tag search_branches_path, remote: true, id: 'basic-search-form'
+          .form-group
+            = select_tag "search[brand_id]", options_from_collection_for_select(Brand.actives, "id_marca", "descripcion"), class: 'selectpicker form-control like-input', include_blank: true, title: 'Marca', 'data-live-search' => 'true', 'data-none-results-text'=>'No se encontraron resultados para {0}'
+          .form-group
+            = select_tag "search[model_id]", options_from_collection_for_select([], "id_marca", "descripcion"), class: 'selectpicker form-control like-input', include_blank: true, title: 'Modelo', 'data-live-search' => 'true', 'data-none-results-text'=>'No se encontraron resultados para {0}'
+          .form-group
+            button.btn.btn-cta.btn-ghost.btn-block.map-search-left-panel type="button"
+              | Buscar
+
+  .panel
+    .panel-heading
+      a.panel-title data-toggle="collapse" data-parent="#map-search" href="#advanced" Búsqueda Avanzada
+    #advanced.panel-collapse.collapse
+      .panel-body
+         = form_tag search_branches_path, remote: true, id: 'advanced-search-form'
+          .form-group
+            label.sr-only for="search_brand" Patente
+            = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Patente', maxlength: 6)
+          .form-group
+            label.sr-only for="search_brand" Kilometraje
+            = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Kilometraje')
+          .form-group
+            button.btn.btn-cta.btn-ghost.btn-block.advanced-map-search-left-panel type="button"
+              | Por automóvil
+  .panel
+    .panel-heading
+      a.panel-title data-toggle="collapse" data-parent="#map-search" href="#branch_types-filters" Filtrar Resultados
+    #branch_types-filters.panel-collapse.collapse
+      .panel-body
+        form
+          .form-group
+            - BranchType.all.each do |branch_type|
+
+              label.checkbox
+                input type="checkbox" checked="checked" value="#{branch_type.id}" id="#{branch_type.id}"
+                span #{branch_type.name}
+
+          .form-group
+            button#uncheck-checkboxes.btn.btn-link.btn-block type="button"
+              | Deseleccionar todos
