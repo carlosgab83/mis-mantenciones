@@ -1,63 +1,101 @@
-#wrapper.homepage
-  #home-upper
-    .container
+- @body_class = 'home'
+
+= render 'shared/header'
+
+#wrapper
+  section#section-map
+    #floating-form.map-form
       .row
-        .col-sm-12
-          h1
-            = image_tag("logo-mm.png", :alt => "Mis Mantenciones", :class => "img-logo")
-          br
-          h4 Revisa las Mantenciones para tu Auto, Descaga Cupones y Cotiza Repuestos
-  #home-middle
-    .container
-      .row
-        .col-sm-12
-          .row
-            .col-sm-12.col-md-4
-              h3
-                | PERSONALIZA TU BÚSQUEDA&nbsp;
-            .col-sm-12.col-md-8
-              = form_tag results_home_path, class: 'form-inline search-patent'
-                .form-group
-                  = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Tu Patente', maxlength: 6)
-                .form-group
-                  .input-group
-                    = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Tu Kilometraje', maxlength: 8)
-                    .input-group-addon kms
-                .form-group
-                  button.btn.btn-cta.btn-block.get-in-advise type="submit" Comenzar
-  #home-bottom
-    .container
-      .row
-        .col-md-12
-          .row
-            .col-sm-12.col-md-3
-              h3 Hazlo Simple
-            .col-sm-12.col-md-9
-              ul.list-unstyled.list-inline
-                li
-                  i.fa.fa-search
-                  | Busca
-                  br
-                  | Talleres
-                li
-                  i.fa.fa-check-square-o
-                  | Cotiza
-                  br
-                  | Mantenciones
-                li
-                  i.fa.fa-calendar
-                  | Agenda
-                  br
-                  | tu Atención
-                li
-                  i.fa.fa-wrench
-                  | Compra
-                  br
-                  | Repuestos
-                li
-                  i.fa.fa-tag
-                  | Obtén
-                  br
-                  | Promociones
+        .col-sm-3.col-md-4
+          p.lead
+            | Encuentra servicios
+            br
+            | cerca tuyo
+        .col-sm-9.col-md-8
+          form.form-inline
+            .form-group
+              label.sr-only for="county-field" Ciudad o Comuna
+              input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna"
+            .form-group
+              button#services-search.btn.btn-cta.btn-block.map-search type="button"
+                | Busca Servicios
+    #left-map.map-form
+      = render 'left_panel'
+    #right-map.map-form
+      a.close-sidebar.side-bar-control.visible-xs
+        i.fa.fa-times
+      a.open-sidebar.side-bar-control
+        i.fa.fa-angle-left
+        i.fa.fa-angle-right
+      #marker-detail.panel-group
+    #map
 
 = render 'shared/footer'
+
+#map-info.modal.fade
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-body
+        .nav.nav-tabs.nav-justified role="tablist"
+          li.active role="presentation"
+            a href="#personas" aria-controls="personas" role="tab" data-toggle="tab"
+              | Información a Personas
+          //li role="presentation"
+            //a href="#empresas" aria-controls="empresas" role="tab" data-toggle="tab"
+              //| Empresas
+        .tab-content
+          #personas.tab-pane.active role="tabpanel"
+            .well
+              h6 Tipos de servicio en el mapa
+              ul.list-unstyled
+                li
+                  = image_tag("markers/taller.png", :alt => "Taller Multimarca", :class => "marker-image")
+                  span Taller Multimarca
+                li
+                  = image_tag("markers/taller2.png", :alt => "Taller Marca", :class => "marker-image")
+                  span Taller Marca
+                li
+                  = image_tag("markers/concesionario.png", :alt => "Concesionaria", :class => "marker-image")
+                  span Concesionaria
+                li
+                  = image_tag("markers/lubricentro.png", :alt => "Lubricentro", :class => "marker-image")
+                  span Lubricentro
+                li
+                  = image_tag("markers/servicentro.png", :alt => "Estación de Servicio", :class => "marker-image")
+                  span Estación de Servicio
+                li
+                  = image_tag("markers/neumaticos.png", :alt => "Neumáticos", :class => "marker-image")
+                  span Neumáticos
+                li
+                  = image_tag("markers/estacionamiento.png", :alt => "Estacionamiento", :class => "marker-image")
+                  span Estacionamiento
+                li
+                  = image_tag("markers/vulcanizacion.png", :alt => "Vulcanización", :class => "marker-image")
+                  span Vulcanización
+                li
+                  = image_tag("markers/carwash.png", :alt => "Carwash", :class => "marker-image")
+                  span Carwash
+                li
+                  = image_tag("markers/llantas.png", :alt => "Llantas", :class => "marker-image")
+                  span Llantas
+                li
+                  = image_tag("markers/repuestos.png", :alt => "Repuestos y Accesorios", :class => "marker-image")
+                  span Repuestos y Accesorios
+                li
+                  = image_tag("markers/prt.png", :alt => "Planta de Revisión Técnica", :class => "marker-image")
+                  span Planta de Revisión Técnica
+                li
+                  = image_tag("markers/seguros.png", :alt => "Compañía de Seguro", :class => "marker-image")
+                  span Compañía de Seguro
+                li
+                  = image_tag("markers/financiamiento.png", :alt => "Financiamiento", :class => "marker-image")
+                  span Financiamiento
+                li
+                  = image_tag("markers/dyp.png", :alt => "Desabolladuría y Pintura", :class => "marker-image")
+                  span Desabolladuría y Pintura
+          //#empresas.tab-pane role="tabpanel"
+            //.well Texto...
+
+javascript:
+  var initMapGoogleCallback = mapControls.initMap.bind(null, #{SystemSetting.config.default_latitude}, #{SystemSetting.config.default_longitude}, #{SystemSetting.config.default_zoom});
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgCfExuv-T3zGG0mkSuNx0z0tLhRPlHzw&libraries=places&callback=initMapGoogleCallback"

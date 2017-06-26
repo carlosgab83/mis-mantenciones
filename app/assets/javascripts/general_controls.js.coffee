@@ -29,7 +29,7 @@ generalControls.sendAjax = (params, url, success_function, method) ->
 #############################################################################
 
 generalControls.showLoadingEffect = () ->
-  $('.loader').show();
+  $('.loader').show()
   $('body').addClass('loading-time')
 
 #############################################################################
@@ -54,3 +54,18 @@ generalControls.defaultValidations = () ->
   #   submitHandler: (form) ->
   #     form.submit()
   # })
+
+#############################################################################
+
+generalControls.arraysEqual = (arr1, arr2) ->
+  if arr1.length != arr2.length
+    return false
+  i = arr1.length
+  while i--
+    if arr1[i].length != arr2[i].length
+      return false
+    j = arr1[i].length
+    while j--
+      if arr1[i][j] != arr2[i][j]
+        return false
+  true

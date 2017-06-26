@@ -52,7 +52,7 @@ class ProductsFinder < BaseService
 
   def find_products_by_attributes(attributes, vertical_filters, category)
     products = Product.actives.not_deleted.by_category(category)
-    vertical_filters.each do |attribute_id, values|
+    vertical_filters.each do |attribute_id, _values|
       vertical_filters[attribute_id] ||= []
       vertical_filters[attribute_id] = [] if vertical_filters[attribute_id].include?(ProductsFinder::SELECT_ALL_STR)
     end
@@ -104,7 +104,7 @@ class ProductsFinder < BaseService
     Product.from("(#{queries.join(' intersect ')}) as products")
   end
 
-  def find_products_by_vehicle(attributes, category)
+  def find_products_by_vehicle(attributes, _category)
     products = Product.actives.not_deleted.by_category(Category.last)
     if attributes["brand_id"].present? or attributes["model_id"].present? or attributes["year"].present?
       products = products.joins(:products_vmes).joins(products_vmes: {vme: {model: :brand}})

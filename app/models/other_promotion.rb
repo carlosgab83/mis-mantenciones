@@ -1,0 +1,3 @@
+class OtherPromotion < Promotion
+
+end

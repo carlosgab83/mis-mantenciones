@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   extend FriendlyId
-  extend ProductsSerializer
   include ProductSerializer
+  extend ProductsSerializer
 
    self.per_page = 5
 
@@ -21,7 +21,7 @@ class Product < ApplicationRecord
 
   def branches_products_with_prices
     non_price_value = 9999999999
-    branches_products.with_url.sort{|a,b| (a.price || non_price_value) <=> (b.price || non_price_value) }
+    branches_products.sort{|a,b| (a.price || non_price_value) <=> (b.price || non_price_value) }
   end
 
   rails_admin do

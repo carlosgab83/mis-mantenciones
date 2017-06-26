@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get 'index' => 'home#search'
   get 'search' => 'home#search', as: :search_home
+  get 'my_pauta' => 'home#my_pauta', as: :my_pauta_home
   match 'results' => 'home#results', as: :results_home, via: [:get, :post]
 
   resources :manteinance_coupons, only: [:new, :create] do
@@ -31,6 +32,19 @@ Rails.application.routes.draw do
   resources :search_products, :path => '/search-products', only: [:index, :show, :update] do
     collection do
       get :model_collection
+    end
+  end
+
+  resources :search_branches, :path => '/search-branches', only: [:create, :show] do
+    collection do
+      get :model_collection
+    end
+  end
+
+  resources :shops, only: [] do
+    resources :branches, only: [] do
+      resources :promotions, only: [:show, :index], module: :branches_promotions do
+      end
     end
   end
 

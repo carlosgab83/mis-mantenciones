@@ -1,16 +1,16 @@
 class ClientsController < ApplicationController
   protect_from_forgery with: :exception
 
-    def new
-      @client = session[:client] || Client.new
-      session[:last_context] = params
-      respond_to do |format|
-        format.js { params[:partial] ? render(:new, status: :ok) : render( head :error)}
-        return
-      end
+  def new
+    @client = session[:client] || Client.new
+    session[:last_context] = params
+    respond_to do |format|
+      format.js { params[:partial] ? render(:new, status: :ok) : render( head :error)}
+      return
     end
+  end
 
-    def create
+  def create
     if create_client_params
       client = ClientCreator.new(create_client_params.merge({rvm_id: session[:vehicle].try(:patent)})).call
       if client.valid?

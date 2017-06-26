@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228003124) do
+ActiveRecord::Schema.define(version: 20170608034301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,24 +47,41 @@ ActiveRecord::Schema.define(version: 20170228003124) do
     t.index ["promotion_id"], name: "index_attributes_promotions_on_promotion_id", using: :btree
   end
 
+  create_table "branch_types", force: :cascade do |t|
+    t.string   "name",                       null: false
+    t.string   "marker_url",                 null: false
+    t.boolean  "deleted",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["name"], name: "branch_types_business_index", unique: true, using: :btree
+  end
+
   create_table "branches", force: :cascade do |t|
-    t.string   "name",                           null: false
+    t.string   "name",                                   null: false
     t.string   "phone1"
     t.string   "phone2"
     t.string   "address"
-    t.boolean  "will_contact",                   null: false
+    t.boolean  "will_contact",                           null: false
     t.string   "booking_url"
     t.string   "scraper_model"
-    t.boolean  "deleted",        default: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "shop_id",                        null: false
+    t.boolean  "deleted",                default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "shop_id",                                null: false
     t.integer  "commune_id"
     t.string   "street_address"
     t.string   "number_address"
     t.string   "ref_address"
     t.string   "email"
+    t.integer  "branch_type_id"
+    t.integer  "plan_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.float    "interval_between_jumps"
+    t.string   "slug"
+    t.index ["branch_type_id"], name: "index_branches_on_branch_type_id", using: :btree
     t.index ["name"], name: "branches_business_index", unique: true, using: :btree
+    t.index ["plan_id"], name: "index_branches_on_plan_id", using: :btree
     t.index ["shop_id"], name: "index_branches_on_shop_id", using: :btree
   end
 
@@ -226,8 +243,6 @@ ActiveRecord::Schema.define(version: 20170228003124) do
     t.boolean "diesel_engine"
     t.boolean "double_traction"
     t.boolean "automatic_transmission"
-    t.integer "from_year"
-    t.integer "to_year"
     t.index ["kilometraje", "vme_id", "diesel_engine", "double_traction", "automatic_transmission"], name: "pauta_business_index", unique: true, using: :btree
   end
 
@@ -238,6 +253,15 @@ ActiveRecord::Schema.define(version: 20170228003124) do
     t.datetime "updated_at"
     t.boolean  "deleted",            default: false
     t.index ["id_pauta", "id_item_mantencion"], name: "pauta_detalle_business_index", unique: true, using: :btree
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string   "name",                        null: false
+    t.string   "description"
+    t.boolean  "deleted",     default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["name"], name: "plans_business_index", unique: true, using: :btree
   end
 
   create_table "product_brands", force: :cascade do |t|
@@ -295,9 +319,12 @@ ActiveRecord::Schema.define(version: 20170228003124) do
     t.text     "preview_text"
     t.string   "image_url"
     t.string   "slug"
+    t.string   "type"
+    t.integer  "kms"
     t.index ["category_id"], name: "index_promotions_on_category_id", using: :btree
     t.index ["name"], name: "promotions_business_index", unique: true, using: :btree
     t.index ["slug"], name: "index_promotions_on_slug", using: :btree
+    t.index ["type"], name: "index_promotions_on_type", using: :btree
   end
 
   create_table "promotions_vmes", force: :cascade do |t|
@@ -312,7 +339,7 @@ ActiveRecord::Schema.define(version: 20170228003124) do
     t.index ["promotion_id"], name: "index_promotions_vmes_on_promotion_id", using: :btree
   end
 
-  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, force: :cascade, comment: "Rut taller" do |t|
+  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, comment: "Rut taller", force: :cascade do |t|
     t.string  "ide_dv",        limit: 1,               null: false
     t.text    "ide_nombre_rz",                         null: false
     t.integer "ide_estado",              default: 1,   null: false
@@ -330,6 +357,7 @@ ActiveRecord::Schema.define(version: 20170228003124) do
     t.integer "v_pro_rut"
     t.text    "v_pro_dv"
     t.text    "v_pro_nombre"
+    t.index ["v_rvm"], name: "idx_v_rvm", unique: true, using: :btree
     t.index ["v_rvm"], name: "index_v_rvm", using: :btree
   end
 
@@ -379,6 +407,7 @@ ActiveRecord::Schema.define(version: 20170228003124) do
     t.string   "email"
     t.boolean  "status",     default: false
     t.string   "image_url"
+    t.string   "slug"
     t.index ["name"], name: "shops_business_index", unique: true, using: :btree
     t.index ["rut"], name: "index_shops_on_rut", unique: true, using: :btree
   end
@@ -387,6 +416,9 @@ ActiveRecord::Schema.define(version: 20170228003124) do
     t.integer  "product_scraping_caching_minutes", null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.float    "default_latitude"
+    t.float    "default_longitude"
+    t.integer  "default_zoom"
   end
 
   create_table "tipo_seccion", primary_key: "id_tiposeccion", id: :integer, force: :cascade do |t|
@@ -429,9 +461,10 @@ ActiveRecord::Schema.define(version: 20170228003124) do
   add_foreign_key "attributes_products", "products"
   add_foreign_key "attributes_promotions", "attributes"
   add_foreign_key "attributes_promotions", "promotions"
+  add_foreign_key "branches", "branch_types"
   add_foreign_key "branches", "comuna", column: "commune_id", primary_key: "id_comuna"
+  add_foreign_key "branches", "plans"
   add_foreign_key "branches", "shops"
-  add_foreign_key "branches_manteinance_items", "branches"
   add_foreign_key "branches_manteinance_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
   add_foreign_key "branches_manteinance_items", "pauta", column: "pauta_id", primary_key: "id_pauta"
   add_foreign_key "branches_products", "branches"
@@ -444,7 +477,6 @@ ActiveRecord::Schema.define(version: 20170228003124) do
   add_foreign_key "coupons", "promotions"
   add_foreign_key "item_mantencion", "tipo_seccion", column: "id_tipo_seccion", primary_key: "id_tiposeccion", name: "fk_tiposeccion"
   add_foreign_key "manteinance_coupons", "branches"
-  add_foreign_key "manteinance_coupons", "clients"
   add_foreign_key "manteinance_coupons", "pauta", column: "pauta_id", primary_key: "id_pauta"
   add_foreign_key "manteinance_coupons_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
   add_foreign_key "manteinance_coupons_items", "manteinance_coupons"

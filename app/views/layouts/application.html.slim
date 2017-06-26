@@ -2,7 +2,8 @@
 html
   = render 'shared/head'
 
-  body
+  body class=(@body_class)
+  
     = yield
 
     #quote-modal.modal.fade role="dialog"

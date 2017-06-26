@@ -1,4 +1,4 @@
-a.single-promo href="#{promotion_path(promotion)}" title="#{promotion.name}"
+a.single-promo href="#{shop_branch_promotion_path(promotion.first_shop.slug, promotion.first_branch.slug, promotion)}" title="#{promotion.slug}"
   - if promotion.promo_price.present? and promotion.show_button?
     .promo-image
       // si hay logo de la empresa
