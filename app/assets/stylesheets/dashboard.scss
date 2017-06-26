@@ -268,12 +268,12 @@ section#section-map {
 			vertical-align: 20px;
 			font-size: 120%;
 			z-index: 3;
-			opacity: 0.5;
+			opacity: 0.8;
 			&:hover, &:active, &:focus {
 				opacity: 1;
 			}
 			@media #{$xs} {
-				top: 50px;
+				top: 95px;
 			}
 		}
 		.panel-group {
@@ -433,7 +433,7 @@ section#section-map {
 			left: 0;
 			top: 100%;
 			width: 100%;
-			height: calc(100% - 40px);
+			max-height: calc(100% - 40px);
 		}
 		.open-sidebar {
 			border-radius: 5px 0 0 5px;
