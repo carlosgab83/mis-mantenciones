@@ -4,21 +4,28 @@ class SearchBranchesController < ApplicationController
   def create
     @branches = BranchesFinder.new(form: search_branches_form).call
 
+    EventTracker::ClickSearchBranches.new(
+      controller: self,
+      client: session[:client],
+      search_branches_form: search_branches_form,
+      found_branches: @branches.count
+    ).track
+
     respond_to do |format|
       format.js
     end
-
-    # TODO: Track event:
-    # EventTracker::ClickSeachWithLocation.new(
-    #   controller: self,
-    #   location: session[:search]['location'],
-    #   latitude: session[:search]['location'],
-    #   longitude: session[:search]['longitude']
-    # ).track
   end
 
   def show
     @branch_items = BranchItemsFinder.new(branch: branch, form: search_branches_form).call
+
+    EventTracker::ClickBranch.new(
+      controller: self,
+      client: session[:client],
+      branch: branch,
+      search_branches_form: search_branches_form
+    ).track
+
     respond_to do |format|
       format.js
     end

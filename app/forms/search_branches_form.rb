@@ -1,6 +1,6 @@
 class SearchBranchesForm < BaseForm
 
-  attr_accessor :latitude, :longitude, :location_text, :brand_id, :model_id, :patent, :kms
+  attr_accessor :latitude, :longitude, :location_text, :brand_id, :model_id, :patent, :kms, :brand, :model
 
   def latitude
     @latitude ||= params['latitude']
@@ -40,6 +40,14 @@ class SearchBranchesForm < BaseForm
 
   def empty_search?
     not basic_search? and not advanced_search?
+  end
+
+  def brand
+    @brand ||= Brand.where(id_marca: brand_id).first || nil
+  end
+
+  def model
+    @model ||= Model.where(id_modelo: model_id).first || nil
   end
 
 end
