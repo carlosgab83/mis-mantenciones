@@ -35,12 +35,12 @@ module BranchPlanManager
       # This branch has products?, then show all products
       @products_categories_ids ||= -> {
         products_category = Category.roots.where(name: 'Productos').first
-        products_categories_ids = products_category.self_and_descendants.pluck :id
+        products_category.self_and_descendants.pluck :id
       }.call
     end
 
     def generic_promotions
-      generic_promotions = OtherPromotion.availables.actives.with_stock.not_deleted
+      OtherPromotion.availables.actives.with_stock.not_deleted
         .joins(branches_promotions: :branch)
         .where("branches.id = ?", branch.id)
         .order("promotions.priority desc, promotions.promo_price asc, promotions.created_at desc")

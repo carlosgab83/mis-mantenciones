@@ -3,7 +3,7 @@ class PautaFinder < BaseService
   def call
     vme   = params[:vehicle].vme
     Rails.cache.fetch("#results_closest_pauta_#{vme.try(:vme_id)}_#{params[:vehicle].kms}", expires_in: 5.minutes) do
-      pauta = closest_pauta(vme.try(:vme_id), params[:vehicle].kms)
+      closest_pauta(vme.try(:vme_id), params[:vehicle].kms)
     end
   end
 

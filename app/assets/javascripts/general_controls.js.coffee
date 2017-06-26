@@ -29,7 +29,7 @@ generalControls.sendAjax = (params, url, success_function, method) ->
 #############################################################################
 
 generalControls.showLoadingEffect = () ->
-  $('.loader').show();
+  $('.loader').show()
   $('body').addClass('loading-time')
 
 #############################################################################

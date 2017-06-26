@@ -14,20 +14,18 @@ class HomeController < ApplicationController
   # Testing patente: RK1478 # GOLF
   # Testing patente: BYKP82 # BORA
   def results
-    session[:search] = {} if session[:search].nil?
-    if params[:search].present?
-      session[:search]['patent'] = params[:search][:patent]
-      session[:search]['kms']    = params[:search][:kms]
-    end
+    fill_session
 
     if session[:search]['patent'].nil? or session[:search]['patent'].blank?
       EventTracker::ClickSearchWithoutPatent.new(controller: self).track
     end
+
     if session[:search].nil? or session[:search]['patent'].nil? or session[:search]['kms'].nil?
       session[:rvm_id] = nil
       redirect_to :my_pauta_home
       return
     end
+
     begin
       @vehicle = VehicleFinder.new(SearchVehicleForm.new(session[:search])).call
       # If not vehicle found, @vehicle.vme is nil
@@ -44,4 +42,15 @@ class HomeController < ApplicationController
       return
     end
   end
+
+  private
+
+  def fill_session
+    session[:search] = {} if session[:search].nil?
+    if params[:search].present?
+      session[:search]['patent'] = params[:search][:patent]
+      session[:search]['kms']    = params[:search][:kms]
+    end
+  end
+
 end
