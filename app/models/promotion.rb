@@ -36,9 +36,7 @@ class Promotion < ApplicationRecord
   validates :priority, :image_url, :name, :description, :from_date, :to_date, presence: true
 
   def shops_details
-    branches.collect do |b|
-      "#{b.shop.name} (#{b.name})"
-    end.join(', ')
+    branches.first.try(:shop).try(:name)
   end
 
   def show_button?
