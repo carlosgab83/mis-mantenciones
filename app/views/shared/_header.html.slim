@@ -44,7 +44,7 @@ header#header
             - if action_name != 'results'
               li
                 = link_to 'Mi Pauta', results_home_path
-            -if current_page?(root_path)
+            -if current_page?(search_home_path)
               li
                 = link_to 'info', 'javascript:void(0);' , :data => { :toggle => "modal", :target => "#map-info" }
             li
