@@ -20,12 +20,6 @@ class HomeController < ApplicationController
       EventTracker::ClickSearchWithoutPatent.new(controller: self).track
     end
 
-    if session[:search].nil? or session[:search]['patent'].nil? or session[:search]['kms'].nil?
-      session[:rvm_id] = nil
-      redirect_to :my_pauta_home
-      return
-    end
-
     begin
       @vehicle = VehicleFinder.new(SearchVehicleForm.new(session[:search])).call
       # If not vehicle found, @vehicle.vme is nil
@@ -38,7 +32,7 @@ class HomeController < ApplicationController
     rescue AppExceptions::PautaNotFound => e
       puts e.message
       puts e.backtrace
-      redirect_to :my_pauta_home, flash: {error: I18n.t('home.pauta_not_found')}
+      render :results, flash: {error: I18n.t('home.pauta_not_found')}
       return
     end
   end
