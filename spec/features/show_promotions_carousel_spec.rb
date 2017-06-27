@@ -19,7 +19,7 @@ describe "Show promotions on carousel", :type => :feature do
       click_link 'Mi Pauta'
       within '.search-patent' do
         fill_in 'search_patent', with: 'AAA000'
-        click_button 'Comenzar'
+        click_button 'Consultar'
       end
 
       expected_promotions_array = ["product_promotion_shown_1", "vehicle_promotion_shown_1", "service_promotion_shown_1",
@@ -42,7 +42,7 @@ describe "Show promotions on carousel", :type => :feature do
       click_link 'Mi Pauta'
       within '.search-patent' do
         fill_in 'search_patent', with: 'AAA000'
-        click_button 'Comenzar'
+        click_button 'Consultar'
       end
 
       expected_promotions_array = ["specific_product_promotion_shown_1", "specific_vehicle_promotion_shown_1", "specific_service_promotion_shown_1",
