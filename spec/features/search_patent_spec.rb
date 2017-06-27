@@ -19,7 +19,7 @@ describe "Search Patent", :type => :feature do
         click_link 'Mi Pauta'
         within '.search-patent' do
           fill_in 'search_patent', with: 'AAA000'
-          click_button 'Comenzar'
+          click_button 'Consultar'
         end
 
         expect(page.find(:xpath,".//section[@id='section-guideline']/div/div/div/ul/li/div/h2").text).to eq('Mantenciones para tu TOYOTA LANDCRUISER 2015')
@@ -39,7 +39,7 @@ describe "Search Patent", :type => :feature do
         within '.search-patent' do
           fill_in 'search_patent', with: 'AAA000'
           fill_in 'search_kms', with: '18000' # The closest pauta is 20.000
-          click_button 'Comenzar'
+          click_button 'Consultar'
         end
 
         expect(page.find(:xpath,".//section[@id='section-guideline']/div/div/div/ul/li/div/h2").text).to eq('Mantenciones para tu TOYOTA LANDCRUISER 2015')
@@ -63,7 +63,7 @@ describe "Search Patent", :type => :feature do
       click_link 'Mi Pauta'
       within '.search-patent' do
         fill_in 'search_patent', with: 'XAA000' # Patent not found in database
-        click_button 'Comenzar'
+        click_button 'Consultar'
       end
 
       expect(page.find(:xpath,".//section[@id='section-guideline']/div/div/div/ul/li/div/h2").text).to eq('Mantenciones para tu AUTO O MOTO')
