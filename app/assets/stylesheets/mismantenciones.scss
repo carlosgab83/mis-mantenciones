@@ -503,6 +503,30 @@ body {
 
 			}
 		}
+		.modal-body {
+			position: relative;
+			.close {
+				position: absolute;
+				top: -20px;
+				right: -20px;
+				width: 40px;
+				height: 40px;
+				padding: 5px;
+				border-radius: 50%;
+				z-index: 1;
+				text-shadow: none;
+				font-size: 16px;
+				line-height: 20px;
+				text-align: center;
+				font-weight: bold;
+				font-family: 'Exo', sans-serif;
+				opacity: 1;
+				@media #{$xs} {
+					right: -5px;
+					top: -5px;
+				}
+			}
+		}
 	}
 }
 .modal-backdrop {
