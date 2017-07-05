@@ -1,8 +1,8 @@
 class CouponCreatedMailer < ApplicationMailer
 
   def notify_client(coupon, promotions_ids, patent, kms)
-    template_name = (coupon.promotion.category.vehicle? ? 'mismantenciones-com-cupon-information' : 'mismantenciones-com-cupon')
-    subject = (coupon.promotion.category.vehicle? ? "Has solicitado más información en #{coupon.promotion.branches.first.try(:shop).try(:name)}." : "Has adquirido un cupón de servicio en #{coupon.promotion.branches.first.try(:shop).try(:name)}.")
+    template_name = (coupon.promotion.category.vehicle? or coupon.promotion.is_a?(BranchInformation) ? 'mismantenciones-com-cupon-information' : 'mismantenciones-com-cupon')
+    subject = (coupon.promotion.category.vehicle? or coupon.promotion.is_a?(BranchInformation) ? "Has solicitado más información en #{coupon.promotion.branches.first.try(:shop).try(:name)}." : "Has adquirido un cupón de servicio en #{coupon.promotion.branches.first.try(:shop).try(:name)}.")
     template_content = []
     message = {
       from_name: default_from_name,
@@ -32,8 +32,8 @@ class CouponCreatedMailer < ApplicationMailer
   end
 
   def notify_shop(coupon, patent, kms)
-    template_name = (coupon.promotion.category.vehicle? ? 'mismantenciones-com-cupon-branch-information' : 'mismantenciones-com-cupon-branch')
-    subject = (coupon.promotion.category.vehicle? ? "Cliente: #{coupon.client.full_name} ha solicitado más información en #{coupon.promotion.branches.first.try(:shop).try(:name)}." : "#{coupon.client.full_name} ha adquirido un cupón de servicio en #{coupon.promotion.branches.first.try(:shop).try(:name)}.")
+    template_name = (coupon.promotion.category.vehicle? or coupon.promotion.is_a?(BranchInformation) ? 'mismantenciones-com-cupon-branch-information' : 'mismantenciones-com-cupon-branch')
+    subject = (coupon.promotion.category.vehicle? or coupon.promotion.is_a?(BranchInformation) ? "Cliente: #{coupon.client.full_name} ha solicitado más información en #{coupon.promotion.branches.first.try(:shop).try(:name)}." : "#{coupon.client.full_name} ha adquirido un cupón de servicio en #{coupon.promotion.branches.first.try(:shop).try(:name)}.")
     template_content = []
     message = {
       from_name: default_from_name,

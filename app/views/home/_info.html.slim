@@ -1,16 +1,25 @@
   .modal-dialog.modal-lg
     .modal-content
       .modal-body
-        .nav.nav-tabs.nav-justified role="tablist"
+        button type="button" class="close" data-dismiss="modal" x
+        ul.nav.nav-tabs.nav-justified role="tablist"
           li.active role="presentation"
             a href="#personas" aria-controls="personas" role="tab" data-toggle="tab"
-              | Información a Personas
-              button type="button" class="close" data-dismiss="modal" x
-          //li role="presentation"
-            //a href="#empresas" aria-controls="empresas" role="tab" data-toggle="tab"
-              //| Empresas
+              | Información a Usuarios
+          li role="presentation"
+            a href="#empresas" aria-controls="empresas" role="tab" data-toggle="tab"
+              | Información a Empresas
         .tab-content
           #personas.tab-pane.active role="tabpanel"
+            h3 Bienvenid@
+            p 
+              strong MisMantenciones.com 
+              | es una plataforma, que en base a GeoReferencia, te permitirá encontrar servicios automotrices y todo lo relacionado a tu auto/moto.
+            p Puedes buscar servicios bajo tres parámetros (Comuna/Ciudad - Marca/Modelo - Petente/Km) y filtrar la búsqueda de acuerdo a tus necesidades (Lubricentros, Concesionarios, CarWash, Revisión Técnica, etc).
+            p 
+              | En 
+              strong MisMantenciones.com 
+              | encontraras: El servicio más cercano a tu ubicación, Cupones de Descuentos, Servicios Promocionados, Catalogo de Servicios, Catalogo de Repuestos, etc.
             .well
               h6 Tipos de servicio en el mapa
               ul.list-unstyled
@@ -59,5 +68,15 @@
                 li
                   = image_tag("markers/dyp.png", :alt => "Desabolladuría y Pintura", :class => "marker-image")
                   span Desabolladuría y Pintura
-          //#empresas.tab-pane role="tabpanel"
-            //.well Texto...
+          #empresas.tab-pane role="tabpanel"
+            h3 Bienvenid@
+            p 
+              strong MisMantenciones.com 
+              | es una plataforma, que en base a GeoReferencia, permite a un usuario encontrar servicios automotrices y todo lo relacionado a su auto/moto.
+            p 
+              | En 
+              strong MisMantenciones.com 
+              | podrás: Interactuar con los usuarios en el Mapa, Activar un Formulario de Contacto, Promocionar Servicios, Activar Cupones de Descuento, Publicar tu catalogo de productos, etc.
+            p 
+              | Tenemos planes personalizados para tu empresa, contáctanos a 
+              strong ventas@mismantenciones.com
