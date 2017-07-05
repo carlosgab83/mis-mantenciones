@@ -542,6 +542,15 @@ section#section-parts {
 	.modal-content {
 		box-shadow: 5px 5px 0 rgba($dark-color,0.2);
 	}
+	.modal-body {
+		.close {
+			background-color: $dark-color;
+			color: $back-color;
+			&:hover, &:active {
+				background-color: $main-color;
+			}
+		}
+	}
 	.modal-footer {
 		background-color: $light-color;
 		.form-control {
