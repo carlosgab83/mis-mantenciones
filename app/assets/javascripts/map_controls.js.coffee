@@ -69,6 +69,10 @@ mapControls.buttonListeners = () ->
     mapControls.infowindow.close()
     $('.map-search').click()
 
+  # Enable map change if user press enter instead button on left panel
+  mapControls.autocompleteLeftPanel.addListener 'place_changed', ->
+    $('.map-search-left-panel').click()
+
   # When user click on floating initial modal
   $('.map-search').click ->
     mapControls.userSearchAction(mapControls.autocomplete, 'basic-search-form')
