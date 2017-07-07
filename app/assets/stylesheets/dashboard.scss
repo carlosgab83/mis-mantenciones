@@ -238,8 +238,6 @@ section#section-map {
 		height: auto;
 		top: 0;
 		padding: 90px 0 0;
-		overflow-y: auto;
-		overflow-x: visible;
 		@media #{$xs} {
 			padding-top: 90px;
 			&.open {width: 100%;}
@@ -279,7 +277,6 @@ section#section-map {
 		.panel-group {
 			overflow-y: auto;
 			overflow-x: hidden;
-			height: 100%;
 			border-top: 1px solid;
 			margin-bottom: 0;
 			.btn {
@@ -342,6 +339,9 @@ section#section-map {
 		left: -220px;
 		@media #{$oxs} {
 			max-height: calc(100% - 45px);
+			.panel-group {
+				max-height: calc(100vh - 135px);
+			}
 			@include transition(left 0.3s ease-in-out);
 			.open-sidebar {
 				.fa-chevron-down {
@@ -356,6 +356,9 @@ section#section-map {
 			width: 100%;
 			padding-bottom: 40px;
 			height: 100%;
+			.panel-group {
+				max-height: calc(100vh - 130px);
+			}
 			.open-sidebar {
 				.fa-chevron-down {
 					display: none;
@@ -410,6 +413,9 @@ section#section-map {
 				}
 			}
 		}
+		#uncheck-checkboxes {
+			margin-bottom: 5px;
+		}
 	}
 	#right-map {
 		right: -220px;
@@ -426,6 +432,9 @@ section#section-map {
 			}
 		}
 		@media #{$oxs} {
+			.panel-group {
+				max-height: calc(100vh - 150px);
+			}
 			@include transition(right 0.3s ease-in-out);
 		}
 		@media #{$xs} {
@@ -434,6 +443,9 @@ section#section-map {
 			top: 100%;
 			width: 100%;
 			max-height: calc(100% - 40px);
+			.panel-group {
+				max-height: calc(100vh - 130px);
+			}
 		}
 		.open-sidebar {
 			border-radius: 5px 0 0 5px;

@@ -69,6 +69,10 @@ mapControls.buttonListeners = () ->
     mapControls.infowindow.close()
     $('.map-search').click()
 
+  # Enable map change if user press enter instead button on left panel
+  mapControls.autocompleteLeftPanel.addListener 'place_changed', ->
+    $('.map-search-left-panel').click()
+
   # When user click on floating initial modal
   $('.map-search').click ->
     mapControls.userSearchAction(mapControls.autocomplete, 'basic-search-form')
@@ -104,12 +108,12 @@ mapControls.userSearchAction = (autocomplete, formToSubmit) ->
 mapControls.goToNewPlace = (autocomplete) ->
   place = autocomplete.getPlace()
 
-  if !place && document.getElementById('search-input-left-panel').value == ''
+  if !place.geometry || (!place && document.getElementById('search-input-left-panel').value == '')
     mapControls.map.setCenter mapControls.defaultLocation
   # If the place has a geometry, then present it on a map.
-  else if place && place.geometry.viewport
+  else if place && place.geometry && place.geometry.viewport
     mapControls.map.fitBounds place.geometry.viewport
-  else if place
+  else if place && place.geometry
     mapControls.map.setCenter place.geometry.location
 
 #############################################################################
