@@ -55,10 +55,11 @@ class BranchesFinder < BaseService
           select bp.branch_id
           from branches_promotions bp
           where bp.deleted = false
-          and bp.promotion_id not in (
+          and bp.promotion_id in (
             select pv.promotion_id
             from promotions_vmes pv
-            where deleted = false
+            where pv.vme_id is not null and
+            pv.deleted = false
           )
         )
     ")
