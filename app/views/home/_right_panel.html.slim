@@ -7,14 +7,16 @@
         ul.list-unstyled
           li
             .single-info
-              = image_tag(@branch_items.information.image_url, :alt => @branch_items.information.name, :class => "img-responsive")
-              strong #{@branch.branch_type.name} #{@branch.name}
-              br
-              /span Atención de Lunes a Viernes de 9:00 a 18:00 hrs
-              - if @branch_items.show_info_button
-                = link_to "Contáctalos", "#", 'id'=> "request-information-#{@branch_items.information.id}", 'data-id'=> "#{@branch_items.information.id}", 'class'=> "btn btn-cta btn-block"
-                - if @branch.address.present?
-                  = link_to "Ir con Google Maps", "#{google_map_indications_url(@branch.address)}", target: :blank, class: "btn btn-link btn-block"
+                = link_to shop_branch_promotion_path(@branch.shop.slug, @branch.slug, @branch_items.information.slug), class: "single-detail", target: :blank do
+                  = image_tag(@branch_items.information.image_url, :alt => @branch_items.information.name, :class => "img-responsive")
+                  strong
+                  #{@branch.name}
+                br
+                /span Atención de Lunes a Viernes de 9:00 a 18:00 hrs
+                - if @branch_items.show_info_button
+                  = link_to "Contáctalos", "#", 'id'=> "request-information-#{@branch_items.information.id}", 'data-id'=> "#{@branch_items.information.id}", 'class'=> "btn btn-cta btn-block"
+                  - if @branch.address.present?
+                    = link_to "Ir con Google Maps", "#{google_map_indications_url(@branch.address)}", target: :blank, class: "btn btn-link btn-block"
 
 - if @branch_items.promotions.any?
   .panel
