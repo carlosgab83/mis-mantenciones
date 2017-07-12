@@ -212,6 +212,33 @@
       end
     end
 
+    # config.model 'OtherPromotion' do
+    #   edit do
+    #     field :branches do
+    #       associated_collection_cache_all true
+    #     end
+    #     include_all_fields
+    #   end
+    # end
+
+    # config.model 'BranchInformation' do
+    #   edit do
+    #     field :branches do
+    #       associated_collection_cache_all true
+    #     end
+    #     include_all_fields
+    #   end
+    # end
+
+    # config.model 'Manteinance' do
+    #   edit do
+    #     field :branches do
+    #       associated_collection_cache_all true
+    #     end
+    #     include_all_fields
+    #   end
+    # end
+
     ## With an audit adapter, you can add:
     # history_index
     # history_show

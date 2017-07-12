@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :shop_inscriptions, only: [:new, :create, :update]
+  resources :shop_inscriptions, :path => '/registro-taller', only: [:new, :create, :update]
 
   # Error Handling
   if Rails.env.production?

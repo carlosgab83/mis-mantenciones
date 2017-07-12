@@ -17,6 +17,7 @@ class BranchesFinder < BaseService
     branches = branches.joins(promotions: {vmes: {model: :brand}})
     branches = branches.where("modelo.id_modelo = ?", user_input.model_id) if user_input.model_id
     branches.where("marca.id_marca = ?", user_input.brand_id) if user_input.brand_id
+    Branch.from("(#{branches.to_sql} union #{branches_with_generic_promotions.to_sql}) as branches").uniq
   end
 
   def advanced_search(branches)
@@ -40,11 +41,28 @@ class BranchesFinder < BaseService
                       .where("plans.name not in ('#{Plan::PLAN1}', '#{Plan::PLAN2}')")
       end
 
-      Branch.from("(#{branches1.to_sql} union #{branches2.to_sql}) as branches")
+      Branch.from("(#{branches1.to_sql} union #{branches2.to_sql} union #{branches_with_generic_promotions.to_sql}) as branches").uniq
     else
       # What to do here?
       branches
     end
+  end
+
+  def branches_with_generic_promotions
+    Branch.includes(:branch_type).actives.with_plan.where("
+      branches.id not in
+        (
+          select bp.branch_id
+          from branches_promotions bp
+          where bp.deleted = false
+          and bp.promotion_id in (
+            select pv.promotion_id
+            from promotions_vmes pv
+            where pv.vme_id is not null and
+            pv.deleted = false
+          )
+        )
+    ")
   end
 
   def user_input
