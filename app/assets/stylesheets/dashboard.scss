@@ -465,8 +465,10 @@ section#section-map {
 			@media #{$xs} {
 				font-size: 95%;
 			}
-			img {
-				max-width: 188px;
+			.img, img {
+				display: inline-block;
+				max-width: 175px;
+				max-height: 110px;
 				margin: 0 auto 10px;
 			}
 		}
