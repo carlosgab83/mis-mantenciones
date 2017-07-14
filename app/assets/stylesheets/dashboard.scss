@@ -239,7 +239,7 @@ section#section-map {
 		top: 0;
 		padding: 90px 0 0;
 		@media #{$xs} {
-			padding-top: 90px;
+			padding-top: 70px;
 			&.open {width: 100%;}
 		}
 		.open-sidebar {
@@ -271,7 +271,7 @@ section#section-map {
 				opacity: 1;
 			}
 			@media #{$xs} {
-				top: 95px;
+				top: 75px;
 			}
 		}
 		.panel-group {
@@ -355,9 +355,10 @@ section#section-map {
 			top: 100%;
 			width: 100%;
 			padding-bottom: 40px;
+			margin-bottom: 40px;
 			height: 100%;
 			.panel-group {
-				max-height: calc(100vh - 130px);
+				max-height: calc(100vh - 110px);
 			}
 			.open-sidebar {
 				.fa-chevron-down {
@@ -442,9 +443,10 @@ section#section-map {
 			left: 0;
 			top: 100%;
 			width: 100%;
+			margin-bottom: 40px;
 			max-height: calc(100% - 40px);
 			.panel-group {
-				max-height: calc(100vh - 130px);
+				max-height: calc(100vh - 110px);
 			}
 		}
 		.open-sidebar {
@@ -463,10 +465,12 @@ section#section-map {
 			@media #{$xs} {
 				font-size: 95%;
 			}
-			img {
-				max-width: 188px;
-				margin: 0 auto 10px;
+			.img, img {
+				display: inline-block;
+				max-width: 175px;
+				max-height: 110px;
 			}
+			img {margin: 0 auto 10px;}
 		}
 		.single-detail {
 			display: inline-block;
