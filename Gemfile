@@ -43,7 +43,6 @@ group :development, :test do
 end
 
 group :staging do
-  gem 'rails_12factor'
 end
 
 group :production do
