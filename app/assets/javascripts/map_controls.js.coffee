@@ -91,6 +91,8 @@ mapControls.buttonListeners = () ->
 
   # When user click on floating initial modal
   $('.map-search').click ->
+    hiddenInput = document.getElementById('basic-search-form_search_location_text')
+    hiddenInput.value = document.getElementById('search-input').value
     mapControls.userSearchAction(mapControls.autocomplete, 'basic-search-form')
     leftIinput = document.getElementById('search-input-left-panel')
     leftIinput.value = document.getElementById('search-input').value
@@ -98,12 +100,16 @@ mapControls.buttonListeners = () ->
 
   # when user click on basic search type on left panel, reset other form
   $('.map-search-left-panel').click ->
+    hiddenInput = document.getElementById('basic-search-form_search_location_text')
+    hiddenInput.value = document.getElementById('search-input-left-panel').value
     mapControls.userSearchAction(mapControls.autocompleteLeftPanel, 'basic-search-form')
     mapControls.autocompleteLastSelecction = mapControls.autocompleteLeftPanel
     leftPanelControls.resetAdvancedForm()
 
   # when user click on advanced search type on left panel, reset other form
   $('.advanced-map-search-left-panel').click ->
+    hiddenInput = document.getElementById('advanced-search-form_search_location_text')
+    hiddenInput.value = document.getElementById('search-input-left-panel').value
     mapControls.userSearchAction(mapControls.autocompleteLeftPanel, 'advanced-search-form')
     mapControls.autocompleteLastSelecction = mapControls.autocompleteLeftPanel
     leftPanelControls.resetBasicForm()
