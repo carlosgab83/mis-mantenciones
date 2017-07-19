@@ -46,7 +46,7 @@ a.open-sidebar
       .panel-body
         form
           .form-group
-            - BranchType.all.each do |branch_type|
+            - BranchType.actives.all.each do |branch_type|
 
               label.checkbox
                 input type="checkbox" checked="checked" value="#{branch_type.id}" id="#{branch_type.id}"
