@@ -7,6 +7,7 @@ module EventTracker
       self.attrs.merge!(patent: options[:search_branches_form].patent) if options[:search_branches_form].patent.present?
       self.attrs.merge!(kms: options[:search_branches_form].kms) if options[:search_branches_form].kms.present?
       self.attrs.merge!(found_branches: options[:found_branches])
+      self.attrs.merge!(location_text: options[:search_branches_form].location_text) if options[:search_branches_form].location_text.present?
     end
 
     def track
