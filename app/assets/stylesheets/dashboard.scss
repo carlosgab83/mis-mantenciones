@@ -340,7 +340,7 @@ section#section-map {
 		@media #{$oxs} {
 			max-height: calc(100% - 45px);
 			.panel-group {
-				max-height: calc(100vh - 135px);
+				max-height: calc(100vh - 166px);
 			}
 			@include transition(left 0.3s ease-in-out);
 			.open-sidebar {
@@ -354,12 +354,8 @@ section#section-map {
 			left: 0;
 			top: 100%;
 			width: 100%;
-			padding-bottom: 40px;
-			margin-bottom: 40px;
-			height: 100%;
-			.panel-group {
-				max-height: calc(100vh - 110px);
-			}
+			height: calc(100% - 40px);
+			overflow-y: auto;
 			.open-sidebar {
 				.fa-chevron-down {
 					display: none;
@@ -377,6 +373,7 @@ section#section-map {
 				}
 			}
 			@media #{$xs} {
+				position: fixed;
 				top: 0;
 				#center-map {
 					opacity: 0;
@@ -443,10 +440,10 @@ section#section-map {
 			left: 0;
 			top: 100%;
 			width: 100%;
-			margin-bottom: 40px;
 			max-height: calc(100% - 40px);
-			.panel-group {
-				max-height: calc(100vh - 110px);
+			overflow-y: auto;
+			&.open {
+				position: fixed;
 			}
 		}
 		.open-sidebar {
