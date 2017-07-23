@@ -203,13 +203,16 @@ section#section-map {
 		}
 	}
 	#right-map {
-		.close-sidebar {color: $main-color;}
+		.close-sidebar {
+			color: $main-color;
+			background-color: $back-color;
+		}
 		.open-sidebar {
-			background: rgba($light-color,0.85);
+			background: rgba($light-color,0.88);
 			color: $main-color;
 			box-shadow: -4px 4px 8px rgba($dark-color,0.1);
 		}
-		background: rgba($light-color,0.85);
+		background: rgba($light-color,0.88);
 		color: $dark-color;
 		box-shadow: -4px 4px 8px rgba($dark-color,0.1);
 		.panel-group {
@@ -238,11 +241,11 @@ section#section-map {
 	#left-map {
 		.close-sidebar {color: $back-color;}
 		.open-sidebar {
-			background: rgba(saturate(darken($main-color,6%),8%),0.85);
+			background: rgba(saturate(darken($main-color,6%),8%),0.88);
 			color: $back-color;
 			box-shadow: 4px 4px 8px rgba($dark-color,0.1);
 			@media #{$xs}{
-				background-color: rgba($dark-color,0.85);
+				background-color: rgba($dark-color,0.88);
 			}
 		}
 		.panel-group {
