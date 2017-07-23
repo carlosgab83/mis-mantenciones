@@ -10,7 +10,7 @@
                 = link_to shop_branch_promotion_path(@branch.shop.slug, @branch.slug, @branch_items.information.slug), class: "img", target: :blank do
                   = image_tag(@branch_items.information.image_url, :alt => @branch_items.information.name, :class => "img-responsive")
                   strong
-                  #{@branch.name}
+                  = @branch.name
                 br
                 /span Atención de Lunes a Viernes de 9:00 a 18:00 hrs
                 - if @branch_items.show_info_button
