@@ -25,7 +25,7 @@ mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->
   mapControls.map = new (google.maps.Map)(document.getElementById('map'),
   zoom: mapControls.defaultZoom
   center: mapControls.defaultLocation
-
+  fullscreenControl: false
   mapTypeControl: true
   mapTypeControlOptions:
       style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
