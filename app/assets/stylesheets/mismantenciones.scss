@@ -276,11 +276,11 @@ body {
 		}
 		@media #{$xs}{
 			width: 100%;
-			text-align: center;
+			text-align: left;
 			margin: 0;
 			max-width: none;
 			img {
-				max-width: 190px;
+				width: 32px;
 			}
 		}
 	}
