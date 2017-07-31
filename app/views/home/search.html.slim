@@ -14,13 +14,17 @@
             br
             | cerca tuyo
         .col-sm-9.col-md-8
-          form.form-inline
-            .form-group
+          form.row
+            .form-group.col-sm-6
               label.sr-only for="county-field" Ciudad o Comuna
               input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna"
-            .form-group
+            .form-group.col-sm-6
               button#services-search.btn.btn-cta.btn-block.map-search type="button"
                 | Busca Servicios
+          
+            .form-group.col-sm-6.col-sm-offset-6.visible-xs
+              button#sos-button.btn.btn-danger.btn-block type="button" data-toggle="modal" data-target="#sos-modal"
+                | S.O.S. Grúa
     #left-map.map-form
       = render 'left_panel'
     #right-map.map-form
@@ -36,6 +40,9 @@
 
 #map-info.modal.fade
   = render 'info'
+
+#sos-modal.modal.fade
+  = render 'sos'
 
 javascript:
   var initMapGoogleCallback = mapControls.initMap.bind(null, #{SystemSetting.config.default_latitude}, #{SystemSetting.config.default_longitude}, #{SystemSetting.config.default_zoom});
