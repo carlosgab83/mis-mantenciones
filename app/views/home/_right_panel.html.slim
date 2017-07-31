@@ -65,10 +65,11 @@
                 = image_tag(product.image_url, :alt => product.name, :class => "img-responsive")
                 span #{product.name}
                 strong Desde #{number_to_currency product.price}
-          li
-            = link_to search_products_path, class: "single-detail", target: :blank do
-              span
-              | Ver todos
+.panel
+    .panel-heading.see-all
+      = link_to search_products_path, class: "btn btn-primary btn-block", target: :blank do
+        span
+        | Ver todos
 
 
 javascript:
