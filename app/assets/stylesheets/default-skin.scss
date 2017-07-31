@@ -93,6 +93,12 @@ a {
 			background-color: $main-color;
 		}
 	}
+	&.btn-danger {
+		color: $back-color;
+		&:hover, &:active, &:focus {
+			color: $back-color;
+		}
+	}
 }
 // Slick
 .slick-arrow {
@@ -197,8 +203,10 @@ section#section-map {
 		}
 		.btn {
 			text-transform: none;
-			&:hover, &:active {
-				color: $main-color;
+			&.btn-cta {			
+				&:hover, &:active {
+					color: $main-color;
+				}
 			}
 		}
 	}
@@ -634,6 +642,19 @@ section#section-parts {
 			background-color: $light-color;
 			ul > li {
 				color: darken($main-color,4%);
+			}
+		}
+	}
+}
+#sos-modal {
+	.modal-body {
+		background-color: $light-color;
+		a {
+			background-color: $back-color;
+			color: $dark-color;
+			&:hover, &:active {
+				color: $main-color;
+				box-shadow: 3px 3px 0 rgba($dark-color,0.2);
 			}
 		}
 	}
