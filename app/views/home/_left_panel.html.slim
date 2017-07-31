@@ -11,7 +11,7 @@ a.open-sidebar
         input#search-input-left-panel.form-control.search-input type="text" placeholder="Ciudad o Comuna"
     .panel-heading
       a.panel-title data-toggle="collapse" data-parent="#map-search" href="#normal" Búsqueda Normal
-    #normal.panel-collapse.in
+    #normal.panel-collapse.collapse
       .panel-body
         = form_tag search_branches_path, remote: true, id: 'basic-search-form'
           = hidden_field "search", "location_text", id: 'basic-search-form_search_location_text'
@@ -42,15 +42,15 @@ a.open-sidebar
   .panel
     .panel-heading
       a.panel-title data-toggle="collapse" data-parent="#map-search" href="#branch_types-filters" Filtrar Resultados
-    #branch_types-filters.panel-collapse.collapse
+    #branch_types-filters.panel-collapse.in
       .panel-body
         form
+          .form-group
+            button#uncheck-checkboxes.btn.btn-link.btn-block type="button"
+              | Deseleccionar todos
           .form-group
             - BranchType.actives.order(:name).all.each do |branch_type|
               label.checkbox
                 input type="checkbox" checked="checked" value="#{branch_type.id}" id="#{branch_type.id}"
                 span #{branch_type.name}
 
-          .form-group
-            button#uncheck-checkboxes.btn.btn-link.btn-block type="button"
-              | Deseleccionar todos

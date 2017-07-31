@@ -417,7 +417,7 @@ section#section-map {
 			}
 		}
 		#uncheck-checkboxes {
-			margin-bottom: 5px;
+			margin-bottom: 10px;
 		}
 	}
 	#right-map {
@@ -515,6 +515,10 @@ section#section-map {
 		}
 		.panel-group {
 			.panel {
+				.see-all {
+					padding: 10px 15px;
+					.btn {margin-top: 0;}
+				}
 				.panel-collapse {
 					.panel-body {
 						padding: 0;
