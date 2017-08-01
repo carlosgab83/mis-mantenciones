@@ -39,6 +39,7 @@ class CouponCreatedMailer < ApplicationMailer
       from_name: default_from_name,
       from_email: default_from_email,
       to: [{email: coupon.promotion.branches.first.try(:shop).try(:email)}],
+      cco: ['contacto@mismantenciones.com'],
       subject: subject,
       merge_vars: [
         {
