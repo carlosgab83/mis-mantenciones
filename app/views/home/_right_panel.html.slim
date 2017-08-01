@@ -31,7 +31,7 @@
                 = image_tag(promotion.image_url, :alt => promotion.name, :class => "img-responsive")
                 span #{promotion.name}
           li
-            = link_to shop_branch_promotions_path(@branch.shop.slug, @branch.slug), class: "single-detail", target: :blank do
+            = link_to shop_branch_promotions_path(@branch.shop.slug, @branch.slug), class: "btn btn-primary btn-block", target: :blank do
               span
               | Ver todas
 
@@ -48,7 +48,7 @@
                 = image_tag(manteinance.image_url, :alt => manteinance.name, :class => "img-responsive")
                 span #{manteinance.name}
           li
-            = link_to shop_branch_promotions_path(@branch.shop.slug, @branch.slug, category_id: @branch_items.manteinances.first.category_id), class: "single-detail", target: :blank do
+            = link_to shop_branch_promotions_path(@branch.shop.slug, @branch.slug, category_id: @branch_items.manteinances.first.category_id), class: "btn btn-primary btn-block", target: :blank do
               span
               | Ver todos
 
@@ -66,10 +66,9 @@
                 span #{product.name}
                 strong Desde #{number_to_currency product.price}
           li
-            = link_to search_products_path, class: "single-detail", target: :blank do
+            = link_to search_products_path, class: "btn btn-primary btn-block", target: :blank do
               span
               | Ver todos
-
 
 javascript:
   // Request information (similar to buy promotion)

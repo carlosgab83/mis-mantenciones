@@ -545,9 +545,26 @@
 				border-bottom-width: 1px;
 			}
 			td {
-				padding: 12px 8px;
+				padding: 0;
 				font-style: italic;
 				opacity: 0.8;
+				a, .branch-name {
+					display: block;
+					padding: 12px 8px;
+					> .branch-box {
+						display: inline-block;
+						width: 50%;
+						vertical-align: middle;
+						text-align: left;
+						&:last-child {
+							text-align: right;
+						}
+					}
+				}
+				.btn {
+					min-width: 100px;
+					padding: 5px 10px;
+				}
 				&:first-child {
 					font-size: 115%;
 					opacity: 1;
