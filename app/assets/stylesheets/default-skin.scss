@@ -235,9 +235,15 @@ section#section-map {
 						}
 					}
 				}
-				.btn-primary {
+				.btn-ghost {
 					&:hover, &:active, &:focus {
-						color: $light-color;
+						color: $back-color;
+					}
+				}
+				.btn-primary {
+					color: $light-color;
+					&:hover, &:active, &:focus {
+						color: $back-color;
 					}
 				}
 			}
