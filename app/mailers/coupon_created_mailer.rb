@@ -39,7 +39,6 @@ class CouponCreatedMailer < ApplicationMailer
       from_name: default_from_name,
       from_email: default_from_email,
       to: [{email: coupon.promotion.branches.first.try(:shop).try(:email)}],
-      cco: ['contacto@mismantenciones.com'],
       subject: subject,
       merge_vars: [
         {
@@ -59,6 +58,9 @@ class CouponCreatedMailer < ApplicationMailer
         }
       ]
     }
+    mandrill_client.messages.send_template template_name, template_content, message
+    message[:merge_vars][0][:rcpt] = 'contacto@mismantenciones.com'
+    message[:to] = [{email: 'contacto@mismantenciones.com'}]
     mandrill_client.messages.send_template template_name, template_content, message
   end
 end

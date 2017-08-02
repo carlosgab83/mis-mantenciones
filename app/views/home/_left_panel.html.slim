@@ -47,7 +47,7 @@ a.open-sidebar
         form
           .form-group
             button#uncheck-checkboxes.btn.btn-link.btn-block type="button"
-              | Deseleccionar todos
+              | Limpiar filtros
           .form-group
             - BranchType.actives.order(:name).all.each do |branch_type|
               label.checkbox

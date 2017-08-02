@@ -9,7 +9,7 @@
             .single-info
                 = link_to shop_branch_promotion_path(@branch.shop.slug, @branch.slug, @branch_items.information.slug), class: "img", target: :blank do
                   = image_tag(@branch_items.information.image_url, :alt => @branch_items.information.name, :class => "img-responsive")
-                  strong
+                strong
                   = @branch.name
                 br
                 /span Atención de Lunes a Viernes de 9:00 a 18:00 hrs
@@ -64,7 +64,7 @@
               = link_to product_path(product), class: "single-detail", target: :blank do
                 = image_tag(product.image_url, :alt => product.name, :class => "img-responsive")
                 span #{product.name}
-                strong Desde #{number_to_currency product.price}
+                strong &nbsp;Desde #{number_to_currency product.price}
           li
             = link_to search_products_path, class: "btn btn-primary btn-block", target: :blank do
               span

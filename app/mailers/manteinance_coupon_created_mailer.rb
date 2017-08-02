@@ -60,5 +60,8 @@ class ManteinanceCouponCreatedMailer < ApplicationMailer
       ]
     }
     mandrill_client.messages.send_template template_name, template_content, message
+    message[:merge_vars][0][:rcpt] = 'contacto@mismantenciones.com'
+    message[:to] = [{email: 'contacto@mismantenciones.com'}]
+    mandrill_client.messages.send_template template_name, template_content, message
   end
 end
