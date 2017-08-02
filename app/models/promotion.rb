@@ -25,6 +25,8 @@ class Promotion < ApplicationRecord
   scope :actives, -> {where("status is true")}
   scope :with_stock, -> {where("max_coupons IS NULL or max_coupons >= 1")}
   scope :not_deleted, -> {where(deleted: [false, nil])}
+  scope :not_blog, -> {joins(:category).where("categories.name <> 'Blog'")}
+  scope :blog, -> {joins(:category).where("categories.name = 'Blog'")}
 
   # Use friendly id based on name
   friendly_id :name, use: :slugged
