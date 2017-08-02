@@ -11,13 +11,15 @@ head
   - if controller_name == 'promotions' and action_name == 'show'
     meta property="og:url" content='#{request.base_url + request.original_fullpath}'
     meta property="og:image" content='#{@promotion.image_url}'
+    meta property="og:description" content='#{strip_tags @promotion.description}'
   - elsif controller_name == 'products' and action_name == 'show'
     meta property="og:url" content='#{request.base_url + request.original_fullpath}'
     meta property="og:image" content='#{@product.image_url}'
+    meta property="og:description" content='#{@product.name}'
   - else
     meta property="og:url" content="https://www.mismantenciones.com"
     meta property="og:image" content="https://s3.amazonaws.com/mismantenciones-files/images/misc/preview.png"
-  meta property="og:description" content="MisMantenciones.com es un marketplace donde encontrarás los mejores servicios técnicos, talleres mecánicos, servicios automotrices, descuentos, promociones y repuestos para tu auto o moto."
+    meta property="og:description" content="MisMantenciones.com es un marketplace donde encontrarás los mejores servicios técnicos, talleres mecánicos, servicios automotrices, descuentos, promociones y repuestos para tu auto o moto."
 
   = favicon_link_tag "favicon.ico"
   = csrf_meta_tags
