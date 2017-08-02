@@ -51,6 +51,8 @@ header#header
               = link_to 'Promociones', promotions_path
             li
               = link_to 'Repuestos', search_products_path
+            li
+              = link_to 'Blog', blog_path
             -if current_page?(root_path)
               li.visible-xs
                 = link_to "Términos y Condiciones", "http://files.mismantenciones.com/pdf/Términos-y-Condiciones-MisMantenciones.pdf", target: :_blank

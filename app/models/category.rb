@@ -18,6 +18,8 @@ class Category < ApplicationRecord
   has_many :products
   has_many :promotions
 
+  scope :not_blog, -> {where("categories.name <> 'Blog'")}
+
   # Use friendly id based on name
   friendly_id :name, use: :slugged
 

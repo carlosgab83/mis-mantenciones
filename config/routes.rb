@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'search' => 'home#search', as: :search_home
   get 'my_pauta' => 'home#my_pauta', as: :my_pauta_home
   match 'results' => 'home#results', as: :results_home, via: [:get, :post]
+  get 'blog' => 'promotions#blog', as: :blog
 
   resources :manteinance_coupons, only: [:new, :create] do
     collection do
