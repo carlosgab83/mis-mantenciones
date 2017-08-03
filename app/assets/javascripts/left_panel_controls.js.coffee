@@ -20,7 +20,7 @@ leftPanelControls.initilization = () ->
       for checkbox in $('#filter-list').find('.checkbox input:checkbox')
         do ->
           checkbox.checked = true
-    else 
+    else
       for checkbox in $('#filter-list').find('.checkbox input:checkbox:checked')
         do ->
           checkbox.checked = false
