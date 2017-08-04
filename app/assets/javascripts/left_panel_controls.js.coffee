@@ -15,10 +15,15 @@ leftPanelControls.initilization = () ->
   $('#services-search').on 'click', ->
     $('#floating-form').addClass('next-step').trigger 'stepChange'
 
-  $('#uncheck-checkboxes').on 'click', ->
-    $('#branch_types-filters input').attr('checked', false)
-    $('#branch_types-filters input').each () ->
-      branchesControls.filterBranches(this)
+  $('#uncheck-checkboxes').change ->
+    if $(this).is(':checked')
+      for checkbox in $('#filter-list').find('.checkbox input:checkbox')
+        do ->
+          checkbox.checked = true
+    else
+      for checkbox in $('#filter-list').find('.checkbox input:checkbox:checked')
+        do ->
+          checkbox.checked = false
 
   $('#floating-form').on 'stepChange', ->
     if ($('#floating-form').css('margin-top') != '-90px')
