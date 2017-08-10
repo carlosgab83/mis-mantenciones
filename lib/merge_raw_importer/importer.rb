@@ -103,7 +103,7 @@ module MergeRawImporter
         elsif [:integer, :float, :double, :boolean].include?(column[1])
           str_row << row[i]
         else
-          str_row << (row[i].present? ? "'#{row[i]}'" : 'NULL')
+          str_row << (row[i].present? ? "'#{row[i].to_s.gsub("'", "''")}'" : 'NULL')
         end
       end
       '(' + str_row.join(',') + ')'
