@@ -7,8 +7,9 @@
 .catalog {
 	.inner {
 		height: auto;
-		padding: 90px 0 40px 0;
+		padding: 80px 0 40px 0;
 		@media #{$xs}{
+			padding-top: 70px;
 			padding-bottom: 10px;
 		}
 		h1 {
@@ -33,30 +34,48 @@
 			position: relative;
 		}
 	}
-	span.full-price {
+	.full-price,
+	.promo-price {
 		display: inline-block;
-		width: 100%;
-		opacity: 0.6;
-		text-decoration: line-through;
-		text-align: right;
-	}
-	span.promo-price {
-		display: inline-block;
-		width: 100%;
-		font-size: 145%;
-		font-weight: bold;
+		vertical-align: middle;
+		padding-right: 10px;
 		font-family: 'Exo', sans-serif;
-		text-align: right;
+	}
+	.full-price {
+		opacity: 0.5;
+		text-decoration: line-through;
+	}
+	.promo-price {
+		font-size: 170%;
+		font-weight: bold;
 	}
 	.btn-cta {
 		margin: 5px 0;
 		&#buy-promotion {
 			@media #{$oxs}{
-				margin-top: 20px;
+				margin-top: 0;
 			}
 		}
 	}
 	& ~ .popover {
+		width: 290px;
+		font-size: 90%;
+		.popover-content {
+			padding: 10px 20px;
+			strong {
+				font-style: italic;
+				margin-bottom: 1px;
+				display: inline-block;
+			}
+		}
+		&.top {
+			.arrow {
+				bottom: -14px;
+				&:after {
+					bottom: 4px;
+				}
+			}
+		}
 		@media #{$xs}{
 			display: none!important;
 		}
@@ -176,6 +195,9 @@
 						font-size: 135%;
 						opacity: 0.6;
 					}
+					.promo-price, .full-price {
+						width: 100%;
+					}
 				}
 				&:hover, &:active, &:focus {
 					.promo-image {
@@ -193,6 +215,8 @@
 
 .catalog {
 	.promo-prices {
+		text-align: center;
+		padding: 10px 0;
 		span.promo-price, span.full-price {
 			@media #{$xs}{
 				text-align: left;
@@ -213,7 +237,10 @@
 	}
 	.promo-image {
 		position: relative;
-		margin: 20px 0;
+		margin: 0 0 20px 0;
+		@media #{$xs}{
+			margin: 10px 0;
+		}
 		.brand-logo {
 			position: absolute;
 			z-index: 1;
@@ -239,6 +266,8 @@
 	.promo-description {
 		h1, h2, h3, h4, h5, h6, strong {
 			opacity: 0.6;
+			font-family: 'Exo', sans-serif;
+			font-style: italic;
 		}
 	}
 }
@@ -496,17 +525,25 @@
 .catalog {
 	.product-image {
 		position: relative;
-		margin: 20px 0;
+		margin: 20px 0 0;
+		padding: 15px 0;
 		text-align: center;
 		border: 1px solid;
 		.img-responsive {
 			display: inline-block;
+			max-height: 200px;
 		}
 		@media #{$xs}{
-			height: 200px;
+			padding: 15px 0;
 			.img-responsive {
-				max-height: 100%;
+				max-height: 150px;
 				margin: 0 auto;
+			}
+		}
+		@media #{$xxs}{
+			padding: 10px 0;
+			.img-responsive {
+				max-height: 120px;
 			}
 		}
 	}
@@ -531,6 +568,7 @@
 		.table {
 			margin: 20px 0;
 			width: 100%;
+			@media #{$xs}{margin: 0;}
 			table-layout: fixed;
 			th, td {
 				border-right: none;
@@ -551,6 +589,10 @@
 				a, .branch-name {
 					display: block;
 					padding: 12px 8px;
+					@media #{$xs}{
+						padding: 8px;
+						font-size: 90%;
+					}
 					> .branch-box {
 						display: inline-block;
 						width: 50%;
@@ -581,6 +623,14 @@
 				}
 			}
 		}
+	}
+}
+.promos {
+	.strong {
+		font-family: 'Exo', sans-serif;
+		font-weight: bold;
+		font-style: italic;
+		opacity: 0.5;
 	}
 }
 

@@ -4,18 +4,22 @@
   .inner
     .container
       .row
-        .col-sm-7.col-md-8
+        .col-sm-6.col-md-8
           h1
             span = "#{@promotion.name} en "
             strong #{@promotion.branches.first.shop.name}
       .row
-        .col-sm-5.col-sm-push-7.col-md-4.col-md-push-8
+        .col-sm-6.col-sm-push-6.col-md-5.col-md-push-7
 
           - if @promotion.show_button?
             a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' #{@promotion.category.promotion_action_button_name}
+            
             .promo-prices
-              span.full-price = mismantenciones_number_to_currency(@promotion.full_price)
               span.promo-price = mismantenciones_number_to_currency(@promotion.promo_price)
+              span.full-price = mismantenciones_number_to_currency(@promotion.full_price)
+
+          .promo-image
+            = image_tag(@promotion.image_url || "promo-image.jpg", :alt => @promotion.name, :class => "img-responsive")
 
           ul.promo-conditions
             - @promotion.attributes_promotions.each do |ap|
@@ -23,16 +27,24 @@
                 strong = "#{ap.promotion_attribute.name}: "
                 span = "#{ap.value}"
 
-        .col-sm-7.col-sm-pull-5.col-md-8.col-md-pull-4
-          .promo-image
-            = image_tag(@promotion.image_url || "promo-image.jpg", :alt => @promotion.name, :class => "img-responsive")
+        .col-sm-6.col-sm-pull-6.col-md-7.col-md-pull-5
 
-      .row
-        .col.sm-7.col-md-8
           .promo-description
-            h4
-              strong Descripción
+            strong.big Descripción
             p = @promotion.description.html_safe
+
+  // Carlos, en esta parte hay que agregar soporte para mostrar promociones en el carrusel, es la misma estructura de la vista result
+  .promos
+    .container
+      .row
+        .col-md-12
+          h4.strong
+            | Te podrían interesar estas ofertas o promociones
+      .row
+        .col-md-12
+          #promo-carousel
+            //- @promotions.each do |promotion|
+              = render 'home/carousel_promotion', promotion: promotion
 
 = render 'shared/footer'
 
