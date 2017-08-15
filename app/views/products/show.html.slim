@@ -9,18 +9,7 @@
             strong = @product.product_brand.name
             span = @product.name
       .row
-        .col-sm-5.col-sm-push-7
-          .product-image
-            = image_tag(@product.image_url || "part-image.jpg", :alt => @product.product_brand.name+" "+@product.name, :class => "img-responsive")
-        .col-sm-7.col-sm-pull-5
-          .product-description
-            ul
-              - @product.attributes_products.each do |ap|
-                li
-                  strong = "#{ap.product_attribute.name}: "
-                  span = "#{ap.value}".html_safe
-      .row
-        .col-sm-12
+        .col-sm-6.col-sm-push-6.col-md-7.col-md-push-5
           .product-table
             table.table.table-bordered
               thead
@@ -46,5 +35,18 @@
                           span.branch-box
                             span.btn.btn-ghost
                               = "#{mismantenciones_number_to_currency(bp.price) || '-'}"
+        .col-sm-6.col-sm-pull-6.col-md-5.col-md-pull-7
+          .row
+            .col-sm-12
+              .product-image
+                = image_tag(@product.image_url || "part-image.jpg", :alt => @product.product_brand.name+" "+@product.name, :class => "img-responsive")
+            .col-sm-12
+              .product-description
+                ul
+                  - @product.attributes_products.each do |ap|
+                    li
+                      strong = "#{ap.product_attribute.name}: "
+                      span = "#{ap.value}".html_safe
+        
 
 = render 'shared/footer'

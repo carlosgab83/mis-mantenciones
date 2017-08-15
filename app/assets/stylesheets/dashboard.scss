@@ -43,6 +43,14 @@
 				&:hover, &:active, &:focus {
 					background-color: transparent;
 				}
+				@media #{$md} {
+					padding: 8px;
+					font-size: 95%;
+				}
+				@media #{$sm} {
+					padding: 8px 6px;
+					font-size: 92%;
+				}
 			}
 		}
 	}
