@@ -118,6 +118,15 @@ mapControls.buttonListeners = () ->
   $('#mobile-ask-location').click ->
     mapControls.setMobileLocation()
 
+  # Bug fixing: Markers not appear until map moved sightly or clicked:
+  # Solution: https://stackoverflow.com/questions/20861402/markers-not-showing-until-map-moved-slightly-or-clicked
+  google.maps.event.addListener mapControls.map, 'idle', (event) ->
+    cnt = mapControls.map.getCenter()
+    myLatlng = new google.maps.LatLng(cnt.lat()+0.000001,cnt.lng())
+    mapControls.map.panTo(myLatlng);
+    myLatlng = new google.maps.LatLng(cnt.lat()-0.000002,cnt.lng())
+    mapControls.map.panTo(myLatlng)
+
 #############################################################################
 
 mapControls.userSearchAction = (autocomplete, formToSubmit) ->
