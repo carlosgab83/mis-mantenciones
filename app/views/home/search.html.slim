@@ -18,6 +18,11 @@
             .form-group
               label.sr-only for="county-field" Ciudad o Comuna
               input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna"
+            .form-group.visible-xs
+              select.form-control
+                option value="" Qué tipo de servicios buscas?
+                - BranchType.actives.order(:name).all.each do |branch_type|
+                  option value="#{branch_type.id}" id="#{branch_type.id}" #{branch_type.name}
             .form-group
               button#services-search.btn.btn-cta.btn-block.map-search type="button"
                 | Busca Servicios
