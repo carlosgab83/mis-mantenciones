@@ -17,13 +17,9 @@ leftPanelControls.initilization = () ->
 
   $('#uncheck-checkboxes').change ->
     if $(this).is(':checked')
-      for checkbox in $('#filter-list').find('.checkbox input:checkbox')
-        do ->
-          checkbox.checked = true
+      leftPanelControls.chackAllFilters(true)
     else
-      for checkbox in $('#filter-list').find('.checkbox input:checkbox:checked')
-        do ->
-          checkbox.checked = false
+      leftPanelControls.chackAllFilters(false)
 
   $('#floating-form').on 'stepChange', ->
     if ($('#floating-form').css('margin-top') != '-90px')
@@ -77,5 +73,26 @@ leftPanelControls.resetBasicForm = () ->
 
 leftPanelControls.resetAdvancedForm = () ->
   document.getElementById("advanced-search-form").reset()
+
+#############################################################################
+
+leftPanelControls.chackAllFilters = (checkOrUncheck) ->
+  # checkOrUncheck is a boolean
+  for checkbox in $('#filter-list').find('.checkbox input:checkbox')
+    do ->
+      checkbox.checked = checkOrUncheck
+
+#############################################################################
+
+leftPanelControls.selectBranchTypesFilters = (filtersToSelect) ->
+  # Do nothing if no params passed
+  if filtersToSelect.length == 0 || (filtersToSelect.length == 1 && filtersToSelect[0] == null)
+    return
+
+  leftPanelControls.chackAllFilters(false)
+  document.getElementById('uncheck-checkboxes').checked = false # Uncheck SelectAll option
+
+  for optionId in filtersToSelect
+    document.getElementById('branch-type-' + optionId).checked = true # Check this option
 
 #############################################################################

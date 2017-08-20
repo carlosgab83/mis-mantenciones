@@ -3,7 +3,7 @@
 = render 'shared/header'
 
 #wrapper
-  h1.sr-only MisMantenciones.com 
+  h1.sr-only MisMantenciones.com
   h2.sr-only es un marketplace donde encontrarás los mejores servicios técnicos, talleres mecánicos, servicios automotrices, descuentos, promociones y repuestos para tu auto o moto.
   section#section-map
     #floating-form.map-form
@@ -19,7 +19,7 @@
               label.sr-only for="county-field" Ciudad o Comuna
               input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna"
             .form-group.visible-xs
-              select.form-control
+              select.form-control#service-selection-select
                 option value="" Qué tipo de servicios buscas?
                 - BranchType.actives.order(:name).all.each do |branch_type|
                   option value="#{branch_type.id}" id="#{branch_type.id}" #{branch_type.name}
