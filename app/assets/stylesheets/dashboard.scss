@@ -223,9 +223,17 @@ section#section-map {
 				@media #{$xs} {
 					display: block;
 					width: 100%;
+					margin-bottom: 5px;
+					.btn {
+						margin-top: 15px;
+					}
 				}
 				.form-control {
 					width: 100%;
+					option {
+						color: $main-color;
+						font-family: 'Exo 2', sans-serif;
+					}
 				}
 			}
 		}
