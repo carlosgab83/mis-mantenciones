@@ -18,6 +18,7 @@
             .form-group.visible-xs
               select.form-control#service-selection-select
                 option value="" Selecciona Servicio
+                option value="0" id="0" Ver todos
                 - BranchType.actives.order(:name).all.each do |branch_type|
                   option value="#{branch_type.id}" id="#{branch_type.id}" #{branch_type.name}
             .form-group
