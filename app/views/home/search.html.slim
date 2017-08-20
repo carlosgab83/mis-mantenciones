@@ -15,14 +15,15 @@
             | cerca tuyo
         .col-sm-9.col-md-8
           form.form-inline
+            .form-group.visible-xs
+              select.form-control#service-selection-select
+                option value="" Selecciona Servicio
+                option value="0" id="0" Ver todos
+                - BranchType.actives.order(:name).all.each do |branch_type|
+                  option value="#{branch_type.id}" id="#{branch_type.id}" #{branch_type.name}
             .form-group
               label.sr-only for="county-field" Ciudad o Comuna
               input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna"
-            .form-group.visible-xs
-              select.form-control#service-selection-select
-                option value="" Qué tipo de servicios buscas?
-                - BranchType.actives.order(:name).all.each do |branch_type|
-                  option value="#{branch_type.id}" id="#{branch_type.id}" #{branch_type.name}
             .form-group
               button#services-search.btn.btn-cta.btn-block.map-search type="button"
                 | Busca Servicios

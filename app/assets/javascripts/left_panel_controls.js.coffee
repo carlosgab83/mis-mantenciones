@@ -89,6 +89,11 @@ leftPanelControls.selectBranchTypesFilters = (filtersToSelect) ->
   if filtersToSelect.length == 0 || (filtersToSelect.length == 1 && filtersToSelect[0] == null)
     return
 
+  if (filtersToSelect.length == 1 && filtersToSelect[0] == 0) # User selects all services
+    leftPanelControls.chackAllFilters(true)
+    document.getElementById('uncheck-checkboxes').checked = true # check SelectAll option
+    return
+
   leftPanelControls.chackAllFilters(false)
   document.getElementById('uncheck-checkboxes').checked = false # Uncheck SelectAll option
 
