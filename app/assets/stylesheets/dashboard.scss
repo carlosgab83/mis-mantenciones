@@ -212,17 +212,6 @@ section#section-map {
 		}
 		form {
 			.form-group {
-				display: table-cell;
-				width: 50%;
-				padding: 0 5px;
-				@media #{$xs} {
-					display: block;
-					width: 100%;
-					margin-bottom: 5px;
-					.btn {
-						margin-top: 15px;
-					}
-				}
 				.form-control {
 					width: 100%;
 					option {
