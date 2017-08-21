@@ -219,6 +219,12 @@ section#section-map {
 						font-family: 'Exo 2', sans-serif;
 					}
 				}
+				&.col-xs-12.visible-xs {
+					margin-bottom: 5px;
+				}
+				@media #{$xs} {
+					clear: both;
+				}
 			}
 		}
 		&.next-step {
