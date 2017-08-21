@@ -36,7 +36,7 @@ $(document).ready(function(){
 
   // Send advise Popover
   $("#buy-promotion").popover({
-    placement: "top",
+    placement: "bottom",
     trigger: "manual",
     html: true,
     container: "body",
