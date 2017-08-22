@@ -4,37 +4,34 @@
   .inner
     .container
       .row
-        .col-sm-8
+        .col-sm-7.col-md-8
           h1
             span = "#{@promotion.name} en "
             strong #{@promotion.branches.first.shop.name}
       .row
-        .col-sm-8.col-md-9
-          .row
-            .col-sm-5.col-sm-push-7
-              - if @promotion.show_button?
-                a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' #{@promotion.category.promotion_action_button_name}
-                
-                .promo-prices
-                  span.promo-price = mismantenciones_number_to_currency(@promotion.promo_price)
-                  span.full-price = mismantenciones_number_to_currency(@promotion.full_price)
-              ul.promo-conditions
-                - @promotion.attributes_promotions.each do |ap|
-                  li
-                    strong = "#{ap.promotion_attribute.name}: "
-                    span = "#{ap.value}"
-            
-            .col-sm-7.col-sm-pull-5
-              .promo-image
-                = image_tag(@promotion.image_url || "promo-image.jpg", :alt => @promotion.name, :class => "img-responsive")
-              .promo-description
-                strong.big Descripción
-                p = @promotion.description.html_safe
+        .col-sm-5.col-sm-push-7
 
-        .col-sm-4.col-md-3
-          .well
-            hola
+          - if @promotion.show_button?
+            a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' #{@promotion.category.promotion_action_button_name}
+            .promo-prices
+              span.full-price = mismantenciones_number_to_currency(@promotion.full_price)
+              span.promo-price = mismantenciones_number_to_currency(@promotion.promo_price)
 
+          ul.promo-conditions
+            - @promotion.attributes_promotions.each do |ap|
+              li
+                strong = "#{ap.promotion_attribute.name}: "
+                span = "#{ap.value}"
+
+        .col-sm-7.col-sm-pull-5
+          .promo-image
+            = image_tag(@promotion.image_url || "promo-image.jpg", :alt => @promotion.name, :class => "img-responsive")
+
+          .promo-description
+            h4
+              strong Descripción
+            p = @promotion.description.html_safe
+          
 
   // Carlos, en esta parte hay que agregar soporte para mostrar promociones en el carrusel, es la misma estructura de la vista result
   .promos
