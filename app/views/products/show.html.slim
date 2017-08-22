@@ -9,7 +9,7 @@
             strong = @product.product_brand.name
             span = @product.name
       .row
-        .col-sm-6.col-sm-push-6.col-md-7.col-md-push-5
+        .col-sm-6.col-sm-push-6
           .product-table
             table.table.table-bordered
               thead
@@ -35,7 +35,7 @@
                           span.branch-box
                             span.btn.btn-ghost
                               = "#{mismantenciones_number_to_currency(bp.price) || '-'}"
-        .col-sm-6.col-sm-pull-6.col-md-5.col-md-pull-7
+        .col-sm-6.col-sm-pull-6
           .row
             .col-sm-12
               .product-image
