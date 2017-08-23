@@ -40,13 +40,15 @@
             .col-sm-12
               .product-image
                 = image_tag(@product.image_url || "part-image.jpg", :alt => @product.product_brand.name+" "+@product.name, :class => "img-responsive")
-            .col-sm-12
-              .product-description
-                ul
-                  - @product.attributes_products.each do |ap|
-                    li
-                      strong = "#{ap.product_attribute.name}: "
-                      span = "#{ap.value}".html_safe
+       
+      .row 
+        .col-sm-6
+          .product-description
+            ul
+              - @product.attributes_products.each do |ap|
+                li
+                  strong = "#{ap.product_attribute.name}: "
+                  span = "#{ap.value}".html_safe
         
 
 = render 'shared/footer'
