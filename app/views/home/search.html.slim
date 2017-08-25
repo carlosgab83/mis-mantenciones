@@ -27,9 +27,8 @@
             .form-group.col-sm-6
               button#services-search.btn.btn-cta.btn-block.map-search type="button"
                 | Busca Servicios
-            .form-group.col-sm-6.col-sm-offset-6.visible-xs
-              button#sos-button.btn.btn-danger.btn-block type="button" data-toggle="modal" data-target="#sos-modal"
-                | S.O.S. Grúa
+    button#sos-button.btn-circle type="button" data-toggle="modal" data-target="#sos-modal"
+      | S.O.S. Grúa
     #left-map.map-form
       = render 'left_panel'
     #right-map.map-form

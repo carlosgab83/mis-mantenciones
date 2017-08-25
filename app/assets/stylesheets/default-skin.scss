@@ -185,10 +185,21 @@ body.home {
 
 // Dashboard
 section#section-map {
+	#sos-button {
+		color: $back-color;
+		background-color: rgba($red-color,0.8);
+		border-color: darken($red-color,5%);
+		&:hover, &:active {
+			background-color: darken($red-color,5%);
+		}
+	}
 	#center-map {
 		background: rgba($main-color,0.8);
 		border-color: $main-color;
 		color: $light-color;
+		&:hover, &:active {
+			background-color: darken($main-color,5%);
+		}
 	}
 	.map-form {
 		background: rgba(saturate(darken($main-color,6%),8%),0.85);
