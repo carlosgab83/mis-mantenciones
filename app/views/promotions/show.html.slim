@@ -22,6 +22,8 @@
           .promo-description
             strong.big Descripción
             p = @promotion.description.html_safe
+      .row
+        #fb-comments data-href="https://www.mismantenciones.com" data-width="750" data-numposts="10"
 
           ul.promo-conditions.visible-xs
               - @promotion.attributes_promotions.each do |ap|
