@@ -23,8 +23,9 @@
             strong.big Descripción
             p = @promotion.description.html_safe
       .row
-        .fb-comments data-href="#{request.url}/" data-width="750" data-numposts="10"
-        .fb-like data-share="true" data-width="450" data-show-faces="true"
+        - if @promotion.slug == 'cambio-neumaticos-a-domicilio'
+          .fb-comments data-href="#{request.url}/" data-width="750" data-numposts="10"
+          .fb-like data-share="true" data-width="450" data-show-faces="true"
 
           ul.promo-conditions.visible-xs
               - @promotion.attributes_promotions.each do |ap|
