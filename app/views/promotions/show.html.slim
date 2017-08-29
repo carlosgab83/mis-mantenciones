@@ -24,7 +24,8 @@
             p = @promotion.description.html_safe
       .row
         - if @promotion.slug == 'cambio-neumaticos-a-domicilio'
-          .fb-comments data-href="#{request.url}/" data-width="750" data-numposts="10"
+          /.fb-comments data-href="#{request.url}/" data-width="750" data-numposts="10"
+          .fb-comments data-href="https://mismantenciones.herokuapp.com/" data-width="750" data-numposts="10"
           .fb-like data-share="true" data-width="450" data-show-faces="true"
 
           ul.promo-conditions.visible-xs
