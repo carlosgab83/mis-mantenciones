@@ -9,8 +9,8 @@
 		height: auto;
 		padding: 80px 0 40px 0;
 		@media #{$xs}{
-			padding-top: 70px;
-			padding-bottom: 10px;
+			padding-top: 60px;
+			padding-bottom: 5px;
 		}
 		h1 {
 			font-size: 30px;
@@ -49,16 +49,15 @@
 	.promo-price {
 		font-size: 170%;
 		font-weight: bold;
+		@media #{$xs}{
+			font-size: 130%;
+		}
 	}
 	.btn-cta {
 		margin: 5px 0;
-		&#buy-promotion {
-			@media #{$oxs}{
-				margin-top: 70px;
-			}
-		}
 	}
-	& ~ .popover {
+	& ~ .popover,
+	.popover {
 		width: 290px;
 		max-width: 100%;
 		font-size: 90%;
@@ -167,6 +166,7 @@
 						z-index: 1;
 						top: 15px;
 						right: 0;
+						max-width: 50%;
 					}
 					@media #{$xs}{
 						top: 0;
@@ -215,7 +215,26 @@
 // Promo Detail
 //////////////////////////////////////////////////////////
 
+.promo {
+	.catalog {
+		.inner {
+			@media #{$xs}{
+				padding-top: 50px;
+			}
+		}
+	}
+	#footer {
+		@media #{$xs}{
+			margin-bottom: 80px
+		}
+	}
+}
 .catalog {
+	.promo-name {
+		@media #{$xs}{
+			display: none;
+		}
+	}
 	.promo-prices {
 		text-align: center;
 		padding: 0;
@@ -223,6 +242,8 @@
 			margin: 10px 0;
 			@media #{$xs}{
 				text-align: left;
+				margin: 5px 0;
+				line-height: 1.1em;
 			}
 		}
 	}
@@ -238,9 +259,6 @@
 	.promo-image {
 		position: relative;
 		margin: 0 0 20px 0;
-		@media #{$xs}{
-			margin: 10px 0;
-		}
 		.brand-logo {
 			position: absolute;
 			z-index: 1;
@@ -254,10 +272,12 @@
 			}
 		}
 		@media #{$xs}{
-			height: 200px;
-			top: -10px;
+			left: -15px;
+			top: -20px;
+			width: calc(100% + 30px);
+    		overflow: hidden;
+    		margin-bottom: 0;
 			.img-responsive {
-				max-height: 100%;
 				margin: 0 auto;
 				vertical-align: bottom;
 			}
@@ -268,6 +288,44 @@
 			opacity: 0.6;
 			font-family: 'Exo', sans-serif;
 			font-style: italic;
+		}
+	}
+	.promo-title {
+		font-family: 'Exo', sans-serif;
+		font-style: italic;
+		margin-bottom: 20px;
+		span {
+			font-weight: 400;
+			opacity: 0.6;
+		}
+		strong {
+			font-weight: 700;
+			opacity: 0.7;
+		}
+	}
+}
+#relative-row {
+	position: relative;
+	> .col-sm-5 {
+		position: static;
+		#fixed-column {
+			position: relative;
+			@media #{$oxs}{
+				padding-top: 68px;
+			}
+			@media #{$xs}{
+				position: fixed;
+				top: auto!important;
+				bottom: 0;
+				left: 0;
+				z-index: 20;
+				width: 100%;
+				min-height: 80px;
+				padding: 5px 15px;
+				.btn-lg {
+					padding: 6px 20px;
+				}
+			}
 		}
 	}
 }
@@ -476,6 +534,7 @@
 				font-style: italic;
 				margin: 0;
 				padding: 14px 28px;
+				line-height: 1.1em;
 				@media #{$xs}{padding: 8px 16px;}
 				strong {
 					font-family: 'Exo', sans-serif;
@@ -629,6 +688,7 @@
 	}
 }
 .promos {
+	margin-top: 20px;
 	.strong {
 		font-family: 'Exo', sans-serif;
 		font-weight: bold;
@@ -636,6 +696,7 @@
 		opacity: 0.5;
 	}
 }
+
 
 //////////////////////////////////////////////////////////
 // Product Brands

@@ -1,3 +1,5 @@
+- @body_class = 'promo'
+
 = render 'shared/header'
 
 #wrapper.catalog
@@ -5,46 +7,52 @@
     .container
       .row
         .col-sm-12
-          h1
+          h1.promo-name
             span = "#{@promotion.name} en "
             strong #{@promotion.branches.first.shop.name}
-      .row
-        .col-sm-5.col-sm-push-7
-
-          - if @promotion.show_button?
-            a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' #{@promotion.category.promotion_action_button_name}
-            
-            .promo-prices
-              span.promo-price = mismantenciones_number_to_currency(@promotion.promo_price)
-              span.full-price = mismantenciones_number_to_currency(@promotion.full_price)
-
-          ul.promo-conditions
-            - @promotion.attributes_promotions.each do |ap|
-              li
-                strong = "#{ap.promotion_attribute.name}: "
-                span = "#{ap.value}"
-
-
-        .col-sm-7.col-sm-pull-5
+      #relative-row.row
+        .col-sm-7
           .promo-image
             = image_tag(@promotion.image_url || "promo-image.jpg", :alt => @promotion.name, :class => "img-responsive")
+
+          .promo-title.visible-xs
+            span.big = "#{@promotion.name} en "
+            strong.big #{@promotion.branches.first.shop.name}
 
           .promo-description
             strong.big Descripción
             p = @promotion.description.html_safe
 
-  // Carlos, en esta parte hay que agregar soporte para mostrar promociones en el carrusel, es la misma estructura de la vista result
-  .promos
-    .container
+          ul.promo-conditions.visible-xs
+              - @promotion.attributes_promotions.each do |ap|
+                li
+                  strong = "#{ap.promotion_attribute.name}: "
+                  span = "#{ap.value}"
+
+        .col-sm-5
+          #fixed-column
+            - if @promotion.show_button?
+              a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' #{@promotion.category.promotion_action_button_name}
+              
+              .promo-prices
+                span.promo-price = mismantenciones_number_to_currency(@promotion.promo_price)
+                span.full-price = mismantenciones_number_to_currency(@promotion.full_price)
+
+            ul.promo-conditions.hidden-xs
+              - @promotion.attributes_promotions.each do |ap|
+                li
+                  strong = "#{ap.promotion_attribute.name}: "
+                  span = "#{ap.value}"
+
+      // Carlos, en esta parte hay que agregar soporte para mostrar promociones en el carrusel, es la misma estructura de la vista result
       .row
         .col-md-12
-          h4.strong
-            | Te podrían interesar estas ofertas o promociones
-      .row
-        .col-md-12
-          #promo-carousel
-            //- @promotions.each do |promotion|
-              = render 'home/carousel_promotion', promotion: promotion
+          .promos
+            h4.strong
+              | Te podrían interesar estas ofertas o promociones
+            #promo-carousel
+              //- @promotions.each do |promotion|
+                = render 'home/carousel_promotion', promotion: promotion
 
 = render 'shared/footer'
 

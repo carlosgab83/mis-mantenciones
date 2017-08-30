@@ -444,6 +444,11 @@ section#section-parts {
 			}
 		}
 	}
+	#fixed-column {
+		@media #{$xs}{
+			background-color: rgba(darken($light-color,8%),0.9);
+		}
+	}
 }
 // Product
 .catalog {
@@ -665,7 +670,8 @@ section#section-parts {
 	}
 }
 .modal-backdrop, .catalog {
-	& ~ .popover {
+	& ~ .popover,
+	.popover {
 		background-color: lighten(desaturate($side-color,10%), 30%);
 		&.bottom .arrow:after {
 			border-bottom-color: lighten(desaturate($side-color,10%), 30%);
