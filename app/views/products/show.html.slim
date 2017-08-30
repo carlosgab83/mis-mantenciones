@@ -18,7 +18,7 @@
                   th Precio
                   /th
               tbody
-                - @product.branches_products_with_prices.each do |bp|
+                - @product.branches_products_with_prices.each_with_index do |bp, i|
                   tr
                     td.branch-name colspan="2"
                       - if not bp.url.blank?
@@ -26,8 +26,12 @@
                           span.branch-box
                             = "#{bp.branch.name}"
                           span.branch-box
-                            span.btn.btn-ghost
-                              = "#{mismantenciones_number_to_currency(bp.price) || '-'}"
+                            - if i==0
+                              span#buy-product.btn.btn-ghost 
+                                = "#{mismantenciones_number_to_currency(bp.price) || '-'}"
+                            - else
+                              span.btn.btn-ghost 
+                                = "#{mismantenciones_number_to_currency(bp.price) || '-'}"
                       - else
                         span.branch-name
                           span.branch-box

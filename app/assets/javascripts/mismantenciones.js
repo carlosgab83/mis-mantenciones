@@ -43,15 +43,25 @@ $(document).ready(function(){
     html: true,
     content: "<strong>¡No te preocupes!</strong><br> No pagarás nada por apretar este botón"
   });
+  $("#buy-product").popover({
+    placement: "top",
+    trigger: "manual",
+    html: true,
+    content: "<strong>¡No te preocupes!</strong><br> No pagarás nada por apretar este botón"
+  });
+  setTimeout(function(){
+    $("#buy-promotion").popover('show');
+  }, 2000);
+  setTimeout(function(){
+    $("#buy-product").popover('show');
+  }, 2000);
+
+  // Stick
   $("#fixed-column").stick_in_parent({
     parent: "#relative-row",
     offset_top: 78
   });
-
-  setTimeout(function(){
-    $("#buy-promotion").popover('show');
-  }, 2000);
-
+  
   // Scroll
   $('#map-search.panel-group').perfectScrollbar();
   $('#marker-detail.panel-group').perfectScrollbar();
