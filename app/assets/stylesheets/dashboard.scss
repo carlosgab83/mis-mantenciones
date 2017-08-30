@@ -589,6 +589,10 @@ section#section-map {
 		line-height: 1.3em;
 		display: inline-block;
 	}
+	#map-search.panel-group,
+	#marker-detail.panel-group {
+		position: relative;
+	}
 }
 
 // Quote Modal
