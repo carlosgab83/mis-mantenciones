@@ -449,6 +449,11 @@ section#section-parts {
 			background-color: rgba(darken($light-color,8%),0.9);
 		}
 	}
+	.promo-image {
+		@media #{$xs}{
+			background-color: rgba(darken($light-color,8%),0.9);
+		}
+	}
 }
 // Product
 .catalog {

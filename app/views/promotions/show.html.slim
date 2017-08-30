@@ -1,4 +1,4 @@
-- @body_class = 'promo'
+- @body_class = "promo #{@promotion.promo_price? ? '' : 'without-price'}"
 
 = render 'shared/header'
 
@@ -29,14 +29,28 @@
                   strong = "#{ap.promotion_attribute.name}: "
                   span = "#{ap.value}"
 
+          .promo-share.visible-xs
+              ul.promo.share-list.list-inline
+                li
+                  span.promo-share-text Compartir
+                li 
+                  a
+                    i.fa.fa-facebook-square
+                    span.sr-only Compartir en Facebook
+                li 
+                  a
+                    i.fa.fa-twitter-square
+                    span.sr-only Compartir en Twitter
+
         .col-sm-5
           #fixed-column
             - if @promotion.show_button?
               a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' #{@promotion.category.promotion_action_button_name}
               
-              .promo-prices
-                span.promo-price = mismantenciones_number_to_currency(@promotion.promo_price)
-                span.full-price = mismantenciones_number_to_currency(@promotion.full_price)
+              - if @promotion.promo_price?
+                .promo-prices
+                  span.promo-price = mismantenciones_number_to_currency(@promotion.promo_price)
+                  span.full-price = mismantenciones_number_to_currency(@promotion.full_price)
 
             ul.promo-conditions.hidden-xs
               - @promotion.attributes_promotions.each do |ap|
@@ -44,12 +58,24 @@
                   strong = "#{ap.promotion_attribute.name}: "
                   span = "#{ap.value}"
 
+            .promo-share.hidden-xs
+              ul.promo.share-list.list-inline
+                li
+                  span.promo-share-text Compartir
+                li 
+                  a
+                    i.fa.fa-facebook-square
+                    span.sr-only Compartir en Facebook
+                li 
+                  a
+                    i.fa.fa-twitter-square
+                    span.sr-only Compartir en Twitter
+
       // Carlos, en esta parte hay que agregar soporte para mostrar promociones en el carrusel, es la misma estructura de la vista result
       .row
         .col-md-12
           .promos
-            h4.strong
-              | Te podrían interesar estas ofertas o promociones
+            strong.big Te podrían interesar estas ofertas o promociones
             #promo-carousel
               //- @promotions.each do |promotion|
                 = render 'home/carousel_promotion', promotion: promotion
