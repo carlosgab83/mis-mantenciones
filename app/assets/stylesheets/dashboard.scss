@@ -898,12 +898,16 @@ section#section-map {
 }
 // Insurance Company Modal
 #sos-modal {
+	.modal-body {
+		padding-top: 25px;
+		padding-bottom: 0;
+	}
 	.insurance-company {
 		display: inline-block;
 		width: 30%;
-		font-size: 90%;
+		font-size: 60%;
 		text-align: center;
-		margin-bottom: 20px;
+		margin-bottom: 15px;
 		margin-right: 3%;
 		line-height: 1em;
 		padding: 4px 2px;
