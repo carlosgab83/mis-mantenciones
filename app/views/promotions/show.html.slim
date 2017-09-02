@@ -20,13 +20,8 @@
             strong.big #{@promotion.branches.first.shop.name}
 
           .promo-description
-            strong.big Descripción
+            strong.main-title Descripción
             p = @promotion.description.html_safe
-      .row
-        - if @promotion.slug == 'cambio-neumaticos-a-domicilio'
-          /.fb-comments data-href="#{request.url}/" data-width="750" data-numposts="10"
-          .fb-comments data-href="https://mismantenciones.herokuapp.com/" data-width="750" data-numposts="10"
-          .fb-like data-share="true" data-width="450" data-show-faces="true"
 
           ul.promo-conditions.visible-xs
               - @promotion.attributes_promotions.each do |ap|
@@ -35,17 +30,24 @@
                   span = "#{ap.value}"
 
           .promo-share.visible-xs
-              ul.promo.share-list.list-inline
-                li
-                  span.promo-share-text Compartir
-                li 
-                  a
-                    i.fa.fa-facebook-square
-                    span.sr-only Compartir en Facebook
-                li 
-                  a
-                    i.fa.fa-twitter-square
-                    span.sr-only Compartir en Twitter
+            ul.promo.share-list.list-inline
+              li
+                span.promo-share-text Compartir
+              li 
+                a
+                  i.fa.fa-facebook-square
+                  span.sr-only Compartir en Facebook
+              li 
+                a
+                  i.fa.fa-twitter-square
+                  span.sr-only Compartir en Twitter
+
+          .promo-comments
+            span.main-title Comentarios
+            - if @promotion.slug == 'cambio-neumaticos-a-domicilio'
+              /.fb-comments data-href="#{request.url}/" data-width="100%" data-numposts="10"
+              .fb-comments data-href="https://mismantenciones.herokuapp.com/" data-width="100%" data-numposts="10"
+              .fb-like data-share="true" data-width="100%" data-show-faces="true"
 
         .col-sm-5
           #fixed-column
@@ -80,7 +82,7 @@
       .row
         .col-md-12
           .promos
-            strong.big Te podrían interesar estas ofertas o promociones
+            strong.main-title Te podrían interesar estas ofertas o promociones
             #promo-carousel
               //- @promotions.each do |promotion|
                 = render 'home/carousel_promotion', promotion: promotion

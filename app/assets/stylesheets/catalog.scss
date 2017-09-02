@@ -726,12 +726,17 @@
 }
 .promos {
 	margin-top: 20px;
-	.big {
-		font-family: 'Exo', sans-serif;
-		font-weight: bold;
-		font-style: italic;
-		opacity: 0.6;
-	}
+}
+.main-title {
+	font-family: 'Exo', sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	opacity: 0.6;
+	margin-top: 25px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	display: block;
 }
 
 
