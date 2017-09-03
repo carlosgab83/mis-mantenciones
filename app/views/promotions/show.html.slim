@@ -33,12 +33,12 @@
             ul.promo.share-list.list-inline
               li
                 span.promo-share-text Compartir
-              li 
-                a
+              li
+                a href="https://www.facebook.com/mismantenciones/" target='_blank'
                   i.fa.fa-facebook-square
                   span.sr-only Compartir en Facebook
-              li 
-                a
+              li
+                a href='https://twitter.com/MisMantenciones' target='_blank'
                   i.fa.fa-twitter-square
                   span.sr-only Compartir en Twitter
 
@@ -53,7 +53,7 @@
           #fixed-column
             - if @promotion.show_button?
               a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' #{@promotion.category.promotion_action_button_name}
-              
+
               - if @promotion.promo_price?
                 .promo-prices
                   span.promo-price = mismantenciones_number_to_currency(@promotion.promo_price)
@@ -69,12 +69,12 @@
               ul.promo.share-list.list-inline
                 li
                   span.promo-share-text Compartir
-                li 
-                  a
+                li
+                  a href="https://www.facebook.com/mismantenciones/" target='_blank'
                     i.fa.fa-facebook-square
                     span.sr-only Compartir en Facebook
-                li 
-                  a
+                li
+                  a href='https://twitter.com/MisMantenciones' target='_blank'
                     i.fa.fa-twitter-square
                     span.sr-only Compartir en Twitter
 
