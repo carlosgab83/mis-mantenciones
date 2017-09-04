@@ -1,0 +1,83 @@
+- @body_class = "promo #{@promotion.promo_price? ? '' : 'without-price'}"
+
+= render 'shared/header'
+
+#wrapper.catalog
+  .inner
+    .container
+      .row
+        .col-sm-12
+          h1.promo-name
+            span = "#{@promotion.name} en "
+            strong #{@promotion.branches.first.shop.name}
+      #relative-row.row
+        .col-sm-7
+          .promo-image
+            = image_tag(@promotion.image_url || "promo-image.jpg", :alt => @promotion.name, :class => "img-responsive")
+
+          .promo-title.visible-xs
+            span.big = "#{@promotion.name} en "
+            strong.big #{@promotion.branches.first.shop.name}
+
+          .promo-description
+            strong.main-title Descripción
+            p = @promotion.description.html_safe
+
+          ul.promo-conditions.visible-xs
+              - @promotion.attributes_promotions.each do |ap|
+                li
+                  strong = "#{ap.promotion_attribute.name}: "
+                  span = "#{ap.value}"
+
+          .promo-share.visible-xs
+            ul.promo.share-list.list-inline
+              li
+                .fb-share-button data-href="#{request.url}?src=sdkpreparse" data-layout="button" data-size="small" data-mobile-iframe="true"
+              li
+                a.twitter-mention-button href="https://twitter.com/intent/tweet?text= Que interesante! @mismantenciones, &url=#{request.url}" data-show-count="false"
+
+          .promo-comments
+            span.main-title Comentarios
+            .fb-comments data-width="100%" data-numposts="10"
+
+
+        .col-sm-5
+          #fixed-column
+            - if @promotion.show_button?
+              a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' #{@promotion.category.promotion_action_button_name}
+
+              - if @promotion.promo_price?
+                .promo-prices
+                  span.promo-price = mismantenciones_number_to_currency(@promotion.promo_price)
+                  span.full-price = mismantenciones_number_to_currency(@promotion.full_price)
+
+            ul.promo-conditions.hidden-xs
+              - @promotion.attributes_promotions.each do |ap|
+                li
+                  strong = "#{ap.promotion_attribute.name}: "
+                  span = "#{ap.value}"
+
+            .promo-share.hidden-xs
+              ul.promo.share-list.list-inline
+                li
+                  .fb-share-button data-href="#{request.url}?src=sdkpreparse" data-layout="button" data-size="small" data-mobile-iframe="true"
+                li
+                  a.twitter-mention-button href="https://twitter.com/intent/tweet?text= Que interesante! @mismantenciones, &url=#{request.url}" data-show-count="false"
+
+      // Carlos, en esta parte hay que agregar soporte para mostrar promociones en el carrusel, es la misma estructura de la vista result
+      // Carlos Ochoa: tengo entendido que esto esta suspendido por ahora
+      /.row
+        .col-md-12
+          .promos
+            strong.main-title Te podrían interesar estas ofertas o promociones
+            #promo-carousel
+              //- @promotions.each do |promotion|
+                = render 'home/carousel_promotion', promotion: promotion
+
+= render 'shared/footer'
+
+javascript:
+  // Buy promotion
+  $('#buy-promotion').click(function(event) {
+    couponsControls.buyPromotion(this);
+  });
