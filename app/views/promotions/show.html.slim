@@ -32,22 +32,14 @@
           .promo-share.visible-xs
             ul.promo.share-list.list-inline
               li
-                span.promo-share-text Compartir
+                .fb-share-button data-href="#{request.url}/&amp;src=sdkpreparse" data-layout="button" data-size="small" data-mobile-iframe="true"
               li
-                a href="https://www.facebook.com/mismantenciones/" target='_blank'
-                  i.fa.fa-facebook-square
-                  span.sr-only Compartir en Facebook
-              li
-                a href='https://twitter.com/MisMantenciones' target='_blank'
-                  i.fa.fa-twitter-square
-                  span.sr-only Compartir en Twitter
+                a.twitter-mention-button href="https://twitter.com/intent/tweet?text= Que interesante! @mismantenciones, &url=#{request.url}" data-show-count="false"
 
           .promo-comments
             span.main-title Comentarios
-            - if @promotion.slug == 'cambio-neumaticos-a-domicilio'
-              /.fb-comments data-href="#{request.url}/" data-width="100%" data-numposts="10"
-              .fb-comments data-href="https://mismantenciones.herokuapp.com/" data-width="100%" data-numposts="10"
-              .fb-like data-share="true" data-width="100%" data-show-faces="true"
+            .fb-comments data-href="#{request.url}/" data-width="100%" data-numposts="10"
+
 
         .col-sm-5
           #fixed-column
@@ -68,18 +60,13 @@
             .promo-share.hidden-xs
               ul.promo.share-list.list-inline
                 li
-                  span.promo-share-text Compartir
+                  .fb-share-button data-href="#{request.url}/&amp;src=sdkpreparse" data-layout="button" data-size="small" data-mobile-iframe="true"
                 li
-                  a href="https://www.facebook.com/mismantenciones/" target='_blank'
-                    i.fa.fa-facebook-square
-                    span.sr-only Compartir en Facebook
-                li
-                  a href='https://twitter.com/MisMantenciones' target='_blank'
-                    i.fa.fa-twitter-square
-                    span.sr-only Compartir en Twitter
+                  a.twitter-mention-button href="https://twitter.com/intent/tweet?text= Que interesante! @mismantenciones, &url=#{request.url}" data-show-count="false"
 
       // Carlos, en esta parte hay que agregar soporte para mostrar promociones en el carrusel, es la misma estructura de la vista result
-      .row
+      // Carlos Ochoa: tengo entendido que esto esta suspendido por ahora
+      /.row
         .col-md-12
           .promos
             strong.main-title Te podrían interesar estas ofertas o promociones
