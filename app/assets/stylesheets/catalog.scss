@@ -148,8 +148,17 @@
 	.promo-list {
 		list-style: none;
 		padding-left: 0;
+		@media #{$osm} {
+			margin: 0 -10px;
+		}
 		> li {
 			margin-bottom: 15px;
+			@media #{$osm} {
+				display: inline-block;
+				width: 50%;
+				vertical-align: top;
+				padding: 0 10px;
+			}
 			a {
 				display: table;
 				//table-layout: fixed;
