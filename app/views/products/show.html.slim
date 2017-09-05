@@ -27,10 +27,10 @@
                             = "#{bp.branch.name}"
                           span.branch-box
                             - if i==0
-                              span#buy-product.btn.btn-ghost 
+                              span#buy-product.btn.btn-ghost
                                 = "#{mismantenciones_number_to_currency(bp.price) || '-'}"
                             - else
-                              span.btn.btn-ghost 
+                              span.btn.btn-ghost
                                 = "#{mismantenciones_number_to_currency(bp.price) || '-'}"
                       - else
                         span.branch-name
@@ -44,15 +44,33 @@
             .col-sm-12
               .product-image
                 = image_tag(@product.image_url || "part-image.jpg", :alt => @product.product_brand.name+" "+@product.name, :class => "img-responsive")
-       
-      .row 
+
+      .row
         .col-sm-6
           .product-description
             ul
-              - @product.attributes_products.each do |ap|
+              li
+                - ap = @product.description_attribute # SERPEN, ESTA ES LA PARTE DONDE ESTA SEPARADA LA DESCRIPCION
+                - if ap.present?
+                  li
+                    strong = "#{ap.product_attribute.name}: "
+                    span = "#{ap.value}".html_safe
+              ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+              - @product.other_attributes.each do |ap|
                 li
                   strong = "#{ap.product_attribute.name}: "
                   span = "#{ap.value}".html_safe
-        
+      .row
+        .promo-share
+            ul.promo.share-list.list-inline
+              li
+                .fb-share-button data-href="#{request.url}?src=sdkpreparse" data-layout="button" data-size="small" data-mobile-iframe="true"
+              li
+                a.twitter-mention-button href="https://twitter.com/intent/tweet?text= Que interesante! @mismantenciones, &url=#{request.url}" data-show-count="false"
+
+        .promo-comments
+          span.main-title Comentarios
+          .fb-comments data-width="100%" data-numposts="10"
 
 = render 'shared/footer'
