@@ -15,7 +15,11 @@ module BranchesPromotions
     def show
       if promotion
         EventTracker::OpenPromotion.new(controller: self, client: session[:client], vehicle: session[:vehicle], promotion: promotion).track
-        render '/promotions/show', id: promotion.slug
+        if promotion.is_a? BranchInformation
+          render '/promotions/show_branch_information', id: promotion.slug
+        else
+          render '/promotions/show', id: promotion.slug
+        end
       else
         render '/promotions/index'
       end
