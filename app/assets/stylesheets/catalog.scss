@@ -7,12 +7,14 @@
 .catalog {
 	.inner {
 		height: auto;
-		padding: 90px 0 40px 0;
+		padding: 80px 0 40px 0;
 		@media #{$xs}{
-			padding-bottom: 10px;
+			padding-top: 60px;
+			padding-bottom: 5px;
 		}
 		h1 {
 			font-size: 30px;
+			margin-bottom: 25px;
 			@media #{$xs}{
 				font-size: 27px;
 				margin-bottom: 15px
@@ -33,32 +35,55 @@
 			position: relative;
 		}
 	}
-	span.full-price {
+	.full-price,
+	.promo-price {
 		display: inline-block;
-		width: 100%;
-		opacity: 0.6;
-		text-decoration: line-through;
-		text-align: right;
-	}
-	span.promo-price {
-		display: inline-block;
-		width: 100%;
-		font-size: 145%;
-		font-weight: bold;
+		vertical-align: middle;
+		padding-right: 10px;
 		font-family: 'Exo', sans-serif;
-		text-align: right;
+	}
+	.full-price {
+		opacity: 0.5;
+		text-decoration: line-through;
+	}
+	.promo-price {
+		font-size: 170%;
+		font-weight: bold;
+		@media #{$xs}{
+			font-size: 130%;
+		}
 	}
 	.btn-cta {
 		margin: 5px 0;
-		&#buy-promotion {
-			@media #{$oxs}{
-				margin-top: 20px;
-			}
-		}
 	}
-	& ~ .popover {
+	& ~ .popover,
+	.popover {
+		@extend .special-popover;
 		@media #{$xs}{
 			display: none!important;
+		}
+	}
+}
+
+// Special Popover
+.special-popover {
+	width: 290px;
+	max-width: 100%;
+	font-size: 13px;
+	.popover-content {
+		padding: 10px 20px;
+		strong {
+			font-style: italic;
+			margin-bottom: 1px;
+			display: inline-block;
+		}
+	}
+	&.top {
+		.arrow {
+			bottom: -14px;
+			&:after {
+				bottom: 4px;
+			}
 		}
 	}
 }
@@ -123,8 +148,17 @@
 	.promo-list {
 		list-style: none;
 		padding-left: 0;
+		@media #{$osm} {
+			margin: 0 -10px;
+		}
 		> li {
 			margin-bottom: 15px;
+			@media #{$osm} {
+				display: inline-block;
+				width: 50%;
+				vertical-align: top;
+				padding: 0 10px;
+			}
 			a {
 				display: table;
 				//table-layout: fixed;
@@ -146,6 +180,7 @@
 						z-index: 1;
 						top: 15px;
 						right: 0;
+						max-width: 50%;
 					}
 					@media #{$xs}{
 						top: 0;
@@ -176,6 +211,9 @@
 						font-size: 135%;
 						opacity: 0.6;
 					}
+					.promo-price, .full-price {
+						width: 100%;
+					}
 				}
 				&:hover, &:active, &:focus {
 					.promo-image {
@@ -191,29 +229,57 @@
 // Promo Detail
 //////////////////////////////////////////////////////////
 
+.promo {
+	@media #{$xs}{
+		.catalog .inner {padding-top: 50px;}
+		#fixed-column {min-height: 80px;}
+		#footer {margin-bottom: 80px}
+	}
+	&.without-price {
+		@media #{$xs}{
+			#fixed-column {min-height: 50px;}
+			#footer {margin-bottom: 50px}
+		}
+	}
+}
 .catalog {
+	.big {
+		@media #{$xs}{
+			font-size: 105%;
+		}
+	}
+	.promo-name {
+		@media #{$xs}{
+			display: none;
+		}
+	}
 	.promo-prices {
+		text-align: center;
+		padding: 0;
 		span.promo-price, span.full-price {
+			margin: 10px 0;
 			@media #{$xs}{
 				text-align: left;
+				margin: 5px 0;
+				line-height: 1.1em;
 			}
 		}
 	}
 	.promo-conditions {
 		list-style: none;
 		padding-left: 0;
-		margin: 25px 0;
-		text-align: right;
-		@media #{$xs}{
-			text-align: left;
-		}
+		margin: 15px 0;
+		text-align: left;
 		li {
 			margin-bottom: 5px;
 		}
 	}
 	.promo-image {
 		position: relative;
-		margin: 20px 0;
+		margin: 0 0 20px 0;
+		.img-responsive {
+			margin: 0 auto;
+		}
 		.brand-logo {
 			position: absolute;
 			z-index: 1;
@@ -227,10 +293,12 @@
 			}
 		}
 		@media #{$xs}{
-			height: 200px;
-			top: -10px;
+			left: -15px;
+			top: -20px;
+			width: calc(100% + 30px);
+    		overflow: hidden;
+    		margin-bottom: 0;
 			.img-responsive {
-				max-height: 100%;
 				margin: 0 auto;
 				vertical-align: bottom;
 			}
@@ -239,6 +307,65 @@
 	.promo-description {
 		h1, h2, h3, h4, h5, h6, strong {
 			opacity: 0.6;
+			font-family: 'Exo', sans-serif;
+			font-style: italic;
+		}
+	}
+	.promo-title {
+		font-family: 'Exo', sans-serif;
+		font-style: italic;
+		margin-bottom: 20px;
+		span {
+			font-weight: 400;
+			opacity: 0.6;
+		}
+		strong {
+			font-weight: 700;
+			opacity: 0.8;
+		}
+		@media #{$xs}{font-size: 120%;}
+	}
+}
+#relative-row {
+	position: relative;
+	> .col-sm-5 {
+		position: static;
+		#fixed-column {
+			position: relative;
+			@media #{$oxs}{
+				padding-top: 68px;
+			}
+			@media #{$xs}{
+				position: fixed;
+				top: auto!important;
+				bottom: 0;
+				left: 0;
+				z-index: 20;
+				width: 100%;
+				padding: 5px 15px;
+				.btn-lg {
+					padding: 6px 20px;
+				}
+			}
+		}
+	}
+}
+.promo-share {
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px solid rgba(0,0,0,0.1);
+	font-size: 0;
+	li {
+		vertical-align: middle;
+	}
+	span {
+		display: inline-block;
+		font-size: 12px;
+	}
+	a {
+		display: inline-block;
+		.fa {
+			font-size: 21px;
 		}
 	}
 }
@@ -447,6 +574,7 @@
 				font-style: italic;
 				margin: 0;
 				padding: 14px 28px;
+				line-height: 1.1em;
 				@media #{$xs}{padding: 8px 16px;}
 				strong {
 					font-family: 'Exo', sans-serif;
@@ -496,17 +624,25 @@
 .catalog {
 	.product-image {
 		position: relative;
-		margin: 20px 0;
+		margin: 20px 0 0;
+		padding: 15px 0;
 		text-align: center;
 		border: 1px solid;
 		.img-responsive {
 			display: inline-block;
+			max-height: 200px;
 		}
 		@media #{$xs}{
-			height: 200px;
+			padding: 15px 0;
 			.img-responsive {
-				max-height: 100%;
+				max-height: 150px;
 				margin: 0 auto;
+			}
+		}
+		@media #{$xxs}{
+			padding: 10px 0;
+			.img-responsive {
+				max-height: 120px;
 			}
 		}
 	}
@@ -526,11 +662,15 @@
 		h1, h2, h3, h4, h5, h6 {
 			opacity: 0.6;
 		}
+		iframe {
+			width: 100% !important;
+		}
 	}
 	.product-table {
 		.table {
 			margin: 20px 0;
 			width: 100%;
+			@media #{$xs}{margin: 0;}
 			table-layout: fixed;
 			th, td {
 				border-right: none;
@@ -551,6 +691,10 @@
 				a, .branch-name {
 					display: block;
 					padding: 12px 8px;
+					@media #{$xs}{
+						padding: 8px;
+						font-size: 90%;
+					}
 					> .branch-box {
 						display: inline-block;
 						width: 50%;
@@ -564,6 +708,12 @@
 				.btn {
 					min-width: 100px;
 					padding: 5px 10px;
+				}
+				.popover {
+					@extend .special-popover;
+					@media #{$xs}{
+						display: none!important;
+					}
 				}
 				&:first-child {
 					font-size: 115%;
@@ -583,6 +733,21 @@
 		}
 	}
 }
+.promos {
+	margin-top: 20px;
+}
+.main-title {
+	font-family: 'Exo', sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	opacity: 0.6;
+	margin-top: 25px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	display: block;
+}
+
 
 //////////////////////////////////////////////////////////
 // Product Brands

@@ -23,4 +23,6 @@
 //= require jquery-lazzynumeric-1.2/js/jquery.lazzynumeric.min
 //= require google_analytics
 //= require markerclusterer/markerclusterer
+//= require sticky-kit/jquery.sticky-kit.min
+//= require perfect-scrollbar/js/perfect-scrollbar.jquery
 //= require_tree .
