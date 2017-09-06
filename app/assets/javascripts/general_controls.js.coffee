@@ -43,17 +43,17 @@ generalControls.hideLoadingEffect = () ->
 generalControls.defaultValidations = () ->
   $(".numeric").lazzynumeric({aSep: ".", aDec: ",", vMin: "0", vMax: "999999"})
   $(".big-numeric").lazzynumeric({aSep: ".", aDec: ",", vMin: "0", vMax: "99999999"})
-  # $(".search-patent").validate({
-  #   debug: true,
-  #   onsubmit: true,
-  #   errorPlacement: (error, element) ->,
-  #   errorClass: 'notExistentClass',
-  #   rules: {
-  #     "search[patent]": {required: true, minlength: 5, maxlength: 6}
-  #   },
-  #   submitHandler: (form) ->
-  #     form.submit()
-  # })
+  $(".search-patent").validate({
+    debug: true,
+    onsubmit: true,
+    errorPlacement: (error, element) ->,
+    errorClass: 'notExistentClass',
+    rules: {
+      "search[patent]": {required: true, minlength: 5, maxlength: 6}
+    },
+    submitHandler: (form) ->
+      form.submit()
+  })
 
 #############################################################################
 
