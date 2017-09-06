@@ -38,12 +38,30 @@ class Product < ApplicationRecord
   # Use friendly id based on name
   friendly_id :name, use: :slugged
 
+  DESCRIPTION_ATTRIBUTE = 'Descripción'
+
   def model_attribute_value
     name
   end
 
   def min_price
     branches_products.map{|bp| bp.price }.compact.try(:min)
+  end
+
+  def description_attribute
+    return '' if description_attribute_id.nil?
+
+    attributes_products.where(attribute_id: description_attribute_id).first
+  end
+
+  def other_attributes
+    attributes_products.where.not(attribute_id: description_attribute_id)
+  end
+
+  private
+
+  def description_attribute_id
+    @description_attribute_id ||= product_attributes.where(name: DESCRIPTION_ATTRIBUTE).first.try(:id)
   end
 end
 

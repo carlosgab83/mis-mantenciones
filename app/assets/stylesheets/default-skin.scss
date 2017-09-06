@@ -73,7 +73,7 @@ a {
 .btn {
 	&:not(.btn-link) {
 		border-color: rgba($dark-color, 0.1);
-		box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+		box-shadow: 3px 3px 0 rgba($dark-color,0.15);
 		&:hover, &:active, &:focus {
 			border-color: rgba($dark-color, 0.2);
 		}
@@ -346,7 +346,7 @@ section#section-parts {
 		color: $dark-color;
 	}
 	&:hover, &:active, &:focus {
-		box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+		box-shadow: 3px 3px 0 rgba($dark-color,0.15);
 	}
 }
 
@@ -374,13 +374,13 @@ section#section-guideline {
 			&:not(.disabled) {
 				&:hover, &:active, &:focus {
 					text-shadow: 0 2px 0 rgba($dark-color,0.2);
-					.badge {box-shadow: 0 2px 0 rgba($dark-color,0.2);}
+					.badge {box-shadow: 0 2px 0 rgba($dark-color,0.15);}
 				}
 			}
 		}
 		.popover {
 			color: $dark-color;
-			box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+			box-shadow: 3px 3px 0 rgba($dark-color,0.15);
 		}
 	}
 }
@@ -428,7 +428,7 @@ section#section-parts {
 	#collapse-list {
 		background-color: $light-color;
 		@media #{$xs}{
-			box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+			box-shadow: 3px 3px 0 rgba($dark-color,0.15);
 		}
 	}
 	span.promo-price {color: $main-color;}
@@ -439,9 +439,19 @@ section#section-parts {
 				color: $dark-color;
 				h6 {color: $dark-color;}
 				&:hover, &:active, &:focus {
-					box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+					box-shadow: 3px 3px 0 rgba($dark-color,0.15);
 				}
 			}
+		}
+	}
+	#fixed-column {
+		@media #{$xs}{
+			background-color: rgba(darken($light-color,8%),0.9);
+		}
+	}
+	.promo-image {
+		@media #{$xs}{
+			background-color: rgba(darken($light-color,8%),0.9);
 		}
 	}
 }
@@ -483,7 +493,7 @@ section#section-parts {
 						.btn.btn-ghost {
 							color: darken($main-color,5%);
 							background-color: lighten(desaturate($side-color,10%), 10%);
-							box-shadow: 3px 3px 0 rgba($dark-color,0.2)!important;
+							box-shadow: 3px 3px 0 rgba($dark-color,0.15)!important;
 							border-color: rgba($dark-color, 0.1);
 							&:hover, &:active, &:focus {
 								color: $dark-color;
@@ -586,7 +596,7 @@ section#section-parts {
 		}
 	}
 	.modal-content {
-		box-shadow: 5px 5px 0 rgba($dark-color,0.2);
+		box-shadow: 5px 5px 0 rgba($dark-color,0.15);
 	}
 	.modal-body {
 		.close {
@@ -642,8 +652,16 @@ section#section-parts {
 // Popover
 .popover {
 	text-align: center;
-	color: $dark-color;
-	box-shadow: 3px 3px 0 rgba($dark-color,0.2);
+	color: darken(desaturate($side-color,15%), 30%);
+	box-shadow: 3px 3px 0 rgba($dark-color,0.15);
+	strong {
+		color: darken($main-color,5%);
+	}
+	&.top {
+		.arrow {
+			border-top-color: rgba($dark-color,0.15);
+		}
+	}
 }
 #home-middle {
 	.popover {
@@ -657,7 +675,8 @@ section#section-parts {
 	}
 }
 .modal-backdrop, .catalog {
-	& ~ .popover {
+	& ~ .popover,
+	.popover {
 		background-color: lighten(desaturate($side-color,10%), 30%);
 		&.bottom .arrow:after {
 			border-bottom-color: lighten(desaturate($side-color,10%), 30%);
