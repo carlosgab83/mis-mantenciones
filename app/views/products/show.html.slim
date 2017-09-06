@@ -50,27 +50,29 @@
           .product-description
             ul
               li
-                - ap = @product.description_attribute # SERPEN, ESTA ES LA PARTE DONDE ESTA SEPARADA LA DESCRIPCION
+                - ap = @product.description_attribute 
                 - if ap.present?
                   li
                     strong = "#{ap.product_attribute.name}: "
                     span = "#{ap.value}".html_safe
-              ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        .col-sm-6
+          .product-description
+            ul
               - @product.other_attributes.each do |ap|
                 li
                   strong = "#{ap.product_attribute.name}: "
                   span = "#{ap.value}".html_safe
       .row
-        .promo-share
+        .col-sm-6
+          .promo-share
             ul.promo.share-list.list-inline
               li
                 .fb-share-button data-href="#{request.url}?src=sdkpreparse" data-layout="button" data-size="small" data-mobile-iframe="true"
               li
                 a.twitter-mention-button href="https://twitter.com/intent/tweet?text= Que interesante! @mismantenciones, &url=#{request.url}" data-show-count="false"
 
-        .promo-comments
-          span.main-title Comentarios
-          .fb-comments data-width="100%" data-numposts="10"
+          .promo-comments
+            span.main-title Comentarios
+            .fb-comments data-width="100%" data-numposts="10"
 
 = render 'shared/footer'
