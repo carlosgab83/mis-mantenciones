@@ -55,6 +55,7 @@ class VehicleFinder < BaseService
   def adjust(patent)
     return patent unless patent.length < 6
     i = first_number_index(patent)
+    return patent unless i
     "#{patent[0..(i-1)]}0#{patent[i..-1]}"
   end
 
