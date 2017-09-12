@@ -1,6 +1,6 @@
 class Branch < ApplicationRecord
   belongs_to :shop
-  belongs_to :comune
+  belongs_to :comune, foreign_key: :commune_id
   belongs_to :branch_type
   belongs_to :plan
   has_many :branches_products
