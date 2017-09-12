@@ -81,3 +81,27 @@ javascript:
   $('#buy-promotion').click(function(event) {
     couponsControls.buyPromotion(this);
   });
+
+script type='application/ld+json'
+  |
+    {
+      "@context": "http://schema.org/Offer",
+      "@type": "Offer",
+      "location": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "#{@promotion.first_branch.try(:comune).try(:desc_comuna)}",
+          "streetAddress": "#{@promotion.first_branch.try(:street_address)} #{@promotion.first_branch.try(:number_address)}"
+        },
+        "name": "#{@promotion.first_branch.try(:shop).try(:name)}"
+      },
+      "name": "#{@promotion.name}",
+      "offers": {
+        "@type": "Offer",
+        "price": "#{@promotion.promo_price}",
+        "priceCurrency": "CLP",
+        "url": "#{request.url}"
+      },
+      "category": "#{@promotion.category.try(:name)}"
+    }
