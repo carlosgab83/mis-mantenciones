@@ -85,9 +85,10 @@ javascript:
 script type='application/ld+json'
   |
     {
-      "@context": "http://schema.org/Offer",
+      "@context": "http://schema.org/",
       "@type": "Offer",
-      "location": {
+      "category": "#{@promotion.category.try(:name)}",
+      "areaServed": {
         "@type": "Place",
         "address": {
           "@type": "PostalAddress",
@@ -96,12 +97,13 @@ script type='application/ld+json'
         },
         "name": "#{@promotion.first_branch.try(:shop).try(:name)}"
       },
-      "name": "#{@promotion.name}",
-      "offers": {
-        "@type": "Offer",
-        "price": "#{@promotion.promo_price}",
-        "priceCurrency": "CLP",
-        "url": "#{request.url}"
-      },
-      "category": "#{@promotion.category.try(:name)}"
+      "ItemOffered": {
+              "@type": "Service",
+              "description": "#{@promotion.name}"
+            },
+      "price": "#{ @promotion.promo_price.to_i > 0 ? @promotion.promo_price : "no especificado"}",
+      "priceCurrency": "CLP",
+      "url": "#{request.url}",
+      "image": "#{@promotion.image_url}"
+      }
     }
