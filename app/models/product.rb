@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   extend FriendlyId
   include ProductSerializer
   extend ProductsSerializer
+  include MicrodataGenerator
 
    self.per_page = 5
 

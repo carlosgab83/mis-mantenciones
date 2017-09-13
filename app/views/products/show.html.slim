@@ -50,7 +50,7 @@
           .product-description
             ul
               li
-                - ap = @product.description_attribute 
+                - ap = @product.description_attribute
                 - if ap.present?
                   li
                     strong = "#{ap.product_attribute.name}: "
@@ -76,3 +76,7 @@
             .fb-comments data-width="100%" data-numposts="10"
 
 = render 'shared/footer'
+
+script type='application/ld+json'
+  |
+    #{raw @product.jsonld_microdata(request).to_json}
