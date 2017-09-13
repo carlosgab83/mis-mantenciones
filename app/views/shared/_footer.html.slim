@@ -6,8 +6,8 @@ footer#footer
           li
             = link_to "Términos y Condiciones", "http://files.mismantenciones.com/pdf/Términos-y-Condiciones-MisMantenciones.pdf", target: :_blank
           li
-            span.hidden-xs 
-              | ¿Necesitas Ayuda? 
+            span.hidden-xs
+              | ¿Necesitas Ayuda?
               br
               | contacto@mismantenciones.com
 
@@ -20,3 +20,12 @@ footer#footer
 
 .loader
   = image_tag "spinner.gif" , class: "loading-image"
+
+javascript:
+  |
+    {
+      "@context": "http://schema.org/",
+      "@type": "Person",
+      "name": "Contacta al equipo de MisMantenciones",
+      "email": "contacto@mismantenciones.com"
+    }
