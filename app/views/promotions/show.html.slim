@@ -81,3 +81,7 @@ javascript:
   $('#buy-promotion').click(function(event) {
     couponsControls.buyPromotion(this);
   });
+
+script type='application/ld+json'
+  |
+    #{raw @promotion.jsonld_microdata(request).to_json}
