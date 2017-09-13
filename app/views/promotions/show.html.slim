@@ -84,26 +84,4 @@ javascript:
 
 script type='application/ld+json'
   |
-    {
-      "@context": "http://schema.org/",
-      "@type": "Offer",
-      "category": "#{@promotion.category.try(:name)}",
-      "areaServed": {
-        "@type": "Place",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "#{@promotion.first_branch.try(:comune).try(:desc_comuna)}",
-          "streetAddress": "#{@promotion.first_branch.try(:street_address)} #{@promotion.first_branch.try(:number_address)}"
-        },
-        "name": "#{@promotion.first_branch.try(:shop).try(:name)}"
-      },
-      "ItemOffered": {
-              "@type": "Service",
-              "description": "#{@promotion.name}"
-            },
-      "price": "#{ @promotion.promo_price.to_i > 0 ? @promotion.promo_price : "no especificado"}",
-      "priceCurrency": "CLP",
-      "url": "#{request.url}",
-      "image": "#{@promotion.image_url}"
-      }
-    }
+    #{raw @promotion.jsonld_microdata(request).to_json}

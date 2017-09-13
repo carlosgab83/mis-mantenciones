@@ -11,6 +11,7 @@ class Promotion < ApplicationRecord
   extend FriendlyId
   include PromotionSerializer
   extend PromotionsSerializer
+  include MicrodataGenerator
 
   belongs_to :category
   has_many :branches_promotions, foreign_key: :promotion_id
