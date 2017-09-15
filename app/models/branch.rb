@@ -1,13 +1,15 @@
 class Branch < ApplicationRecord
   belongs_to :shop
   belongs_to :comune, foreign_key: :commune_id
-  belongs_to :branch_type
+  belongs_to :branch_type #Attribute on table when this branch has one branch_type
   belongs_to :plan
   has_many :branches_products
   has_many :branches_promotions
   has_many :products, through: :branches_products
   has_many :promotions, through: :branches_promotions
   has_many :branches_manteinance_items
+  has_many :branches_branch_types
+  has_many :branch_types, through: :branches_branch_types #  When this branch has more than one branch_type
 
   HIDE_BRANCH_PRICE_VALUE = -999
 
