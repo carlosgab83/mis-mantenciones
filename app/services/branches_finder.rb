@@ -1,7 +1,7 @@
 class BranchesFinder < BaseService
 
   def call
-    branches = Branch.includes(:branch_type).actives.with_plan.where(branch_type_id: BranchType.actives.pluck(:id))
+    branches = Branch.includes(:branch_type).includes(:branch_types).actives.with_plan.where(branch_type_id: BranchType.actives.pluck(:id))
     if user_input.empty_search?
       branches
     elsif user_input.basic_search?
