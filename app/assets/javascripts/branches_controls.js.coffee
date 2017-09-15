@@ -21,6 +21,7 @@ branchesControls.initilization = () ->
   branchesControls.MARKER_URL = 4
   branchesControls.INTERVAL_BETWEEN_JUMPS = 5
   branchesControls.BRANCH_TYPE_ID = 6
+  branchesControls.BRANCH_TYPES_IDS = 7 # Multi type
 
   branchesControls.branches = []
   branchesControls.associativeMarkers = {}
@@ -122,10 +123,15 @@ branchesControls.insertNewMarker = (branch) ->
 
 branchesControls.markerMustBeDrawn = (marker) ->
   branchTypeId = marker.customInfo['branch'][branchesControls.BRANCH_TYPE_ID]
-  checkbox = $('#branch_types-filters input[value=' + branchTypeId + ']')[0]
-  if checkbox == null
-    return false
-  return checkbox.checked
+  branchTypesIds = Array.from(marker.customInfo['branch'][branchesControls.BRANCH_TYPES_IDS])
+  branchTypesIds.push(branchTypeId)
+
+  for eachBranchTypeId in branchTypesIds
+    checkbox = $('#branch_types-filters input[value=' + eachBranchTypeId + ']')[0]
+    if checkbox != null && checkbox.checked
+      return true
+
+  return false
 
 #############################################################################
 
