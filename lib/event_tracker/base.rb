@@ -1,12 +1,13 @@
 module EventTracker
   class Base
-    attr_reader :attrs, :id, :controller
-    attr_writer :attrs, :id, :controller
+    attr_reader :attrs, :id, :controller, :event
+    attr_writer :attrs, :id, :controller, :event
 
     def initialize(options = {})
       self.attrs ||= {}
       self.controller = options[:controller]
       set_base_attrs(controller)
+      self.event = options[:event]
     end
 
     def set_base_attrs(controller)

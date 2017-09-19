@@ -59,4 +59,7 @@ Rails.application.routes.draw do
    match '422' => "home#search", via: [:get, :post, :put, :patch, :delete]
    match '500' => "home#search", via: [:get, :post, :put, :patch, :delete]
   end
+
+  # General Purpose traking entry-point for some frontend events
+  resources :frontend_tracking, only: [:create]
 end
