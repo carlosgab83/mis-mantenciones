@@ -15,7 +15,7 @@ a.open-sidebar
       .panel-body
         = form_tag search_branches_path, remote: true, id: 'basic-search-form'
           = hidden_field "search", "location_text", id: 'basic-search-form_search_location_text'
-          = hidden_field "search", "initial_service_selection", id: 'basic-search-form_search_initial_service_selection'
+          = hidden_field "search", "branch_type_id", id: 'basic-search-form_search_branch_type_id'
           .form-group
             = select_tag "search[brand_id]", options_from_collection_for_select(Brand.actives, "id_marca", "descripcion"), class: 'selectpicker form-control like-input', include_blank: true, title: 'Marca', 'data-live-search' => 'true', 'data-none-results-text'=>'No se encontraron resultados para {0}'
           .form-group
