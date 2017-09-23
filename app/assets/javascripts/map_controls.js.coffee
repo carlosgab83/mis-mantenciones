@@ -93,7 +93,7 @@ mapControls.buttonListeners = () ->
   $('.map-search').click ->
     hiddenInput = document.getElementById('basic-search-form_search_location_text')
     hiddenInput.value = document.getElementById('search-input').value
-    hiddenInputServiceSelection = document.getElementById('basic-search-form_search_initial_service_selection')
+    hiddenInputServiceSelection = document.getElementById('basic-search-form_search_branch_type_id')
     hiddenInputServiceSelection.value = document.getElementById('service-selection-select').value
     mapControls.userSearchAction(mapControls.autocomplete, 'basic-search-form')
     leftIinput = document.getElementById('search-input-left-panel')
