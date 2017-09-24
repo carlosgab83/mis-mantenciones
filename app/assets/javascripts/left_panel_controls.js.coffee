@@ -6,9 +6,6 @@ leftPanelControls.ready = ->
   # Insert initilization code here
   leftPanelControls.initilization()
 
-$(document).ready(leftPanelControls.ready)
-$(document).on('page:load', leftPanelControls.ready)
-
 #############################################################################
 
 leftPanelControls.initilization = () ->
@@ -32,6 +29,7 @@ leftPanelControls.initilization = () ->
       if ($(this).css('position') == 'fixed')
         $('#right-map').removeClass('open')
 
+    # This is the code thar opens and closes the right panel
     if (($(this).parent().attr('id') == "right-map") && ($('#right-map .panel').html()?))
       $(this).parent().toggleClass('open')
       $('#map').toggleClass('right-open')
