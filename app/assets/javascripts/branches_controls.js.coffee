@@ -6,13 +6,7 @@ branchesControls.ready = ->
   # Insert initilization code here
   if typeof google != 'undefined'
     branchesControls.initilization()
-    setTimeout (->
-      branchesControls.afterLoadHook()
-      return
-    ), 3000
-
-$(document).ready(branchesControls.ready)
-$(document).on('page:load', branchesControls.ready)
+    branchesControls.afterLoadHook()
 
 #############################################################################
 
