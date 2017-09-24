@@ -1,0 +1,46 @@
+- @body_class = 'home'
+
+= render 'shared/header'
+
+#wrapper
+  h1.sr-only MisMantenciones.com
+  h2.sr-only es un marketplace donde encontrarás los mejores servicios técnicos, talleres mecánicos, servicios automotrices, descuentos, promociones y repuestos para tu auto o moto.
+  section#section-map
+    #floating-form.map-form class="#{hide_floating_form ? 'hidden': ''}"
+      .row
+        .col-sm-12
+          p.lead
+            | Encuentra servicios cerca tuyo
+        .col-sm-12
+          form.form-inline
+            .form-group
+              select.form-control#service-selection-select
+                option value="" Selecciona Servicio
+                option value="0" id="0" Ver todos
+                - BranchType.actives.order(:name).all.each do |branch_type|
+                  option value="#{branch_type.id}" id="#{branch_type.id}" #{branch_type.name}
+            .form-group
+              label.sr-only for="county-field" Ciudad o Comuna
+              input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna"
+            .form-group
+              button#services-search.btn.btn-cta.btn-block.map-search type="button"
+                | Busca Servicios
+    #left-map.map-form
+      = render 'home/left_panel'
+    #right-map.map-form
+      a.close-sidebar.side-bar-control.visible-xs
+        i.fa.fa-times
+      a.open-sidebar.side-bar-control
+        i.fa.fa-angle-left
+        i.fa.fa-angle-right
+      #marker-detail.panel-group
+    #map
+
+= render 'shared/footer'
+
+#map-info.modal.fade
+  = render 'home/info'
+
+javascript:
+  var initMapGoogleCallback = mapControls.initMap.bind(null, #{SystemSetting.config.default_latitude}, #{SystemSetting.config.default_longitude}, #{SystemSetting.config.default_zoom});
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgCfExuv-T3zGG0mkSuNx0z0tLhRPlHzw&libraries=places&callback=initMapGoogleCallback"

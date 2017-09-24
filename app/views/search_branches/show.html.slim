@@ -1,0 +1,11 @@
+= render '/shared/search', hide_floating_form: true
+
+javascript:
+  // This function is called later on branchesControls.ready function
+  branchesControls.afterLoadHook = function after_load_hook(){
+    #{raw = render file: '/search_branches/create.js'};
+    branchesControls.centerMarker(#{@branch.id});
+    #{raw = render file: '/search_branches/show.js'};
+    console.log('ggg')
+  }
+  //$('#right-map a.side-bar-control').click()

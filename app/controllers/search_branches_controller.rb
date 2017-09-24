@@ -3,7 +3,7 @@ class SearchBranchesController < ApplicationController
 
   # Make new search based on user criteria
   def create
-    @branches = BranchesFinder.new(form: search_branches_form).call
+    search_branches
 
     EventTracker::ClickSearchBranches.new(
       controller: self,
@@ -29,16 +29,21 @@ class SearchBranchesController < ApplicationController
 
     respond_to do |format|
       format.js
+      format.html {search_branches}
     end
   end
 
   private
+
+  def search_branches
+    @branches ||= BranchesFinder.new(form: search_branches_form).call
+  end
 
   def search_branches_form
     @search_branches_form ||= SearchBranchesForm.new(params[:search]  || {})
   end
 
   def branch
-    @branch ||= Branch.includes(:branch_type).find params[:id]
+    @branch ||= Branch.includes(:branch_type).friendly.find(params[:id])
   end
 end

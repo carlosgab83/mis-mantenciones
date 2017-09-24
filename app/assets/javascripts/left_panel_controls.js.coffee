@@ -86,7 +86,7 @@ leftPanelControls.chackAllFilters = (checkOrUncheck) ->
 
 leftPanelControls.selectBranchTypesFilters = (filtersToSelect) ->
   # Do nothing if no params passed
-  if filtersToSelect.length == 0 || (filtersToSelect.length == 1 && filtersToSelect[0] == null)
+  if filtersToSelect.length == 0 || (filtersToSelect.length == 1 && (filtersToSelect[0] == null || filtersToSelect[0] == false))
     return
 
   if (filtersToSelect.length == 1 && filtersToSelect[0] == 0) # User selects all services
