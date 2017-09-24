@@ -18,6 +18,7 @@ module EventTracker
           http_referer: controller.request.env["HTTP_REFERER"],
           http_origin: controller.request.env["HTTP_ORIGIN"],
           remote_addr: controller.request.env["REMOTE_ADDR"],
+          http_x_forwarded_for: controller.request.env["HTTP_X_FORWARDED_FOR"],
           path_info: controller.request.env["PATH_INFO"]
         }
       )
