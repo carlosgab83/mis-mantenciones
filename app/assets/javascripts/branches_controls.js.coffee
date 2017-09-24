@@ -176,7 +176,8 @@ branchesControls.clickOnMarker = (marker) ->
 
 branchesControls.centerMarker = (markerId) ->
   marker = branchesControls.associativeMarkers[markerId]
-  mapControls.map.panTo(marker.getPosition())
+  if marker
+    mapControls.map.panTo(marker.getPosition())
 
 ##############################################################################
 
