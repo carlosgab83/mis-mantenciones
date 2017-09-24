@@ -3,6 +3,7 @@ class SearchBranchesController < ApplicationController
 
   # Make new search based on user criteria
   def create
+    session[:search_branches_params] = params[:search]
     search_branches
 
     EventTracker::ClickSearchBranches.new(
@@ -18,6 +19,7 @@ class SearchBranchesController < ApplicationController
   end
 
   def show
+    params[:search] = session[:search_branches_params]
     @branch_items = BranchItemsFinder.new(branch: branch, form: search_branches_form).call
 
     EventTracker::ClickBranch.new(
