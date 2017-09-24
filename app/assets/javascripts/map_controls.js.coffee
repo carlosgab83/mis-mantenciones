@@ -10,9 +10,6 @@ mapControls.ready = ->
     mapControls.markerClustererImagePath = ''
     mapControls.buttonListeners()
 
-$(document).ready(mapControls.ready)
-$(document).on('page:load', mapControls.ready)
-
 #############################################################################
 
 mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->

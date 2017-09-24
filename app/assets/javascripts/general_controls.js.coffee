@@ -11,6 +11,14 @@ generalControls.ready = ->
   $(document).ajaxComplete ->
     generalControls.hideLoadingEffect()
 
+  # Serialization of initialization of other controls
+  mapControls.ready()
+  searchProductsControls.ready()
+  leftPanelControls.ready()
+  branchesControls.ready()
+  clientsControls.ready()
+
+
 $(document).ready(generalControls.ready)
 $(document).on('page:load', generalControls.ready)
 

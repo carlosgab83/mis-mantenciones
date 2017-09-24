@@ -1,6 +1,9 @@
 - @body_class = "promo #{@promotion.promo_price? ? '' : 'without-price'}"
 
-= render 'shared/header'
+- if @promotion.is_a? BranchInformation
+  = render 'shared/only_return_header'
+- else
+  = render 'shared/header'
 
 #wrapper.catalog
   .inner
@@ -18,7 +21,7 @@
           .promo-title.visible-xs
             span.big = "#{@promotion.name} en "
             strong.big #{@promotion.branches.first.shop.name}
-          
+
           .promo-share
             ul.promo.share-list.list-inline
               li

@@ -4,10 +4,12 @@ class HomeController < ApplicationController
 
   def search
     session[:client] = nil
+    session[:search_branches_params] = nil
   end
 
   def my_pauta
     session[:client] = nil
+    session[:search_branches_params] = nil
   end
 
   # Testing patente: BLDR68 # PASSAT
