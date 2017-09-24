@@ -58,4 +58,9 @@ class SearchBranchesForm < BaseForm
     @branch_type ||= BranchType.where(id: branch_type_id).first
   end
 
+  def models
+    return @models if @models
+    @models = (brand ? Model.actives.where(id_marca: brand_id).order(:modelo_descripcion) : [])
+  end
+
 end

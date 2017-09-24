@@ -6,9 +6,7 @@ branchesControls.ready = ->
   # Insert initilization code here
   if typeof google != 'undefined'
     branchesControls.initilization()
-
-$(document).ready(branchesControls.ready)
-$(document).on('page:load', branchesControls.ready)
+    branchesControls.afterLoadHook()
 
 #############################################################################
 
@@ -22,6 +20,7 @@ branchesControls.initilization = () ->
   branchesControls.INTERVAL_BETWEEN_JUMPS = 5
   branchesControls.BRANCH_TYPE_ID = 6
   branchesControls.BRANCH_TYPES_IDS = 7 # Multi type
+  branchesControls.BRANCH_SLUG = 8
 
   branchesControls.branches = []
   branchesControls.associativeMarkers = {}
@@ -164,7 +163,7 @@ branchesControls.jumpOnce = (marker) ->
 
 branchesControls.clickOnMarker = (marker) ->
   params = {}
-  url = '/search-branches/' + marker.id
+  url = '/search-branches/' + marker.customInfo['branch'][branchesControls.BRANCH_SLUG]
   url = url + '?search[brand_id]=' + $('#search_brand_id').val()
   url = url + '&search[model_id]=' + $('#search_model_id').val()
   url = url + '&search[patent]=' + $('#search_patent').val()
@@ -172,5 +171,17 @@ branchesControls.clickOnMarker = (marker) ->
   method ="GET"
   success_function = ->
   generalControls.sendAjax(params, url, success_function, method)
+
+##############################################################################
+
+branchesControls.centerMarker = (markerId) ->
+  marker = branchesControls.associativeMarkers[markerId]
+  if marker
+    mapControls.map.panTo(marker.getPosition())
+
+##############################################################################
+
+branchesControls.afterLoadHook = () ->
+  # This function is overwriten by rails views dinamically
 
 ##############################################################################
