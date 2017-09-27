@@ -49,7 +49,7 @@ class BranchesFinder < BaseService
   end
 
   def branches_with_generic_promotions
-    Branch.includes(:branch_type).actives.with_plan.where("
+    Branch.includes(:branch_type).includes(:branch_types).actives.with_plan.where("
       branches.id not in
         (
           select bp.branch_id
