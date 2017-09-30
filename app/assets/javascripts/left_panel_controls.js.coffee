@@ -19,7 +19,7 @@ leftPanelControls.initilization = () ->
       leftPanelControls.chackAllFilters(false)
 
   $('#floating-form').on 'stepChange', ->
-    if ($('#floating-form').css('margin-top') != '-90px')
+    if ($('#floating-form').css('margin-top') != '-112px')
       $('#left-map').addClass('open')
 
   $('.open-sidebar').on 'click', ->
