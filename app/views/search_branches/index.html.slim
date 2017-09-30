@@ -1,7 +1,12 @@
+/ This file must be in this extrictly order
+  First, i must to overwrite mapControls.afterLoadMapHook to center center and zoom map, before on rendering /shared/search
+  because is the load of the map on that file.
+  But the call to add branches's markers is after -> branchesControls.afterLoadHook
+
 javascript:
   // This function is called later on mapControls.ready function
   mapControls.afterLoadMapHook = function after_load_map_hook(){
-    mapControls.centerMapToLastPosition(); // In this case, only zoom will remain, because below will center again around marker
+    mapControls.centerMapToLastPosition();
   }
 
 = render '/shared/search', hide_floating_form: true
@@ -10,6 +15,4 @@ javascript:
   // This function is called later on branchesControls.ready function
   branchesControls.afterLoadHook = function after_load_hook(){
     #{raw = render file: '/search_branches/create.js'};
-    branchesControls.centerMarker(#{@branch.id});
-    #{raw = render file: '/search_branches/show.js'};
   }

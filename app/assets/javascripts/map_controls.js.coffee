@@ -48,6 +48,8 @@ mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->
 
   mapControls.infowindow = new google.maps.InfoWindow()
 
+  mapControls.afterLoadMapHook()
+
 #############################################################################
 
 mapControls.buttonListeners = () ->
@@ -63,7 +65,7 @@ mapControls.buttonListeners = () ->
       e.stopPropagation()
 
   $('#center-map').click ->
-    mapControls.buttonListeners.centerMap()
+    mapControls.goToNewPlace(mapControls.autocompleteLastSelecction)
 
   # Enable map change if user press enter instead button on floating initial modal
   mapControls.autocomplete.addListener 'place_changed', ->
@@ -117,14 +119,29 @@ mapControls.buttonListeners = () ->
   $('#mobile-ask-location').click ->
     mapControls.setMobileLocation()
 
-  # Bug fixing: Markers not appear until map moved sightly or clicked:
-  # Solution: https://stackoverflow.com/questions/20861402/markers-not-showing-until-map-moved-slightly-or-clicked
   google.maps.event.addListener mapControls.map, 'idle', (event) ->
-    cnt = mapControls.map.getCenter()
-    myLatlng = new google.maps.LatLng(cnt.lat()+0.000001,cnt.lng())
-    mapControls.map.panTo(myLatlng);
-    myLatlng = new google.maps.LatLng(cnt.lat()-0.000002,cnt.lng())
-    mapControls.map.panTo(myLatlng)
+    # Bug fixing: Markers not appear until map moved sightly or clicked:
+    # Solution: https://stackoverflow.com/questions/20861402/markers-not-showing-until-map-moved-slightly-or-clicked
+    mapControls.minimalMovementFix() # This is the fix!
+
+    mapControls.rememberLastPosition()
+
+#############################################################################
+
+mapControls.minimalMovementFix = () ->
+  cnt = mapControls.map.getCenter()
+  myLatlng = new google.maps.LatLng(cnt.lat()+0.000001,cnt.lng())
+  mapControls.map.panTo(myLatlng);
+  myLatlng = new google.maps.LatLng(cnt.lat()-0.000002,cnt.lng())
+  mapControls.map.panTo(myLatlng)
+
+#############################################################################
+
+mapControls.rememberLastPosition = () ->
+  cnt = mapControls.map.getCenter()
+  sessionStorage.setItem('map-state.last-map-lat',cnt.lat())
+  sessionStorage.setItem('map-state.last-map-lng',cnt.lng())
+  sessionStorage.setItem('map-state.last-map-zoom',mapControls.map.getZoom())
 
 #############################################################################
 
@@ -203,5 +220,21 @@ mapControls.selectFirstOnEnter = (input) ->
   else if input.attachEvent
     input.attachEvent = addEventListenerWrapper
   return
+
+#############################################################################
+
+mapControls.centerMapToLastPosition = ->
+  console.log('center.to.last.position')
+  lat = sessionStorage.getItem('map-state.last-map-lat')
+  lng = sessionStorage.getItem('map-state.last-map-lng')
+  zoom = sessionStorage.getItem('map-state.last-map-zoom')
+  if lat && lng && zoom
+    mapControls.map.setCenter(new google.maps.LatLng(lat, lng))
+    mapControls.map.setZoom(parseInt(zoom))
+
+#############################################################################
+
+mapControls.afterLoadMapHook = () ->
+  # This function is overwriten by rails views dinamically
 
 #############################################################################

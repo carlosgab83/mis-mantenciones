@@ -25,11 +25,11 @@
         ul.list-unstyled
           - @branch_items.promotions.each do |promotion|
             li
-              = link_to shop_branch_promotion_path(@branch.shop.slug, @branch.slug, promotion.slug), class: "single-detail", target: :blank do
+              = link_to shop_branch_promotion_path(@branch.shop.slug, @branch.slug, promotion.slug), class: "single-detail" do
                 = image_tag(promotion.image_url, :alt => promotion.name, :class => "img-responsive")
                 span #{promotion.name}
           li.button-holder
-            = link_to shop_branch_promotions_path(@branch.shop.slug, @branch.slug), class: "btn btn-ghost btn-block", target: :blank do
+            = link_to shop_branch_promotions_path(@branch.shop.slug, @branch.slug), class: "btn btn-ghost btn-block" do
               span
               | Ver todas las Promociones
 
@@ -42,11 +42,11 @@
         ul.list-unstyled
           - @branch_items.manteinances.each do |manteinance|
             li
-              = link_to shop_branch_promotion_path(@branch.shop.slug, @branch.slug, manteinance.slug), class: "single-detail", target: :blank do
+              = link_to shop_branch_promotion_path(@branch.shop.slug, @branch.slug, manteinance.slug), class: "single-detail" do
                 = image_tag(manteinance.image_url, :alt => manteinance.name, :class => "img-responsive")
                 span #{manteinance.name}
           li.button-holder
-            = link_to shop_branch_promotions_path(@branch.shop.slug, @branch.slug, category_id: @branch_items.manteinances.first.category_id), class: "btn btn-ghost btn-block", target: :blank do
+            = link_to shop_branch_promotions_path(@branch.shop.slug, @branch.slug, category_id: @branch_items.manteinances.first.category_id), class: "btn btn-ghost btn-block" do
               span
               | Ver todas las Mantenciones
 
@@ -59,13 +59,13 @@
         ul.list-unstyled
           - category.products.each do |product|
             li
-              = link_to product_path(product), class: "single-detail", target: :blank do
+              = link_to product_path(product), class: "single-detail" do
                 = image_tag(product.image_url, :alt => product.name, :class => "img-responsive")
                 span #{product.name}
                 br
                 strong Desde #{number_to_currency product.price}
           li.button-holder
-            = link_to search_products_path, class: "btn btn-ghost btn-block", target: :blank do
+            = link_to search_products_path, class: "btn btn-ghost btn-block" do
               span
               | Ver todos los Productos
 

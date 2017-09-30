@@ -1,6 +1,21 @@
 class SearchBranchesController < ApplicationController
   include ModelSelector
 
+  # When click on "Return to map". Same as create action but GET request
+  def index
+    params[:search] = session[:search_branches_params]
+
+    if session[:last_branch_id_visited]
+      redirect_to action: :show, search: params[:search], id: session[:last_branch_id_visited]
+    end
+
+    search_branches
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   # Make new search based on user criteria
   def create
     session[:search_branches_params] = params[:search]
@@ -20,6 +35,7 @@ class SearchBranchesController < ApplicationController
 
   def show
     params[:search] = session[:search_branches_params]
+    session[:last_branch_id_visited] = params[:id]
     @branch_items = BranchItemsFinder.new(branch: branch, form: search_branches_form).call
 
     EventTracker::ClickBranch.new(
