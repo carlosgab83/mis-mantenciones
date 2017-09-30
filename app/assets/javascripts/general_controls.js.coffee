@@ -4,8 +4,9 @@ window.generalControls ?= {}
 generalControls.ready = ->
   generalControls.defaultValidations()
   generalControls.hideLoadingEffect()
-  $(document).ajaxStart ->
-    generalControls.showLoadingEffect()
+  $(document).ajaxSend (evt, request, settings) ->
+    if settings.url != '/frontend_tracking'
+      generalControls.showLoadingEffect()
   $(document).ajaxSuccess ->
     generalControls.hideLoadingEffect()
   $(document).ajaxComplete ->

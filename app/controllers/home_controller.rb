@@ -5,11 +5,7 @@ class HomeController < ApplicationController
   def index
     session[:client] = nil
     session[:search_branches_params] = nil
-  end
-
-  def search
-    session[:client] = nil
-    session[:search_branches_params] = nil
+    session[:last_branch_id_visited] = nil
   end
 
   def my_pauta

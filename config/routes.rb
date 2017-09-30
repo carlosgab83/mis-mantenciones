@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "home#index"
 
-  get 'search' => 'home#search', as: :search_home
   get 'my_pauta' => 'home#my_pauta', as: :my_pauta_home
   match 'results' => 'home#results', as: :results_home, via: [:get, :post]
   get 'blog' => 'promotions#blog', as: :blog
