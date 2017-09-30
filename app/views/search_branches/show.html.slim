@@ -1,3 +1,9 @@
+javascript:
+  // This function is called later on mapControls.ready function
+  mapControls.afterLoadMapHook = function after_load_map_hook(){
+    mapControls.centerMapToLastPosition(); // In this case, only zoom will remain, because below will center again around marker
+  }
+
 = render '/shared/search', hide_floating_form: true
 
 javascript:
