@@ -1,9 +1,6 @@
 - @body_class = "promo #{@promotion.promo_price? ? '' : 'without-price'}"
 
-- if @promotion.is_a? BranchInformation
-  = render 'shared/only_return_header'
-- else
-  = render 'shared/header'
+= render 'shared/header'
 
 #wrapper.catalog
   .inner
