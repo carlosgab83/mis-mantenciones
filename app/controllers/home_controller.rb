@@ -2,6 +2,11 @@ class HomeController < ApplicationController
 
   skip_before_action :set_default_vehicle, :only => [:search, :my_pauta]
 
+  def index
+    session[:client] = nil
+    session[:search_branches_params] = nil
+  end
+
   def search
     session[:client] = nil
     session[:search_branches_params] = nil
@@ -12,9 +17,9 @@ class HomeController < ApplicationController
     session[:search_branches_params] = nil
   end
 
-  # Testing patente: BLDR68 # PASSAT
-  # Testing patente: RK1478 # GOLF
-  # Testing patente: BYKP82 # BORA
+  # Testing patent: BLDR68 # PASSAT
+  # Testing patent: RK1478 # GOLF
+  # Testing patent: BYKP82 # BORA
   def results
     fill_session
 
