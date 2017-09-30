@@ -38,13 +38,13 @@ header#header
 
         #mm-navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            - if action_name != 'search'
+            - if (not current_page?(root_path) and not (controller_name == 'search_branches' and action_name == 'index'))
               li.track-click
                 = link_to 'Volver al mapa', search_branches_path
             - if action_name != 'results'
               li.track-click
                 = link_to 'Mi Pauta', results_home_path
-            -if current_page?(search_home_path) or current_page?(root_path)
+            -if current_page?(root_path)
               li.track-click
                 = link_to 'info', 'javascript:void(0);' , :data => { :toggle => "modal", :target => "#map-info" }
             li.track-click
