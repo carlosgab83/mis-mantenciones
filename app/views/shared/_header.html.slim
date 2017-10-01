@@ -38,7 +38,7 @@ header#header
 
         #mm-navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            - if (not current_page?(root_path) and not (controller_name == 'search_branches' and action_name == 'index'))
+            - if (not current_page?(root_path) and not (controller_name == 'search_branches' and (action_name == 'index' || action_name == 'show')))
               li.track-click
                 = link_to 'Volver al mapa', search_branches_path
             - if action_name != 'results'
