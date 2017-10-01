@@ -3,5 +3,10 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+system_setting = SystemSetting.first || SystemSetting.create(
+  product_scraping_caching_minutes: 1,
+  default_latitude: -33.455388,
+  default_longitude: -70.634216,
+  default_zoom: 12,
+  landing_title: 'Los mejores servicios para tu auto cerca de tu ubicación'
+)
