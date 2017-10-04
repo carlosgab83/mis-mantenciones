@@ -6,7 +6,7 @@ class SearchBranchesController < ApplicationController
     params[:search] = session[:search_branches_params]
 
     if session[:last_branch_id_visited]
-      redirect_to action: :show, search: params[:search], id: session[:last_branch_id_visited]
+      redirect_to action: :show, id: session[:last_branch_id_visited]
     end
 
     search_branches
