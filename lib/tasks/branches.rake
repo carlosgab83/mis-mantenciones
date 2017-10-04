@@ -38,7 +38,8 @@ namespace "branches" do
 
         end
       end
-
+      # If its necessary =>
+      ## Branch.all.each{|b| b.slug.last == '-' ; b.slug = b.slug[0..-2]; b.save}
       puts "#{Time.now}: End Fixing branches slug"
   end
 
