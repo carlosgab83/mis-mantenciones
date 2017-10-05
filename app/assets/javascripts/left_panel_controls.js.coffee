@@ -6,9 +6,6 @@ leftPanelControls.ready = ->
   # Insert initilization code here
   leftPanelControls.initilization()
 
-$(document).ready(leftPanelControls.ready)
-$(document).on('page:load', leftPanelControls.ready)
-
 #############################################################################
 
 leftPanelControls.initilization = () ->
@@ -22,7 +19,7 @@ leftPanelControls.initilization = () ->
       leftPanelControls.chackAllFilters(false)
 
   $('#floating-form').on 'stepChange', ->
-    if ($('#floating-form').css('margin-top') != '-90px')
+    if ($('#floating-form').css('margin-top') != '-112px')
       $('#left-map').addClass('open')
 
   $('.open-sidebar').on 'click', ->
@@ -32,6 +29,7 @@ leftPanelControls.initilization = () ->
       if ($(this).css('position') == 'fixed')
         $('#right-map').removeClass('open')
 
+    # This is the code thar opens and closes the right panel
     if (($(this).parent().attr('id') == "right-map") && ($('#right-map .panel').html()?))
       $(this).parent().toggleClass('open')
       $('#map').toggleClass('right-open')
@@ -86,7 +84,7 @@ leftPanelControls.chackAllFilters = (checkOrUncheck) ->
 
 leftPanelControls.selectBranchTypesFilters = (filtersToSelect) ->
   # Do nothing if no params passed
-  if filtersToSelect.length == 0 || (filtersToSelect.length == 1 && filtersToSelect[0] == null)
+  if filtersToSelect.length == 0 || (filtersToSelect.length == 1 && (filtersToSelect[0] == null || filtersToSelect[0] == false))
     return
 
   if (filtersToSelect.length == 1 && filtersToSelect[0] == 0) # User selects all services

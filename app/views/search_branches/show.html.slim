@@ -1,0 +1,15 @@
+javascript:
+  // This function is called later on mapControls.ready function
+  mapControls.afterLoadMapHook = function after_load_map_hook(){
+    mapControls.centerMapToLastPosition(); // In this case, only zoom will remain, because below will center again around marker
+  }
+
+= render '/shared/search', hide_floating_form: true
+
+javascript:
+  // This function is called later on branchesControls.ready function
+  branchesControls.afterLoadHook = function after_load_hook(){
+    #{raw = render file: '/search_branches/create.js'};
+    branchesControls.centerMarker(#{@branch.id});
+    #{raw = render file: '/search_branches/show.js'};
+  }

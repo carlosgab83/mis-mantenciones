@@ -1,12 +1,13 @@
 module EventTracker
   class Base
-    attr_reader :attrs, :id, :controller
-    attr_writer :attrs, :id, :controller
+    attr_reader :attrs, :id, :controller, :event
+    attr_writer :attrs, :id, :controller, :event
 
     def initialize(options = {})
       self.attrs ||= {}
       self.controller = options[:controller]
       set_base_attrs(controller)
+      self.event = options[:event]
     end
 
     def set_base_attrs(controller)
@@ -17,6 +18,7 @@ module EventTracker
           http_referer: controller.request.env["HTTP_REFERER"],
           http_origin: controller.request.env["HTTP_ORIGIN"],
           remote_addr: controller.request.env["REMOTE_ADDR"],
+          http_x_forwarded_for: controller.request.env["HTTP_X_FORWARDED_FOR"],
           path_info: controller.request.env["PATH_INFO"]
         }
       )

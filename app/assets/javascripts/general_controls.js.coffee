@@ -4,12 +4,21 @@ window.generalControls ?= {}
 generalControls.ready = ->
   generalControls.defaultValidations()
   generalControls.hideLoadingEffect()
-  $(document).ajaxStart ->
-    generalControls.showLoadingEffect()
+  $(document).ajaxSend (evt, request, settings) ->
+    if settings.url != '/frontend_tracking'
+      generalControls.showLoadingEffect()
   $(document).ajaxSuccess ->
     generalControls.hideLoadingEffect()
   $(document).ajaxComplete ->
     generalControls.hideLoadingEffect()
+
+  # Serialization of initialization of other controls
+  mapControls.ready()
+  searchProductsControls.ready()
+  leftPanelControls.ready()
+  branchesControls.ready()
+  clientsControls.ready()
+
 
 $(document).ready(generalControls.ready)
 $(document).on('page:load', generalControls.ready)

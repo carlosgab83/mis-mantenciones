@@ -10,7 +10,7 @@ module EventTracker
     end
 
     def track
-      super("Search Patent")
+      super("Check Patent")
     end
   end
 end

@@ -7,9 +7,6 @@ searchProductsControls.ready = ->
     generalControls.showLoadingEffect()
 
 
-$(document).ready(searchProductsControls.ready)
-$(document).on('page:load', searchProductsControls.ready)
-
 #############################################################################
 
 searchProductsControls.dynamicSelectors = ->

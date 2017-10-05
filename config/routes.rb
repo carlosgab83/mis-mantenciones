@@ -2,10 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root "home#search"
+  root "home#index"
 
-  get 'index' => 'home#search'
-  get 'search' => 'home#search', as: :search_home
   get 'my_pauta' => 'home#my_pauta', as: :my_pauta_home
   match 'results' => 'home#results', as: :results_home, via: [:get, :post]
   get 'blog' => 'promotions#blog', as: :blog
@@ -36,7 +34,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :search_branches, :path => '/search-branches', only: [:create, :show] do
+  resources :search_branches, :path => '/search-branches', only: [:index, :create, :show] do
     collection do
       get :model_collection
     end
@@ -59,4 +57,7 @@ Rails.application.routes.draw do
    match '422' => "home#search", via: [:get, :post, :put, :patch, :delete]
    match '500' => "home#search", via: [:get, :post, :put, :patch, :delete]
   end
+
+  # General Purpose traking entry-point for some frontend events
+  resources :frontend_tracking, only: [:create]
 end

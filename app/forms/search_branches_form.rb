@@ -1,6 +1,6 @@
 class SearchBranchesForm < BaseForm
 
-  attr_accessor :latitude, :longitude, :location_text, :brand_id, :model_id, :patent, :kms, :brand, :model
+  attr_accessor :latitude, :longitude, :location_text, :brand_id, :model_id, :patent, :kms, :brand, :model, :branch_type_id, :branch_type
 
   def latitude
     @latitude ||= params['latitude']
@@ -48,6 +48,19 @@ class SearchBranchesForm < BaseForm
 
   def model
     @model ||= Model.where(id_modelo: model_id).first || nil
+  end
+
+  def branch_type_id
+    @branch_type_id ||= params[:branch_type_id]
+  end
+
+  def branch_type
+    @branch_type ||= BranchType.where(id: branch_type_id).first
+  end
+
+  def models
+    return @models if @models
+    @models = (brand ? Model.actives.where(id_marca: brand_id).order(:modelo_descripcion) : [])
   end
 
 end

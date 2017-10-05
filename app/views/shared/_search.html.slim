@@ -6,16 +6,14 @@
   h1.sr-only MisMantenciones.com
   h2.sr-only es un marketplace donde encontrarás los mejores servicios técnicos, talleres mecánicos, servicios automotrices, descuentos, promociones y repuestos para tu auto o moto.
   section#section-map
-    #floating-form.map-form
+    #floating-form.map-form class="#{hide_floating_form ? 'hidden': ''}"
       .row
-        .col-sm-3.col-md-4
+        .col-sm-12
           p.lead
-            | Encuentra servicios
-            br
-            | cerca tuyo
-        .col-sm-9.col-md-8
+            = SystemSetting.config.landing_title
+        .col-sm-12
           form.form-inline
-            .form-group.visible-xs
+            .form-group
               select.form-control#service-selection-select
                 option value="" Selecciona Servicio
                 option value="0" id="0" Ver todos
@@ -28,7 +26,7 @@
               button#services-search.btn.btn-cta.btn-block.map-search type="button"
                 | Busca Servicios
     #left-map.map-form
-      = render 'left_panel'
+      = render 'home/left_panel'
     #right-map.map-form
       a.close-sidebar.side-bar-control.visible-xs
         i.fa.fa-times
@@ -41,7 +39,7 @@
 = render 'shared/footer'
 
 #map-info.modal.fade
-  = render 'info'
+  = render 'home/info'
 
 javascript:
   var initMapGoogleCallback = mapControls.initMap.bind(null, #{SystemSetting.config.default_latitude}, #{SystemSetting.config.default_longitude}, #{SystemSetting.config.default_zoom});

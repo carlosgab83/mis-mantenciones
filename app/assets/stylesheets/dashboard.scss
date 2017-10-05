@@ -209,14 +209,14 @@ section#section-map {
 		padding: 20px;
 		top: 50%;
 		left: 20%;
-		margin-top: -47px; 
+		margin-top: -52px;
 		text-align: center;
 		@media #{$lg} {
 			left: 50%;
 			margin-left: -400px;
 		}
 		@media #{$xs} {
-			margin-top: -90px; 
+			margin-top: -112px;
 		}
 		.form-inline {
 			display: table;
@@ -227,14 +227,17 @@ section#section-map {
 			.form-group {
 				display: table-cell;
 				width: 50%;
-				padding: 0 5px;
+				padding: 0 10px;
+				.btn {
+					@media #{$lg} {min-width: 240px;}
+					@media #{$md} {min-width: 180px;}
+					@media #{$xs} {margin-top: 15px;}
+				}
 				@media #{$xs} {
 					display: block;
 					width: 100%;
 					margin-bottom: 5px;
-					.btn {
-						margin-top: 15px;
-					}
+					padding: 0 5px;
 				}
 				.form-control {
 					width: 100%;
@@ -488,7 +491,6 @@ section#section-map {
 			}
 		}
 		.single-info {
-			padding: 10px 15px;
 			line-height: 1.1em;
 			font-size: 89%;
 			@media #{$xs} {
@@ -496,7 +498,8 @@ section#section-map {
 			}
 			.img {
 				display: inline-block;
-				margin: 0 auto 5px;
+				padding: 10px 15px;
+				margin: 0;
 				width: 100%;
 				text-align: center;
 				img {
@@ -514,7 +517,15 @@ section#section-map {
 					width: 100%;
 					margin-top: 10px;
 				}
+				&:hover, &:active {
+					background-color: $main-color;
+					color: $back-color;
+				}
 			}
+		}
+		.button-holder {
+			a {margin-bottom: 8px;}
+			a:last-child {margin-bottom: 0;}
 		}
 		.single-detail {
 			display: inline-block;
@@ -581,7 +592,7 @@ section#section-map {
 		line-height: 1em;
 		font-weight: bold;
 		padding: 0;
-		@media #{$usm} {margin-bottom: 15px;}
+		margin-bottom: 14px;
 		@media #{$xs} {padding-top: 0;}
 	}
 	.small {
@@ -755,7 +766,7 @@ section#section-map {
 					-webkit-column-break-inside: avoid;
 					page-break-inside: avoid;
 					break-inside: avoid-column;
-					display:table; 
+					display:table;
 					position: relative;
 					line-height: 1.2em;
 					padding: 5px 0 5px 20px;

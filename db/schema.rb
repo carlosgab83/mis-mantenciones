@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719064004) do
+ActiveRecord::Schema.define(version: 20171001130857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,17 @@ ActiveRecord::Schema.define(version: 20170719064004) do
     t.index ["name"], name: "branches_business_index", unique: true, using: :btree
     t.index ["plan_id"], name: "index_branches_on_plan_id", using: :btree
     t.index ["shop_id"], name: "index_branches_on_shop_id", using: :btree
+  end
+
+  create_table "branches_branch_types", force: :cascade do |t|
+    t.boolean  "deleted",        default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "branch_id"
+    t.integer  "branch_type_id"
+    t.index ["branch_id", "branch_type_id"], name: "branches_branch_types_business_index", unique: true, using: :btree
+    t.index ["branch_id"], name: "index_branches_branch_types_on_branch_id", using: :btree
+    t.index ["branch_type_id"], name: "index_branches_branch_types_on_branch_type_id", using: :btree
   end
 
   create_table "branches_manteinance_items", force: :cascade do |t|
@@ -419,6 +430,7 @@ ActiveRecord::Schema.define(version: 20170719064004) do
     t.float    "default_latitude"
     t.float    "default_longitude"
     t.integer  "default_zoom"
+    t.string   "landing_title"
   end
 
   create_table "tipo_seccion", primary_key: "id_tiposeccion", id: :integer, force: :cascade do |t|
@@ -465,6 +477,8 @@ ActiveRecord::Schema.define(version: 20170719064004) do
   add_foreign_key "branches", "comuna", column: "commune_id", primary_key: "id_comuna"
   add_foreign_key "branches", "plans"
   add_foreign_key "branches", "shops"
+  add_foreign_key "branches_branch_types", "branch_types"
+  add_foreign_key "branches_branch_types", "branches"
   add_foreign_key "branches_manteinance_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
   add_foreign_key "branches_manteinance_items", "pauta", column: "pauta_id", primary_key: "id_pauta"
   add_foreign_key "branches_products", "branches"
