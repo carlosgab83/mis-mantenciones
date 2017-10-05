@@ -22,6 +22,7 @@ mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->
   mapControls.map = new (google.maps.Map)(document.getElementById('map'),
   zoom: mapControls.defaultZoom
   center: mapControls.defaultLocation
+  gestureHandling: 'greedy'
   fullscreenControl: false
   mapTypeControl: true
   mapTypeControlOptions:
