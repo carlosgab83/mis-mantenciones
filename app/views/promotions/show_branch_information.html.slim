@@ -26,9 +26,7 @@
               li
                 a.twitter-mention-button href="https://twitter.com/intent/tweet?text= Que interesante! @mismantenciones, &url=#{request.url}" data-show-count="false"
 
-        .col-sm-6.col-sm-pull-6
-
-          .promo-description
+          .promo-description.visible-xs
             strong.main-title Descripción
             p = @promotion.description.html_safe
 
@@ -69,6 +67,13 @@
                     = image_tag "promo-image.jpg", :alt => "hola 3"
                   .promo-description
                     h6 hola 3
+
+        .col-sm-6.col-sm-pull-6
+
+          .promo-description.hidden-xs
+            strong.main-title Descripción
+            p = @promotion.description.html_safe
+
 
           .promo-comments
             span.main-title Comentarios
