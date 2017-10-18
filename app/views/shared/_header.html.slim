@@ -25,7 +25,7 @@ header#header
         .col-xs-2.col-sm-5.col-md-6.fixed-xs
           = link_to new_shop_inscription_path, class: 'btn btn-link btn-special pull-right hidden-xs', remote: true
             strong
-              | Publica tu Taller
+              | TALLERES
           figure#logo
             = link_to :root do
               = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive hidden-xs")
@@ -56,3 +56,5 @@ header#header
             -if current_page?(root_path)
               li.visible-xs.track-click
                 = link_to "Términos y Condiciones", "http://files.mismantenciones.com/pdf/Términos-y-Condiciones-MisMantenciones.pdf", target: :_blank
+            li.visible-xs.track-click
+              = link_to 'talleres', new_shop_inscription_path, remote: true

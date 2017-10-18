@@ -233,12 +233,12 @@
 	@media #{$xs}{
 		.catalog .inner {padding-top: 50px;}
 		#fixed-column {min-height: 80px;}
-		#footer {margin-bottom: 80px}
+		#footer {margin-bottom: -80px}
 	}
 	&.without-price {
 		@media #{$xs}{
 			#fixed-column {min-height: 50px;}
-			#footer {margin-bottom: 50px}
+			#footer {margin-bottom: -50px}
 		}
 	}
 }
