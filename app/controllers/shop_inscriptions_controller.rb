@@ -29,6 +29,12 @@ class ShopInscriptionsController < ApplicationController
   private
 
   def create_shop_inscription_params
-    params.require(:shop_inscription).permit(:name, :primary_last_name, :email, :phone, :rut, :comune_id, :company_name, :company_rut, :accept_terms)
+    params[:shop_inscription][:branch_types] = params[:shop_inscription][:branch_types].is_a?(Array) ?
+                                                params[:shop_inscription][:branch_types].reject!(&:empty?).join(', ') :
+                                                params[:shop_inscription][:branch_types]
+    params.require(:shop_inscription).permit(
+      :name, :primary_last_name, :email,
+      :phone, :rut, :comune_id, :company_name, :company_rut, :accept_terms, :address, :branch_types
+    )
   end
 end
