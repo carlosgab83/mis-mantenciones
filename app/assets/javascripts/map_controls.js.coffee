@@ -39,7 +39,7 @@ mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->
 
   mapControls.autocomplete = new google.maps.places.Autocomplete(input, options)
   mapControls.autocompleteLeftPanel = new google.maps.places.Autocomplete(inputLeftPanel, options)
-  mapControls.autocompleteLastSelecction = mapControls.autocomplete
+  mapControls.autocompleteLastSelection = mapControls.autocomplete
 
   # Bind the map's bounds (viewport) property to the autocomplete object,
   # so that the autocomplete requests use the current map bounds for the
@@ -66,7 +66,7 @@ mapControls.buttonListeners = () ->
       e.stopPropagation()
 
   $('#center-map').click ->
-    mapControls.goToNewPlace(mapControls.autocompleteLastSelecction)
+    mapControls.goToNewPlace(mapControls.autocompleteLastSelection)
 
   # Enable map change if user press enter instead button on floating initial modal
   mapControls.autocomplete.addListener 'place_changed', ->
@@ -90,6 +90,7 @@ mapControls.buttonListeners = () ->
     $('.map-search-left-panel').click()
 
   # When user click on floating initial modal
+  # This method call submit on basic-search-form form
   $('.map-search').click ->
     hiddenInput = document.getElementById('basic-search-form_search_location_text')
     hiddenInput.value = document.getElementById('search-input').value
@@ -98,14 +99,14 @@ mapControls.buttonListeners = () ->
     mapControls.userSearchAction(mapControls.autocomplete, 'basic-search-form')
     leftIinput = document.getElementById('search-input-left-panel')
     leftIinput.value = document.getElementById('search-input').value
-    mapControls.autocompleteLastSelecction = mapControls.autocomplete
+    mapControls.autocompleteLastSelection = mapControls.autocomplete
 
   # when user click on basic search type on left panel, reset other form
   $('.map-search-left-panel').click ->
     hiddenInput = document.getElementById('basic-search-form_search_location_text')
     hiddenInput.value = document.getElementById('search-input-left-panel').value
     mapControls.userSearchAction(mapControls.autocompleteLeftPanel, 'basic-search-form')
-    mapControls.autocompleteLastSelecction = mapControls.autocompleteLeftPanel
+    mapControls.autocompleteLastSelection = mapControls.autocompleteLeftPanel
     leftPanelControls.resetAdvancedForm()
 
   # when user click on advanced search type on left panel, reset other form
@@ -113,7 +114,7 @@ mapControls.buttonListeners = () ->
     hiddenInput = document.getElementById('advanced-search-form_search_location_text')
     hiddenInput.value = document.getElementById('search-input-left-panel').value
     mapControls.userSearchAction(mapControls.autocompleteLeftPanel, 'advanced-search-form')
-    mapControls.autocompleteLastSelecction = mapControls.autocompleteLeftPanel
+    mapControls.autocompleteLastSelection = mapControls.autocompleteLeftPanel
     leftPanelControls.resetBasicForm()
 
   # For mobile devices, set to mobile location
@@ -186,7 +187,7 @@ mapControls.errorObtainPosition = (error) ->
 #############################################################################
 
 mapControls.buttonListeners.centerMap = ->
-  mapControls.goToNewPlace(mapControls.autocompleteLastSelecction)
+  mapControls.goToNewPlace(mapControls.autocompleteLastSelection)
 
 #############################################################################
 
