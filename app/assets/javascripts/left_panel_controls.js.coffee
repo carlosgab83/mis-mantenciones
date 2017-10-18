@@ -26,15 +26,15 @@ leftPanelControls.initilization = () ->
     if ($(this).parent().attr('id') == "left-map")
       $(this).parent().toggleClass('open')
       $('#floating-form').addClass('next-step')
-      if ($(this).css('position') == 'fixed')
+      if ($('.navbar-toggle').css('display') != 'none')
         $('#right-map').removeClass('open')
 
     # This is the code thar opens and closes the right panel
     if (($(this).parent().attr('id') == "right-map") && ($('#right-map .panel').html()?))
       $(this).parent().toggleClass('open')
       $('#map').toggleClass('right-open')
-      if ($(this).css('position') == 'absolute')
-        $('#right-map').removeClass('open')
+      if ($('.navbar-toggle').css('display') != 'none')
+        $('#left-map').removeClass('open')
 
   $('.close-sidebar').on 'click', ->
     $(this).parent().removeClass('open')
