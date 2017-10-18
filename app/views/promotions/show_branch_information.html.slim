@@ -29,51 +29,20 @@
           .promo-description.visible-xs
             strong.main-title Descripción
             p = @promotion.description.html_safe
-
           .row
             .col-md-12
               strong.main-title Revisa estas promociones y productos
-            .col-md-6
-              .promo-carousels
-                a.single-promo
-                  .promo-image
-                    = image_tag "promo-image.jpg", :alt => "hola 1"
-                  .promo-description
-                    h6 hola 1
-                a.single-promo
-                  .promo-image
-                    = image_tag "promo-image.jpg", :alt => "hola 2"
-                  .promo-description
-                    h6 hola 2
-                a.single-promo
-                  .promo-image
-                    = image_tag "promo-image.jpg", :alt => "hola 3"
-                  .promo-description
-                    h6 hola 3
-            .col-md-6
-              .promo-carousels
-                a.single-promo
-                  .promo-image
-                    = image_tag "promo-image.jpg", :alt => "hola 1"
-                  .promo-description
-                    h6 hola 1
-                a.single-promo
-                  .promo-image
-                    = image_tag "promo-image.jpg", :alt => "hola 2"
-                  .promo-description
-                    h6 hola 2
-                a.single-promo
-                  .promo-image
-                    = image_tag "promo-image.jpg", :alt => "hola 3"
-                  .promo-description
-                    h6 hola 3
+          .row
+            .col-md-12
+              #promo-carousel
+                - @carousel_promotions.each do |promotion|
+                  = render '/home/carousel_promotion', promotion: promotion
 
         .col-sm-6.col-sm-pull-6
 
           .promo-description.hidden-xs
             strong.main-title Descripción
             p = @promotion.description.html_safe
-
 
           .promo-comments
             span.main-title Comentarios
