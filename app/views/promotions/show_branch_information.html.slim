@@ -26,9 +26,21 @@
               li
                 a.twitter-mention-button href="https://twitter.com/intent/tweet?text= Que interesante! @mismantenciones, &url=#{request.url}" data-show-count="false"
 
+          .promo-description.visible-xs
+            strong.main-title Descripción
+            p = @promotion.description.html_safe
+          .row
+            .col-md-12
+              strong.main-title Revisa estas promociones y productos
+          .row
+            .col-md-12
+              #promo-carousel
+                - @carousel_promotions.each do |promotion|
+                  = render '/home/carousel_promotion', promotion: promotion
+
         .col-sm-6.col-sm-pull-6
 
-          .promo-description
+          .promo-description.hidden-xs
             strong.main-title Descripción
             p = @promotion.description.html_safe
 

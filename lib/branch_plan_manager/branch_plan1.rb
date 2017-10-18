@@ -9,5 +9,11 @@ module BranchPlanManager
 
       {promotions: branch_information_relation, products: all_products, show_info_button: false}
     end
+
+    def branch_information_carousel_promotions
+      OtherPromotion.availables.actives.with_stock.not_deleted
+      .order("RANDOM()")
+      .limit(BRANCH_INFORMATION_CAROUSEL_LIMIT)
+    end
   end
 end

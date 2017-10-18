@@ -3,6 +3,7 @@ module BranchPlanManager
 
   PRODUCTS_LIMIT = 3
   PROMOTIONS_LIMIT = 3
+  BRANCH_INFORMATION_CAROUSEL_LIMIT = 20
 
     attr_reader :branch, :user_input
 
@@ -14,6 +15,11 @@ module BranchPlanManager
 
     def branch_plan_instance
       branch_plan_class.new(branch: branch, user_input: user_input)
+    end
+
+    # Can be overriden by each plan class
+    def branch_information_carousel_promotions
+      generic_promotions
     end
 
     protected
