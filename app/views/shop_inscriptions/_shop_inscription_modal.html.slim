@@ -4,7 +4,7 @@
       button type="button" class="close" data-dismiss="modal" x
       h4.modal-title #{image_tag('logo-mm.png')}
     .modal-body
-      | Si te interesa aparecer en MisMantenciones.com completa esta información y serás contactado por una de nuestras ejecutivas
+      | Si te interesa que tu taller o servicio automotriz aparezca en MisMantenciones.com completa esta información y serás contactado por una de nuestras ejecutivas
     .modal-footer
       .row
         .col-sm-12
@@ -17,16 +17,28 @@
               = f.input :name, label: false, placeholder:'Nombre', error: ''
           .col-sm-6.col.md-4
             .form-group
-              label.sr-only for="email" Correo
-              = f.input :email, label: false, placeholder:'Correo electrónico', error: ''
-          .col-sm-6.col.md-4
-            .form-group
               label.sr-only for="company_name" Nombre Empresa
               = f.input :company_name, label: false, placeholder:'Nombre empresa', error: ''
           .col-sm-6.col.md-4
             .form-group
+              label.sr-only for="company_name" Dirección
+              = f.input :address, label: false, placeholder:'Dirección', error: ''
+          .col-sm-6.col.md-4
+            .form-group
+              label.sr-only for="company_name" Comuna
+              = f.input :comune_id, collection: Comune.all.map{|c|[c.desc_comuna, c.id_comuna]}, label: false, prompt: 'Comuna', error:''
+          .col-sm-6.col.md-4
+            .form-group
+              label.sr-only for="email" Correo
+              = f.input :email, label: false, placeholder:'Correo electrónico', error: ''
+          .col-sm-6.col.md-4
+            .form-group
               label.sr-only for="phone" Teléfono
               = f.input :phone, label: false, placeholder:'Teléfono ej: 959945632', error: ''
+          .col-sm-6.col.md-4
+            .form-group
+              label.sr-only for="company_name" Categoría
+              = f.input :branch_types, collection: BranchType.all.map{|bt|[bt.name, bt.name]}, label: false, prompt: 'Añade tus categorías', error:'', input_html: {multiple: true}
 
           .col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
             button#contact-submit.btn.btn-cta.btn-block type="submit" Enviar
