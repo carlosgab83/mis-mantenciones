@@ -87,7 +87,7 @@ leftPanelControls.selectBranchTypesFilters = (filtersToSelect) ->
   if filtersToSelect.length == 0 || (filtersToSelect.length == 1 && (filtersToSelect[0] == null || filtersToSelect[0] == false))
     return
 
-  if (filtersToSelect.length == 1 && filtersToSelect[0] == 0) # User selects all services
+  if (filtersToSelect.length >= 1 && filtersToSelect[0] == 0) # User selects all services
     leftPanelControls.chackAllFilters(true)
     document.getElementById('uncheck-checkboxes').checked = true # check SelectAll option
     return
@@ -97,5 +97,14 @@ leftPanelControls.selectBranchTypesFilters = (filtersToSelect) ->
 
   for optionId in filtersToSelect
     document.getElementById('branch-type-' + optionId).checked = true # Check this option
+
+#############################################################################
+
+leftPanelControls.storeNewUserSelection = () ->
+  branch_type_ids = $('#branch_types-filters input:checked').map(-> return (parseInt(this.value) || 0)).get()
+  possible_null_index = branch_type_ids.indexOf(0)
+  if possible_null_index >= 0
+    branch_type_ids = [null] # Represents select_all elements
+  sessionStorage.setItem('left_panel_branch_type_ids', JSON.stringify(branch_type_ids))
 
 #############################################################################
