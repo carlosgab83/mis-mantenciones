@@ -3,10 +3,11 @@
   mapControls.markerClustererImagePath = 'https://s3.amazonaws.com/mismantenciones-files/images/markerclusterer/m';
   // It sets to js variable the whole list of branches
   tmpBranches = #{raw Branch.to_map_builder(@branches).target!};
-  initialServiceSelection = #{params[:search].present? and params[:search][:branch_type_id].present? ? params[:search][:branch_type_id] : 'null'}
+  //initialServiceSelection = #{params[:search].present? and params[:search][:branch_type_id].present? ? params[:search][:branch_type_id] : 'null'}
+  previousServiceSelection = JSON.parse(sessionStorage.getItem('left_panel_branch_type_ids'))
   if(!generalControls.arraysEqual(tmpBranches, branchesControls.branches)){
     branchesControls.makeCluster([]);
-    leftPanelControls.selectBranchTypesFilters([initialServiceSelection]);
+    leftPanelControls.selectBranchTypesFilters(previousServiceSelection);
     branchesControls.branches = tmpBranches;
     markers = branchesControls.drawBranches();
   }

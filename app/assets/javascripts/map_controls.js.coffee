@@ -96,6 +96,7 @@ mapControls.buttonListeners = () ->
     hiddenInput.value = document.getElementById('search-input').value
     hiddenInputServiceSelection = document.getElementById('basic-search-form_search_branch_type_id')
     hiddenInputServiceSelection.value = document.getElementById('service-selection-select').value
+    sessionStorage.setItem('left_panel_branch_type_ids', JSON.stringify([parseInt(hiddenInputServiceSelection.value)]))
     mapControls.userSearchAction(mapControls.autocomplete, 'basic-search-form')
     leftIinput = document.getElementById('search-input-left-panel')
     leftIinput.value = document.getElementById('search-input').value
