@@ -44,12 +44,12 @@
 					background-color: transparent;
 				}
 				@media #{$md} {
-					padding: 8px;
-					font-size: 95%;
+					padding: 8px 7px;
+					font-size: 92%;
 				}
 				@media #{$sm} {
-					padding: 8px 6px;
-					font-size: 92%;
+					padding: 8px 5px;
+					font-size: 86%;
 				}
 			}
 		}

@@ -18,6 +18,9 @@ class ShopInscriptionCreatedMailer < ApplicationMailer
             {name: 'COMPANY_NAME', content: shop_inscription.company_name},
             {name: 'COMPANY_RUT', content: shop_inscription.company_rut},
             {name: 'COPY_RIGHT_YEAR', content: Date.today.year},
+            {name: 'COMPANY_CATEGORY', content: shop_inscription.branch_types},
+            {name: 'COMPANY_COMUNE', content: shop_inscription.comune.desc_comuna},
+            {name: 'COMPANY_ADDRESS', content: shop_inscription.address},
           ]
         }
       ]

@@ -279,7 +279,7 @@ section#section-parts {
 }
 
 // Carousels
-#promo-carousel, #parts-carousel {
+#promo-carousel, #parts-carousel, .promo-carousels {
 	margin: 25px 0;
 	position: relative;
 	.slick-list {
@@ -297,6 +297,32 @@ section#section-parts {
 #parts-carousel {
 	margin-top: 30px;
 	padding: 0 45px;
+}
+.promo-carousels {
+	.single-promo {
+		margin: 0;
+		img {vertical-align: bottom;}
+	}
+	button.slick-arrow {
+		width: 30px;
+		height: 30px;
+		padding: 5px;
+		line-height: 25px;
+		margin-top: -30px;
+		background-color: rgba(255,255,255,0.6);
+		&.left {
+			left: 3px;
+		}
+		&.right {
+			right: 3px;
+		}
+		&:hover {
+			background-color: rgba(255,255,255,0.8);
+		}
+		> span[class^="fa"] {
+			font-size: 21px;
+		}
+	}
 }
 
 .single-promo, .single-part {

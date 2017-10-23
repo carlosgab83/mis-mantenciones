@@ -30,10 +30,20 @@ branchesControls.initilization = () ->
 
 
   $('#branch_types-filters input').click ->
+
+    # uncheck _select_all if apply
+    if(!this.checked)
+      $('#branch_types-filters input[value="_select_all"]')[0].checked =  false
+
+    # check _select_all if apply
+    if($('#branch_types-filters input:not(:checked)').length == 1 && this.value != '_select_all')
+      $('#branch_types-filters input:not(:checked)')[0].checked =  true
+
     generalControls.showLoadingEffect()
     setTimeout (->
       branchesControls.drawBranches()
       generalControls.hideLoadingEffect()
+      leftPanelControls.storeNewUserSelection()
     ), 500
 
 #############################################################################

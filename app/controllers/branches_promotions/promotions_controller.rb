@@ -5,6 +5,7 @@ module BranchesPromotions
     before_action :shop, only: [:index, :show]
     before_action :branch, only: [:index, :show]
     before_action :promotion, only: [:show]
+    before_action :carousel_promotions, only: [:show]
 
     def index
       @promotions = BranchesPromotionsFinder.new(branch_params).call
@@ -45,6 +46,10 @@ module BranchesPromotions
 
     def promotion
       @promotion ||= PromotionDetail.new(params).call
+    end
+
+    def carousel_promotions
+      @carousel_promotions ||= BranchInformationCarouselCreator.new(branch: branch).call
     end
 
     def branch_params
