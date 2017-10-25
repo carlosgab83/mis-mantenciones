@@ -51,11 +51,11 @@ Rails.application.routes.draw do
 
   # Error Handling
   if Rails.env.production?
-   match '400' => "home#search", via: [:get, :post, :put, :patch, :delete]
-   match '401' => "home#search", via: [:get, :post, :put, :patch, :delete]
-   match '404' => "home#search", via: [:get, :post, :put, :patch, :delete]
-   match '422' => "home#search", via: [:get, :post, :put, :patch, :delete]
-   match '500' => "home#search", via: [:get, :post, :put, :patch, :delete]
+   match '400' => "home#index", via: [:get, :post, :put, :patch, :delete]
+   match '401' => "home#index", via: [:get, :post, :put, :patch, :delete]
+   match '404' => "home#index", via: [:get, :post, :put, :patch, :delete]
+   match '422' => "home#index", via: [:get, :post, :put, :patch, :delete]
+   match '500' => "home#index", via: [:get, :post, :put, :patch, :delete]
   end
 
   # General Purpose traking entry-point for some frontend events
