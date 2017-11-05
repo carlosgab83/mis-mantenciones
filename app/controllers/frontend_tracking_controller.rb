@@ -5,7 +5,7 @@ class FrontendTrackingController < ApplicationController
     EventTracker::FrontendTracking.new(
       controller: self,
       client: session[:client],
-      data: (params[:data] == '' ? {} : params[:data]),
+      data: (params[:data] == '' or params[:data].nil? ? {} : params[:data]),
       event: params[:event]
     ).track
 
