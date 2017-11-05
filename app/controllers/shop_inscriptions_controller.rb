@@ -30,7 +30,7 @@ class ShopInscriptionsController < ApplicationController
 
   def create_shop_inscription_params
     params[:shop_inscription][:branch_types] = params[:shop_inscription][:branch_types].is_a?(Array) ?
-                                                params[:shop_inscription][:branch_types].reject!(&:empty?).join(', ') :
+                                                params[:shop_inscription][:branch_types].reject!{|x| x.blank? or x.nil? or x.to_s == '-1'}.join(', ') :
                                                 params[:shop_inscription][:branch_types]
     params.require(:shop_inscription).permit(
       :name, :primary_last_name, :email,
