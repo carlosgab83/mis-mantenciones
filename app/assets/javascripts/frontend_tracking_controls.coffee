@@ -12,13 +12,24 @@ $(document).on('page:load', FrontendTrackingControls.ready)
 #############################################################################
 
 FrontendTrackingControls.initilization = () ->
+
+  # If the element clicked if an anchor, then use that, else, find first anchor inside the element clicked
   $('.track-click').click ->
     params = {}
-    params['data'] = ''
 
     text = ''
-    if (a=$(this).find('a')[0])
+
+    if this.nodeName == 'A'
+      a = this
+    else
+      a = $(this).find('a')[0]
+
+    if(a)
       text = a.text
+
+    params['data'] = {}
+    Object.keys($(a).data()).forEach (key, index) ->
+      params['data'][key] = $(a).data(key)
 
     params['event'] = 'Click on ' + text
 
@@ -26,4 +37,5 @@ FrontendTrackingControls.initilization = () ->
     method ="POST"
     success_function = ->
     generalControls.sendAjax(params, url, success_function, method)
+
 #############################################################################
