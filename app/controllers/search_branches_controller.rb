@@ -6,7 +6,7 @@ class SearchBranchesController < ApplicationController
     params[:search] = session[:search_branches_params]
 
     if session[:last_branch_id_visited]
-      redirect_to action: :show, id: session[:last_branch_id_visited]
+      redirect_to action: :show, id: session[:last_branch_id_visited], return_to_map: true
     end
 
     search_branches
@@ -38,12 +38,14 @@ class SearchBranchesController < ApplicationController
     session[:last_branch_id_visited] = params[:id]
     @branch_items = BranchItemsFinder.new(branch: branch, form: search_branches_form).call
 
-    EventTracker::ClickBranch.new(
-      controller: self,
-      client: session[:client],
-      branch: branch,
-      search_branches_form: search_branches_form
-    ).track
+    unless params[:return_to_map]
+      EventTracker::ClickBranch.new(
+        controller: self,
+        client: session[:client],
+        branch: branch,
+        search_branches_form: search_branches_form
+      ).track
+    end
 
     respond_to do |format|
       format.js
