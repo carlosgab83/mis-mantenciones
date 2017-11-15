@@ -49,6 +49,16 @@ Rails.application.routes.draw do
 
   resources :shop_inscriptions, :path => '/registro-taller', only: [:new, :create, :update]
 
+  get 'pay_test' => 'home#pay_test', as: :pay_test
+
+  resources :webpay, only:[] do
+    collection do
+      post :confirmation
+      post :final
+      get :final
+    end
+  end
+
   # Error Handling
   if Rails.env.production?
    match '400' => "home#index", via: [:get, :post, :put, :patch, :delete]

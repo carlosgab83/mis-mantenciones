@@ -1,0 +1,33 @@
+/PAYMENT PROCESS
+- if @webpay_data
+  = form_tag @webpay_data[:url], class: 'form-inline search-patent', method: :post, id: 'process_pay'
+    .form-group
+      = hidden_field_tag('token_ws', @webpay_data[:token])
+    .form-group
+      button.btn.btn-cta.btn-block type="submit" Procesando...
+  javascript:
+    document.getElementById('process_pay').submit()
+
+
+
+
+
+
+
+
+/BUTTON TO TRIGGER PAYMENT PROCESS
+- else
+  #home-middle
+    .container
+      .row
+        .col-sm-12
+          .row
+            .col-sm-12.col-md-4
+              h3
+                | PRUEBA DE COMPRA&nbsp;
+            .col-sm-12.col-md-8
+              = form_tag pay_test_path, class: 'form-inline search-patent', method: :get
+                .form-group
+                    = hidden_field(:payment, :init, value: :true)
+                .form-group
+                  button.btn.btn-cta.btn-block type="submit" Comprar
