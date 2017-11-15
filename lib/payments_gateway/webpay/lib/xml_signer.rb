@@ -29,7 +29,7 @@ module PaymentsGateway
 
         def get_signer(document)
           signer = Signer.new(document.to_s)
-          signer.cert = OpenSSL::X509::Certificate.new(File.read certificate_path)
+          signer.cert = OpenSSL::X509::Certificate.new(open(certificate_path){|f| f.read})
           signer.private_key = OpenSSL::PKey::RSA.new(private_key)
           signer
         end

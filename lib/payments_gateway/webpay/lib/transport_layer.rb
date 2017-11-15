@@ -4,10 +4,12 @@ module PaymentsGateway
       module TransportLayer
 
         def request(action, data)
+          Rails.logger.info "Initiating Webpay transaction: #{action}, data: #{data}"
           xml_data = client.build_request(action, message: data)
           signed_document = sign(xml_data.body)
           webpay_response = send_request(action, signed_document)
           verify!(webpay_response)
+          Rails.logger.info "Webpay transaction response: #{action}, response: #{webpay_response.try(:body)}"
           webpay_response
         end
 

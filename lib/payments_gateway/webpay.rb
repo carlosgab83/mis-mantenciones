@@ -2,17 +2,20 @@ require 'payments_gateway/webpay/configuration'
 
 module PaymentsGateway
   module Webpay
+    class << self
+      attr_accessor :configuration
 
-    def self.configuration
-      @@configuration ||= Configuration.new
-    end
+      def configuration
+        @configuration ||= PaymentsGateway::Webpay::Configuration.new
+      end
 
-    def self.reset
-      @@configuration = Configuration.new
-    end
+      def reset
+        @configuration = PaymentsGateway::Webpay::Configuration.new
+      end
 
-    def self.configure
-      yield(configuration)
+      def configure
+        yield(configuration)
+      end
     end
   end
 end

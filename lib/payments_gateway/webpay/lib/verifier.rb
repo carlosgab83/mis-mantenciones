@@ -4,7 +4,7 @@ module PaymentsGateway
       class Verifier
 
         def initialize
-          self.certificate = OpenSSL::X509::Certificate.new File.read(PaymentsGateway::Webpay.configuration.public_webpay_certificate_path)
+          self.certificate = OpenSSL::X509::Certificate.new open(PaymentsGateway::Webpay.configuration.public_webpay_certificate_path){|f| f.read}
         end
 
         def verify(document)

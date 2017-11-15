@@ -4,6 +4,8 @@ module PaymentsGateway
       module Lib
         module TransactionInitiator
 
+          attr_accessor :extra_args
+
           def initiate(amount, session_id, buy_order, extra_args = {})
             self.extra_args = extra_args
 
