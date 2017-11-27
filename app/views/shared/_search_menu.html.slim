@@ -1,0 +1,14 @@
+.form-menu
+  .row
+    .col-md-4
+      = link_to 'Neumáticos', search_products_path, class: "map-search btn btn-cta btn-block"
+    .col-md-4
+      = link_to 'Promociones', promotions_path, class: "map-search btn btn-cta btn-block"
+    .col-md-4
+      = link_to 'Mapa de Servicios', 'javascript:void(0);', class: "go-to-map map-search btn btn-cta btn-block"
+
+javascript:
+  $('.go-to-map').click(function() {
+    $('#left-map').addClass('open');
+    $('#floating-form').addClass('next-step');
+  });

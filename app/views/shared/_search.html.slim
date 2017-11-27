@@ -12,19 +12,9 @@
           p.lead
             = SystemSetting.config.landing_title
         .col-sm-12
-          form.form-inline
-            .form-group
-              select.form-control#service-selection-select
-                option value="" Selecciona Servicio
-                option value="0" id="0" Ver todos
-                - BranchType.actives.order(:name).all.each do |branch_type|
-                  option value="#{branch_type.id}" id="#{branch_type.id}" #{branch_type.name}
-            .form-group
-              label.sr-only for="county-field" Ciudad o Comuna
-              input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna"
-            .form-group
-              button#services-search.map-search.btn.btn-cta.btn-block type="button"
-                | Busca Servicios
+          = render 'shared/search_form'
+          / Carlos, para la otra versión del home, basta con mostrar el parcial siguiente en vez del form
+          /= render 'shared/search_menu'
     #left-map.map-form
       = render 'home/left_panel'
     #right-map.map-form
