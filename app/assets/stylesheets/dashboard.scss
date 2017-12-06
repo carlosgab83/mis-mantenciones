@@ -498,7 +498,7 @@ section#section-map {
 			}
 			.img {
 				display: inline-block;
-				padding: 10px 15px;
+				padding: 10px 15px 0;
 				margin: 0;
 				width: 100%;
 				text-align: center;
@@ -517,10 +517,10 @@ section#section-map {
 					width: 100%;
 					margin-top: 10px;
 				}
-				&:hover, &:active {
+				/*&:hover, &:active {
 					background-color: $main-color;
 					color: $back-color;
-				}
+				}*/
 			}
 		}
 		.button-holder {
