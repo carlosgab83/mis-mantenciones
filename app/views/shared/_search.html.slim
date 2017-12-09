@@ -12,9 +12,10 @@
           p.lead
             = SystemSetting.config.landing_title
         .col-sm-12
-          = render 'shared/search_form'
-          / Carlos, para la otra versión del home, basta con mostrar el parcial siguiente en vez del form
-          /= render 'shared/search_menu'
+          - if not params.keys.include?('bienvenido')
+            = render 'shared/search_form'
+          - else
+            = render 'shared/search_menu'
     #left-map.map-form
       = render 'home/left_panel'
     #right-map.map-form

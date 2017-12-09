@@ -1,14 +1,18 @@
-.form-menu
-  .row
-    .col-md-4
-      = link_to 'Neumáticos', search_products_path, class: "map-search btn btn-cta btn-block"
-    .col-md-4
-      = link_to 'Promociones', promotions_path, class: "map-search btn btn-cta btn-block"
-    .col-md-4
-      = link_to 'Mapa de Servicios', 'javascript:void(0);', class: "go-to-map map-search btn btn-cta btn-block"
+form.form-inline
+  .form-group.hidden
+    select.form-control#service-selection-select
+      option value="" Selecciona Servicio
+      option value="0" id="0" Ver todos
+      - BranchType.actives.order(:name).all.each do |branch_type|
+        option value="#{branch_type.id}" id="#{branch_type.id}" #{branch_type.name}
+  .form-group.hidden
+    label.sr-only for="county-field" Ciudad o Comuna
+    input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna"
+  .form-group
+    = link_to 'Neumáticos', search_products_path, class: "map-search btn btn-cta btn-block"
+  .form-group
+    = link_to 'Promociones', promotions_path, class: "map-search btn btn-cta btn-block"
+  .form-group
+    button#services-search.map-search.btn.btn-cta.btn-block type="button"
+      | Busca Servicios
 
-javascript:
-  $('.go-to-map').click(function() {
-    $('#left-map').addClass('open');
-    $('#floating-form').addClass('next-step');
-  });
