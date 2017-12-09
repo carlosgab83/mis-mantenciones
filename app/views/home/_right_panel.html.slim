@@ -11,6 +11,7 @@
               strong
                 = @branch.name
           li.button-holder
+            = link_to "Ver Info", shop_branch_promotion_path(@branch.shop.slug, @branch.slug, @branch_items.information.slug), class: "btn btn-ghost btn-block" 
             - if @branch_items.show_info_button
               = link_to "Contáctalos", "#", 'id'=> "request-information-#{@branch_items.information.id}", 'data-id'=> "#{@branch_items.information.id}", 'class'=> "btn btn-cta btn-block track-click", 'data-branch_name' => "#{@branch_items.information.name}"
               - if @branch.address.present?
