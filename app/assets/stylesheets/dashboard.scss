@@ -218,6 +218,13 @@ section#section-map {
 		@media #{$xs} {
 			margin-top: -112px;
 		}
+		.form-menu {
+			.btn {
+				@media #{$usm} {
+					margin-top: 8px;
+				}
+			}
+		}
 		.form-inline {
 			display: table;
 			width: 100%;
