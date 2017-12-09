@@ -2,7 +2,7 @@
 head
 
   / A/B Test for root_page
-  - if not params.keys.include?('bienvenido') # is Original page
+  - if not params.keys.include?('bienvenido') and controller_name == 'home' and action_name == 'index' # is Original root page
     javascript:
       function utmx_section(){}function utmx(){}(function(){
       var k='135933143-1',d=document,l=d.location,c=d.cookie;
