@@ -233,11 +233,11 @@ section#section-map {
 			}
 			.form-group {
 				display: table-cell;
-				width: 50%;
+				width: 33.333%;
 				padding: 0 10px;
 				.btn {
 					@media #{$lg} {min-width: 240px;}
-					@media #{$md} {min-width: 180px;}
+					@media #{$md} {min-width: 170px;}
 					@media #{$xs} {margin-top: 15px;}
 				}
 				@media #{$xs} {
