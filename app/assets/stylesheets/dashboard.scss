@@ -371,12 +371,17 @@ section#section-map {
 			.panel-group {
 				max-height: calc(100vh - 166px);
 			}
-			@include transition(left 0.3s ease-in-out);
 			.open-sidebar {
-				.fa-chevron-down {
+				.fa-search,
+				.fa-chevron-down,
+				.fa-angle-left {
 					display: none;
 				}
+				.fa-angle-right {
+					display: inline-block;
+				}
 			}
+			@include transition(left 0.3s ease-in-out);
 		}
 		@media #{$xs} {
 			@include transition(top 0.3s ease-in-out);
@@ -388,7 +393,9 @@ section#section-map {
 				height: 100%;
 			}
 			.open-sidebar {
-				.fa-chevron-down {
+				.fa-chevron-down,
+				.fa-angle-left,
+				.fa-angle-right {
 					display: none;
 				}
 			}
@@ -401,6 +408,12 @@ section#section-map {
 				}
 				.open-sidebar {
 					left: 220px;
+					.fa-angle-left {
+						display: inline-block;
+					}
+					.fa-angle-right {
+						display: none;
+					}
 				}
 			}
 			@media #{$xs} {
