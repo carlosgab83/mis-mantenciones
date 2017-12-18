@@ -732,6 +732,18 @@
 			}
 		}
 	}
+	.single-promo.slick-slide {
+		.promo-image .brand-logo {
+			position: absolute;
+			top: 15px;
+			right: 0;
+			width: 70px;
+			height: auto;
+			@media #{$xs}{
+				top: 35px;
+			}
+		}
+	}
 }
 .promos {
 	margin-top: 20px;
@@ -747,7 +759,6 @@
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 	display: block;
 }
-
 
 //////////////////////////////////////////////////////////
 // Product Brands
