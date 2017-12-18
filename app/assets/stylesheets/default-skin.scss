@@ -708,3 +708,12 @@ section#section-parts {
 		}
 	} 
 }
+
+// Checkout
+.checkout {
+	.well {
+		background-color: $back-color;
+		box-shadow: 3px 3px 0 rgba($dark-color,0.15);
+
+	}
+}
