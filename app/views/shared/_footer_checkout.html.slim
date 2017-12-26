@@ -1,0 +1,37 @@
+footer#footer
+  .container
+    ul.list-inline
+      li
+        = link_to "Términos y Condiciones", "http://files.mismantenciones.com/pdf/Términos-y-Condiciones-MisMantenciones.pdf", target: :_blank
+      li
+        = link_to "Cambios y Devoluciones", "javascript:void(0);", data: {toggle: 'modal', target: '#change-modal'}
+      li
+        span.hidden-xs
+          | ¿Necesitas Ayuda?
+          br
+          | &nbsp;contacto@mismantenciones.com
+
+#change-modal.modal.fade tabindex="-1" role="dialog"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          i.fa.fa-times
+        h4.modal-title Cambios y Devoluciones
+      .modal-body
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi scelerisque gravida diam eget hendrerit. Duis dapibus suscipit lacinia. Vivamus ut semper tellus. Aenean sed auctor nisl. Pellentesque non bibendum libero. Suspendisse luctus dignissim sapien.
+        p In eu malesuada turpis. Nam tellus tellus, pharetra at ante at, vehicula posuere neque. Sed ornare, sem a lobortis porttitor, ligula nisi tempus lacus, at volutpat velit augue vitae urna. Vestibulum ac turpis eget felis fringilla malesuada quis nec odio.
+        p Cras id venenatis eros. Nam tempor, massa eget eleifend tincidunt, orci turpis faucibus tortor, vel euismod turpis dui in libero. Cras et metus quis neque vulputate vulputate. Praesent pulvinar dolor eu lacinia maximus. Mauris ornare augue in felis lobortis, vitae dictum metus tincidunt.
+
+
+.loader
+  = image_tag "spinner.gif" , class: "loading-image"
+
+script type='application/ld+json'
+  |
+    {
+      "@context": "http://schema.org/",
+      "@type": "Person",
+      "name": "Contacta al equipo de MisMantenciones",
+      "email": "contacto@mismantenciones.com"
+    }

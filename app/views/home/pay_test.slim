@@ -4,45 +4,145 @@
 
 #wrapper.catalog
   .inner
-    .container
-      .row
-        .col-sm-12
-      .row
-        .col-sm-4
-          .well
-          .well
-        .col-sm-4
-          .well
-        .col-sm-4
-          .well
-
-            /PAYMENT PROCESS
-            - if @webpay_data
-              = form_tag @webpay_data[:url], class: 'form-inline search-patent', method: :post, id: 'process_pay'
+    form
+      .container
+        .row
+          .col-sm-12
+            h1 
+              | Paga tu compra en 
+              strong Full Neumáticos
+            p Escribe tus datos de contacto para coordinar la instalación de tus neumáticos.
+        .row
+          .col-sm-4
+            .well.checkout-information
+              h2.checkout-title 
+                | 1. Información 
+                strong Personal
+              p.small Datos del comprador
+              hr
                 .form-group
-                  = hidden_field_tag('token_ws', @webpay_data[:token])
+                  label class="sr-only" Correo
+                  input type="email" placeholder="Correo" class="form-control"
                 .form-group
-                  button.btn.btn-cta.btn-block type="submit" Procesando...
-              javascript:
-                document.getElementById('process_pay').submit()
+                  label class="sr-only" RUT
+                  input type="text" placeholder="RUT" class="form-control"
+                .form-group
+                  label class="sr-only" Nombres
+                  input type="text" placeholder="Nombres" class="form-control"
+                .form-group
+                  label class="sr-only" Apellidos
+                  input type="text" placeholder="Apellidos" class="form-control"
+                .form-group
+                  label class="sr-only" Teléfono
+                  input type="tel" placeholder="Teléfono" class="form-control"
+            .well.checkout-payment
+              h2.checkout-title
+                | 2. Pago 
+                strong seguro 
+                | con
+              .from-group
+                .checkbox
+                  input type="checkbox" checked="checked"
+                  span
+                    = image_tag("webpay.svg", :alt => "webpay", :class => "img-responsive webpay-logo")
+          .col-sm-4
+            .well.checkout-installation
+              h2.checkout-title 
+                | 3. Datos para 
+                strong Instalación
+              p.small Información del lugar y persona para realizar la instalación
+              hr
+              .form-group
+                label class="sr-only" Dirección
+                input type="text" placeholder="Dirección" class="form-control"
+              .form-group
+                label class="sr-only" Depto/Unidad/Sitio
+                input type="text" placeholder="Depto/Unidad/Sitio" class="form-control"
+              .form-group
+                label class="sr-only" Región
+                select type="text" placeholder="Región" class="form-control"
+                  option selected="true" disabled="disabled" Región
+                  option Metropolitana
+                  option Arica y Parinacota
+                  option Tarapacá
+                  option Antofagasta
+              .form-group
+                label class="sr-only" Comuna
+                select type="text" placeholder="Comuna" class="form-control"
+                  option selected="true" disabled="disabled" Comuna
+                  option Comuna 1
+                  option Comuna 2
+                  option Comuna 3
+                  option Comuna N
+              .form-group
+                label class="sr-only" Calles de Referencia
+                input type="text" placeholder="Calles de Referencia" class="form-control"
+              .form-group
+                label class="sr-only" Nombre Completo
+                input type="text" placeholder="Nombre Completo" class="form-control"
+              .form-group
+                label class="sr-only" Teléfono de Contacto
+                input type="tel" placeholder="Teléfono de Contacto" class="form-control"
+            .well.checkout-conditions 
+              h2.checkout-title 
+                | 3. Condiciones del
+                strong Servicio
+              hr
+              p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi scelerisque gravida diam eget hendrerit. Duis dapibus suscipit lacinia. Vivamus ut semper tellus. Aenean sed auctor nisl. Pellentesque non bibendum libero. Suspendisse luctus dignissim sapien.
+              p In eu malesuada turpis. Nam tellus tellus, pharetra at ante at, vehicula posuere neque. Sed ornare, sem a lobortis porttitor, ligula nisi tempus lacus, at volutpat velit augue vitae urna. Vestibulum ac turpis eget felis fringilla malesuada quis nec odio.
+              p Cras id venenatis eros. Nam tempor, massa eget eleifend tincidunt, orci turpis faucibus tortor, vel euismod turpis dui in libero. Cras et metus quis neque vulputate vulputate. Praesent pulvinar dolor eu lacinia maximus. Mauris ornare augue in felis lobortis, vitae dictum metus tincidunt.
+
+          .col-sm-4
+            .well.checkout-resume
+              h2.checkout-title 
+                | 4. Resumen de 
+                strong Compra
+              p.small Estás comprando lo siguiente
+              hr
+              .row
+                .col-sm-12
+                  .single-part
+                    .part-image
+                      img alt="MICHELIN ENERGY XM2 165/70 R13 79T" src="http://files.mismantenciones.com/images/michelin-energy-xm2/michelin-energy-xm2.jpg"
+                    .part-description
+                      h6 class="brand michelin"
+                      p ENERGY XM2 165/70 R13 79T
+                      ul.list-unstyled
+                        li Ancho: 165
+                        li Perfil: 70
+                        li Aro: 13
+              .row
+                .col-lg-6
+                  .form-group
+                    label class="sr-only" Cantidad
+                    .input-group
+                      input type="number" placeholder="Cantidad" class="form-control"
+                      .input-group-addon
+                        span x $
+                        strong 35.490
+                .col-lg-6
+                  .form-total
+                    span Total
+                    strong $141.960
+              /PAYMENT PROCESS
+              - if @webpay_data
+                = form_tag @webpay_data[:url], class: 'form-inline search-patent', method: :post, id: 'process_pay'
+                  .form-group
+                    = hidden_field_tag('token_ws', @webpay_data[:token])
+                  .form-group
+                    button.btn.btn-cta.btn-block type="submit" Procesando...
+                javascript:
+                  document.getElementById('process_pay').submit()
 
 
 
-            /BUTTON TO TRIGGER PAYMENT PROCESS
-            - else
-              .container
-                .row
-                  .col-sm-12
-                    .row
-                      .col-sm-12.col-md-4
-                        h3
-                          | PRUEBA DE COMPRA&nbsp;
-                      .col-sm-12.col-md-8
-                        = form_tag pay_test_path, class: 'form-inline search-patent', method: :get
-                          .form-group
-                              = hidden_field(:payment, :init, value: :true)
-                          .form-group
-                            button.btn.btn-cta.btn-block type="submit" Comprar
+              /BUTTON TO TRIGGER PAYMENT PROCESS
+              - else
+                = form_tag pay_test_path, class: 'form-inline search-patent', method: :get
+                  .form-group
+                      = hidden_field(:payment, :init, value: :true)
+                  .form-group
+                    button.btn.btn-cta.btn-block type="submit" Comprar
 
 
-= render 'shared/footer'
+= render 'shared/footer_checkout'
