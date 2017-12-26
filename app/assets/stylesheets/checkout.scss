@@ -79,6 +79,13 @@
 				max-width: 120px;
 				margin: -5px auto 0;
 			}
+			// Installation
+			.checkout-installation {
+				.checkbox {
+					margin-bottom: 5px;
+					padding-top: 5px;
+				}
+			}
 			// Conditions
 			.checkout-conditions {
 				p {font-size: 92%;}
@@ -143,5 +150,15 @@
 				}
 			}
 		}
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Change Modal
+//////////////////////////////////////////////////////////
+
+#change-modal {
+	p {
+		font-size: 85%;
 	}
 }
