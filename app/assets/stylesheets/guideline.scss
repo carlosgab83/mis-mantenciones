@@ -119,7 +119,7 @@ section#section-guideline {
 				}
 			}
 			.popover {
-				font-family: 'Exo 2', sans-serif;
+				font-family: $font1;
 				z-index: 100;
 				font-size: 90%;
 				ul, ol {
@@ -370,14 +370,14 @@ section#section-parts {
 	.promo-description {
 		h6 {
 			font-size: 120%;
-			font-family: 'Exo 2', sans-serif;
+			font-family: $font1;
 			font-style: italic;
 			margin-bottom: 5px;
 			font-weight: 400;
 		}
 		span {
 			font-size: 120%;
-			font-family: 'Exo', sans-serif;
+			font-family: $font2;
 			font-weight: 700;
 			&.changed {
 				text-decoration: line-through;

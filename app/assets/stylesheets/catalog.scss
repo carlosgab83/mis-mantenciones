@@ -24,9 +24,9 @@
 		h1, h2, h3 {
 			opacity: 0.6;
 			font-style: italic;
-			font-family: 'Exo 2', sans-serif;
+			font-family: $font1;
 			strong {
-				font-family: 'Exo', sans-serif;
+				font-family: $font2;
 				display: inline-block;
 				margin-right: 10px;
 			}
@@ -40,7 +40,7 @@
 		display: inline-block;
 		vertical-align: middle;
 		padding-right: 10px;
-		font-family: 'Exo', sans-serif;
+		font-family: $font2;
 	}
 	.full-price {
 		opacity: 0.5;
@@ -206,7 +206,7 @@
 						padding: 10px 20px;
 					}
 					> h6 {
-						font-family: 'Exo', sans-serif;
+						font-family: $font2;
 						font-weight: bold;
 						font-size: 135%;
 						opacity: 0.6;
@@ -307,12 +307,12 @@
 	.promo-description {
 		h1, h2, h3, h4, h5, h6, strong {
 			opacity: 0.6;
-			font-family: 'Exo', sans-serif;
+			font-family: $font2;
 			font-style: italic;
 		}
 	}
 	.promo-title {
-		font-family: 'Exo', sans-serif;
+		font-family: $font2;
 		font-style: italic;
 		margin-bottom: 20px;
 		span {
@@ -437,7 +437,7 @@
 						font-style: italic;
 					}
 					strong {
-						font-family: 'Exo', sans-serif;
+						font-family: $font2;
 						font-weight: bold;
 						opacity: 0.8;
 						&:last-child {
@@ -462,7 +462,7 @@
 		> div {
 			display: inline-block;
 			margin: 2px;
-			font-family: 'Exo', sans-serif;
+			font-family: $font2;
 			font-weight: bold;
 			font-size: 90%;
 			> a {
@@ -485,12 +485,12 @@
 				a {
 					display: block;
 					padding: 10px 0;
-					font-family: 'Exo', sans-serif;
+					font-family: $font2;
 					font-weight: bold;
 					font-style: italic;
 					font-size: 15px;
 					span {
-						font-family: 'Exo 2', sans-serif;
+						font-family: $font1;
 						font-weight: normal;
 						display: inline-block;
 						margin: 0 5px;
@@ -577,7 +577,7 @@
 				line-height: 1.1em;
 				@media #{$xs}{padding: 8px 16px;}
 				strong {
-					font-family: 'Exo', sans-serif;
+					font-family: $font2;
 					font-weight: bold;
 				}
 			}
@@ -726,7 +726,7 @@
 			tr {
 				&:first-child, &.active {
 					> td.branch-price {
-						font-family: 'Exo', sans-serif;
+						font-family: $font2;
 					}
 				}
 			}
@@ -737,7 +737,7 @@
 	margin-top: 20px;
 }
 .main-title {
-	font-family: 'Exo', sans-serif;
+	font-family: $font2;
 	font-weight: bold;
 	font-style: italic;
 	opacity: 0.6;

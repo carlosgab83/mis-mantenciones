@@ -1,0 +1,736 @@
+@import 'colors';
+@import 'helpers';
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,700');
+
+
+body, .popover, .btn.btn-link {
+	font-family: 'Roboto', sans-serif;
+}
+h1, h2, dt, .step-text, .popover-content, .btn {
+	font-family: 'Roboto', sans-serif;
+}
+
+//////////////////////////////////////////////////////////
+// Skin
+//////////////////////////////////////////////////////////
+
+// General
+body {
+	color: $dark-color;
+	background: $light-color;
+}
+hr {border-top-color: $side-color;}
+a {
+	color: $main-color;
+	&:hover, &:active, &:focus {
+		color: darken($main-color, 10%);
+	}
+}
+.step-text {color: $main-color;}
+
+// Selection
+::-moz-selection {
+	background: $main-color;
+	color: $back-color;
+}
+::selection {
+	background: $main-color;
+	color: $back-color;
+}
+// Place Holder
+::-webkit-input-placeholder {
+	@extend .placeholder;
+	color: rgba($dark-color, 0.8);
+}
+:-moz-placeholder {
+	@extend .placeholder;
+	color: rgba($dark-color, 0.8);
+}
+::-moz-placeholder {
+	@extend .placeholder;
+	color: rgba($dark-color, 0.8);
+}
+:-ms-input-placeholder {
+	@extend .placeholder;
+	color: rgba($dark-color, 0.8);
+}
+@-webkit-keyframes autofill {
+    to {
+        color: $back-color;
+        background: transparent;
+    }
+}
+// Button
+.btn.btn-cta {
+	color: darken($main-color,5%);
+	background-color: $side-color;
+	&:hover, &:active, &:focus {
+		color: $dark-color;
+		background-color: daken(saturate($side-color,20%),20%);
+		box-shadow: 0 0 20px rgba($side-color,0.9);
+	}
+	&.btn-ghost {
+		color: $side-color;
+		border-color: $side-color;
+		background: transparent;
+		&:hover, &:active, &:focus {
+			color: $dark-color;
+			background-color: $side-color;
+		}
+	}
+}
+.btn {
+	&:not(.btn-link) {
+		border-color: rgba($dark-color, 0.1);
+		box-shadow: 3px 3px 0 rgba(darken($light-color,20%),0.15);
+		&:hover, &:active, &:focus {
+			border-color: rgba($main-color, 0.2);
+		}
+	}
+	&.btn-link {
+		color: $main-color;
+		&:hover, &:active, &:focus {
+			color: darken($main-color, 10%);
+		}
+	}
+	&.btn-ghost {
+		color: $main-color;
+		border-color: $main-color;
+		background: transparent;
+		&:hover, &:active, &:focus {
+			color: $light-color;
+			background-color: $main-color;
+		}
+	}
+}
+// Slick
+.slick-arrow {
+	color: $dark-color;
+}
+// Layout
+#header {
+	.form-control {color: $main-color;}
+	.input-group {
+		.input-group-addon {
+			color: $main-color;
+			border-color: $main-color;
+		}
+	}
+	&:after {border-color: rgba($side-color,1) transparent transparent transparent;}
+	.btn-special {
+		color: lighten($main-color, 20%);
+		border-color: lighten($main-color, 20%);
+		&:hover, &:active, &:focus {
+			color: $main-color;
+			border-color: lighten($main-color, 20%);
+			background-color: lighten($main-color, 20%);
+		}
+	}
+}
+#footer {
+	&:before {border-color: transparent transparent rgba($side-color,1) transparent;}
+}
+#footer, #header {
+	background-color: rgba($side-color,1);
+	color: $main-color;
+	a {
+		color: rgba($main-color,0.7);
+		&:hover, &:active {
+			color: rgba($main-color,1);
+		}
+	}
+}
+body.home {
+	#header {
+		@media #{$xs} {
+			background-color: rgba($dark-color,0.85);
+			&:after {border-color: rgba($dark-color,0.85) transparent transparent transparent;}
+		}
+	}
+}
+
+// Home
+#wrapper.homepage {
+	background-image: image-url("guideline-background.jpg");
+	&:after {
+		background: $light-color;
+		background: rgba($light-color,0.94);
+	}
+}
+#home-upper {
+	background-image: image-url("background-image.jpg");
+	&:after {
+		background: $main-color;
+		background: rgba($main-color,0.93);
+		background: -moz-linear-gradient(left, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		box-shadow: inset 0 0 200px rgba(darken($main-color,10%),0.4);
+	}
+	color: $back-color;
+}
+#home-middle {
+	background-color: $dark-color;
+	&:before {border-color: transparent transparent $dark-color transparent;}
+	&:after {border-color: $dark-color transparent transparent transparent;}
+	.form-control {color: $back-color;}
+	.input-group {
+		.input-group-addon {
+			color: $back-color;
+		}
+	}
+	.form-control, .input-group-addon {
+		border-color: $back-color;
+		border-color: rgba($back-color,0.5);
+	}
+}
+
+// Pagination
+.pagination {
+	> .active {
+		> a {
+			background-color: $side-color;
+		}
+	}
+}
+
+// Dashboard
+section#section-map {
+	#center-map {
+		background: rgba($main-color,0.8);
+		border-color: $main-color;
+		color: $light-color;
+	}
+	.map-form {
+		background: rgba(saturate(darken($main-color,6%),8%),0.85);
+		color: $back-color;
+		box-shadow: 4px 4px 8px rgba($light-color,0.1);
+		.form-control {
+			color: $back-color;
+			&::-webkit-input-placeholder {color: rgba($back-color, 0.8);}
+			&:-moz-placeholder {color: rgba($back-color, 0.8);}
+			&::-moz-placeholder {color: rgba($back-color, 0.8);}
+			&:-ms-input-placeholder {color: rgba($back-color, 0.8);}
+		}
+		.btn {
+			text-transform: none;
+			&:hover, &:active {
+				color: $main-color;
+			}
+		}
+	}
+	#right-map {
+		.close-sidebar {
+			color: $main-color;
+			background-color: $back-color;
+		}
+		.open-sidebar {
+			background: rgba($light-color,0.88);
+			color: $main-color;
+			box-shadow: -4px 4px 8px rgba($light-color,0.1);
+		}
+		background: rgba($light-color,0.88);
+		color: $dark-color;
+		box-shadow: -4px 4px 8px rgba($light-color,0.1);
+		.panel-group {
+			border-top-color: rgba($main-color,0.2);
+			.panel {
+				border-bottom-color: rgba($main-color,0.2);
+				.panel-title {
+					color: $main-color;
+					&:hover, &:active, &:focus {
+						color: $main-color;
+					}
+				}
+				.panel-body {
+					background: rgba(darken($light-color, 30%),0.15);
+					.single-detail {
+						color: $dark-color;
+						&:hover, &:active, &:focus {
+							background-color: $main-color;
+							color: $back-color;
+						}
+					}
+				}
+				.btn-ghost {
+					&:hover, &:active, &:focus {
+						color: $back-color;
+					}
+				}
+				.btn-primary {
+					color: $light-color;
+					&:hover, &:active, &:focus {
+						color: $back-color;
+					}
+				}
+			}
+		}
+	}
+	#left-map {
+		.close-sidebar {color: $back-color;}
+		.open-sidebar {
+			background: rgba(saturate(darken($main-color,6%),8%),0.88);
+			color: $back-color;
+			box-shadow: 4px 4px 8px rgba($light-color,0.1);
+			@media #{$xs}{
+				background-color: rgba($dark-color,0.88);
+			}
+		}
+		.panel-group {
+			border-top-color: rgba($light-color,0.2);
+			.btn-link {
+				color: $back-color;
+				&:hover, &:active, &:focus {
+					color: $side-color;
+				}
+			}
+			.panel {
+				border-bottom-color: rgba($light-color,0.2);
+				.panel-title {
+					&:hover, &:active, &:focus {
+						color: $back-color;
+					}
+				}
+				.panel-body {
+					background: rgba(darken($main-color, 30%),0.15);
+					.checkbox {
+						input[type="checkbox"] {
+							& + span {
+								color: $back-color;
+								&:before {
+									color: transparent;
+								}
+								&:after {
+									background-color: transparent;
+									border-color: $back-color;
+								}
+							}
+							&:checked + span {
+								&:before {
+									color: $main-color;
+								}
+								&:after {
+									background-color: $back-color;
+									border-color: $back-color;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+section#section-promos {
+	background-color: $back-color;
+	&:before {border-color: transparent transparent $back-color transparent;}
+	&:after {border-color: $back-color transparent transparent transparent;}
+}
+section#section-parts {
+	background-image: image-url("guideline-background.jpg");
+	&:after {
+		background: $light-color;
+		background: rgba($light-color,0.94);
+	}
+	#part-list {
+		li {
+			a {
+				border-color: $dark-color;
+				color: $dark-color;
+				background-color: $back-color;
+			}
+		}
+	}
+}
+
+.promo-image-text {
+	background-color: rgba($dark-color, 0.8);
+	color: $back-color;
+}
+.promo-description {
+	color: $dark-color;
+	h6 {color: lighten($dark-color, 15%)}
+	span { color: $main-color;}
+	ul,ol {
+		padding-left: 15px;
+		margin-bottom: 19px;
+	}
+}
+
+.single-part {
+	background-color: rgba($back-color, 0.8);
+	.single-part-image {
+		background-color: $dark-color;
+	}
+	> div.single-part-text {
+		color: $dark-color;
+	}
+	&:hover, &:active, &:focus {
+		box-shadow: 3px 3px 0 rgba(darken($light-color,20%),0.15);
+	}
+}
+
+// Guideline & Carousels
+section#section-guideline {
+	background-image: image-url("background-image.jpg");
+	&:after {
+		background: $main-color;
+		background: rgba($main-color,0.93);
+		background: -moz-linear-gradient(left, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, rgba(lighten($main-color,15%),0.94) 0%, rgba(darken(saturate($main-color, 10%),10%),0.94) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		box-shadow: inset 0 0 200px rgba(darken($main-color,10%),0.4);
+	}
+	color: $back-color;
+	#guideline-list {
+		border-bottom-color: rgba($dark-color,0.25);
+		h2:after {border-bottom-color: rgba($dark-color,0.25);}
+		a {
+			color: $back-color;
+			.badge {
+				background-color: $back-color;
+				color: $main-color;
+			}
+			&:not(.disabled) {
+				&:hover, &:active, &:focus {
+					text-shadow: 0 2px 0 rgba($dark-color,0.2);
+					.badge {box-shadow: 0 2px 0 rgba($light-color,0.15);}
+				}
+			}
+		}
+		.popover {
+			color: $light-color;
+			box-shadow: 3px 3px 0 rgba(darken($light-color,20%),0.15);
+		}
+	}
+}
+section#section-promos {
+	background-color: $back-color;
+	&:before {border-color: transparent transparent $back-color transparent;}
+	&:after {border-color: $back-color transparent transparent transparent;}
+}
+section#section-parts {
+	background-image: image-url("guideline-background.jpg");
+	&:after {
+		background: $light-color;
+		background: rgba($light-color,0.94);
+	}
+	#part-list {
+		li {
+			a {
+				border-color: $dark-color;
+				color: $dark-color;
+				background-color: $back-color;
+			}
+		}
+	}
+}
+
+// Catalog
+.catalog {
+	background-color: $light-color;
+}
+// Promo
+.catalog {
+	.collapse-button {
+		color: lighten($dark-color,15%);
+		&:hover, &:active, &:focus {
+			color: lighten($dark-color,15%);
+		}
+		@media #{$xs}{
+			border-color: lighten($dark-color,25%);
+			&:hover, &:active, &:focus {
+				background-color: lighten($dark-color,25%);;
+				color: $light-color;
+			}
+		}
+	}
+	#collapse-list {
+		background-color: $light-color;
+		@media #{$xs}{
+			box-shadow: 3px 3px 0 rgba(darken($light-color,20%),0.15);
+		}
+	}
+	span.promo-price {color: $main-color;}
+	.promo-list, .part-list {
+		> li {
+			a {
+				background-color: $back-color;
+				color: $dark-color;
+				h6 {color: $dark-color;}
+				&:hover, &:active, &:focus {
+					box-shadow: 3px 3px 0 rgba(darken($light-color,20%),0.15);
+				}
+			}
+		}
+		.part-image {
+			background-color: $dark-color;
+		}
+	}
+	#fixed-column {
+		@media #{$xs}{
+			background-color: rgba(darken($light-color,8%),0.9);
+		}
+	}
+	.promo-image {
+		@media #{$xs}{
+			background-color: rgba(darken($light-color,8%),0.9);
+		}
+	}
+}
+// Product
+.catalog {
+	.product-image {
+		background-color: $dark-color;
+		border-color: darken($light-color,5%);
+	}
+	.product-table {
+		tr {
+			> td {
+				> a {
+					&:hover, &:active, &:focus {
+						.btn.btn-ghost {
+							color: $light-color;
+							background-color: $main-color;
+						}
+					}
+				}
+				.branch-name {
+					.btn.btn-ghost {
+						color: darken($light-color,35%);
+						border-color: darken($light-color,35%);
+						&:hover, &:active, &:focus {
+							cursor: default;
+							background-color: transparent;
+							color: darken($light-color,35%);
+							border-color: darken($light-color,35%);
+						}
+					}
+				}
+			}
+			&:first-child, &.active {
+				> td {
+					background-color: rgba($back-color,0.6);
+					color: $main-color;
+					a {					
+						.btn.btn-ghost {
+							color: darken($main-color,5%);
+							background-color: $side-color;
+							box-shadow: 3px 3px 0 rgba($light-color,0.15)!important;
+							border-color: rgba($dark-color, 0.1);
+							&:hover, &:active, &:focus {
+								color: $dark-color;
+								background-color: daken(saturate($side-color,20%),20%);
+								box-shadow: 0 0 20px rgba($side-color,0.9)!important;
+								border-color: rgba($dark-color, 0.2);
+							}
+						}
+						&:hover, &:active, &:focus {
+							.btn.btn-ghost {
+								color: $dark-color;
+								background-color: daken(saturate($side-color,20%),20%);
+								box-shadow: 0 0 20px rgba($side-color,0.9)!important;
+								border-color: rgba($dark-color, 0.2);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	// Filters
+	#parts-filters {
+		border-bottom-color: rgba($dark-color,0.1);
+		.panel {
+			border-top-color: rgba($dark-color,0.1);
+			.panel-heading
+				a {
+					color: rgba($dark-color,0.8);
+					&:not(.collapsed) {color: $main-color;}
+				}
+			.panel-collapse {
+				&.collapse.in, &.collapsing {
+					.panel-body {
+						border-top-color: rgba($dark-color,0.1);
+						.form-control {
+							background-color: $dark-color;
+						}
+					}
+				}
+				label {
+					input[type="checkbox"] {
+						&:checked + span {
+							color: $main-color;
+						}
+					}
+					&:hover, &:active, &:focus {
+						input[type="checkbox"] + span {
+							color: $main-color;
+						}
+					}
+				}
+			}
+		}
+	}
+	// Search
+	.nav.nav-tabs {
+		> li {
+			&.active {
+				> a {
+					color: $main-color;
+					background-color: $back-color;
+				}
+			}
+			&:not(.active) {
+				> a {
+					color: $main-color;
+					&:hover, &:active, &:focus {
+						background-color: $main-color;
+						color: $back-color;
+					}
+				}
+			}
+		}
+	}
+	.tab-content {
+		.tab-pane {
+			background-color: $back-color;
+		}
+	}
+}
+// Modal
+.modal {
+	.modal-header {
+		background-color: $dark-color;
+		color: $light-color;
+		.close {
+			color: $light-color;
+			text-shadow: none;
+			padding: 5px;
+			width: 30px;
+			height: 30px;
+			line-height: 20px;
+			text-align: center;
+		}
+		.btn {
+			color: $light-color;
+			&.active {
+				color: $side-color;
+			}
+		}
+	}
+	.modal-content {
+		box-shadow: 5px 5px 0 rgba($light-color,0.15);
+	}
+	.modal-body {
+		.close {
+			background-color: $dark-color;
+			color: $back-color;
+			&:hover, &:active {
+				background-color: $main-color;
+			}
+		}
+	}
+	.modal-footer {
+		background-color: $light-color;
+		.form-control {
+			background-color: $back-color
+		}
+	}
+}
+.modal-backdrop {
+	background-color: $dark-color;
+}
+#quote-modal {
+	.modal-selector {
+		background-color: lighten($dark-color, 10%);
+		color: $light-color;
+	}
+	.modal-body {
+		.quote-selector {
+			> ul {
+				> li {
+					border-color: darken($light-color, 10%);
+					a {
+						color: $dark-color;
+						&:hover, &:active, &:focus {
+							background-color: $light-color;
+						}
+					}
+					&.active a {
+						color: darken($main-color,4%);
+						background-color: $light-color;
+					}
+				}
+			}
+		}
+		.quote-detail {
+			background-color: $light-color;
+			ul > li {
+				color: darken($main-color,4%);
+			}
+		}
+	}
+}
+
+// Popover
+.popover {
+	text-align: center;
+	color: $light-color;
+	box-shadow: 3px 3px 0 rgba(darken($light-color,20%),0.15);
+	strong {
+		color: $side-color;
+	}
+	&.top {
+		.arrow {
+			border-top-color: rgba($dark-color,0.15);
+		}
+	}
+}
+#home-middle {
+	.popover {
+		background-color: $light-color;
+		&.bottom .arrow:after {
+			border-bottom-color: $light-color;
+		}
+		&.top .arrow:after {
+			border-top-color: $light-color;
+		}
+	}
+}
+.modal-backdrop, .catalog {
+	& ~ .popover,
+	.popover {
+		background-color: $main-color;
+		&.bottom .arrow:after {
+			border-bottom-color: $main-color;
+		}
+		&.top .arrow:after {
+			border-top-color: $main-color;
+		}
+	}
+}
+
+// Toggle filter
+.toggle-filter {
+	border-color: $light-color;
+	box-shadow: inset 0 0 10px rgba($light-color,0.5);
+	input[type="checkbox"] {
+		& + span {
+			background-color: $light-color;
+			color: $dark-color;
+		}
+		&:checked {
+			& + span {
+				background-color: transparent;
+				color: $light-color;
+				& + span {
+					background-color: $light-color;
+					color: $dark-color;
+				}
+			}
+		}
+	} 
+}
