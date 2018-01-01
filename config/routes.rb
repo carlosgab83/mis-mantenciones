@@ -49,7 +49,15 @@ Rails.application.routes.draw do
 
   resources :shop_inscriptions, :path => '/registro-taller', only: [:new, :create, :update]
 
-  get 'pay_test' => 'home#pay_test', as: :pay_test
+  resources :checkouts, :path => '/checkout', only: [:create] do
+    collection do
+      get :update_price_by_quantity
+    end
+  end
+
+  resources :payment_results, :path => '/payment_results', only: [:create]
+
+  resources :orders, only: [:create]
 
   resources :webpay, only:[] do
     collection do
