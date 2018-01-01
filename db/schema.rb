@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018024522) do
+ActiveRecord::Schema.define(version: 20171231165522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,28 @@ ActiveRecord::Schema.define(version: 20171018024522) do
     t.index ["promotion_id"], name: "index_branches_promotions_on_promotion_id", using: :btree
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.string   "buyable_type"
+    t.integer  "buyable_id"
+    t.float    "unit_price"
+    t.integer  "quantity"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "cart_id",      null: false
+    t.index ["buyable_type", "buyable_id", "cart_id", "created_at"], name: "cart_items_business_index", unique: true, using: :btree
+    t.index ["buyable_type", "buyable_id"], name: "index_cart_items_on_buyable_type_and_buyable_id", using: :btree
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.float    "price",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "client_id",  null: false
+    t.index ["client_id", "price", "created_at"], name: "carts_business_index", unique: true, using: :btree
+    t.index ["client_id"], name: "index_carts_on_client_id", using: :btree
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "name",                           null: false
     t.boolean  "deleted",        default: false
@@ -165,6 +187,9 @@ ActiveRecord::Schema.define(version: 20171018024522) do
     t.boolean  "deleted",           default: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.string   "street_address"
+    t.string   "number_address"
+    t.string   "region"
     t.index ["email", "rvm_id"], name: "clients_business_index", unique: true, using: :btree
   end
 
@@ -244,6 +269,32 @@ ActiveRecord::Schema.define(version: 20171018024522) do
     t.integer "modelo_estado",      default: 1, null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string   "email"
+    t.string   "rut"
+    t.string   "name"
+    t.string   "primary_last_name"
+    t.string   "phone"
+    t.string   "street_address"
+    t.string   "number_address"
+    t.string   "region"
+    t.integer  "commune_id"
+    t.boolean  "contact_seller"
+    t.string   "full_name"
+    t.string   "contact_phone"
+    t.string   "accept_terms"
+    t.string   "status"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "client_id",         null: false
+    t.integer  "cart_id",           null: false
+    t.integer  "branch_id",         null: false
+    t.index ["branch_id"], name: "index_orders_on_branch_id", using: :btree
+    t.index ["cart_id", "client_id", "created_at"], name: "orders_business_index", unique: true, using: :btree
+    t.index ["cart_id"], name: "index_orders_on_cart_id", using: :btree
+    t.index ["client_id"], name: "index_orders_on_client_id", using: :btree
+  end
+
   create_table "pauta", primary_key: "id_pauta", force: :cascade do |t|
     t.text    "pauta_descripcion",                      null: false
     t.integer "kilometraje",                            null: false
@@ -265,6 +316,18 @@ ActiveRecord::Schema.define(version: 20171018024522) do
     t.datetime "updated_at"
     t.boolean  "deleted",            default: false
     t.index ["id_pauta", "id_item_mantencion"], name: "pauta_detalle_business_index", unique: true, using: :btree
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.float    "amount",     null: false
+    t.string   "session_id", null: false
+    t.string   "token",      null: false
+    t.string   "status",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "order_id",   null: false
+    t.index ["order_id", "amount", "created_at"], name: "payments_business_index", unique: true, using: :btree
+    t.index ["order_id"], name: "index_payments_on_order_id", using: :btree
   end
 
   create_table "plans", force: :cascade do |t|
@@ -488,6 +551,8 @@ ActiveRecord::Schema.define(version: 20171018024522) do
   add_foreign_key "branches_products", "products"
   add_foreign_key "branches_promotions", "branches"
   add_foreign_key "branches_promotions", "promotions"
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "carts", "clients"
   add_foreign_key "clients", "comuna", column: "comune_id", primary_key: "id_comuna"
   add_foreign_key "clients", "rvm", primary_key: "v_rvm"
   add_foreign_key "coupons", "clients"
@@ -498,11 +563,15 @@ ActiveRecord::Schema.define(version: 20171018024522) do
   add_foreign_key "manteinance_coupons_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
   add_foreign_key "manteinance_coupons_items", "manteinance_coupons"
   add_foreign_key "modelo", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_marca"
+  add_foreign_key "orders", "branches"
+  add_foreign_key "orders", "carts"
+  add_foreign_key "orders", "clients"
   add_foreign_key "pauta", "marca", column: "id_marca", primary_key: "id_marca", name: "fk_id_marca"
   add_foreign_key "pauta", "modelo", column: "id_modelo", primary_key: "id_modelo", name: "fk_id_modelo"
   add_foreign_key "pauta", "vehiculo_modelo_especifico", column: "vme_id", primary_key: "vme_id"
   add_foreign_key "pauta_detalle", "item_mantencion", column: "id_item_mantencion", primary_key: "id_item_mantencion", name: "fk_item_mantencion"
   add_foreign_key "pauta_detalle", "pauta", column: "id_pauta", primary_key: "id_pauta", name: "fk_pauta"
+  add_foreign_key "payments", "orders"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "product_brands"
   add_foreign_key "products_vmes", "products"
