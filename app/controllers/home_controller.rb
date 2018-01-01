@@ -40,13 +40,6 @@ class HomeController < ApplicationController
     end
   end
 
-  def pay_test
-    return unless params[:payment].try(:[],:init)
-    @webpay_data = PaymentsGateway::Webpay::Normal::Transaction.new.initiate(100000.00, 123, 'buy_order')
-    puts "///////////////////////"
-    puts @webpay_data[:token]
-  end
-
   private
 
   def fill_session
