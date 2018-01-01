@@ -25,5 +25,5 @@ checkoutsControls.initilization = () ->
 
   $('#new_order').submit ->
     submit_button = $(this).find(':submit')[0]
-    submit_button.innerText = "PROCESANDO ORDEN..."
-    generalControls.showLoadingEffect()
+    #submit_button.innerText = "PROCESANDO ORDEN..."
+    #generalControls.showLoadingEffect()
