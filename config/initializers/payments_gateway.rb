@@ -1,5 +1,10 @@
 PaymentsGateway::Webpay.configure do |config|
 
+  # Can be overwritten
+  config.confirmation_url = 'https://mismantenciones.herokuapp.com/webpay/confirmation'
+
+  config.final_url = 'https://mismantenciones.herokuapp.com/webpay/final'
+
   if Rails.env.development?
     config.private_key = File.read('lib/payments_gateway/webpay/data/597020000541.key')
     config.public_certificate_path = 'lib/payments_gateway/webpay/data/597020000541.crt'
@@ -7,7 +12,7 @@ PaymentsGateway::Webpay.configure do |config|
     config.commerce_code = '597020000541'
     config.integration_endpoint = 'https://webpay3gint.transbank.cl/WSWebpayTransaction/cxf/WSWebpayService?wsdl'
     config.confirmation_url = 'http://190.46.97.234:3000/webpay/confirmation'
-    config.final_url = 'http://190.46.97.234:3000/webpay/final'
+    config.final_url = 'http://190.46.97.234:3000/checkout/payment_results'
   end
 
   if Rails.env.staging?
@@ -17,7 +22,7 @@ PaymentsGateway::Webpay.configure do |config|
     config.commerce_code = '597020000541'
     config.integration_endpoint = 'https://webpay3gint.transbank.cl/WSWebpayTransaction/cxf/WSWebpayService?wsdl'
     config.confirmation_url = 'https://mismantenciones.herokuapp.com/webpay/confirmation'
-    config.final_url = 'https://mismantenciones.herokuapp.com/webpay/final'
+    config.final_url = 'https://mismantenciones.herokuapp.com/payment_results'
   end
 
   if Rails.env.production?
@@ -29,10 +34,4 @@ PaymentsGateway::Webpay.configure do |config|
     config.confirmation_url = ''
     config.final_url = ''
   end
-
-  # Can be overwritten
-  config.confirmation_url = 'https://mismantenciones.herokuapp.com/webpay/confirmation'
-
-  config.final_url = 'https://mismantenciones.herokuapp.com/webpay/final'
-
 end
