@@ -22,3 +22,8 @@ checkoutsControls.initilization = () ->
     method ="GET"
     success_function = ->
     generalControls.sendAjax(params, url, success_function, method)
+
+  $('#new_order').submit ->
+    submit_button = $(this).find(':submit')[0]
+    submit_button.innerText = "PROCESANDO ORDEN..."
+    generalControls.showLoadingEffect()
