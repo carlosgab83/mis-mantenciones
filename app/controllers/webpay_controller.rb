@@ -8,7 +8,7 @@ class WebpayController < ApplicationController
     payment = Payment.where(token: params[:token_ws]).first
 
     if payment
-      response_code = response_document.xpath("//responsecode").first.try(:text)
+      response_code = @webpay_data.xpath("//responsecode").first.try(:text)
       case response_code
         when '0'
           payment.status = :completed
