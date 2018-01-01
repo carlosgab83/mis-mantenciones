@@ -140,5 +140,9 @@ javascript:
     "order[region]": {required: true},
     "order[accept_terms]": {required: true}, // ANADIR CLASS ERROR PARA EL CHECKBOX
     "quantity": {required: true}
+    },
+    submitHandler: function(form) {
+      checkoutsControls.process_order(form.id);
+      form.submit();
     }
   });
