@@ -16,6 +16,23 @@ h1, h2, dt, .step-text, .popover-content, .btn {
 // Skin
 //////////////////////////////////////////////////////////
 
+#header #logo img.derco {
+	position: absolute;
+	z-index: 1;
+	top: -14px;
+	width: 90px;
+	left: 15px;
+	@media #{$xs} {
+		width: 75px;
+	}
+}
+
+#mm-navbar .nav.navbar-nav > li > a {
+	letter-spacing: -0.02em;
+}
+#header .btn-special.pull-right.hidden-xs,
+.list-inline > li.acid-container {display:none;}
+
 // General
 body {
 	color: $dark-color;
@@ -120,12 +137,24 @@ a {
 	}
 	&:after {border-color: rgba($side-color,1) transparent transparent transparent;}
 	.btn-special {
-		color: lighten($main-color, 20%);
-		border-color: lighten($main-color, 20%);
+		color: $dark-color;
+		border-color: $dark-color;
+		opacity: 0.6;
 		&:hover, &:active, &:focus {
-			color: $main-color;
-			border-color: lighten($main-color, 20%);
-			background-color: lighten($main-color, 20%);
+			color: $side-color;
+			background-color: $dark-color;
+			background-color: $dark-color;
+			opacity: 1;
+		}
+	}
+	.btn.btn-cta.btn-ghost {
+		border-color: $dark-color;
+		color: $dark-color;
+		opacity: 0.6;
+		&:hover, &:active {
+			color: $side-color;
+			background-color: $dark-color;
+			opacity: 1;
 		}
 	}
 }
