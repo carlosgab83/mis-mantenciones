@@ -72,6 +72,12 @@
 							background-color: $main-color;
 						}
 					}
+					&.error + span {
+						color: red;
+						&:after {
+							border-color: red;
+						}
+					}
 				}
 			}
 			.webpay-logo {
@@ -89,6 +95,10 @@
 			// Conditions
 			.checkout-conditions {
 				p {font-size: 92%;}
+				.checkbox {
+					margin-bottom: 5px;
+					padding-top: 5px;
+				}
 			}
 			// Resume
 			.checkout-resume {
