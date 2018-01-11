@@ -4,56 +4,43 @@
 
 #wrapper.catalog
   .inner
-    = form_for @order_preparator.order do |f|
-      .container
-        .row
-          .col-sm-12
-            h1 Pago realizado
-            p Tu transacción con realizada con éxito
-        .row
-          .col-sm-8
-            .well.checkout-information
-              h2.checkout-title
-                | Detalle del&nbsp;
-                strong Pago
-              dl
-                dt Comercio
-                dd MisMantenciones
-                dt Total pagado
-                dd $250.000
-                dt Número de tarjeta
-                dd 2345 6789 9876 5432
-                dt Orden de compra
-                dd O14565rd6
-                dt Código de autorización
-                dd 782357
-                dt Fecha
-                dd
-              hr
-              = link_to "Volver al mapa", "/", class: "btn btn-cta"
+    .container
+      .row
+        .col-sm-12
+          h1 Pago realizado
+          p Tu transacción fue realizada con éxito
+      .row
+        .col-sm-8
+          .well.checkout-information
+            h2.checkout-title
+              | Detalle del&nbsp;
+              strong Pago
+            dl
+              dt Total pagado
+              dd = mismantenciones_number_to_currency(@payment.amount)
+              dt Orden de compra No
+              dd = @payment.order.order_number
+              dt Fecha / hora
+              dd = l @transaction_datetime
+            hr
+            = link_to "Volver al mapa", "/", class: "btn btn-cta"
 
-          .col-sm-4
-            .well.checkout-resume
-              h2.checkout-title
-                | Resumen de&nbsp;
-                strong Compra
-              hr
-              .row
-                .col-sm-12
-                  = render 'buyable', buyable: @order_preparator.buyable
-                  = f.hidden_field 'buyable[branch_tupple_record_class]', value: @order_preparator.buyable_tupple_record.class
-                  = f.hidden_field 'buyable[branch_tupple_record_id]', value: @order_preparator.buyable_tupple_record.id
-              .row
-                .col-lg-6
-                  .form-number
-                    strong 4
-                    span x&nbsp;
-                    strong #{mismantenciones_number_to_currency(@order_preparator.branches_product.price)}
-                .col-lg-6
-                  .form-total#total-amount
-                    span Total
-                    strong $1.000.000
-
-
+        .col-sm-4
+          .well.checkout-resume
+            h2.checkout-title
+              | Resumen de&nbsp;
+              strong Compra
+            hr
+            .row
+              .col-sm-12
+                - @payment.order.cart.cart_items.each do |cart_item|
+                  - buyable = cart_item.buyable_item
+                  = render 'checkouts/buyable', buyable: buyable
+                  .row
+                    .col-lg-6
+                      .form-number
+                        strong = cart_item.quantity
+                        span x&nbsp;
+                        strong #{mismantenciones_number_to_currency(cart_item.unit_price)}
 
 = render 'shared/footer_checkout'

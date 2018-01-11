@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171231165522) do
+ActiveRecord::Schema.define(version: 20180111043134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -270,10 +270,11 @@ ActiveRecord::Schema.define(version: 20171231165522) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string   "email"
-    t.string   "rut"
-    t.string   "name"
-    t.string   "primary_last_name"
+    t.string   "order_number",      null: false
+    t.string   "email",             null: false
+    t.string   "rut",               null: false
+    t.string   "name",              null: false
+    t.string   "primary_last_name", null: false
     t.string   "phone"
     t.string   "street_address"
     t.string   "number_address"
@@ -326,6 +327,7 @@ ActiveRecord::Schema.define(version: 20171231165522) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "order_id",   null: false
+    t.string   "extra_data"
     t.index ["order_id", "amount", "created_at"], name: "payments_business_index", unique: true, using: :btree
     t.index ["order_id"], name: "index_payments_on_order_id", using: :btree
   end

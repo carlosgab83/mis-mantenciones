@@ -5,4 +5,8 @@ class BranchesPromotion < ApplicationRecord
   def price
     promotion.try(:promo_price)
   end
+
+  def buyable_item
+    promotion
+  end
 end

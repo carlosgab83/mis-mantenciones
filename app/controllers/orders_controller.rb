@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
    @webpay_data = PaymentsGateway::Webpay::Normal::Transaction.new.initiate(
       order_creator.cart.price,
       session_id,
-      order_creator.order.id.to_s
+      order_creator.order.order_number
     )
 
    PaymentCreator.new(order_data: order_creator, webpay_data: @webpay_data, session_id: session_id).call

@@ -21,4 +21,8 @@ class BranchesProduct < ApplicationRecord
   def price
     cached_price
   end
+
+  def buyable_item
+    product
+  end
 end
