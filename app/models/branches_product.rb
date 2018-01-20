@@ -2,6 +2,9 @@ class BranchesProduct < ApplicationRecord
   belongs_to :branch
   belongs_to :product
 
+  FOLLOW_PRODUCT_URL = 0
+  MISMANTENCIONES_CHECKOUT = 1
+
   scope :with_url, -> do
     where.not(url:'').where.not(url: nil)
   end
@@ -24,5 +27,11 @@ class BranchesProduct < ApplicationRecord
 
   def buyable_item
     product
+  end
+
+  # Decide checkout method
+
+  def mismantenciones_checkout?
+    checkout_method == MISMANTENCIONES_CHECKOUT
   end
 end
