@@ -9,9 +9,6 @@ leftPanelControls.ready = ->
 #############################################################################
 
 leftPanelControls.initilization = () ->
-  $('#services-search').on 'click', ->
-    $('#floating-form').addClass('next-step').trigger 'stepChange'
-
   $('#uncheck-checkboxes').change ->
     if $(this).is(':checked')
       leftPanelControls.chackAllFilters(true)
