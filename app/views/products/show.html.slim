@@ -21,24 +21,20 @@
                 - @product.branches_products_with_prices.each_with_index do |bp, i|
                   tr
                     td.branch-name colspan="2"
-                      - if not bp.url.blank?
+                      - if bp.branch.mismantenciones_checkout? or (bp.branch.delegate_to_product? and bp.mismantenciones_checkout?)
+                        = form_tag checkouts_path, method: :post, id: "product-to-checkout-branch-id-#{bp.branch_id}"
+                          = hidden_field :checkout, :branch_id, value: bp.branch_id
+                          = hidden_field :checkout, :product_id, value: bp.product_id
+                        a.submitable data-branch_id="#{bp.branch_id}"
+                          = render 'branches_list', bp: bp, i: i
+
+                      - elsif bp.url.present?
                         = link_to open_url_branches_product_path(bp), target: '_blank' do
-                          span.branch-box
-                            = "#{bp.branch.name}"
-                          span.branch-box
-                            - if i==0
-                              span#buy-product.btn.btn-ghost
-                                = "#{mismantenciones_number_to_currency(bp.price) || '-'}"
-                            - else
-                              span.btn.btn-ghost
-                                = "#{mismantenciones_number_to_currency(bp.price) || '-'}"
+                          = render 'branches_list', bp: bp, i: i
+
                       - else
-                        span.branch-name
-                          span.branch-box
-                            = "#{bp.branch.name}"
-                          span.branch-box
-                            span.btn.btn-ghost
-                              = "#{mismantenciones_number_to_currency(bp.price) || '-'}"
+                        = link_to '#' do
+                          = render 'branches_list', bp: bp, i: i
         .col-sm-6.col-sm-pull-6
           .row
             .col-sm-12

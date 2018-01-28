@@ -23,6 +23,10 @@ es:
   date:
     formats:
       long: "%Y-%m-%d"
+  time:
+    formats:
+      default: "%d-%m-%Y %H:%M"
+
   admin:
     actions:
       xls_import:

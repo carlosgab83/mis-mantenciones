@@ -1,0 +1,149 @@
+- @body_class = 'checkout'
+
+= render 'shared/header_checkout'
+
+#wrapper.catalog
+  .inner
+    = form_for @order_preparator.order do |f|
+      .container
+        .row
+          .col-sm-12
+            h1
+              | Paga tu compra en&nbsp;
+              strong #{@order_preparator.branch.name}
+            p Escribe tus datos de contacto para coordinar la instalación de tus neumáticos.
+        .row
+          .col-sm-4
+            .well.checkout-information
+              h2.checkout-title
+                | 1. Información&nbsp;
+                strong Personal
+              p.small Datos del comprador
+              hr
+                .form-group
+                  label class="sr-only" Correo
+                  = f.email_field :email, placeholder: "Correo", class: "form-control"
+                .form-group
+                  label class="sr-only" RUT
+                  = f.text_field :rut, placeholder: "Rut", class: "form-control"
+                .form-group
+                  label class="sr-only" Nombres
+                  = f.text_field :name, placeholder: "Nombre", class: "form-control"
+                .form-group
+                  label class="sr-only" Apellidos
+                  = f.text_field :primary_last_name, placeholder: "Apellido", class: "form-control"
+                .form-group
+                  label class="sr-only" Teléfono
+                  = f.text_field :phone, placeholder: "Teléfono", class: "form-control"
+            .well.checkout-payment
+              h2.checkout-title
+                | 2. Pago&nbsp;
+                strong seguro
+                | con
+              .from-group
+                .checkbox
+                  input type="checkbox" checked="checked" name ="order[payment_type]"
+                  span
+                    = image_tag("webpay.svg", :alt => "webpay", :class => "img-responsive webpay-logo")
+          .col-sm-4
+            .well.checkout-installation
+              h2.checkout-title
+                | 3. Datos para&nbsp;
+                strong Instalación
+              p.small Información del lugar y persona para realizar la instalación
+              hr
+              .form-group
+                label class="sr-only" Dirección
+                = f.text_field :street_address, placeholder: "Calle (ej: San Francisco 131)", class: "form-control"
+              .form-group
+                label class="sr-only" Depto/Casa/Sitio
+                = f.text_field :number_address, placeholder: "Casa / Depto (ej: Depto 80)", class: "form-control"
+              .form-group
+                label class="sr-only" Región
+                = f.select(:region, Region.all, {prompt: 'Región'}, { class: 'form-control' })
+
+              .form-group
+                label class="sr-only" Comuna
+                = f.select(:commune_id, Comune.all.map{|c|[c.desc_comuna.capitalize, c.id_comuna]}, {prompt: 'Comuna'}, { class: 'form-control' })
+              hr
+              .form-group
+                label.checkbox
+                  = f.check_box :contact_seller
+                  span Contactar al comprador
+              .form-group
+                label class="sr-only" Nombre Completo
+                = f.text_field :full_name, placeholder: "Nombre completo", class: "form-control"
+              .form-group
+                label class="sr-only" Teléfono de Contacto
+                = f.text_field :contact_phone, placeholder: "Teléfono de contacto", class: "form-control"
+            .well.checkout-conditions
+              h2.checkout-title
+                | 4. Condiciones del&nbsp;
+                strong Servicio
+              hr
+              .form-group
+                label.checkbox
+                    = f.check_box :accept_terms
+                    span
+                      | He leído y acepto los&nbsp;
+                      = link_to "Términos y Condiciones", "http://files.mismantenciones.com/pdf/términos_y_condiciones_MisMantenciones.pdf", target: :_blank
+              p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi scelerisque gravida diam eget hendrerit. Duis dapibus suscipit lacinia. Vivamus ut semper tellus. Aenean sed auctor nisl. Pellentesque non bibendum libero. Suspendisse luctus dignissim sapien.
+              p In eu malesuada turpis. Nam tellus tellus, pharetra at ante at, vehicula posuere neque. Sed ornare, sem a lobortis porttitor, ligula nisi tempus lacus, at volutpat velit augue vitae urna. Vestibulum ac turpis eget felis fringilla malesuada quis nec odio.
+
+          .col-sm-4
+            .well.checkout-resume
+              h2.checkout-title
+                | 5. Resumen de&nbsp;
+                strong Compra
+              p.small Estás comprando lo siguiente
+              hr
+              .row
+                .col-sm-12
+                  = render 'buyable', buyable: @order_preparator.buyable
+                  = f.hidden_field 'buyable[branch_tupple_record_class]', value: @order_preparator.buyable_tupple_record.class
+                  = f.hidden_field 'buyable[branch_tupple_record_id]', value: @order_preparator.buyable_tupple_record.id
+              .row
+                .col-lg-6
+                  .form-group
+                    label class="sr-only" Cantidad
+                    .input-group
+                      input type="number" placeholder="Cantidad" name="order[buyable[quantity]]" class="form-control" value="1" min="1" max="10" id="buyable-quantity_selector" data-price="#{@order_preparator.branches_product.price}"
+                      .input-group-addon
+                        span x&nbsp;
+                        strong #{mismantenciones_number_to_currency(@order_preparator.branches_product.price)}
+                .col-lg-6
+                  .form-total#total-amount
+                    = render 'total_amount', price: @order_preparator.branches_product.price
+                .col-lg-12
+                  .form-group
+                    button.btn.btn-cta.btn-block type="submit" Comprar
+
+
+
+= render 'shared/footer_checkout'
+
+javascript:
+  $.validator.addMethod("regex", function(value, element, regexpr) {
+       return regexpr.test(value);
+     }, '');
+
+  $("#new_order").validate({
+    errorPlacement: function(error, element) { },
+    rules: {
+    "order[name]": {required: true},
+    "order[primary_last_name]": {required: true},
+    "order[email]": {required: true, email: true},
+    "order[rut]": {required: true, minlength: 6, regex: /^0*(\d{1,3}(\.?\d{3})*)\-([\dkK])$/},
+    "order[phone]": {required: true, digits: true, minlength: 9, maxlength: 15},
+    "order[street_address]": {required: true},
+    "order[number_address]": {required: true},
+    "order[commune_id]": {required: true},
+    "order[region]": {required: true},
+    "order[accept_terms]": {required: true}, // ANADIR CLASS ERROR PARA EL CHECKBOX
+    "quantity": {required: true}
+    },
+    submitHandler: function(form) {
+      checkoutsControls.process_order(form.id);
+      form.submit();
+    }
+  });

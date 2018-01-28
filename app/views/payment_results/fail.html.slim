@@ -1,0 +1,28 @@
+- @body_class = 'checkout'
+
+= render 'shared/header_checkout'
+
+#wrapper.catalog
+  .inner
+    .container
+      .row
+        .col-sm-12
+          h1 Tu pago no se realizó
+          p Algo salió mal
+      .row
+        .col-sm-12
+          .well.checkout-information
+            h2.checkout-title
+              | Te&nbsp;
+              strong Recomendamos
+            hr
+            ul.list-unstyled
+              li Intentarlo en unos minutos más.
+              li Prueba otra tarjeta o cuenta.
+              li Si nada de esto funciona, contactanos a...
+            hr
+            = link_to "Volver al mapa", "/", class: "btn btn-cta"
+
+
+
+= render 'shared/footer_checkout'
