@@ -78,3 +78,8 @@ generalControls.arraysEqual = (arr1, arr2) ->
       if arr1[i][j] != arr2[i][j]
         return false
   true
+
+#############################################################################
+
+generalControls.isMobileScreen = () ->
+  !$('button.navbar-toggle').is(':hidden')
