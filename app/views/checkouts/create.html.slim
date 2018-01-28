@@ -18,7 +18,7 @@
               h2.checkout-title
                 | 1. Información&nbsp;
                 strong Personal
-              p.small Datos del comprador
+              p.small Ingresa tus datos
               hr
                 .form-group
                   label class="sr-only" Correo
@@ -48,32 +48,37 @@
           .col-sm-4
             .well.checkout-installation
               h2.checkout-title
-                | 3. Datos para&nbsp;
-                strong Instalación
-              p.small Información del lugar y persona para realizar la instalación
+                | 3. Sucursal de&nbsp;
+                strong Retiro o instalación
+              p.small Selecciona la forma de entrega
               hr
+              / .form-group
+              /   label class="sr-only" Dirección
+              /   = f.text_field :street_address, placeholder: "Calle (ej: San Francisco 131)", class: "form-control"
+              / .form-group
+              /   label class="sr-only" Depto/Casa/Sitio
+              /   = f.text_field :number_address, placeholder: "Casa / Depto (ej: Depto 80)", class: "form-control"
               .form-group
-                label class="sr-only" Dirección
-                = f.text_field :street_address, placeholder: "Calle (ej: San Francisco 131)", class: "form-control"
-              .form-group
-                label class="sr-only" Depto/Casa/Sitio
-                = f.text_field :number_address, placeholder: "Casa / Depto (ej: Depto 80)", class: "form-control"
+                label.checkbox
+                    = f.check_box :accept_terms, checked: "checked"
+                    span
+                      | Retiro en sucursal
               .form-group
                 label class="sr-only" Región
-                = f.select(:region, Region.all, {prompt: 'Región'}, { class: 'form-control' })
+                = f.select(:region, Region.all, {prompt: 'Sucursal'}, { class: 'form-control' })
 
-              .form-group
+              / .form-group
                 label class="sr-only" Comuna
                 = f.select(:commune_id, Comune.all.map{|c|[c.desc_comuna.capitalize, c.id_comuna]}, {prompt: 'Comuna'}, { class: 'form-control' })
-              hr
-              .form-group
+              / hr
+              / .form-group
                 label.checkbox
                   = f.check_box :contact_seller
                   span Contactar al comprador
-              .form-group
+              / .form-group
                 label class="sr-only" Nombre Completo
                 = f.text_field :full_name, placeholder: "Nombre completo", class: "form-control"
-              .form-group
+              / .form-group
                 label class="sr-only" Teléfono de Contacto
                 = f.text_field :contact_phone, placeholder: "Teléfono de contacto", class: "form-control"
             .well.checkout-conditions
@@ -87,9 +92,8 @@
                     span
                       | He leído y acepto los&nbsp;
                       = link_to "Términos y Condiciones", "http://files.mismantenciones.com/pdf/términos_y_condiciones_MisMantenciones.pdf", target: :_blank
-              p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi scelerisque gravida diam eget hendrerit. Duis dapibus suscipit lacinia. Vivamus ut semper tellus. Aenean sed auctor nisl. Pellentesque non bibendum libero. Suspendisse luctus dignissim sapien.
-              p In eu malesuada turpis. Nam tellus tellus, pharetra at ante at, vehicula posuere neque. Sed ornare, sem a lobortis porttitor, ligula nisi tempus lacus, at volutpat velit augue vitae urna. Vestibulum ac turpis eget felis fringilla malesuada quis nec odio.
-
+              / p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi scelerisque gravida diam eget hendrerit. Duis dapibus suscipit lacinia. Vivamus ut semper tellus. Aenean sed auctor nisl. Pellentesque non bibendum libero. Suspendisse luctus dignissim sapien.
+              / p In eu malesuada turpis. Nam tellus tellus, pharetra at ante at, vehicula posuere neque. Sed ornare, sem a lobortis porttitor, ligula nisi tempus lacus, at volutpat velit augue vitae urna. Vestibulum ac turpis eget felis fringilla malesuada quis nec odio.
           .col-sm-4
             .well.checkout-resume
               h2.checkout-title
