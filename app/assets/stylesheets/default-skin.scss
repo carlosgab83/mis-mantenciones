@@ -708,3 +708,19 @@ section#section-parts {
 		}
 	} 
 }
+
+// Checkout
+.checkout {
+	.catalog .inner {	
+		h1 {
+			color: $main-color;
+			opacity: 1;
+		}
+		.form-total {color: $main-color;}
+	}
+	.well {
+		background-color: $back-color;
+		box-shadow: 3px 3px 0 rgba($dark-color,0.15);
+
+	}
+}

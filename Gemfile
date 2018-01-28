@@ -61,3 +61,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+# Webpay app
+
+# Webpay GEM
+gem 'signer', '~> 1.6'
+gem 'savon', '~> 2.11'

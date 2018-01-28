@@ -18,6 +18,7 @@ generalControls.ready = ->
   leftPanelControls.ready()
   branchesControls.ready()
   clientsControls.ready()
+  checkoutsControls.ready()
 
 
 $(document).ready(generalControls.ready)

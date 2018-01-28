@@ -1,0 +1,11 @@
+header#header
+  .container
+    .row
+      .col-xs-2.col-sm-5.col-md-6.fixed-xs
+        figure#logo
+          = link_to :root do
+            = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive hidden-xs")
+            = image_tag("logo-mm-xs.png", :alt => "Mis Mantenciones", :class => "img-responsive visible-xs")
+
+      .col-xs-12.col-sm-7.col-md-6.text-right
+

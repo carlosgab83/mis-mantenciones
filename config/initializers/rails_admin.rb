@@ -148,6 +148,11 @@
         field :plan
         field :interval_between_jumps
         field :slug
+        field :checkout_method, :enum do
+          enum do
+            [['Seguir la url del producto', 0], ['Ir al checkout de Mismantenciones.com', 1], ['Delegar decisión a cada producto', 2]]
+          end
+        end
       end
     end
 
@@ -158,6 +163,23 @@
         field :product_id
         field :price
         field :url
+      end
+
+      edit do
+        field :price
+        field :from_date
+        field :to_date
+        field :status
+        field :stock
+        field :url
+        field :deleted
+        field :branch_id
+        field :product_id
+        field :checkout_method, :enum do
+          enum do
+            [['Seguir la url del producto', 0], ['Ir al checkout de Mismantenciones.com', 1]]
+          end
+        end
       end
     end
 
