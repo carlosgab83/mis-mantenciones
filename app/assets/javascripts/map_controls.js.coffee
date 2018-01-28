@@ -51,6 +51,11 @@ mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->
 
   mapControls.afterLoadMapHook()
 
+  # For mobile
+  if navigator.geolocation && generalControls.isMobileScreen()
+    mapControls.presetInputAddress()
+
+
 #############################################################################
 
 mapControls.buttonListeners = () ->
@@ -92,15 +97,26 @@ mapControls.buttonListeners = () ->
   # When user click on floating initial modal
   # This method call submit on basic-search-form form
   $('.map-search').click ->
-    hiddenInput = document.getElementById('basic-search-form_search_location_text')
-    hiddenInput.value = document.getElementById('search-input').value
-    hiddenInputServiceSelection = document.getElementById('basic-search-form_search_branch_type_id')
-    hiddenInputServiceSelection.value = document.getElementById('service-selection-select').value
-    sessionStorage.setItem('left_panel_branch_type_ids', JSON.stringify([parseInt(hiddenInputServiceSelection.value)]))
-    mapControls.userSearchAction(mapControls.autocomplete, 'basic-search-form')
-    leftIinput = document.getElementById('search-input-left-panel')
-    leftIinput.value = document.getElementById('search-input').value
-    mapControls.autocompleteLastSelection = mapControls.autocomplete
+    element = document.getElementById('search-input')
+    if element.value == ""
+      $(element).addClass('error')
+    else
+
+      # This is for move map to address fetched in mobile
+      if !mapControls.autocomplete.getPlace()
+        mapControls.map.setZoom(17)
+        mapControls.map.setCenter(mapControls.presetLatlng)
+
+      $('#floating-form').addClass('next-step').trigger 'stepChange'
+      hiddenInput = document.getElementById('basic-search-form_search_location_text')
+      hiddenInput.value = document.getElementById('search-input').value
+      hiddenInputServiceSelection = document.getElementById('basic-search-form_search_branch_type_id')
+      hiddenInputServiceSelection.value = document.getElementById('service-selection-select').value
+      sessionStorage.setItem('left_panel_branch_type_ids', JSON.stringify([parseInt(hiddenInputServiceSelection.value)]))
+      mapControls.userSearchAction(mapControls.autocomplete, 'basic-search-form')
+      leftIinput = document.getElementById('search-input-left-panel')
+      leftIinput.value = document.getElementById('search-input').value
+      mapControls.autocompleteLastSelection = mapControls.autocomplete
 
   # when user click on basic search type on left panel, reset other form
   $('.map-search-left-panel').click ->
@@ -150,7 +166,8 @@ mapControls.rememberLastPosition = () ->
 
 mapControls.userSearchAction = (autocomplete, formToSubmit) ->
   mapControls.infowindow.close()
-  mapControls.goToNewPlace(autocomplete)
+  if autocomplete.getPlace()
+    mapControls.goToNewPlace(autocomplete)
   $('#'+formToSubmit).submit()
 
 #############################################################################
@@ -174,11 +191,21 @@ mapControls.setMobileLocation = () ->
 
 #############################################################################
 
+mapControls.presetInputAddress = () ->
+  navigator.geolocation.getCurrentPosition(mapControls.successObtainPosition, mapControls.errorObtainPosition)
+
+#############################################################################
+
 mapControls.successObtainPosition = (location) ->
   latitude = location.coords.latitude
   longitude = location.coords.longitude
-  latlng = new google.maps.LatLng(latitude, longitude);
-  mapControls.map.setCenter latlng
+  mapControls.presetLatlng = new google.maps.LatLng(latitude, longitude)
+  geocoder = new google.maps.Geocoder
+  geocoder.geocode { 'location': mapControls.presetLatlng }, (results, status) ->
+    if status == 'OK'
+      element = document.getElementById('search-input')
+      element.value = results[0].formatted_address
+      element.select()
 
 #############################################################################
 

@@ -1,0 +1,16 @@
+- if buyable.is_a? Product
+  .single-part
+    .part-image
+      img alt="#{buyable.name}" src="#{buyable.image_url}"
+    .part-description
+      h6 class="#{"brand #{buyable.product_brand.name.downcase.tr(" ","-")}"}"
+      p ENERGY XM2 165/70 R13 79T
+      ul.list-unstyled
+        - buyable.other_attributes[0..2].each do |ap|
+          li
+            strong = "#{ap.product_attribute.name}: "
+            span = "#{ap.value}".html_safe
+
+
+- elsif buyable.is_a? Promotion
+

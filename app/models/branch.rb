@@ -13,6 +13,10 @@ class Branch < ApplicationRecord
 
   HIDE_BRANCH_PRICE_VALUE = -999
 
+  ALWAYS_FOLLOW_PRODUCT_URL = 0
+  MISMANTENCIONES_CHECKOUT = 1
+  DELEGATE_TO_PRODUCT = 2
+
   include BranchSerializer
   extend BranchesSerializer
   extend FriendlyId
@@ -60,4 +64,15 @@ class Branch < ApplicationRecord
   def full_price(pauta)
     branch_pauta(pauta).full_price
   end
+
+  # Decide checkout method
+
+  def mismantenciones_checkout?
+    checkout_method == MISMANTENCIONES_CHECKOUT
+  end
+
+  def delegate_to_product?
+    checkout_method == DELEGATE_TO_PRODUCT
+  end
+
 end
