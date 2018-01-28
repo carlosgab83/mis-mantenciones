@@ -92,15 +92,20 @@ mapControls.buttonListeners = () ->
   # When user click on floating initial modal
   # This method call submit on basic-search-form form
   $('.map-search').click ->
-    hiddenInput = document.getElementById('basic-search-form_search_location_text')
-    hiddenInput.value = document.getElementById('search-input').value
-    hiddenInputServiceSelection = document.getElementById('basic-search-form_search_branch_type_id')
-    hiddenInputServiceSelection.value = document.getElementById('service-selection-select').value
-    sessionStorage.setItem('left_panel_branch_type_ids', JSON.stringify([parseInt(hiddenInputServiceSelection.value)]))
-    mapControls.userSearchAction(mapControls.autocomplete, 'basic-search-form')
-    leftIinput = document.getElementById('search-input-left-panel')
-    leftIinput.value = document.getElementById('search-input').value
-    mapControls.autocompleteLastSelection = mapControls.autocomplete
+    element = document.getElementById('search-input')
+    if element.value == ""
+      $(element).addClass('error')
+    else
+      $('#floating-form').addClass('next-step').trigger 'stepChange'
+      hiddenInput = document.getElementById('basic-search-form_search_location_text')
+      hiddenInput.value = document.getElementById('search-input').value
+      hiddenInputServiceSelection = document.getElementById('basic-search-form_search_branch_type_id')
+      hiddenInputServiceSelection.value = document.getElementById('service-selection-select').value
+      sessionStorage.setItem('left_panel_branch_type_ids', JSON.stringify([parseInt(hiddenInputServiceSelection.value)]))
+      mapControls.userSearchAction(mapControls.autocomplete, 'basic-search-form')
+      leftIinput = document.getElementById('search-input-left-panel')
+      leftIinput.value = document.getElementById('search-input').value
+      mapControls.autocompleteLastSelection = mapControls.autocomplete
 
   # when user click on basic search type on left panel, reset other form
   $('.map-search-left-panel').click ->
