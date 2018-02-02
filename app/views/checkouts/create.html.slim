@@ -25,7 +25,7 @@
                   = f.email_field :email, placeholder: "Correo", class: "form-control"
                 .form-group
                   label class="sr-only" RUT
-                  = f.text_field :rut, placeholder: "Rut", class: "form-control"
+                  = f.text_field :rut, placeholder: "Rut: 12345678-9", class: "form-control rut-format", maxlength: 10
                 .form-group
                   label class="sr-only" Nombres
                   = f.text_field :name, placeholder: "Nombre", class: "form-control"
@@ -34,7 +34,7 @@
                   = f.text_field :primary_last_name, placeholder: "Apellido", class: "form-control"
                 .form-group
                   label class="sr-only" Teléfono
-                  = f.text_field :phone, placeholder: "Teléfono", class: "form-control"
+                  = f.text_field :phone, placeholder: "Teléfono: 569336699", class: "form-control phone"
             .well.checkout-payment
               h2.checkout-title
                 | 2. Pago&nbsp;
@@ -65,7 +65,7 @@
                       | Retiro en sucursal
               .form-group
                 label class="sr-only" Región
-                = f.select(:region, Region.all, {prompt: 'Sucursal'}, { class: 'form-control' })
+                = f.select(:region, @order_preparator.branch.shop.branches.pluck(:name), {prompt: 'Sucursal'}, { class: 'form-control' })
 
               / .form-group
                 label class="sr-only" Comuna
