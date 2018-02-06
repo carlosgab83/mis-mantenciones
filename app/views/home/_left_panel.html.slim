@@ -11,37 +11,9 @@ a.open-sidebar
       .form-group
         label.sr-only for="county-field-2" Ciudad o Comuna
         input#search-input-left-panel.form-control.search-input type="text" placeholder="Ciudad o Comuna"
-    .panel-heading
-      a.panel-title data-toggle="collapse" data-parent="#map-search" href="#normal" Búsqueda por Marca/Modelo
-    #normal.panel-collapse.collapse
-      .panel-body
-        = form_tag search_branches_path, remote: true, id: 'basic-search-form'
-          = hidden_field "search", "location_text", id: 'basic-search-form_search_location_text'
-          = hidden_field "search", "branch_type_id", id: 'basic-search-form_search_branch_type_id'
-          .form-group
-            = select_tag "search[brand_id]", options_from_collection_for_select(Brand.actives, "id_marca", "descripcion", params[:search].try(:[], :brand_id)), class: 'selectpicker form-control like-input', include_blank: true, title: 'Marca', 'data-live-search' => 'true', 'data-none-results-text'=>'No se encontraron resultados para {0}'
-          .form-group
-            = select_tag "search[model_id]", options_from_collection_for_select(@search_branches_form.try(:models) || [], "id_modelo", "modelo_descripcion", params[:search].try(:[], :model_id)), class: 'selectpicker form-control like-input', include_blank: true, title: 'Modelo', 'data-live-search' => 'true', 'data-none-results-text'=>'No se encontraron resultados para {0}'
-          .form-group
-            button.btn.btn-cta.btn-ghost.btn-block.map-search-left-panel type="button"
-              | Buscar
-
-  .panel
-    .panel-heading
-      a.panel-title data-toggle="collapse" data-parent="#map-search" href="#advanced" Búsqueda Avanzada
-    #advanced.panel-collapse.collapse
-      .panel-body
-         = form_tag search_branches_path, remote: true, id: 'advanced-search-form'
-          = hidden_field "search", "location_text", id: 'advanced-search-form_search_location_text'
-          .form-group
-            label.sr-only for="search_brand" Patente
-            = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Patente', maxlength: 6, value: params[:search].try(:[], :patent))
-          .form-group
-            label.sr-only for="search_brand" Kilometraje
-            = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Kilometraje', value: params[:search].try(:[], :kms))
-          .form-group
-            button.btn.btn-cta.btn-ghost.btn-block.advanced-map-search-left-panel type="button"
-              | Por automóvil
+      .form-group
+        button.btn.btn-cta.btn-ghost.btn-block.map-search-left-panel type="button"
+          | Buscar
   .panel
     .panel-heading
       a.panel-title data-toggle="collapse" data-parent="#map-search" href="#branch_types-filters" Filtrar Resultados
