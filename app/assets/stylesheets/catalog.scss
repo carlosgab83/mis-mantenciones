@@ -779,7 +779,8 @@
 	&.westlake,
 	&.achilles,
 	&.goodride,
-	&.ling-long {
+	&.ling-long,
+	&.aplus {
 		display: block;
 		height: 25px;
 		width: 100%;
@@ -804,4 +805,5 @@
 	&.achilles {background-image: image-url("brands/achilles.png");}
 	&.goodride {background-image: image-url("brands/goodride.png");}
 	&.ling-long {background-image: image-url("brands/ling-long.png");}
+	&.aplus {background-image: image-url("brands/aplus.png");}
 }
