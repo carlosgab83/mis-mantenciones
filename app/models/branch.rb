@@ -41,6 +41,10 @@ class Branch < ApplicationRecord
     where.not(plan_id: nil)
   end
 
+  scope :with_location, -> do
+    where.not(latitude: nil).where.not(longitude: nil)
+  end
+
   def branches_manteinance_items_by_pauta(pauta)
     branches_manteinance_items.includes(manteinance_item: :section_type).where(pauta: pauta)
   end
