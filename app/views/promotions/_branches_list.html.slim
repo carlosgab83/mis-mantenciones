@@ -1,0 +1,5 @@
+span.branch-box
+  = "#{bp.branch.name}"
+span.branch-box
+  span.btn.btn-ghost class="#{i==0 ? '#buy-product': ''}"
+    = "#{mismantenciones_number_to_currency(bp.price) || '-'}"

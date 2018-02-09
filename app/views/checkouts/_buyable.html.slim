@@ -13,4 +13,24 @@
 
 
 - elsif buyable.is_a? Promotion
+  .single-part
+    - if buyable.promo_price.present? and buyable.show_button?
+
+      .promo-image
+        // si hay logo de la empresa
+        = image_tag(buyable.branches.try(:last).try(:shop).try(:image_url) || "", :alt => "", :class => "brand-logo")
+        = image_tag(buyable.image_url || "promo-image.jpg", :alt => buyable.name)
+        span.promo-image-text #{buyable.name}
+      .promo-description
+        h6 #{mismantenciones_number_to_currency(buyable.promo_price)}
+        - if buyable.full_price != buyable.promo_price
+          span.changed #{mismantenciones_number_to_currency(buyable.full_price)}
+    - else
+      .promo-image
+        = image_tag(buyable.branches.try(:last).try(:shop).try(:image_url) || "", :alt => "", :class => "brand-logo")
+        = image_tag(buyable.image_url || "promo-image.jpg", :alt => buyable.name)
+      .promo-description
+        h6 #{buyable.name}
+        - if buyable.show_button?
+          span Cotizar
 
