@@ -4,7 +4,7 @@ class CheckoutsController < ApplicationController
     @order_preparator = OrderPreparator.new(
       branch_id: checkout_params[:branch_id],
       product_id: checkout_params[:product_id],
-      pomotion_id: checkout_params[:promotion_id],
+      promotion_id: checkout_params[:promotion_id],
       client: session[:client],
     ).call
 

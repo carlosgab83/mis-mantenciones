@@ -69,4 +69,9 @@ class Promotion < ApplicationRecord
       category.promotion_done_text(coupon)
     end
   end
+
+  def branches_promotions_with_prices
+    non_price_value = 9999999999
+    branches_promotions.sort{|a,b| (a.price || non_price_value) <=> (b.price || non_price_value) }
+  end
 end
