@@ -45,23 +45,25 @@
           #fixed-column
             - if @promotion.show_button?
               a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' #{@promotion.category.promotion_action_button_name}
-              .product-table
-                table.table.table-bordered
-                  thead
-                    tr
-                      th Nombre
-                      th Precio
-                      /th
-                  tbody
-                    - @promotion.branches_promotions_with_prices.each_with_index do |bp, i|
+              - branches = @promotion.branches_promotions_with_prices
+              - if branches.any?
+                .product-table
+                  table.table.table-bordered
+                    thead
                       tr
-                        td.branch-name colspan="2"
-                          - if bp.branch.mismantenciones_checkout? or (bp.branch.delegate_to_product? and bp.mismantenciones_checkout?)
-                                  = form_tag checkouts_path, method: :post, id: "product-to-checkout-branch-id-#{bp.branch_id}"
-                                    = hidden_field :checkout, :branch_id, value: bp.branch_id
-                                    = hidden_field :checkout, :promotion_id, value: bp.promotion_id
-                                  a.submitable data-branch_id="#{bp.branch_id}"
-                                    = render '/promotions/branches_list', bp: bp, i: i
+                        th Nombre
+                        th Precio
+                        /th
+                    tbody
+                      - branches.each_with_index do |bp, i|
+                        tr
+                          td.branch-name colspan="2"
+                            - if bp.branch.mismantenciones_checkout? or (bp.branch.delegate_to_product? and bp.mismantenciones_checkout?)
+                                    = form_tag checkouts_path, method: :post, id: "product-to-checkout-branch-id-#{bp.branch_id}"
+                                      = hidden_field :checkout, :branch_id, value: bp.branch_id
+                                      = hidden_field :checkout, :promotion_id, value: bp.promotion_id
+                                    a.submitable data-branch_id="#{bp.branch_id}"
+                                      = render '/promotions/branches_list', bp: bp, i: i
 
 
               - if @promotion.promo_price?
