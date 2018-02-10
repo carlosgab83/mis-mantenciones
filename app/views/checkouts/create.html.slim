@@ -103,7 +103,7 @@
               hr
               .row
                 .col-sm-12
-                  = render 'buyable', buyable: @order_preparator.buyable
+                  = render 'buyable_preview', buyable: @order_preparator.buyable
                   = f.hidden_field 'buyable[branch_tupple_record_class]', value: @order_preparator.buyable_tupple_record.class
                   = f.hidden_field 'buyable[branch_tupple_record_id]', value: @order_preparator.buyable_tupple_record.id
               .row
