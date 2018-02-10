@@ -103,7 +103,7 @@
               hr
               .row
                 .col-sm-12
-                  = render 'buyable', buyable: @order_preparator.buyable
+                  = render 'buyable_preview', buyable: @order_preparator.buyable
                   = f.hidden_field 'buyable[branch_tupple_record_class]', value: @order_preparator.buyable_tupple_record.class
                   = f.hidden_field 'buyable[branch_tupple_record_id]', value: @order_preparator.buyable_tupple_record.id
               .row
@@ -111,13 +111,13 @@
                   .form-group
                     label class="sr-only" Cantidad
                     .input-group
-                      input type="number" placeholder="Cantidad" name="order[buyable[quantity]]" class="form-control" value="1" min="1" max="10" id="buyable-quantity_selector" data-price="#{@order_preparator.branches_product.price}"
+                      input type="number" placeholder="Cantidad" name="order[buyable[quantity]]" class="form-control" value="1" min="1" max="10" id="buyable-quantity_selector" data-price="#{@order_preparator.buyable_tupple_record.price}"
                       .input-group-addon
                         span x&nbsp;
-                        strong #{mismantenciones_number_to_currency(@order_preparator.branches_product.price)}
+                        strong #{mismantenciones_number_to_currency(@order_preparator.buyable_tupple_record.price)}
                 .col-lg-6
                   .form-total#total-amount
-                    = render 'total_amount', price: @order_preparator.branches_product.price
+                    = render 'total_amount', price: @order_preparator.buyable_tupple_record.price
                 .col-lg-12
                   .form-group
                     button.btn.btn-cta.btn-block type="submit" Comprar
