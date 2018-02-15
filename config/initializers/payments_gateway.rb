@@ -30,7 +30,7 @@ PaymentsGateway::Webpay.configure do |config|
     config.public_certificate_path = ENV['TBK_WEBPAY_PUBLIC_CERTIFICATE_PATH']
     config.public_webpay_certificate_path = ENV['TBK_WEBPAY_PUBLIC_WEBPAY_CERTIFICATE_PATH']
     config.commerce_code = ENV['TBK_WEBPAY_COMMERCE_CODE']
-    config.integration_endpoint = ' https://webpay3g.transbank.cl/WSWebpayTransaction/cxf/WSWebpayService?wsdl'
+    config.integration_endpoint = 'https://webpay3g.transbank.cl/WSWebpayTransaction/cxf/WSWebpayService?wsdl'
     config.confirmation_url = 'https://www.mismantenciones.com/webpay/confirmation'
     config.final_url = 'https://www.mismantenciones.com/payment_results'
   end
