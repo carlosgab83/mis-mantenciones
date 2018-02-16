@@ -22,7 +22,6 @@ class BranchesProduct < ApplicationRecord
   end
 
   def price
-    return 20 if id == 59
     cached_price
   end
 
