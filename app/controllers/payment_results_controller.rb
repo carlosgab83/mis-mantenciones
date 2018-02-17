@@ -6,6 +6,15 @@ class PaymentResultsController < ApplicationController
     if @payment and @payment.status == 'completed'
       xml = Nokogiri::XML(@payment.extra_data)
       @transaction_datetime = DateTime.parse xml.at_xpath("//transactiondate").text
+
+      EventTracker::SuccessPayment.new(
+        controller: self,
+        vehicle: session[:vehicle],
+        payment: @payment
+      ).track
+
+      SuccessPaymentNotifier.new(payment: @payment, vehicle: session[:vehicle]).call
+
       render :success
 
     elsif @payment and @payment.status == 'cancelled' # i.e Transaction rejected
