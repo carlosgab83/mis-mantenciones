@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120225114) do
+ActiveRecord::Schema.define(version: 20180217202537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "fuzzystrmatch"
 
   create_table "attributes", force: :cascade do |t|
     t.string   "name",                       null: false
@@ -132,11 +131,12 @@ ActiveRecord::Schema.define(version: 20180120225114) do
   end
 
   create_table "branches_promotions", force: :cascade do |t|
-    t.boolean  "deleted",      default: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.boolean  "deleted",         default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "branch_id"
-    t.integer  "promotion_id",                 null: false
+    t.integer  "promotion_id",                    null: false
+    t.integer  "checkout_method", default: 0
     t.index ["branch_id", "promotion_id"], name: "branches_promotions_business_index", unique: true, using: :btree
     t.index ["branch_id"], name: "index_branches_promotions_on_branch_id", using: :btree
     t.index ["promotion_id"], name: "index_branches_promotions_on_promotion_id", using: :btree
@@ -310,8 +310,6 @@ ActiveRecord::Schema.define(version: 20180120225114) do
     t.boolean "diesel_engine"
     t.boolean "double_traction"
     t.boolean "automatic_transmission"
-    t.integer "from_year"
-    t.integer "to_year"
     t.index ["kilometraje", "vme_id", "diesel_engine", "double_traction", "automatic_transmission"], name: "pauta_business_index", unique: true, using: :btree
   end
 
@@ -404,7 +402,7 @@ ActiveRecord::Schema.define(version: 20180120225114) do
     t.string   "type"
     t.integer  "kms"
     t.index ["category_id"], name: "index_promotions_on_category_id", using: :btree
-    t.index ["name"], name: "promotions_business_index", unique: true, using: :btree
+    t.index ["name", "slug"], name: "promotions_business_index", unique: true, using: :btree
     t.index ["slug"], name: "index_promotions_on_slug", using: :btree
     t.index ["type"], name: "index_promotions_on_type", using: :btree
   end
@@ -552,7 +550,6 @@ ActiveRecord::Schema.define(version: 20180120225114) do
   add_foreign_key "branches", "shops"
   add_foreign_key "branches_branch_types", "branch_types"
   add_foreign_key "branches_branch_types", "branches"
-  add_foreign_key "branches_manteinance_items", "branches"
   add_foreign_key "branches_manteinance_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
   add_foreign_key "branches_manteinance_items", "pauta", column: "pauta_id", primary_key: "id_pauta"
   add_foreign_key "branches_products", "branches"
@@ -567,7 +564,6 @@ ActiveRecord::Schema.define(version: 20180120225114) do
   add_foreign_key "coupons", "promotions"
   add_foreign_key "item_mantencion", "tipo_seccion", column: "id_tipo_seccion", primary_key: "id_tiposeccion", name: "fk_tiposeccion"
   add_foreign_key "manteinance_coupons", "branches"
-  add_foreign_key "manteinance_coupons", "clients"
   add_foreign_key "manteinance_coupons", "pauta", column: "pauta_id", primary_key: "id_pauta"
   add_foreign_key "manteinance_coupons_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
   add_foreign_key "manteinance_coupons_items", "manteinance_coupons"
