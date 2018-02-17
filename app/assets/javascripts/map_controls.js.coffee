@@ -141,7 +141,8 @@ mapControls.buttonListeners = () ->
   google.maps.event.addListener mapControls.map, 'idle', (event) ->
     # Bug fixing: Markers not appear until map moved sightly or clicked:
     # Solution: https://stackoverflow.com/questions/20861402/markers-not-showing-until-map-moved-slightly-or-clicked
-    mapControls.minimalMovementFix() # This is the fix!
+    # Gonna comment this fix beacuse 13-feb-18 google maps api upgrade release.
+    # mapControls.minimalMovementFix() # This is the fix!
 
     mapControls.rememberLastPosition()
 
