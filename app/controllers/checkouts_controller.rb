@@ -8,6 +8,15 @@ class CheckoutsController < ApplicationController
       client: session[:client],
     ).call
 
+    EventTracker::OpenCheckout.new(
+      controller: self,
+      vehicle: session[:vehicle],
+      client: @order_preparator.client,
+      product: @order_preparator.product,
+      promotion: @order_preparator.promotion,
+      branch: @order_preparator.branch
+    ).track
+
     respond_to do |format|
       format.html
     end
