@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180209010232) do
+ActiveRecord::Schema.define(version: 20180217202537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -402,7 +402,7 @@ ActiveRecord::Schema.define(version: 20180209010232) do
     t.string   "type"
     t.integer  "kms"
     t.index ["category_id"], name: "index_promotions_on_category_id", using: :btree
-    t.index ["name"], name: "promotions_business_index", unique: true, using: :btree
+    t.index ["name", "slug"], name: "promotions_business_index", unique: true, using: :btree
     t.index ["slug"], name: "index_promotions_on_slug", using: :btree
     t.index ["type"], name: "index_promotions_on_type", using: :btree
   end
