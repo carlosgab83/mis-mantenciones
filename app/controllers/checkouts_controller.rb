@@ -4,9 +4,18 @@ class CheckoutsController < ApplicationController
     @order_preparator = OrderPreparator.new(
       branch_id: checkout_params[:branch_id],
       product_id: checkout_params[:product_id],
-      pomotion_id: checkout_params[:promotion_id],
+      promotion_id: checkout_params[:promotion_id],
       client: session[:client],
     ).call
+
+    EventTracker::OpenCheckout.new(
+      controller: self,
+      vehicle: session[:vehicle],
+      client: @order_preparator.client,
+      product: @order_preparator.product,
+      promotion: @order_preparator.promotion,
+      branch: @order_preparator.branch
+    ).track
 
     respond_to do |format|
       format.html
