@@ -13,6 +13,8 @@ class PaymentResultsController < ApplicationController
         payment: @payment
       ).track
 
+      SuccessPaymentNotifier.new(payment: @payment, vehicle: session[:vehicle]).call
+
       render :success
 
     elsif @payment and @payment.status == 'cancelled' # i.e Transaction rejected
