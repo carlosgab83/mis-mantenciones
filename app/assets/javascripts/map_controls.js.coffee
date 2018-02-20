@@ -150,18 +150,20 @@ mapControls.buttonListeners = () ->
 
 mapControls.minimalMovementFix = () ->
   cnt = mapControls.map.getCenter()
-  myLatlng = new google.maps.LatLng(cnt.lat()+0.000001,cnt.lng())
-  mapControls.map.panTo(myLatlng);
-  myLatlng = new google.maps.LatLng(cnt.lat()-0.000002,cnt.lng())
-  mapControls.map.panTo(myLatlng)
+  if cnt
+    myLatlng = new google.maps.LatLng(cnt.lat()+0.000001,cnt.lng())
+    mapControls.map.panTo(myLatlng);
+    myLatlng = new google.maps.LatLng(cnt.lat()-0.000002,cnt.lng())
+    mapControls.map.panTo(myLatlng)
 
 #############################################################################
 
 mapControls.rememberLastPosition = () ->
   cnt = mapControls.map.getCenter()
-  sessionStorage.setItem('map-state.last-map-lat',cnt.lat())
-  sessionStorage.setItem('map-state.last-map-lng',cnt.lng())
-  sessionStorage.setItem('map-state.last-map-zoom',mapControls.map.getZoom())
+  if cnt
+    sessionStorage.setItem('map-state.last-map-lat',cnt.lat())
+    sessionStorage.setItem('map-state.last-map-lng',cnt.lng())
+    sessionStorage.setItem('map-state.last-map-zoom',mapControls.map.getZoom())
 
 #############################################################################
 
