@@ -7,6 +7,7 @@ module ProductScraper
     def initialize(url = nil)
       return self unless url
       self.mechanize = Mechanize.new
+      after_instance_hook
       self.page = mechanize.get(url)
     end
 
@@ -32,6 +33,12 @@ module ProductScraper
       price_str.delete!('.')
       price_str.delete!('$')
       price_str.to_f
+    end
+
+    protected
+
+    def after_instance_hook
+      # rewrite by each instance
     end
   end
 end
