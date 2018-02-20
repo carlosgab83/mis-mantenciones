@@ -7,7 +7,7 @@ form.form-inline
         option value="#{branch_type.id}" id="#{branch_type.id}" #{branch_type.name}
   .form-group.hidden
     label.sr-only for="county-field" Ciudad o Comuna
-    input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna"
+    input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna" value="Ciudad o Comuna"
   .form-group
     = link_to 'Neumáticos', search_products_path, class: "map-search btn btn-cta btn-block"
   .form-group
