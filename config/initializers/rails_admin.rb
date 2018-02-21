@@ -172,6 +172,7 @@
         field :status
         field :stock
         field :url
+        field :scraping
         field :deleted
         field :branch_id
         field :product_id

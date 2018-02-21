@@ -9,6 +9,8 @@ class BranchesProduct < ApplicationRecord
     where.not(url:'').where.not(url: nil)
   end
 
+  after_save :update_product_min_price
+
   def cached_price
     # return 0 if Rails.env.development?
     return 250000 if Rails.env.development?
@@ -26,7 +28,11 @@ class BranchesProduct < ApplicationRecord
   end
 
   def price
-    cached_price
+    scraping? ? cached_price : attributes["price"]
+  end
+
+  def update_product_min_price
+    product.update_price
   end
 
   def buyable_item
