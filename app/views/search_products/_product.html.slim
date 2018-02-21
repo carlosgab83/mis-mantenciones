@@ -1,8 +1,20 @@
-= link_to product_path(product)
-  .part-image
-    = image_tag(product.image_url || "part-image.jpg", :alt => product.product_brand.name + " " + product.name)
-  .part-description
-    h6 class="#{"brand #{product.product_brand.name.downcase.tr(" ","-")}"}"
-    p #{product.name}
-    strong desde
-    strong.price #{mismantenciones_number_to_currency(product.price)}
+- if product.id == 211 and product.branches_products.count == 1
+  = link_to open_url_branches_product_path(product.branches_products.first), target: '_blank' do
+    .part-image
+      = image_tag(product.image_url || "part-image.jpg", :alt => product.product_brand.name + " " + product.name)
+    .part-description
+      h6 class="#{"brand #{product.product_brand.name.downcase.tr(" ","-")}"}"
+      p #{product.name}
+      strong desde
+      strong.price #{mismantenciones_number_to_currency(product.price)}
+
+
+- else
+  = link_to product_path(product)
+    .part-image
+      = image_tag(product.image_url || "part-image.jpg", :alt => product.product_brand.name + " " + product.name)
+    .part-description
+      h6 class="#{"brand #{product.product_brand.name.downcase.tr(" ","-")}"}"
+      p #{product.name}
+      strong desde
+      strong.price #{mismantenciones_number_to_currency(product.price)}
