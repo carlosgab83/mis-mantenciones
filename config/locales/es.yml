@@ -42,3 +42,5 @@ es:
 
   general:
     error: "No se pudo completar la operación, por favor inténtelo más tarde"
+  will_paginate:
+    page_gap: "..."
