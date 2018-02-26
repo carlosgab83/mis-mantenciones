@@ -49,6 +49,11 @@ class Product < ApplicationRecord
     branches_products.map{|bp| bp.price }.compact.try(:min)
   end
 
+  def update_price
+    self.price = min_price
+    save
+  end
+
   def description_attribute
     return '' if description_attribute_id.nil?
 
