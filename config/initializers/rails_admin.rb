@@ -172,6 +172,7 @@
         field :status
         field :stock
         field :url
+        field :scraping
         field :deleted
         field :branch_id
         field :product_id
@@ -182,6 +183,22 @@
         end
       end
     end
+
+
+    config.model 'BranchesPromotion' do
+      edit do
+        field :deleted
+        field :branch
+        field :promotion
+        field :checkout_method, :enum do
+          enum do
+            [['Abrir modal de reserva', 0], ['Ir al checkout de Mismantenciones.com', 1]]
+          end
+        end
+      end
+    end
+
+
 
     config.model 'Shop' do
       list do

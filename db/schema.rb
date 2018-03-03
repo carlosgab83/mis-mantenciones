@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180217202537) do
+ActiveRecord::Schema.define(version: 20180221012851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20180217202537) do
     t.integer  "branch_id",                       null: false
     t.integer  "product_id",                      null: false
     t.integer  "checkout_method", default: 0
+    t.boolean  "scraping",        default: true
     t.index ["branch_id", "product_id"], name: "branches_products_business_index", unique: true, using: :btree
     t.index ["branch_id"], name: "index_branches_products_on_branch_id", using: :btree
     t.index ["product_id"], name: "index_branches_products_on_product_id", using: :btree

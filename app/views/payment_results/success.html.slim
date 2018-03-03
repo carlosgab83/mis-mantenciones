@@ -35,7 +35,7 @@
               .col-sm-12
                 - @payment.order.cart.cart_items.each do |cart_item|
                   - buyable = cart_item.buyable_item
-                  = render 'checkouts/buyable', buyable: buyable
+                  = render 'checkouts/buyable_preview', buyable: buyable
                   .row
                     .col-lg-6
                       .form-number
