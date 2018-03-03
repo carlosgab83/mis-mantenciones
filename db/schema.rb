@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221012851) do
+ActiveRecord::Schema.define(version: 20180303204035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -506,6 +506,7 @@ ActiveRecord::Schema.define(version: 20180221012851) do
     t.float    "default_longitude"
     t.integer  "default_zoom"
     t.string   "landing_title"
+    t.boolean  "always_use_default_zoom"
   end
 
   create_table "tipo_seccion", primary_key: "id_tiposeccion", id: :integer, force: :cascade do |t|

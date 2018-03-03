@@ -12,7 +12,7 @@ mapControls.ready = ->
 
 #############################################################################
 
-mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->
+mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom, alwaysUseDefaultZoom) ->
   if defaultLatitude == 1000.0 && defaultLongitude == 1000.0
     mapControls.setMobileLocation()
   else
@@ -34,6 +34,8 @@ mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom) ->
   options = {
     componentRestrictions: {country: "cl"}
   }
+  mapControls.alwaysUseDefaultZoom = alwaysUseDefaultZoom
+
   input = document.getElementById('search-input')
   inputLeftPanel = document.getElementById('search-input-left-panel')
 
@@ -182,7 +184,10 @@ mapControls.goToNewPlace = (autocomplete) ->
     mapControls.map.setCenter mapControls.defaultLocation
   # If the place has a geometry, then present it on a map.
   else if place && place.geometry && place.geometry.viewport
-    mapControls.map.fitBounds place.geometry.viewport
+    if mapControls.alwaysUseDefaultZoom
+      mapControls.map.setCenter place.geometry.location
+    else
+      mapControls.map.fitBounds place.geometry.viewport
   else if place && place.geometry
     mapControls.map.setCenter place.geometry.location
 
