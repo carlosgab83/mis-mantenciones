@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221012851) do
+ActiveRecord::Schema.define(version: 20180303204035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "fuzzystrmatch"
 
   create_table "attributes", force: :cascade do |t|
     t.string   "name",                       null: false
@@ -312,8 +311,6 @@ ActiveRecord::Schema.define(version: 20180221012851) do
     t.boolean "diesel_engine"
     t.boolean "double_traction"
     t.boolean "automatic_transmission"
-    t.integer "from_year"
-    t.integer "to_year"
     t.index ["kilometraje", "vme_id", "diesel_engine", "double_traction", "automatic_transmission"], name: "pauta_business_index", unique: true, using: :btree
   end
 
@@ -506,6 +503,7 @@ ActiveRecord::Schema.define(version: 20180221012851) do
     t.float    "default_longitude"
     t.integer  "default_zoom"
     t.string   "landing_title"
+    t.boolean  "always_use_default_zoom"
   end
 
   create_table "tipo_seccion", primary_key: "id_tiposeccion", id: :integer, force: :cascade do |t|
@@ -554,7 +552,6 @@ ActiveRecord::Schema.define(version: 20180221012851) do
   add_foreign_key "branches", "shops"
   add_foreign_key "branches_branch_types", "branch_types"
   add_foreign_key "branches_branch_types", "branches"
-  add_foreign_key "branches_manteinance_items", "branches"
   add_foreign_key "branches_manteinance_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
   add_foreign_key "branches_manteinance_items", "pauta", column: "pauta_id", primary_key: "id_pauta"
   add_foreign_key "branches_products", "branches"
@@ -569,7 +566,6 @@ ActiveRecord::Schema.define(version: 20180221012851) do
   add_foreign_key "coupons", "promotions"
   add_foreign_key "item_mantencion", "tipo_seccion", column: "id_tipo_seccion", primary_key: "id_tiposeccion", name: "fk_tiposeccion"
   add_foreign_key "manteinance_coupons", "branches"
-  add_foreign_key "manteinance_coupons", "clients"
   add_foreign_key "manteinance_coupons", "pauta", column: "pauta_id", primary_key: "id_pauta"
   add_foreign_key "manteinance_coupons_items", "item_mantencion", column: "manteinance_item_id", primary_key: "id_item_mantencion"
   add_foreign_key "manteinance_coupons_items", "manteinance_coupons"

@@ -33,5 +33,5 @@
   = render 'home/info'
 
 javascript:
-  var initMapGoogleCallback = mapControls.initMap.bind(null, #{SystemSetting.config.default_latitude}, #{SystemSetting.config.default_longitude}, #{SystemSetting.config.default_zoom});
+  var initMapGoogleCallback = mapControls.initMap.bind(null, #{SystemSetting.config.default_latitude}, #{SystemSetting.config.default_longitude}, #{SystemSetting.config.default_zoom}, #{SystemSetting.config.always_use_default_zoom});
 = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgCfExuv-T3zGG0mkSuNx0z0tLhRPlHzw&libraries=places&callback=initMapGoogleCallback&v=3.31"
