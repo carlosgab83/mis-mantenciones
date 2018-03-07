@@ -53,8 +53,8 @@ mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom, alwaysUse
 
   mapControls.afterLoadMapHook()
 
-  # For mobile
-  if navigator.geolocation && generalControls.isMobileScreen()
+  # For mobile and desktop
+  if navigator.geolocation
     mapControls.presetInputAddress()
 
 
