@@ -179,6 +179,14 @@ body.home {
 
 // Dashboard
 section#section-map {
+	#floating-form {
+		.map-box {
+			.map-box-text {
+				background-color: rgba($main-color,0.9);
+				color: $back-color;
+			}
+		}
+	}
 	#center-map {
 		background: rgba($main-color,0.8);
 		border-color: $main-color;

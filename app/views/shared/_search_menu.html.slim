@@ -1,4 +1,4 @@
-form.form-inline
+form
   .form-group.hidden
     select.form-control#service-selection-select
       option value="" Selecciona Servicio
@@ -8,11 +8,21 @@ form.form-inline
   .form-group.hidden
     label.sr-only for="county-field" Ciudad o Comuna
     input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna" value="Ciudad o Comuna"
-  .form-group
-    = link_to 'Neumáticos', search_products_path, class: "map-search btn btn-cta btn-block"
-  .form-group
-    = link_to 'Promociones', promotions_path, class: "map-search btn btn-cta btn-block"
-  .form-group
-    button#services-search.map-search.btn.btn-cta.btn-block type="button"
-      | Busca Servicios
-
+  .map-box-container
+    = link_to search_products_path, class: "map-box" do
+      = image_tag("guideline-background.jpg", :alt => "Neumáticos", :class => "img-responsive")
+      .map-box-text 
+        strong Neumáticos
+        span Lorem ipsum dolor sit amet
+  .map-box-container
+    = link_to promotions_path, class: "map-box" do
+      = image_tag("guideline-background.jpg", :alt => "Promociones", :class => "img-responsive")
+      .map-box-text 
+        strong Promociones
+        span Lorem ipsum dolor sit amet
+  .map-box-container
+    button#services-search.map-box type="button"
+      = image_tag("guideline-background.jpg", :alt => "Promociones", :class => "img-responsive")
+      .map-box-text 
+        strong Busca Servicios
+        span Lorem ipsum dolor sit amet

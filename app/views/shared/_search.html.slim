@@ -6,16 +6,8 @@
   h1.sr-only MisMantenciones.com
   h2.sr-only es un marketplace donde encontrarás los mejores servicios técnicos, talleres mecánicos, servicios automotrices, descuentos, promociones y repuestos para tu auto o moto.
   section#section-map
-    #floating-form.map-form class="#{hide_floating_form ? 'hidden': ''}" style='padding-left: 0px; padding-right: 0px;'
-      .row
-        .col-sm-12
-          p.lead
-            = SystemSetting.config.landing_title
-        .col-sm-12
-          - if not params.keys.include?('bienvenido')
-            = render 'shared/search_form'
-          - else
-            = render 'shared/search_menu'
+    #floating-form.map-form class="#{hide_floating_form ? 'hidden': ''}"
+      = render 'shared/search_menu'
     #left-map.map-form
       = render 'home/left_panel'
     #right-map.map-form
