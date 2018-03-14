@@ -14,7 +14,8 @@ class CheckoutsController < ApplicationController
       client: @order_preparator.client,
       product: @order_preparator.product,
       promotion: @order_preparator.promotion,
-      branch: @order_preparator.branch
+      branch: @order_preparator.branch,
+      price: @order_preparator.buyable_tupple_record.price
     ).track
 
     respond_to do |format|
