@@ -1,17 +1,19 @@
 class PaymentResultsController < ApplicationController
-
+  # NEEDS REFACTOR: Too many if's statements
   def create
     @payment = Payment.where(token: params[:token_ws]).first
 
-    if @payment and @payment.status == 'completed'
-      xml = Nokogiri::XML(@payment.extra_data)
-      @transaction_datetime = DateTime.parse xml.at_xpath("//transactiondate").text
-
-      EventTracker::SuccessPayment.new(
+    if @payment
+      EventTracker::PaymentResult.new(
         controller: self,
         vehicle: session[:vehicle],
         payment: @payment
       ).track
+    end
+
+    if @payment and @payment.status == 'completed'
+      xml = Nokogiri::XML(@payment.extra_data)
+      @transaction_datetime = DateTime.parse xml.at_xpath("//transactiondate").text
 
       SuccessPaymentNotifier.new(payment: @payment, vehicle: session[:vehicle]).call
 

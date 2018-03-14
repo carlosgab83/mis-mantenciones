@@ -4,6 +4,13 @@ class OrdersController < ApplicationController
    order_creator = OrderCreator.new(order_params.merge(buyables: [params[:order][:buyable]])).call
    session_id = "#{order_creator.client.id}-#{order_creator.order.id}"
 
+   EventTracker::ClickToPay.new(
+      controller: self,
+      vehicle: session[:vehicle],
+      order: order_creator.order,
+      payment_type: params[:order][:payment_type]
+    ).track
+
    @webpay_data = PaymentsGateway::Webpay::Normal::Transaction.new.initiate(
       order_creator.cart.price,
       session_id,

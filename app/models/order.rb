@@ -3,6 +3,8 @@ class Order < ApplicationRecord
   belongs_to :client
   belongs_to :branch
 
+  include OrderSerializer
+
   before_create :create_order_number
 
   def create_order_number
