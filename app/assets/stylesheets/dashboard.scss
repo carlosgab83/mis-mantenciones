@@ -235,6 +235,9 @@ section#section-map {
 				flex: 0 0 80%;
 				max-width: 80%;
 				padding: 10px;
+				@media #{$xxs} {
+					align-self: baseline;
+				}
 				.map-title {
 					margin: 0;
 					&:not(:empty) {
@@ -291,6 +294,10 @@ section#section-map {
 								}
 								span {
 									display: block;
+								}
+								@media #{$xxs} {
+									padding-top: 10px;
+									bottom: calc(-100% + 40px);
 								}
 							}
 							&:hover, &:active {
