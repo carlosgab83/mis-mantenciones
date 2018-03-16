@@ -8,21 +8,25 @@ form
   .form-group.hidden
     label.sr-only for="county-field" Ciudad o Comuna
     input#search-input.search-input.form-control type="text" placeholder="Ciudad o Comuna" value="Ciudad o Comuna"
-  .map-box-container
-    = link_to search_products_path, class: "map-box" do
-      = image_tag("guideline-background.jpg", :alt => "Neumáticos", :class => "img-responsive")
-      .map-box-text 
-        strong Neumáticos
-        span Lorem ipsum dolor sit amet
-  .map-box-container
-    = link_to promotions_path, class: "map-box" do
-      = image_tag("guideline-background.jpg", :alt => "Promociones", :class => "img-responsive")
-      .map-box-text 
-        strong Promociones
-        span Lorem ipsum dolor sit amet
-  .map-box-container
-    button#services-search.map-box type="button"
-      = image_tag("guideline-background.jpg", :alt => "Promociones", :class => "img-responsive")
-      .map-box-text 
-        strong Busca Servicios
-        span Lorem ipsum dolor sit amet
+  .map-intro 
+    p.map-title.lead
+      = SystemSetting.config.landing_title
+    .map-intro-container
+      .map-box
+        = link_to search_products_path, class: "map-box-single" do
+          = image_tag("home/banner-neumaticos.jpg", :alt => "Neumáticos", :class => "img-responsive")
+          .map-box-text 
+            strong Neumáticos
+            span Lorem ipsum dolor sit amet
+      .map-box
+        = link_to promotions_path, class: "map-box-single" do
+          = image_tag("home/banner-servicios.jpg", :alt => "Promociones", :class => "img-responsive")
+          .map-box-text 
+            strong Promociones
+            span Lorem ipsum dolor sit amet
+      .map-box
+        button#services-search.map-box-single type="button"
+          = image_tag("home/banner-mapa.jpg", :alt => "Promociones", :class => "img-responsive")
+          .map-box-text 
+            strong Busca Servicios
+            span Lorem ipsum dolor sit amet

@@ -215,7 +215,7 @@ section#section-map {
 		@media #{$lg} {
 		}
 		@media #{$xs} {
-			padding: 50px 0 40px;
+			padding: 55px 0 40px;
 		}
 		form {
 			width: 100%;
@@ -231,57 +231,82 @@ section#section-map {
 			@media #{$xxs} {
 				align-content: flex-start;
 			}
-			.map-box-container {
-				flex: 0 0 33.333333%;
-				max-width: 33.333333%;
+			.map-intro {
+				flex: 0 0 80%;
+				max-width: 80%;
 				padding: 10px;
-				@media #{$xs} {
-					flex: 0 0 50%;
-					max-width: 50%;
-				}
-				@media #{$xxs} {
-					flex: 0 0 100%;
-					max-width: 290px;
-				}
-				.map-box {
-					display: block;
-					border: none;
-					background: transparent;
-					padding: 0;
-					overflow: hidden;
-					position: relative;
-					border-radius: 2px;
-					box-shadow: 0 0 5px rgba(0,0,0,0.2);
-					img {
-						vertical-align: bottom;
-					}
-					.map-box-text {
-						padding: 15px 20px;
-						height: 100%;
+				.map-title {
+					margin: 0;
+					&:not(:empty) {
 						width: 100%;
-						position: absolute;
-						bottom: calc(-100% + 55px);
-						left: 0;
-						text-align: left;
-						@include transition(bottom 0.3s ease-in-out);
-						strong {
-							display: block;
-							font-family: 'Exo', sans-serif;
-							min-height: 40px;
-						}
-						span {
-							display: block;
-						}
+						padding-top: 10px;
+						margin: 0 0 15px;
 					}
-					&:hover, &:active {
-						@media #{$oxs} {
+				}
+				.map-intro-container {
+					display: flex;
+					flex-wrap: wrap;
+					align-items: center;
+					align-content: center;
+					justify-content: center;
+					.map-box {
+						flex: 0 0 33.333333%;
+						max-width: 33.333333%;
+						padding: 10px;
+						@media #{$xs} {
+							flex: 0 0 50%;
+							max-width: 50%;
+						}
+						@media #{$xxs} {
+							flex: 0 0 100%;
+							max-width: 290px;
+						}
+						.map-box-single {
+							display: block;
+							border: none;
+							background: transparent;
+							padding: 0;
+							overflow: hidden;
+							position: relative;
+							border-radius: 2px;
+							box-shadow: 0 0 5px rgba(0,0,0,0.2);
+							img {
+								vertical-align: bottom;
+								filter: grayscale(0%);
+								@include transition(filter 0.3s ease-in-out);
+							}
 							.map-box-text {
-								bottom: 0;
+								padding: 15px 20px;
+								height: 100%;
+								width: 100%;
+								position: absolute;
+								bottom: calc(-100% + 55px);
+								left: 0;
+								text-align: left;
+								@include transition(bottom 0.3s ease-in-out);
+								strong {
+									display: block;
+									font-family: 'Exo', sans-serif;
+									min-height: 40px;
+								}
+								span {
+									display: block;
+								}
+							}
+							&:hover, &:active {
+								@media #{$oxs} {
+									.map-box-text {
+										bottom: 0;
+									}
+									img {
+										filter: grayscale(100%);
+									}
+								}
 							}
 						}
 					}
 				}
-			}
+			} 
 		}
 		.form-inline {
 			display: table;
@@ -666,9 +691,10 @@ section#section-map {
 	.lead {
 		display: inline-block;
 		margin-bottom: 0;
-		font-size: 16px;
+		font-size: 18px;
 		line-height: 1em;
 		font-weight: bold;
+		font-style: italic;
 		padding: 0;
 		margin-bottom: 14px;
 		@media #{$xs} {padding-top: 0;}

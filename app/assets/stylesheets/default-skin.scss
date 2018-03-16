@@ -180,7 +180,15 @@ body.home {
 // Dashboard
 section#section-map {
 	#floating-form {
-		.map-box {
+		.map-intro {
+			background-color: rgba($light-color,0.82);
+			color: $main-color;
+			box-shadow: 4px 4px 8px rgba($dark-color,0.1);
+			.map-title {
+				text-shadow: 0 2px 0 $light-color;
+			}
+		}
+		.map-box-single {
 			.map-box-text {
 				background-color: rgba($main-color,0.9);
 				color: $back-color;
