@@ -134,6 +134,7 @@
       edit do
         field :name
         field :email
+        field :info_email
         field :phone1
         field :phone2
         field :address

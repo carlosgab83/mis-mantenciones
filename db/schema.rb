@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180303204035) do
+ActiveRecord::Schema.define(version: 20180319023453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20180303204035) do
     t.float    "interval_between_jumps"
     t.string   "slug"
     t.integer  "checkout_method",        default: 0
+    t.string   "info_email"
     t.index ["branch_type_id"], name: "index_branches_on_branch_type_id", using: :btree
     t.index ["name"], name: "branches_business_index", unique: true, using: :btree
     t.index ["plan_id"], name: "index_branches_on_plan_id", using: :btree
@@ -494,6 +495,7 @@ ActiveRecord::Schema.define(version: 20180303204035) do
     t.boolean  "status",     default: false
     t.string   "image_url"
     t.string   "slug"
+    t.string   "info_email"
     t.index ["name"], name: "shops_business_index", unique: true, using: :btree
     t.index ["rut"], name: "index_shops_on_rut", unique: true, using: :btree
   end
