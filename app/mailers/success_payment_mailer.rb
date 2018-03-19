@@ -20,6 +20,7 @@ class SuccessPaymentMailer < ApplicationMailer
             {name: 'TOTAL_AMOUNT', content: mismantenciones_number_to_currency(payment.order.cart.price)},
             {name: 'SHOP_NAME', content: payment.order.branch.shop.name},
             {name: 'BRANCH_NAME', content: payment.order.branch.name},
+            {name: 'PICKUP_BRANCH_NAME', content: payment.order.region},
             {name: 'ORDER_NUMBER', content: payment.order.order_number},
             {name: 'PROMOS_SECTION', content: CarouselPromotionsCreatorForMailer.new(promotions_ids: promotions_ids, patent: patent, kms: kms).call},
             {name: 'COPY_RIGHT_YEAR', content: Date.today.year}
@@ -51,6 +52,7 @@ class SuccessPaymentMailer < ApplicationMailer
             {name: 'TOTAL_AMOUNT', content: mismantenciones_number_to_currency(payment.order.cart.price)},
             {name: 'SHOP_NAME', content: payment.order.branch.shop.name},
             {name: 'BRANCH_NAME', content: payment.order.branch.name},
+            {name: 'PICKUP_BRANCH_NAME', content: payment.order.region},
             {name: 'ORDER_NUMBER', content: payment.order.order_number},
             {name: 'COPY_RIGHT_YEAR', content: Date.today.year}
           ]
