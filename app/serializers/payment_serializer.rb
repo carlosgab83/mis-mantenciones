@@ -3,6 +3,7 @@ module PaymentSerializer
     Jbuilder.new do |json|
       json.amount amount
       json.status status
+      json.order_number order.try(:order_number)
     end
   end
 end
