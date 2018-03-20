@@ -14,8 +14,8 @@ class WebpayController < ApplicationController
       response_code = @webpay_data.xpath("//responsecode").first.try(:text)
       case response_code
         when '0'
-          payment.status = :completed
-          payment.order.status = :completed
+          payment.status = :semi_completed
+          payment.order.status = :semi_completed
           payment.extra_data = @webpay_data
         else
           payment.status = :cancelled
