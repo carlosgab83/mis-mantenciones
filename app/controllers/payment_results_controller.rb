@@ -11,11 +11,19 @@ class PaymentResultsController < ApplicationController
       ).track
     end
 
-    if @payment and @payment.status == 'completed'
+    if @payment and (@payment.status == 'semi_completed' or @payment.status == 'completed')
       xml = Nokogiri::XML(@payment.extra_data)
       @transaction_datetime = DateTime.parse xml.at_xpath("//transactiondate").text
 
-      SuccessPaymentNotifier.new(payment: @payment, vehicle: session[:vehicle]).call
+      if @payment.status == 'semi_completed'
+        SuccessPaymentNotifier.new(payment: @payment, vehicle: session[:vehicle]).call
+
+        @payment.status = :completed
+        @payment.save
+
+        @payment.order.status = :completed
+        @payment.order.save
+      end
 
       render :success
 
