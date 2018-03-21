@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319023453) do
+ActiveRecord::Schema.define(version: 20180320234213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,12 +134,12 @@ ActiveRecord::Schema.define(version: 20180319023453) do
   end
 
   create_table "branches_promotions", force: :cascade do |t|
-    t.boolean  "deleted",         default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.boolean  "deleted",      default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "branch_id"
-    t.integer  "promotion_id",                    null: false
-    t.integer  "checkout_method", default: 0
+    t.integer  "promotion_id",                 null: false
+    t.float    "price"
     t.index ["branch_id", "promotion_id"], name: "branches_promotions_business_index", unique: true, using: :btree
     t.index ["branch_id"], name: "index_branches_promotions_on_branch_id", using: :btree
     t.index ["promotion_id"], name: "index_branches_promotions_on_promotion_id", using: :btree
@@ -406,6 +406,8 @@ ActiveRecord::Schema.define(version: 20180319023453) do
     t.string   "slug"
     t.string   "type"
     t.integer  "kms"
+    t.integer  "button_type"
+    t.string   "button_text"
     t.index ["category_id"], name: "index_promotions_on_category_id", using: :btree
     t.index ["name", "slug"], name: "promotions_business_index", unique: true, using: :btree
     t.index ["slug"], name: "index_promotions_on_slug", using: :btree

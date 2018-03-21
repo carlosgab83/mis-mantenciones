@@ -25,7 +25,7 @@
                         = form_tag checkouts_path, method: :post, id: "product-to-checkout-branch-id-#{bp.branch_id}"
                           = hidden_field :checkout, :branch_id, value: bp.branch_id
                           = hidden_field :checkout, :product_id, value: bp.product_id
-                        a.submitable data-branch_id="#{bp.branch_id}"
+                        a.submitable-product data-branch_id="#{bp.branch_id}"
                           = render 'branches_list', bp: bp, i: i
 
                       - elsif bp.url.present?

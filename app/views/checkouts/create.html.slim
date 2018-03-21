@@ -10,7 +10,7 @@
           .col-sm-12
             h1
               | Paga tu compra en&nbsp;
-              strong #{@order_preparator.branch.name}
+              strong #{@order_preparator.branch ? @order_preparator.branch.name : @order_preparator.branches_promotion.branch.shop.name}
             p Escribe tus datos de contacto para coordinar la instalación de tus neumáticos.
         .row
           .col-sm-4
@@ -47,40 +47,7 @@
                     = image_tag("webpay.svg", :alt => "webpay", :class => "img-responsive webpay-logo")
           .col-sm-4
             .well.checkout-installation
-              h2.checkout-title
-                | 3. Sucursal de&nbsp;
-                strong Retiro o instalación
-              p.small Selecciona la forma de entrega
-              hr
-              / .form-group
-              /   label class="sr-only" Dirección
-              /   = f.text_field :street_address, placeholder: "Calle (ej: San Francisco 131)", class: "form-control"
-              / .form-group
-              /   label class="sr-only" Depto/Casa/Sitio
-              /   = f.text_field :number_address, placeholder: "Casa / Depto (ej: Depto 80)", class: "form-control"
-              .form-group
-                label.checkbox
-                    = f.check_box :branch_retirement, checked: "checked"
-                    span
-                      | Retiro en sucursal
-              .form-group
-                label class="sr-only" Región
-                = f.select(:region, @order_preparator.branch.shop.branches.actives.with_plan.with_location.pluck(:name), {prompt: 'Sucursal'}, { class: 'form-control' })
-
-              / .form-group
-                label class="sr-only" Comuna
-                = f.select(:commune_id, Comune.all.map{|c|[c.desc_comuna.capitalize, c.id_comuna]}, {prompt: 'Comuna'}, { class: 'form-control' })
-              / hr
-              / .form-group
-                label.checkbox
-                  = f.check_box :contact_seller
-                  span Contactar al comprador
-              / .form-group
-                label class="sr-only" Nombre Completo
-                = f.text_field :full_name, placeholder: "Nombre completo", class: "form-control"
-              / .form-group
-                label class="sr-only" Teléfono de Contacto
-                = f.text_field :contact_phone, placeholder: "Teléfono de contacto", class: "form-control"
+              = render 'retirement_section', order_preparator: @order_preparator, f: f
             .well.checkout-conditions
               h2.checkout-title
                 | 4. Condiciones del&nbsp;
