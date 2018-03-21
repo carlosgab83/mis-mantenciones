@@ -40,33 +40,19 @@
             span.main-title Comentarios
             .fb-comments data-width="100%" data-numposts="10"
 
-
         .col-sm-5
           #fixed-column
-            - if @promotion.show_button?
-              a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' #{@promotion.category.promotion_action_button_name}
-              .product-table
-                table.table.table-bordered
-                  thead
-                    tr
-                      th Nombre
-                      th Precio
-                      /th
-                  tbody
-                    - @promotion.branches_promotions_with_prices.each_with_index do |bp, i|
-                      tr
-                        td.branch-name colspan="2"
-                          - if bp.branch.mismantenciones_checkout? or (bp.branch.delegate_to_product? and bp.mismantenciones_checkout?)
-                                  = form_tag checkouts_path, method: :post, id: "product-to-checkout-branch-id-#{bp.branch_id}"
-                                    = hidden_field :checkout, :branch_id, value: bp.branch_id
-                                    = hidden_field :checkout, :promotion_id, value: bp.promotion_id
-                                  a.submitable data-branch_id="#{bp.branch_id}"
-                                    = render '/promotions/branches_list', bp: bp, i: i
+            - if @promotion.mm_checkout?
+              = form_tag checkouts_path, method: :post, id: "product-to-checkout"
+                = hidden_field :checkout, :promotion_id, value: @promotion.id
+              a.submitable-promotion.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' #{@promotion.button_text}
 
+            - elsif @promotion.show_button?
+              a.btn.btn-cta.btn-lg.btn-block#buy-promotion data-id='#{@promotion.id}' #{@promotion.button_text}
 
-              - if @promotion.promo_price?
+            - if @promotion.promo_price? and @promotion.show_button? and not @promotion.info_modal?
                 .promo-prices
-                  span.promo-price = mismantenciones_number_to_currency(@promotion.promo_price)
+                  span.promo-price = "Desde " + mismantenciones_number_to_currency(@promotion.promo_price)
                   span.full-price = mismantenciones_number_to_currency(@promotion.full_price)
 
             ul.promo-conditions.hidden-xs
