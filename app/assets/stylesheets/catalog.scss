@@ -781,7 +781,9 @@
 	&.goodride,
 	&.ling-long,
 	&.aplus,
-	&.aeolus {
+	&.aeolus,
+	&.windforce,
+	&.bfgoodrich {
 		display: block;
 		height: 25px;
 		width: 100%;
@@ -808,4 +810,6 @@
 	&.ling-long {background-image: image-url("brands/ling-long.png");}
 	&.aplus {background-image: image-url("brands/aplus.png");}
 	&.aeolus {background-image: image-url("brands/aeolus.png");}
+	&.windforce {background-image: image-url("brands/windforce.png");}
+	&.bfgoodrich {background-image: image-url("brands/bfgoodrich.png");}
 }
