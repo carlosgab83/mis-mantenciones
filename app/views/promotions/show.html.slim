@@ -80,11 +80,12 @@
 
 = render 'shared/footer'
 
-javascript:
-  // Buy promotion
-  $('#buy-promotion').click(function(event) {
-    couponsControls.buyPromotion(this);
-  });
+- unless @promotion.mm_checkout?
+  javascript:
+    // Buy promotion
+    $('#buy-promotion').click(function(event) {
+      couponsControls.buyPromotion(this);
+    });
 
 script type='application/ld+json'
   |
