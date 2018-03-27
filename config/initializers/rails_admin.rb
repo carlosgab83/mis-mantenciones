@@ -24,7 +24,6 @@
   # config.show_gravatar true
 
   RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::XlsUpload)
-  RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::XlsMatrixUpload)
 
   config.actions do
     dashboard do
