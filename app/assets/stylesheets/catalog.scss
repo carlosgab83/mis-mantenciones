@@ -779,11 +779,12 @@
 	&.westlake,
 	&.achilles,
 	&.goodride,
-	&.ling-long,
+	&.linglong,
 	&.aplus,
 	&.aeolus,
 	&.windforce,
-	&.bfgoodrich {
+	&.bfgoodrich,
+	&.aptani {
 		display: block;
 		height: 25px;
 		width: 100%;
@@ -807,9 +808,10 @@
 	&.westlake {background-image: image-url("brands/westlake.png");}
 	&.achilles {background-image: image-url("brands/achilles.png");}
 	&.goodride {background-image: image-url("brands/goodride.png");}
-	&.ling-long {background-image: image-url("brands/ling-long.png");}
+	&.linglong {background-image: image-url("brands/ling-long.png");}
 	&.aplus {background-image: image-url("brands/aplus.png");}
 	&.aeolus {background-image: image-url("brands/aeolus.png");}
 	&.windforce {background-image: image-url("brands/windforce.png");}
 	&.bfgoodrich {background-image: image-url("brands/bfgoodrich.png");}
+	&.aptany {background-image: image-url("brands/aptany.png");}
 }
