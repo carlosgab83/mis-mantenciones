@@ -1,10 +1,10 @@
 class OrderPreparator < BaseService
 
-  attr_reader :branch, :client, :product, :promotion, :order, :branches_product, :branches_promotion, :branches_promotions
+  attr_reader :branch, :client, :product, :promotion, :order, :branches_product, :branches_promotion
 
   def call
     self.client = client
-    self.branch = Branch.where(id: params[:branch_id]).first
+    self.branch = Branch.find(params[:branch_id])
     self.product = Product.where(id: params[:product_id]).first
     self.promotion = Promotion.where(id: params[:promotion_id]).first
 
@@ -13,8 +13,7 @@ class OrderPreparator < BaseService
     end
 
     if promotion
-      self.branches_promotions = promotion.branches_promotions
-      self.branches_promotion = branches_promotions.first
+      self.branches_promotion = promotion.branches_promotions.where(branch_id: branch.id).first
     end
 
     fill_order
@@ -35,7 +34,7 @@ class OrderPreparator < BaseService
 
   private
 
-  attr_writer :branch, :client, :product, :promotion, :order, :branches_product, :branches_promotion, :branches_promotions
+  attr_writer :branch, :client, :product, :promotion, :order, :branches_product, :branches_promotion
 
   def fill_order
     self.order = Order.new

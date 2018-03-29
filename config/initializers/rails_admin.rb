@@ -24,7 +24,6 @@
   # config.show_gravatar true
 
   RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::XlsUpload)
-  RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::XlsMatrixUpload)
 
   config.actions do
     dashboard do
@@ -43,13 +42,6 @@
 
     ###########################
     ### CUSTOM ACTIONS ########
-    root :xls_matrix_import do
-      register_instance_option :link_icon do
-          'icon-upload'
-        end
-    end
-    xls_matrix_upload
-
     root :xls_import do
       register_instance_option :link_icon do
           'icon-upload'
@@ -150,7 +142,11 @@
         field :plan
         field :interval_between_jumps
         field :slug
-        field :checkout_method
+        field :checkout_method, :enum do
+          enum do
+            [['Seguir la url del producto', 0], ['Ir al checkout de Mismantenciones.com', 1], ['Delegar decisión a cada producto', 2]]
+          end
+        end
       end
     end
 
@@ -174,18 +170,29 @@
         field :deleted
         field :branch_id
         field :product_id
-        field :checkout_method
+        field :checkout_method, :enum do
+          enum do
+            [['Seguir la url del producto', 0], ['Ir al checkout de Mismantenciones.com', 1]]
+          end
+        end
       end
     end
+
 
     config.model 'BranchesPromotion' do
       edit do
         field :deleted
         field :branch
         field :promotion
-        field :price
+        field :checkout_method, :enum do
+          enum do
+            [['Abrir modal de reserva', 0], ['Ir al checkout de Mismantenciones.com', 1]]
+          end
+        end
       end
     end
+
+
 
     config.model 'Shop' do
       list do
@@ -238,20 +245,23 @@
       end
     end
 
-    config.model 'Promotion' do
-      edit do
-        include_all_fields
-      end
-    end
+    # config.model 'OtherPromotion' do
+    #   edit do
+    #     field :branches do
+    #       associated_collection_cache_all true
+    #     end
+    #     include_all_fields
+    #   end
+    # end
 
-    config.model 'BranchInformation' do
-      edit do
-        field :branches do
-          associated_collection_cache_all true
-        end
-        include_all_fields
-      end
-    end
+    # config.model 'BranchInformation' do
+    #   edit do
+    #     field :branches do
+    #       associated_collection_cache_all true
+    #     end
+    #     include_all_fields
+    #   end
+    # end
 
     # config.model 'Manteinance' do
     #   edit do
