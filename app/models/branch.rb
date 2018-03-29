@@ -79,12 +79,4 @@ class Branch < ApplicationRecord
     checkout_method == DELEGATE_TO_PRODUCT
   end
 
-  # Read automatically by rails_admin
-  def checkout_method_enum
-    [
-      ['Seguir la url del producto', ALWAYS_FOLLOW_PRODUCT_URL],
-      ['Ir al checkout de Mismantenciones.com', MISMANTENCIONES_CHECKOUT],
-      ['Delegar decisión a cada producto', DELEGATE_TO_PRODUCT]
-    ]
-  end
 end
