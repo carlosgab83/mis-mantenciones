@@ -35,6 +35,7 @@ class SuccessPaymentMailer < ApplicationMailer
     template_name = 'mismantenciones-com-branch-payment-successful'
     template_content = []
     splitted_emails = payment.order.branch.email.split(',')
+    message = {}
     splitted_emails.each do |email|
       message = {
         from_name: default_from_name,
