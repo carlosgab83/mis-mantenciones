@@ -94,12 +94,11 @@
 
 = render 'shared/footer'
 
-- unless @promotion.mm_checkout?
-  javascript:
-    // Buy promotion
-    $('#buy-promotion').click(function(event) {
-      couponsControls.buyPromotion(this);
-    });
+javascript:
+  // Buy promotion
+  $('#buy-promotion').click(function(event) {
+    couponsControls.buyPromotion(this);
+  });
 
 script type='application/ld+json'
   |
