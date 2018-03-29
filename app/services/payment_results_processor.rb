@@ -29,7 +29,7 @@ class PaymentResultsProcessor < BaseService
     self.transaction_datetime = DateTime.parse xml.at_xpath("//transactiondate").text
 
     if payment.status == 'semi_completed'
-      # SuccessPaymentNotifier.new(payment: payment, vehicle: vehicle).call
+      SuccessPaymentNotifier.new(payment: payment, vehicle: vehicle).call
       payment.status = :completed
       payment.save
       payment.order.status = :completed
