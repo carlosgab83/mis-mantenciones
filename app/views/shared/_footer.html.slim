@@ -2,14 +2,8 @@ footer#footer
   .container
     .row
       .col-xs-6.col-sm-8
-        ul.list-inline
-          li
-            = link_to "Términos y Condiciones", "http://files.mismantenciones.com/pdf/Términos-y-Condiciones-MisMantenciones.pdf", target: :_blank
-          li
-            span.hidden-xs
-              | ¿Necesitas Ayuda?
-              br
-              | &nbsp;contacto@mismantenciones.com
+        .webpay
+          = image_tag("webpay.png", :alt => "Webpay")
 
       .col-xs-6.col-sm-4.text-right
         ul.list-inline

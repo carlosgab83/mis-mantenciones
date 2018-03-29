@@ -10,14 +10,21 @@ module SearchProductsHelper
     attributes = SearchCategorySetting.horizontal_attributes_for_category(category).to_a
     return values.sort if attribute_id == attributes.first.id
     if attribute_id == attributes[1].id
-      the_values = search_products_form.horizontal_filters.attrs_values0.map{|x|x[1]}
-      return (the_values.any? ? the_values.sort : [(search_products_form.client_search_input['horizontal_filters']['by_attributes']||{}).values[1]] || [])
+      i = 1
+      method_name = 'attrs_values0'
+      return options(search_products_form, i, method_name)
     end
 
     if attribute_id == attributes[2].id
-      the_values = search_products_form.horizontal_filters.attrs_values1.map{|x|x[1]}
-      return (the_values.any? ? the_values.sort : [(search_products_form.client_search_input['horizontal_filters']['by_attributes']||{}).values[2]] || [])
+      i = 2
+      method_name = 'attrs_values1'
+      return options(search_products_form, i, method_name)
     end
+  end
+
+  def options(search_products_form, i, method_name)
+    the_values = search_products_form.horizontal_filters.send(method_name).map{|x|x[1]}
+    return (the_values.any? ? the_values.sort : [(search_products_form.client_search_input['horizontal_filters']['by_attributes']||{}).values[i]] || [])
   end
 
   def verify_all_deselected(attribute_id)
