@@ -4,10 +4,10 @@
       h4.modal-title #{image_tag('logo-mm.png')}
     .modal-body
       .text-center.text-primary
-        span.step-text Paso 2 de 2.&nbsp;
+        span.step-text Paso 2 de 2.
         .what
           = "#{@coupon.promotion.done_text(@coupon)}"
-        - if @coupon.promotion.regular_modal? and not @coupon.promotion.is_a?(BranchInformation)
+        - if not @coupon.promotion.category.vehicle? and not @coupon.promotion.is_a?(BranchInformation)
           .how-much
             strong &nbsp;en #{@coupon.promotion.shops_details}
             - if @coupon.price.present?

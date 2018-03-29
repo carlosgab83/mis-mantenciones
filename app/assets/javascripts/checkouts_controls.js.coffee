@@ -10,12 +10,9 @@ checkoutsControls.ready = ->
 
 checkoutsControls.initilization = () ->
 
-  $('a.submitable-product').click ->
+  $('a.submitable').click ->
     branch_id = $(this).data('branch_id')
     $('#product-to-checkout-branch-id-' + branch_id).submit()
-
-  $('a.submitable-promotion').click ->
-    $('#product-to-checkout').submit()
 
   $('#buyable-quantity_selector').click ->
     params = {}

@@ -44,9 +44,4 @@ class BranchesProduct < ApplicationRecord
   def mismantenciones_checkout?
     checkout_method == MISMANTENCIONES_CHECKOUT
   end
-
-  # Read automatically by rails_admin
-  def checkout_method_enum
-    [['Seguir la url del producto', FOLLOW_PRODUCT_URL], ['Ir al checkout de Mismantenciones.com', MISMANTENCIONES_CHECKOUT]]
-  end
 end
