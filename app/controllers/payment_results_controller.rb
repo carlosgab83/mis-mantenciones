@@ -1,13 +1,11 @@
 class PaymentResultsController < ApplicationController
-  # NEEDS REFACTOR: Too many if's statements
   def create
-
     @payment = Payment.where(token: params[:token_ws]).first || Payment.where(token: params["TBK_TOKEN"]).first # later is when is error
 
     service = PaymentResultsProcessor.new(payment: @payment, vehicle: session[:vehicle])
     success = service.call
 
-    if @payment
+    if service.normal_flow
       EventTracker::PaymentResult.new(
         controller: self,
         vehicle: session[:vehicle],

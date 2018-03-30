@@ -2,14 +2,17 @@
 
 class PaymentResultsProcessor < BaseService
 
-  attr_reader :payment, :transaction_datetime, :vehicle
+  attr_reader :payment, :vehicle, :normal_flow
 
   def call
     self.payment = params[:payment]
     self.vehicle = params[:vehicle]
     return false unless payment
+    payment.reload
     case payment.status
-      when 'semi_completed', 'completed'
+      when 'completed'
+        true
+      when 'semi_completed'
         process_success
       when 'cancelled'
         false
@@ -20,21 +23,24 @@ class PaymentResultsProcessor < BaseService
     end
   end
 
+  def transaction_datetime
+    @transaction_datetime ||= -> {
+      xml = Nokogiri::XML(payment.extra_data)
+      DateTime.parse xml.at_xpath("//transactiondate").text
+    }.call
+  end
+
   private
 
-  attr_writer :payment, :transaction_datetime, :vehicle
+  attr_writer :payment, :transaction_datetime, :vehicle, :normal_flow
 
   def process_success
-    xml = Nokogiri::XML(payment.extra_data)
-    self.transaction_datetime = DateTime.parse xml.at_xpath("//transactiondate").text
-
-    if payment.status == 'semi_completed'
-      SuccessPaymentNotifier.new(payment: payment, vehicle: vehicle).call
-      payment.status = :completed
-      payment.save
-      payment.order.status = :completed
-      payment.order.save
-    end
+    payment.status = :completed
+    payment.save
+    payment.order.status = :completed
+    payment.order.save
+    self.normal_flow = true
+    SuccessPaymentNotifier.new(payment: payment, vehicle: vehicle).call
     true
   end
 
