@@ -42,5 +42,10 @@
                         strong = cart_item.quantity
                         span x&nbsp;
                         strong #{mismantenciones_number_to_currency(cart_item.unit_price)}
+                .row
+                    .col-lg-6
+                      .form-number
+                        strong Total
+                        strong #{mismantenciones_number_to_currency(@payment.order.cart.price)}
 
 = render 'shared/footer_checkout'
