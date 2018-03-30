@@ -8,9 +8,11 @@ class PaymentResultsProcessor < BaseService
     self.payment = params[:payment]
     self.vehicle = params[:vehicle]
     return false unless payment
+    self.normal_flow = true
     payment.reload
     case payment.status
       when 'completed'
+        self.normal_flow = false # Possible double request from transbabk
         true
       when 'semi_completed'
         process_success
@@ -39,7 +41,6 @@ class PaymentResultsProcessor < BaseService
     payment.save
     payment.order.status = :completed
     payment.order.save
-    self.normal_flow = true
     SuccessPaymentNotifier.new(payment: payment, vehicle: vehicle).call
     true
   end
