@@ -16,16 +16,19 @@
   .single-part
     - if buyable.promo_price.present? and buyable.show_button?
 
-      .promo-image
+      .part-image
         // si hay logo de la empresa
         = image_tag(buyable.branches.try(:last).try(:shop).try(:image_url) || "", :alt => "", :class => "brand-logo")
         = image_tag(buyable.image_url || "promo-image.jpg", :alt => buyable.name)
-      .promo-description
+      .part-description
         p 
-          span = "#{@buyable.name} en "
-          strong #{@promotion.branches.first.shop.name}
+          | #{buyable.name} en 
+          strong #{buyable.branches.first.shop.name}
+        ul.list-unstyled
+          li
+            strong por 
+            span #{mismantenciones_number_to_currency(buyable.promo_price)}
 
-          span #{mismantenciones_number_to_currency(buyable.promo_price)}
           - if buyable.full_price != buyable.promo_price
             strong.changed #{mismantenciones_number_to_currency(buyable.full_price)}
     - else
