@@ -21,16 +21,10 @@
         = image_tag(buyable.branches.try(:last).try(:shop).try(:image_url) || "", :alt => "", :class => "brand-logo")
         = image_tag(buyable.image_url || "promo-image.jpg", :alt => buyable.name)
       .part-description
-        p 
-          | #{buyable.name} en 
+        p
+          | #{buyable.name} en
           strong #{buyable.branches.first.shop.name}
-        ul.list-unstyled
-          li
-            strong por 
-            span #{mismantenciones_number_to_currency(buyable.promo_price)}
 
-          - if buyable.full_price != buyable.promo_price
-            strong.changed #{mismantenciones_number_to_currency(buyable.full_price)}
     - else
       .promo-image
         = image_tag(buyable.branches.try(:last).try(:shop).try(:image_url) || "", :alt => "", :class => "brand-logo")

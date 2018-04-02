@@ -78,7 +78,7 @@
                   .form-group
                     label class="sr-only" Cantidad
                     .input-group
-                      input type="number" placeholder="Cantidad" name="order[buyable[quantity]]" class="form-control" value="1" min="1" max="10" id="buyable-quantity_selector" data-price="#{@order_preparator.buyable_tupple_record.price}"
+                      input type="number" placeholder="Cantidad" name="order[buyable[quantity]]" class="form-control" value="1" min="1" max="#{maximum_units(@order_preparator)}" id="buyable-quantity_selector" data-price="#{@order_preparator.buyable_tupple_record.price}"
                       .input-group-addon
                         span x&nbsp;
                         strong #{mismantenciones_number_to_currency(@order_preparator.buyable_tupple_record.price)}
