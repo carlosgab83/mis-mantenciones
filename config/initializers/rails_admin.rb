@@ -142,11 +142,7 @@
         field :plan
         field :interval_between_jumps
         field :slug
-        field :checkout_method, :enum do
-          enum do
-            [['Seguir la url del producto', 0], ['Ir al checkout de Mismantenciones.com', 1], ['Delegar decisión a cada producto', 2]]
-          end
-        end
+        field :checkout_method
       end
     end
 
@@ -170,29 +166,18 @@
         field :deleted
         field :branch_id
         field :product_id
-        field :checkout_method, :enum do
-          enum do
-            [['Seguir la url del producto', 0], ['Ir al checkout de Mismantenciones.com', 1]]
-          end
-        end
+        field :checkout_method
       end
     end
-
 
     config.model 'BranchesPromotion' do
       edit do
         field :deleted
         field :branch
         field :promotion
-        field :checkout_method, :enum do
-          enum do
-            [['Abrir modal de reserva', 0], ['Ir al checkout de Mismantenciones.com', 1]]
-          end
-        end
+        field :price
       end
     end
-
-
 
     config.model 'Shop' do
       list do
@@ -245,23 +230,20 @@
       end
     end
 
-    # config.model 'OtherPromotion' do
-    #   edit do
-    #     field :branches do
-    #       associated_collection_cache_all true
-    #     end
-    #     include_all_fields
-    #   end
-    # end
+    config.model 'Promotion' do
+      edit do
+        include_all_fields
+      end
+    end
 
-    # config.model 'BranchInformation' do
-    #   edit do
-    #     field :branches do
-    #       associated_collection_cache_all true
-    #     end
-    #     include_all_fields
-    #   end
-    # end
+    config.model 'BranchInformation' do
+      edit do
+        field :branches do
+          associated_collection_cache_all true
+        end
+        include_all_fields
+      end
+    end
 
     # config.model 'Manteinance' do
     #   edit do
