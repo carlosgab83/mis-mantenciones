@@ -8,7 +8,7 @@ class CheckoutsController < ApplicationController
     end
   end
 
-  def show # direct URL to chekout: /checkout?product=product_slug&branch=branch_slug or /checkout?promotion=promotion_slug
+  def show # direct URL to chekout: /checkout/product_slug?branch=branch_slug or /checkout/promotion_slug
     product = Product.friendly.find(params[:id]) rescue nil
     promotion = Promotion.friendly.find(params[:id]) rescue nil
     branch = Branch.friendly.find(params[:branch]) rescue nil
