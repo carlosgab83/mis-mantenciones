@@ -15,5 +15,6 @@ FactoryGirl.define do
     max_coupons 100
     priority 1
     category
+    button_type 1
   end
 end
