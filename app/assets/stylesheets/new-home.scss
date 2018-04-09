@@ -82,12 +82,12 @@
           .close-item {
             display: block;
           }
-          a.single-item-link {
+          .single-item-link {
             height: 30%;
           }
         }
         @media #{$oxs} {
-          a.single-item-link {
+          .single-item-link {
             height: 40%;
           }
           .single-item-extra {
@@ -111,13 +111,14 @@
         z-index: 1;
         display: none;
       }
-      a.single-item-link {
+      .single-item-link {
         display: flex;
         align-items: center;
         width: 100%;
         height: 100%;
         color: $dark-color;
         padding: 15px;
+        @include transition(all 0.3s ease-in-out);
         span {
           flex: 0 0 100%;
           min-width: 100%;
@@ -131,11 +132,14 @@
           margin: 0 auto;
           max-width: 320px;
           padding: 15px;
-          float: none;
           display: block;
           input.form-control {
             background-color: $back-color;
             margin-bottom: 4px
+          }
+          .single-promo {
+            float: none;
+
           }
           .btn-link {
             text-align: center;
