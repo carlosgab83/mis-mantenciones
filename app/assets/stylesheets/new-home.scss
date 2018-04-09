@@ -5,3 +5,144 @@
 // New Home 2018
 //////////////////////////////////////////////////////////
 
+.new-home {
+  position: relative;
+  height: 100%;
+  @extend .cover-background;
+  background-image: image-url("guideline-background.jpg");
+}
+.new-home_header {
+  height: 50px;
+  padding: 10px 15px;
+  text-align: center;
+  background-color: rgba($dark-color,0.9);
+  @media #{$oxs} {
+    height: 80px;
+  }
+  img {
+    display: inline-block;
+    vertical-align: top;
+    &.visible-xs {    
+      height: 30px;
+      @media #{$xs} {
+        display: inline-block!important;
+      }
+    }
+    &.hidden-xs {
+      margin-top: 15px;
+      max-width: 292px;
+    }
+  }
+}
+.new-home_body {
+  height: calc(100% - 50px);
+  @media #{$oxs} {
+    height: calc(100% - 80px);
+  }
+  .list-unstyled {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    @media #{$oxs} {
+      flex-direction: row;
+    }
+    .single-item {
+      position: relative;
+      flex: 1 1;
+      text-align: center;
+      overflow: hidden;
+      @include transition(background-color 0.3s ease-in-out);
+      @media #{$oxs} {
+        max-height: none;
+        max-width: 25%;
+        height: 100%;
+      }
+      &:nth-child(even) {
+        background-color: rgba($back-color,0.9);
+        &:hover, &:active, &.active {
+          background-color: rgba(lighten($side-color,20%),0.9);
+        }
+      }
+      &:nth-child(odd) {
+        background-color: rgba($light-color,0.9);
+        &:hover, &:active, &.active {
+          background-color: rgba(lighten($main-color,40%),0.9);
+        }
+      }
+      &.active {
+        @media #{$xs} {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          flex: 0 0 100%;
+          max-height: 100%;
+          z-index: 1000;
+          .close-item {
+            display: block;
+          }
+          a.single-item-link {
+            height: 30%;
+          }
+        }
+        @media #{$oxs} {
+          a.single-item-link {
+            height: 40%;
+          }
+          .single-item-extra {
+          }
+        }
+      }
+      &.not-active {
+        @media #{$xs} {
+          opacity: 0;
+        }
+      }
+      .close-item {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        font-size: 1.5rem;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 1;
+        display: none;
+      }
+      a.single-item-link {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        color: $dark-color;
+        padding: 15px;
+        span {
+          flex: 0 0 100%;
+          min-width: 100%;
+          text-align: center;
+          font-family: 'Exo', sans-serif;
+          font-weight: 700;
+          font-style: italic;
+          font-size: 2rem;
+        }
+        & + .single-item-extra {
+          margin: 0 auto;
+          max-width: 320px;
+          padding: 15px;
+          float: none;
+          display: block;
+          input.form-control {
+            background-color: $back-color;
+            margin-bottom: 4px
+          }
+          .btn-link {
+            text-align: center;
+            margin-top: 15px;
+          }
+        }
+      }
+    }
+  }
+}

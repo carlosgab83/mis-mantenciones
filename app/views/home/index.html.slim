@@ -6,4 +6,106 @@
       = link_to :root do
         = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive hidden-xs")
         = image_tag("logo-mm-xs.png", :alt => "Mis Mantenciones", :class => "img-responsive visible-xs")
-  .new-home_body
+  nav.new-home_body
+    ul.list-unstyled
+      li.single-item
+        span.close-item 
+          i.fa.fa-times
+        = link_to "#", :class => "single-item-link" do
+          span Neumáticos
+        form.single-item-extra
+          .row
+            .col-sm-12
+              p 
+                | Busca por la 
+                strong Medida 
+                | que necesitas
+            .col-sm-12
+              select.selectpicker.form-control
+                option Ancho
+                option 2
+            .col-sm-12
+              select.selectpicker.form-control
+                option Perfil
+                option 2
+            .col-sm-12
+              select.selectpicker.form-control
+                option Aro
+                option 2
+            .col-sm-12
+              button.btn.btn-cta.btn-block type="submit" Busca Neumáticos
+            .col-sm-12
+              = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
+
+      li.single-item
+        span.close-item 
+          i.fa.fa-times
+        = link_to "#", :class => "single-item-link" do
+          span Promociones
+        a class="single-promo single-item-extra" href="#" title="automotriz-leon-servicio-revision"
+          .promo-image
+            = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/leon-logo.jpg", :alt => "", :class => "brand-logo")
+            = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/automotriz-leon-servicios-revision.jpg", :alt => "Revisión lorem ipsum")
+
+          .promo-description
+            h6 Revisión lorem ipsum
+            span Cotizar
+
+      li.single-item
+        span.close-item 
+          i.fa.fa-times
+        = link_to "#", :class => "single-item-link" do
+          span Servicios
+        form.single-item-extra
+          .row
+            .col-sm-12
+              p 
+                | Busca los 
+                strong Servicios 
+                | que necesitas
+            .col-sm-12
+              select.selectpicker.form-control
+                option Selecciona Servicio
+                option 2
+            .col-sm-12
+              input.form-control type="text" placeholder="Ciudad o Comuna"
+            .col-sm-12
+              button.btn.btn-cta.btn-block type="submit" Busca Servicios
+            .col-sm-12
+              = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
+
+      li.single-item
+        span.close-item 
+          i.fa.fa-times
+        = link_to "#", :class => "single-item-link" do
+          span Mi Pauta
+        form.single-item-extra
+          .row
+            .col-sm-12
+              p 
+                | Busca tu 
+                strong Pauta 
+                | de Mantenciones
+            .col-sm-12
+              input.form-control type="text" placeholder="Patente"
+            .col-sm-12
+              input.form-control type="text" placeholder="Kilometraje"
+            .col-sm-12
+              button.btn.btn-cta.btn-block type="submit" Busca tu Pauta
+            .col-sm-12
+              = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
+
+javascript:
+  $('.single-item .single-item-link').click(function() {
+    $('.single-item').removeClass('active').addClass('not-active');
+    $(this).parent().removeClass('not-active').addClass('active');
+  });
+  $('.single-item .single-item-link').mouseenter(function() {
+    if ($("#logo .visible-xs").css('display') == 'none') {
+      $(this).click();
+    };
+  });
+  
+  $('.close-item').click(function() {
+    $('.single-item').removeClass('active not-active');
+  });
