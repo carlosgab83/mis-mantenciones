@@ -49,7 +49,7 @@ Rails.application.routes.draw do
 
   resources :shop_inscriptions, :path => '/registro-taller', only: [:new, :create, :update]
 
-  resources :checkouts, :path => '/checkout', only: [:create] do
+  resources :checkouts, :path => '/checkout', only: [:create, :show] do
     collection do
       get :update_price_by_quantity
     end
