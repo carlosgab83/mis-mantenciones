@@ -22,7 +22,7 @@
         = image_tag(buyable.image_url || "promo-image.jpg", :alt => buyable.name)
       .part-description
         p
-          | #{buyable.name} en
+          | #{buyable.name} en&nbsp;
           strong #{buyable.branches.first.shop.name}
 
     - else
