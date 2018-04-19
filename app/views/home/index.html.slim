@@ -1,7 +1,7 @@
 //= render 'shared/search', hide_floating_form: false
 
 .new-home
-  .new-home_header
+  header.new-home_header
     figure#logo
       = link_to :root do
         = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive hidden-xs")
@@ -17,9 +17,8 @@
           .row
             .col-sm-12
               p 
-                | Busca por la 
-                strong Medida 
-                | que necesitas
+                | Compra online tus nuevos 
+                strong neumáticos 
             .col-sm-12
               select.selectpicker.form-control
                 option Ancho
@@ -63,9 +62,8 @@
           .row
             .col-sm-12
               p 
-                | Busca los 
-                strong Servicios 
-                | que necesitas
+                strong Promociones 
+                | y descuentos en servicios para tu auto
             .col-sm-12
               select.selectpicker.form-control
                 option Selecciona Servicio
@@ -97,15 +95,29 @@
               button.btn.btn-cta.btn-block type="submit" Busca tu Pauta
             .col-sm-12
               = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
+  footer.new-home_footer
+    .container
+      .row
+        .col-xs-12.text-center
+          .webpay
+            = image_tag("webpay.png", :alt => "Webpay")
 
 javascript:
+
   $('.single-item .single-item-link').click(function() {
     $('.single-item').removeClass('active').addClass('not-active');
     $(this).parent().removeClass('not-active').addClass('active');
   });
+
+  // 
   $('.single-item .single-item-link').mouseenter(function() {
     if ($("#logo .visible-xs").css('display') == 'none') {
       $(this).click();
+    };
+  });
+  $('.new-home_body').mouseleave(function() {
+    if ($("#logo .visible-xs").css('display') == 'none') {
+      $('.single-item').removeClass('active not-active');
     };
   });
   

@@ -9,7 +9,7 @@
   position: relative;
   height: 100%;
   @extend .cover-background;
-  background-image: image-url("guideline-background.jpg");
+  background-image: image-url("guideline-background-blur.jpg");
 }
 .new-home_header {
   height: 50px;
@@ -35,9 +35,9 @@
   }
 }
 .new-home_body {
-  height: calc(100% - 50px);
+  height: calc(100% - 90px);
   @media #{$oxs} {
-    height: calc(100% - 80px);
+    height: calc(100% - 130px);
   }
   .list-unstyled {
     position: relative;
@@ -53,6 +53,7 @@
       flex: 1 1;
       text-align: center;
       overflow: hidden;
+      cursor: pointer;
       @include transition(background-color 0.3s ease-in-out);
       @media #{$oxs} {
         max-height: none;
@@ -61,14 +62,18 @@
       }
       &:nth-child(even) {
         background-color: rgba($back-color,0.9);
-        &:hover, &:active, &.active {
-          background-color: rgba(lighten($side-color,20%),0.9);
+        &:hover, &.active {
+          color: $back-color;
+          background-color: transparent;
+          //background-color: rgba(lighten($side-color,20%),0.92);
         }
       }
       &:nth-child(odd) {
         background-color: rgba($light-color,0.9);
-        &:hover, &:active, &.active {
-          background-color: rgba(lighten($main-color,40%),0.9);
+        &:hover, &.active {
+          color: $back-color;
+          background-color: transparent;
+          //background-color: rgba(lighten($main-color,40%),0.92);
         }
       }
       &.active {
@@ -116,7 +121,6 @@
         align-items: center;
         width: 100%;
         height: 100%;
-        color: $dark-color;
         padding: 15px;
         @include transition(all 0.3s ease-in-out);
         span {
@@ -139,14 +143,34 @@
           }
           .single-promo {
             float: none;
-
+            .promo-description h6 {
+              color: $back-color;
+            }
           }
           .btn-link {
             text-align: center;
             margin-top: 15px;
+            color: $side-color;
           }
         }
       }
+    }
+  }
+}
+.new-home_footer {
+  height: 40px;
+  padding: 10px 15px;
+  text-align: center;
+  background-color: rgba($dark-color,0.9);
+  @media #{$oxs} {
+    height: 50px;
+  }
+  img {
+    display: inline-block;
+    vertical-align: top;
+    height: 20px;
+    @media #{$oxs} {
+      height: 25px;
     }
   }
 }
