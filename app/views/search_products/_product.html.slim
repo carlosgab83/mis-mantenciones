@@ -1,5 +1,7 @@
 - if product.id == 211 and product.branches_products.count == 1
+  button.btn.btn-cta comprar
   = link_to open_url_branches_product_path(product.branches_products.first), target: '_blank' do
+    // Botón comprar
     .part-image
       = image_tag(product.image_url || "part-image.jpg", :alt => product.product_brand.name + " " + product.name)
     .part-description
@@ -10,6 +12,7 @@
 
 
 - else
+  button.btn.btn-cta comprar
   = link_to product_path(product)
     .part-image
       = image_tag(product.image_url || "part-image.jpg", :alt => product.product_brand.name + " " + product.name)
