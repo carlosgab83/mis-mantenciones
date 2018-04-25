@@ -2,8 +2,7 @@
 @import 'resets';
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Exo+2:300');
-@import url('https://fonts.googleapis.com/css?family=Exo:700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,700');
 
 // Layout Variables
 $header-height: 50px;
@@ -19,13 +18,13 @@ html{
 body {
 	white-space: normal;
 	line-height: 1.4;
-	font-family: 'Exo 2', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 300;
 	min-width: 320px;
 }
 label {font-weight: 300;}
 h1, h2, dd {
-	font-family: 'Exo', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
 	font-style: italic;
 }
@@ -44,7 +43,7 @@ a {
 }
 // Steps
 .step-text {
-	font-family: 'Exo', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
 	font-style: italic;
 	font-size: 120%;
@@ -85,7 +84,7 @@ textarea {
 // Popover
 .popover {
 	border-radius: 0;
-	font-family: 'Exo 2', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 300;
 	width: 200px;
 	border: none;
@@ -94,7 +93,7 @@ textarea {
 	.popover-content {
 		padding: 10px;
 		strong {
-			font-family: 'Exo', sans-serif;
+			font-family: 'Montserrat', sans-serif;
 		}
 	}
 	&.bottom {
@@ -125,7 +124,7 @@ textarea {
 //////////////////////////////////////////////////////////
 
 .btn {
-	font-family: 'Exo', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-weight: bold;
 	font-style: italic;
 	border-radius: 3px;
@@ -145,7 +144,7 @@ textarea {
 	}
 	&.btn-link {
 		font-weight: 300;
-		font-family: 'Exo 2', sans-serif;
+		font-family: 'Montserrat', sans-serif;
 	}
 }
 
@@ -332,6 +331,7 @@ body {
 			padding-bottom: 5px; 
 			font-size: 85%;
 			line-height: 1.1em;
+			margin-top: 6px;
 			strong {
 				display: inline-block;
 				width: 100%;
@@ -344,6 +344,7 @@ body {
 			padding-bottom: 5px; 
 			font-size: 85%;
 			line-height: 1.1em;
+			margin-top: 8px;
 			strong {
 				display: inline-block;
 				width: 100%;
@@ -530,7 +531,7 @@ body {
 				line-height: 20px;
 				text-align: center;
 				font-weight: bold;
-				font-family: 'Exo', sans-serif;
+				font-family: 'Montserrat', sans-serif;
 				opacity: 1;
 				@media #{$xs} {
 					right: -5px;
