@@ -1,0 +1,23 @@
+- comunes = Comune.all
+hr
+  .form-group
+    = f.text_field :street_address, placeholder: "Calle y Nro", class: "form-control delivery-form"
+    .form-group
+    = f.text_field :number_address, placeholder: "Depto/Casa/Unidad", class: "form-control delivery-form"
+  .form-group
+    = f.select(:commune_id, comunes.map{|c| [c.desc_comuna, c.id_comuna]}, {prompt: 'Comuna'}, { class: 'form-control delivery-form' })
+  .form-group
+    = f.text_field :region, placeholder: "Región", class: "form-control delivery-form", readonly: true
+
+  .form-group
+    label.checkbox
+        = f.check_box :same_contact_info, checked: "checked"
+        span
+          | Mismos datos del comprador
+  .form-group
+    = f.text_field :contact_seller, placeholder: "Persona contacto", class: "form-control delivery-form", readonly: true
+  .form-group
+    = f.text_field :contact_phone, placeholder: "Teléfono contacto", class: "form-control delivery-form", readonly: true
+
+javascript:
+  var regions = #{{ JSON.dump(comunes.map{|c| [c.id_comuna, c.desc_comuna]}.to_h) }};

@@ -1,0 +1,9 @@
+hr
+  .form-group
+    label.checkbox
+        = f.check_box :branch_retirement, checked: "checked"
+        span
+          | Retiro en sucursal
+  .form-group
+    label class="sr-only" Región
+    = f.select(:region, branches.pluck(:name), {prompt: 'Sucursal'}, { class: 'form-control' })

@@ -26,6 +26,34 @@ checkoutsControls.initilization = () ->
     success_function = ->
     generalControls.sendAjax(params, url, success_function, method)
 
+  $('#order_commune_id.delivery-form').on 'change', ->
+    $('#order_region.delivery-form').val regions[@value]
+
+  $('#order_same_contact_info').on 'change', ->
+    contact_seller = $('#order_contact_seller.delivery-form')
+    contact_phone = $('#order_contact_phone.delivery-form')
+    if @checked
+      $(contact_seller).val(checkoutsControls.get_full_name()).prop 'readonly', true
+      $(contact_phone).val($('#order_phone').val()).prop 'readonly', true
+    else
+      $(contact_seller).val('').prop 'readonly', false
+      $(contact_phone).val('').prop 'readonly', false
+
+  $('#order_name, #order_primary_last_name').on 'change', ->
+    if $('#order_same_contact_info')[0].checked
+      $('#order_contact_seller.delivery-form').val checkoutsControls.get_full_name()
+
+  $('#order_phone').on 'change', ->
+    if $('#order_same_contact_info')[0].checked
+      $('#order_contact_phone.delivery-form').val $('#order_phone').val()
+
+#############################################################################
+
+checkoutsControls.get_full_name = () ->
+  full_name = $('#order_name').val() + ' ' + $('#order_primary_last_name').val()
+  full_name = if full_name == ' ' then '' else full_name
+  return full_name
+
 #############################################################################
 
 checkoutsControls.process_order = (form_id) ->
