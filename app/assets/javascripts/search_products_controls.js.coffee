@@ -6,6 +6,8 @@ searchProductsControls.ready = ->
   $(searchProductsControls.activeForm()).find('button:submit').click ->
     generalControls.showLoadingEffect()
 
+  if $(window).width() > 768
+    $('#_price-filters').collapse("show")
 
 #############################################################################
 
