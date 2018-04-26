@@ -21,7 +21,7 @@
                 - @product.branches_products_with_prices.each_with_index do |bp, i|
                   tr
                     td.branch-name colspan="2"
-                      - if bp.is_mismantencions_checkout?
+                      - if bp.is_mismantenciones_checkout?
                         = form_tag checkouts_path, method: :post, id: "product-to-checkout-branch-id-#{bp.branch_id}"
                           = hidden_field :checkout, :branch_id, value: bp.branch_id
                           = hidden_field :checkout, :product_id, value: bp.product_id
