@@ -39,6 +39,10 @@ class BranchesProduct < ApplicationRecord
     product
   end
 
+  def is_mismantenciones_checkout?
+    branch.mismantenciones_checkout? or (branch.delegate_to_product? and ismantenciones_checkout?)
+  end
+
   # Decide checkout method
 
   def mismantenciones_checkout?
