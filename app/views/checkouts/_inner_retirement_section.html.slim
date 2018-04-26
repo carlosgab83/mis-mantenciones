@@ -1,6 +1,7 @@
 - shop = order_preparator.branch.shop
 - click_n_collect = shop.click_n_collect_enabled
 - delivery = shop.delivery_enabled
+- installation = shop.installation_enabled
 
 - if click_n_collect and not delivery
   h2.checkout-title
@@ -33,3 +34,9 @@
     strong Retiro o Instalación
   p.small Selecciona la opción
   = render "click_n_collect_form", f: f, branches: branches
+- if installation
+  .form-group
+    label.checkbox
+      = f.check_box :branch_retirement, checked: "checked"
+      span
+        | Quiero instalación
