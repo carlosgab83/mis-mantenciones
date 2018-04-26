@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   extend ProductsSerializer
   include MicrodataGenerator
 
-   self.per_page = 5
+   self.per_page = 10
 
   belongs_to :product_type
   belongs_to :category
