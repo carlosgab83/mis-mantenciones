@@ -25,11 +25,11 @@
             #attributes-search.search-criteria.tab-pane.fade role="tabpanel" class="#{vehicle_tab_active?(@search_products_form) ? 'in active' :  'in active'}"
               = render partial: 'search_by_attributes'
         - if @search_products_form.vertical_filters.attributes.any?
-          .col-sm-4.col-md-5
-            h4 Filtrar por
+          .col-sm-4.col-md-3
+            h5 Filtrar por
             #parts-filters.panel-group.vertical-attributes role="tablist"
               = render 'vertical_filters'
-        .col-sm-8.col-md-7
+        .col-sm-8.col-md-9
           ul.part-list
             = render 'products'
           = render 'pagination_links'
