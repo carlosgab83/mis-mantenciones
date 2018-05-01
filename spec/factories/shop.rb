@@ -5,7 +5,7 @@ FactoryGirl.define do
   factory :shop do
     name { FFaker::NameBR.name }
     rut { FFaker::SSNSE.ssn }
-    installation_enabled { true }
+    installation_enabled { 0 }
     click_n_collect_enabled { true }
     delivery_enabled { true }
 

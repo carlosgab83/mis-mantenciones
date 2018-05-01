@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422163108) do
+ActiveRecord::Schema.define(version: 20180501160509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -494,9 +494,9 @@ ActiveRecord::Schema.define(version: 20180422163108) do
     t.string   "image_url"
     t.string   "slug"
     t.string   "info_email"
-    t.boolean  "installation_enabled"
-    t.boolean  "click_n_collect_enabled"
-    t.boolean  "delivery_enabled"
+    t.boolean  "click_n_collect_enabled", default: true,  null: false
+    t.boolean  "delivery_enabled",        default: false, null: false
+    t.integer  "installation_enabled",    default: 3,     null: false
     t.index ["name"], name: "shops_business_index", unique: true, using: :btree
     t.index ["rut"], name: "index_shops_on_rut", unique: true, using: :btree
   end
