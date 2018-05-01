@@ -1,9 +1,11 @@
+- branch_installation = branches.first.shop.installation_enabled
 hr
-  .form-group
-    label.checkbox
-        = f.check_box :branch_retirement, checked: "checked"
-        span
-          | Retiro en sucursal
   .form-group
     label class="sr-only" Región
     = f.select(:region, branches.pluck(:name), {prompt: 'Sucursal'}, { class: 'form-control' })
+  - if branches.first.shop.branch_installation?
+    .form-group
+      label.checkbox
+        = f.check_box :branch_installation, checked: "checked"
+        span
+          | Quiero instalación
