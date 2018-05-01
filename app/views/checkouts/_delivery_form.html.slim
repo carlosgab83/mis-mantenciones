@@ -1,4 +1,4 @@
-- comunes = Comune.all
+- comunes = Comune.includes(:region).all
 hr
   .form-group
     = f.text_field :street_address, placeholder: "Calle y Nro", class: "form-control delivery-form"
@@ -25,4 +25,4 @@ hr
           | Quiero instalación
 
 javascript:
-  var regions = #{{ JSON.dump(comunes.map{|c| [c.id_comuna, c.desc_comuna]}.to_h) }};
+  var regions = #{{ JSON.dump(comunes.map{|c| [c.id_comuna, c.region.try(:name)]}.to_h) }};
