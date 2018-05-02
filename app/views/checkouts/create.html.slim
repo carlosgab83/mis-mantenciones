@@ -110,8 +110,10 @@ javascript:
     "order[number_address]": {required: true},
     "order[commune_id]": {required: true},
     "order[region]": {required: true},
-    "order[accept_terms]": {required: true}, // ANADIR CLASS ERROR PARA EL CHECKBOX
-    "quantity": {required: true}
+    "order[accept_terms]": {required: true},
+    "quantity": {required: true},
+    "order[contact_seller]": {required: function(element) { return !$('#order_same_contact_info')[0].checked}},
+    "order[contact_phone]": {required: function(element) { return !$('#order_same_contact_info')[0].checked}}
     },
     submitHandler: function(form) {
       checkoutsControls.process_order(form.id);

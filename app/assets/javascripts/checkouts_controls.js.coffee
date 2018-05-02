@@ -40,11 +40,11 @@ checkoutsControls.initilization = () ->
       $(contact_phone).val('').prop 'readonly', false
 
   $('#order_name, #order_primary_last_name').on 'change', ->
-    if $('#order_same_contact_info')[0].checked
+    if checkoutsControls.contact_info_checked()
       $('#order_contact_seller.delivery-form').val checkoutsControls.get_full_name()
 
   $('#order_phone').on 'change', ->
-    if $('#order_same_contact_info')[0].checked
+    if checkoutsControls.contact_info_checked()
       $('#order_contact_phone.delivery-form').val $('#order_phone').val()
 
 #############################################################################
@@ -57,6 +57,11 @@ checkoutsControls.get_full_name = () ->
 #############################################################################
 
 checkoutsControls.process_order = (form_id) ->
-    submit_button = $('#' + form_id).find(':submit')[0]
-    submit_button.innerText = "PROCESANDO ORDEN..."
-    generalControls.showLoadingEffect()
+  submit_button = $('#' + form_id).find(':submit')[0]
+  submit_button.innerText = "PROCESANDO ORDEN..."
+  generalControls.showLoadingEffect()
+
+#############################################################################
+
+checkoutsControls.contact_info_checked = () ->
+  return $('#order_same_contact_info')[0].checked
