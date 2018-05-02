@@ -3,10 +3,6 @@
 desc "Must delete and recreate region table before run this task"
 task recreate_comunes_and_regions: :environment do
 
-  # Maybe you need to run:
-  # Client.where.not(comune_id: nil).each{ |c| c.comune_id=nil; c.save;}
-  # ShopInscription.where.not(comune_id: nil).each{ |s| s.comune_id=nil; s.save;}
-
   # Create Regions
   if Region.count == 0
     Region.create name: 'I - Tarapaca'
@@ -26,353 +22,350 @@ task recreate_comunes_and_regions: :environment do
     Region.create name: 'XV -Arica y Parinacota'
   end
 
-  # Re-create all comunes
-  # Comune.delete_all
-  # id = 1
-  # Comune.create desc_comuna: 'ÑIQUEN', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ÑUÑOA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ALGARROBO', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ALHUE', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ALTO BIOBIO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ALTO DEL CARMEN', region_id: 3, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ALTO HOSPICIO', region_id: 1, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ANCUD', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ANDACOLLO', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ANGOL', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ANTARTICA', region_id: 12, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ANTOFAGASTA', region_id: 2, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ANTUCO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ARAUCO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ARICA', region_id: 15, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'AYSEN', region_id: 11, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'BUIN', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'BULNES', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CAÑETE', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CABILDO', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CABO DE HORNOS', region_id: 12, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CABRERO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CALAMA', region_id: 2, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CALBUCO', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CALDERA', region_id: 3, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CALERA', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CALERA DE TANGO', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CALLE LARGA', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CAMARONES', region_id: 1, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CAMIÑA', region_id: 1, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CANELA', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CARAHUE', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CARTAGENA', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CASABLANCA', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CASTRO', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CATEMU', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CAUQUENES', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CERRILLOS', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CERRO NAVIA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CHAÑARAL', region_id: 3, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CHAITEN', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CHANCO', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CHEPICA', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CHIGUAYANTE', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CHILE CHICO', region_id: 11, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CHILLAN', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CHILLAN VIEJO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CHIMBARONGO', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CHOLCHOL', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CHONCHI', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CISNES', region_id: 11, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COBQUECURA', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COCHAMO', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COCHRANE', region_id: 11, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CODEGUA', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COELEMU', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COIHAIQUE', region_id: 11, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COIHUECO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COINCO', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COLBUN', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COLCHANE', region_id: 1, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COLINA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COLLIPULLI', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COLTAUCO', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COMBARBALA', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CONCEPCION', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CONCHALI', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CONCON', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CONSTITUCION', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CONTULMO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COPIAPO', region_id: 3, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'COQUIMBO', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CORONEL', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CORRAL', region_id: 14, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CUNCO', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CURACAUTIN', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CURACAVI', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CURACO DE VELEZ', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CURANILAHUE', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CURARREHUE', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CUREPTO', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'CURICO', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'DALCAHUE', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'DIEGO DE ALMAGRO', region_id: 3, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'DOÑIHUE', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'EL BOSQUE', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'EL CARMEN', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'EL MONTE', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'EL OLIVAR', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'EL QUISCO', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'EL TABO', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'EMPEDRADO', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ERCILLA', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ESTACION CENTRAL', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'FLORIDA', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'FREIRE', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'FREIRINA', region_id: 3, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'FRESIA', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'FRUTILLAR', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'FUTALEUFU', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'FUTRONO', region_id: 14, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'GALVARINO', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'GENERAL LAGOS', region_id: 1, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'GORBEA', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'GRANEROS', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'GUAITECAS', region_id: 11, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'HIJUELAS', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'HUALAÑE', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'HUALAIHUE', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'HUALPEN', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'HUALQUI', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'HUARA', region_id: 1, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'HUASCO', region_id: 3, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'HUECHURABA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ILLAPEL', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'INDEPENDENCIA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'IQUIQUE', region_id: 1, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ISLA DE MAIPO', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ISLA DE PASCUA', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'JUAN FERNANDEZ', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LA CISTERNA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LA CRUZ', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LA ESTRELLA', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LA FLORIDA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LA GRANJA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LA HIGUERA', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LA LIGUA', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LA PINTANA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LA REINA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LA SERENA', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LA UNION', region_id: 14, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LAGO RANCO', region_id: 14, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LAGO VERDE', region_id: 11, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LAGUNA BLANCA', region_id: 12, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LAJA', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LAMPA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LANCO', region_id: 14, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LAS CABRAS', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LAS CONDES', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LAUTARO', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LEBU', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LICANTEN', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LIMACHE', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LINARES', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LITUECHE', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LLAILLAY', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LLANQUIHUE', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LO BARNECHEA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LO ESPEJO', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LO PRADO', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LOLOL', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LONCOCHE', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LONGAVI', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LONQUIMAY', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LOS ALAMOS', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LOS ANDES', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LOS ANGELES', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LOS LAGOS', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LOS MUERMOS', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LOS SAUCES', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LOS VILOS', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LOTA', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'LUMACO', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MACHALI', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MACUL', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MAFIL', region_id: 14, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MAIPU', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MALLOA', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MARCHIHUE', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MARIA ELENA', region_id: 2, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MARIA PINTO', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MARIQUINA', region_id: 14, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MAULE', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MAULLIN', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MEJILLONES', region_id: 2, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MELIPEUCO', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MELIPILLA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MOLINA', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MONTE PATRIA', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MOSTAZAL', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'MULCHEN', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'NACIMIENTO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'NANCAGUA', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'NATALES', region_id: 12, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'NAVIDAD', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'NEGRETE', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'NINHUE', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'NOGALES', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'NUEVA IMPERIAL', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'O\'HIGGINS', region_id: 11, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'OLLAGUE', region_id: 2, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'OLMUE', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'OSORNO', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'OVALLE', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PADRE HURTADO', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PADRE LAS CASAS', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PAIHUANO', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PAILLACO', region_id: 14, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PAINE', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PALENA', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PALMILLA', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PANGUIPULLI', region_id: 14, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PANQUEHUE', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PAPUDO', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PAREDONES', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PARRAL', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PEÑAFLOR', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PEÑALOLEN', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PEDRO AGUIRRE CERDA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PELARCO', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PELLUHUE', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PEMUCO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PENCAHUE', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PENCO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PERALILLO', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PERQUENCO', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PETORCA', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PEUMO', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PICA', region_id: 1, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PICHIDEGUA', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PICHILEMU', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PINTO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PIRQUE', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PITRUFQUEN', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PLACILLA', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PORTEZUELO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PORVENIR', region_id: 12, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'POZO ALMONTE', region_id: 1, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PRIMAVERA', region_id: 12, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PROVIDENCIA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUCHUNCAVI', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUCON', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUDAHUEL', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUENTE ALTO', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUERTO MONTT', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUERTO OCTAY', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUERTO VARAS', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUMANQUE', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUNITAQUI', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUNTA ARENAS', region_id: 12, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUQUELDON', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUREN', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PURRANQUE', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUTAENDO', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUTRE', region_id: 1, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'PUYEHUE', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUEILEN', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUELLON', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUEMCHI', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUILACO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUILICURA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUILLECO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUILLON', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUILLOTA', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUILPUE', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUINCHAO', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUINTA DE TILCOCO', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUINTA NORMAL', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUINTERO', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'QUIRIHUE', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RANCAGUA', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RANQUIL', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RAUCO', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RECOLETA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RENAICO', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RENCA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RENGO', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'REQUINOA', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RETIRO', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RINCONADA', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RIO BUENO', region_id: 14, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RIO CLARO', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RIO HURTADO', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RIO IBAÑEZ', region_id: 11, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RIO NEGRO', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'RIO VERDE', region_id: 12, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ROMERAL', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAAVEDRA', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAGRADA FAMILIA', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SALAMANCA', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN ANTONIO', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN BERNARDO', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN CARLOS', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN CLEMENTE', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN ESTEBAN', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN FABIAN', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN FELIPE', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN FERNANDO', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN GREGORIO', region_id: 12, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN IGNACIO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN JAVIER', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN JOAQUIN', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN JOSE DE MAIPO', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN JUAN DE LA COSTA', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN MIGUEL', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN NICOLAS', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN PABLO', region_id: 10, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN PEDRO', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN PEDRO DE ATACAMA', region_id: 2, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN PEDRO DE LA PAZ', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN RAFAEL', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN RAMON', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN ROSENDO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SAN VICENTE', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SANTA BARBARA', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SANTA CRUZ', region_id: 6, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SANTA JUANA', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SANTA MARIA', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SANTIAGO', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SANTO DOMINGO', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'SIERRA GORDA', region_id: 2, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TALAGANTE', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TALCA', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TALCAHUANO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TALTAL', region_id: 2, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TEMUCO', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TENO', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TEODORO SCHMIDT', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TIERRA AMARILLA', region_id: 3, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TILTIL', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TIMAUKEL', region_id: 12, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TIRUA', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TOCOPILLA', region_id: 2, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TOLTEN', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TOME', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TORRES DEL PAINE', region_id: 12, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TORTEL', region_id: 11, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TRAIGUEN', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TREHUACO', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'TUCAPEL', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'VALDIVIA', region_id: 14, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'VALLENAR', region_id: 3, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'VALPARAISO', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'VIÑA DEL MAR', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'VICHUQUEN', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'VICTORIA', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'VICUNA', region_id: 4, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'VILCUN', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'VILLA ALEGRE', region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'VILLA ALEMANA', region_id: 5, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'VILLARRICA', region_id: 9, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'VITACURA', region_id: 13, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'YERBAS BUENAS' , region_id: 7, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'YUMBEL', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'YUNGAY', region_id: 8, id_comuna: id; id+=1
-  # Comune.create desc_comuna: 'ZAPALLAR', region_id: 5, id_comuna: id; id+=1
+  c = Comune.find_by(desc_comuna: 'NIQUEN'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'NUNOA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'ALGARROBO'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'ALHUE'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'ALTO BIOBIO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'ALTO DEL CARMEN'); c.region_id = 3; c.save
+  c = Comune.find_by(desc_comuna: 'ALTO HOSPICIO'); c.region_id = 1; c.save
+  c = Comune.find_by(desc_comuna: 'ANCUD'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'ANDACOLLO'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'ANGOL'); c.region_id = 9; c.save
+  # c = Comune.find_by(desc_comuna: 'ANTARTICA'); c.region_id = 12; c.save
+  c = Comune.find_by(desc_comuna: 'ANTOFAGASTA'); c.region_id = 2; c.save
+  c = Comune.find_by(desc_comuna: 'ANTUCO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'ARAUCO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'ARICA'); c.region_id = 15; c.save
+  c = Comune.find_by(desc_comuna: 'AYSEN'); c.region_id = 11; c.save
+  c = Comune.find_by(desc_comuna: 'BUIN'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'BULNES'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'CANETE'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'CABILDO'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'CABO DE HORNOS'); c.region_id = 12; c.save
+  c = Comune.find_by(desc_comuna: 'CABRERO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'CALAMA'); c.region_id = 2; c.save
+  c = Comune.find_by(desc_comuna: 'CALBUCO'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'CALDERA'); c.region_id = 3; c.save
+  c = Comune.find_by(desc_comuna: 'LA CALERA'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'CALERA DE TANGO'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'CALLE LARGA'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'CAMARONES'); c.region_id = 1; c.save
+  c = Comune.find_by(desc_comuna: 'CAMINA'); c.region_id = 1; c.save
+  c = Comune.find_by(desc_comuna: 'CANELA'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'CARAHUE'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'CARTAGENA'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'CASABLANCA'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'CASTRO'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'CATEMU'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'CAUQUENES'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'CERRILLOS'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'CERRO NAVIA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'CHANARAL'); c.region_id = 3; c.save
+  c = Comune.find_by(desc_comuna: 'CHAITEN'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'CHANCO'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'CHEPICA'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'CHIGUAYANTE'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'CHILE CHICO'); c.region_id = 11; c.save
+  c = Comune.find_by(desc_comuna: 'CHILLAN'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'CHILLAN VIEJO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'CHIMBARONGO'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'CHOLCHOL'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'CHONCHI'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'CISNES'); c.region_id = 11; c.save
+  c = Comune.find_by(desc_comuna: 'COBQUECURA'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'COCHAMO'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'COCHRANE'); c.region_id = 11; c.save
+  c = Comune.find_by(desc_comuna: 'CODEGUA'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'COELEMU'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'COYHAIQUE'); c.region_id = 11; c.save
+  c = Comune.find_by(desc_comuna: 'COIHUECO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'COINCO'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'COLBUN'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'COLCHANE'); c.region_id = 1; c.save
+  c = Comune.find_by(desc_comuna: 'COLINA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'COLLIPULLI'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'COLTAUCO'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'COMBARBALA'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'CONCEPCION'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'CONCHALI'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'CONCON'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'CONSTITUCION'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'CONTULMO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'COPIAPO'); c.region_id = 3; c.save
+  c = Comune.find_by(desc_comuna: 'COQUIMBO'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'CORONEL'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'CORRAL'); c.region_id = 14; c.save
+  c = Comune.find_by(desc_comuna: 'CUNCO'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'CURACAUTIN'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'CURACAVI'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'CURACO DE VELEZ'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'CURANILAHUE'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'CURARREHUE'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'CUREPTO'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'CURICO'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'DALCAHUE'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'DIEGO DE ALMAGRO'); c.region_id = 3; c.save
+  c = Comune.find_by(desc_comuna: 'DONIHUE'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'EL BOSQUE'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'EL CARMEN'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'EL MONTE'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'OLIVAR'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'EL QUISCO'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'EL TABO'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'EMPEDRADO'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'ERCILLA'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'ESTACION CENTRAL'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'FLORIDA'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'FREIRE'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'FREIRINA'); c.region_id = 3; c.save
+  c = Comune.find_by(desc_comuna: 'FRESIA'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'FRUTILLAR'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'FUTALEUFU'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'FUTRONO'); c.region_id = 14; c.save
+  c = Comune.find_by(desc_comuna: 'GALVARINO'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'GENERAL LAGOS'); c.region_id = 1; c.save
+  c = Comune.find_by(desc_comuna: 'GORBEA'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'GRANEROS'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'GUAITECAS'); c.region_id = 11; c.save
+  c = Comune.find_by(desc_comuna: 'HIJUELAS'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'HUALANE'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'HUALAIHUE'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'HUALPEN'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'HUALQUI'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'HUARA'); c.region_id = 1; c.save
+  c = Comune.find_by(desc_comuna: 'HUASCO'); c.region_id = 3; c.save
+  c = Comune.find_by(desc_comuna: 'HUECHURABA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'ILLAPEL'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'INDEPENDENCIA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'IQUIQUE'); c.region_id = 1; c.save
+  c = Comune.find_by(desc_comuna: 'ISLA DE MAIPO'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'ISLA DE PASCUA'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'JUAN FERNANDEZ'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'LA CISTERNA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'LA CRUZ'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'LA ESTRELLA'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'LA FLORIDA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'LA GRANJA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'LA HIGUERA'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'LA LIGUA'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'LA PINTANA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'LA REINA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'LA SERENA'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'LA UNION'); c.region_id = 14; c.save
+  c = Comune.find_by(desc_comuna: 'LAGO RANCO'); c.region_id = 14; c.save
+  c = Comune.find_by(desc_comuna: 'LAGO VERDE'); c.region_id = 11; c.save
+  c = Comune.find_by(desc_comuna: 'LAGUNA BLANCA'); c.region_id = 12; c.save
+  c = Comune.find_by(desc_comuna: 'LAJA'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'LAMPA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'LANCO'); c.region_id = 14; c.save
+  c = Comune.find_by(desc_comuna: 'LAS CABRAS'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'LAS CONDES'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'LAUTARO'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'LEBU'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'LICANTEN'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'LIMACHE'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'LINARES'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'LITUECHE'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'LLAY-LLAY'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'LLANQUIHUE'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'LO BARNECHEA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'LO ESPEJO'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'LO PRADO'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'LOLOL'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'LONCOCHE'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'LONGAVI'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'LONQUIMAY'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'LOS ALAMOS'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'LOS ANDES'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'LOS ANGELES'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'LOS LAGOS'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'LOS MUERMOS'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'LOS SAUCES'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'LOS VILOS'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'LOTA'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'LUMACO'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'MACHALI'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'MACUL'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'MAFIL'); c.region_id = 14; c.save
+  c = Comune.find_by(desc_comuna: 'MAIPU'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'MALLOA'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'MARCHIGUE'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'MARIA ELENA'); c.region_id = 2; c.save
+  c = Comune.find_by(desc_comuna: 'MARIA PINTO'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'MARIQUINA'); c.region_id = 14; c.save
+  c = Comune.find_by(desc_comuna: 'MAULE'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'MAULLIN'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'MEJILLONES'); c.region_id = 2; c.save
+  c = Comune.find_by(desc_comuna: 'MELIPEUCO'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'MELIPILLA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'MOLINA'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'MONTE PATRIA'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'SAN FRANCISCO DE MOSTAZAL'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'MULCHEN'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'NACIMIENTO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'NANCAGUA'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'NATALES'); c.region_id = 12; c.save
+  c = Comune.find_by(desc_comuna: 'NAVIDAD'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'NEGRETE'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'NINHUE'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'NOGALES'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'NUEVA IMPERIAL'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'OHIGGINS'); c.region_id = 11; c.save
+  c = Comune.find_by(desc_comuna: 'OLLAGUE'); c.region_id = 2; c.save
+  c = Comune.find_by(desc_comuna: 'OLMUE'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'OSORNO'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'OVALLE'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'PADRE HURTADO'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'PADRE LAS CASAS'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'PAIHUANO'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'PAILLACO'); c.region_id = 14; c.save
+  c = Comune.find_by(desc_comuna: 'PAINE'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'PALENA'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'PALMILLA'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'PANGUIPULLI'); c.region_id = 14; c.save
+  c = Comune.find_by(desc_comuna: 'PANQUEHUE'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'PAPUDO'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'PAREDONES'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'PARRAL'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'PENAFLOR'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'PENALOLEN'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'PEDRO AGUIRRE CERDA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'PELARCO'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'PELLUHUE'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'PEMUCO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'PENCAHUE'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'PENCO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'PERALILLO'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'PERQUENCO'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'PETORCA'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'PEUMO'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'PICA'); c.region_id = 1; c.save
+  c = Comune.find_by(desc_comuna: 'PICHIDEGUA'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'PICHILEMU'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'PINTO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'PIRQUE'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'PITRUFQUEN'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'PLACILLA'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'PORTEZUELO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'PORVENIR'); c.region_id = 12; c.save
+  c = Comune.find_by(desc_comuna: 'POZO ALMONTE'); c.region_id = 1; c.save
+  c = Comune.find_by(desc_comuna: 'PRIMAVERA'); c.region_id = 12; c.save
+  c = Comune.find_by(desc_comuna: 'PROVIDENCIA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'PUCHUNCAVI'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'PUCON'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'PUDAHUEL'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'PUENTE ALTO'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'PUERTO MONTT'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'PUERTO OCTAY'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'PUERTO VARAS'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'PUMANQUE'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'PUNITAQUI'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'PUNTA ARENAS'); c.region_id = 12; c.save
+  c = Comune.find_by(desc_comuna: 'PUQUELDON'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'PUREN'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'PURRANQUE'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'PUTAENDO'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'PUTRE'); c.region_id = 1; c.save
+  c = Comune.find_by(desc_comuna: 'PUYEHUE'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'QUEILEN'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'QUELLON'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'QUEMCHI'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'QUILACO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'QUILICURA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'QUILLECO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'QUILLON'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'QUILLOTA'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'QUILPUE'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'QUINCHAO'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'QUINTA DE TILCOCO'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'QUINTA NORMAL'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'QUINTERO'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'QUIRIHUE'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'RANCAGUA'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'RANQUIL'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'RAUCO'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'RECOLETA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'RENAICO'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'RENCA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'RENGO'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'REQUINOA'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'RETIRO'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'RINCONADA'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'RIO BUENO'); c.region_id = 14; c.save
+  c = Comune.find_by(desc_comuna: 'RIO CLARO'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'RIO HURTADO'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'RIO IBANEZ'); c.region_id = 11; c.save
+  c = Comune.find_by(desc_comuna: 'RIO NEGRO'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'RIO VERDE'); c.region_id = 12; c.save
+  c = Comune.find_by(desc_comuna: 'ROMERAL'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'SAAVEDRA'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'SAGRADA FAMILIA'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'SALAMANCA'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'SAN ANTONIO'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'SAN BERNARDO'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'SAN CARLOS'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'SAN CLEMENTE'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'SAN ESTEBAN'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'SAN FABIAN'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'SAN FELIPE'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'SAN FERNANDO'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'SAN GREGORIO'); c.region_id = 12; c.save
+  c = Comune.find_by(desc_comuna: 'SAN IGNACIO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'SAN JAVIER'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'SAN JOAQUIN'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'SAN JOSE DE MAIPO'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'SAN JUAN DE LA COSTA'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'SAN MIGUEL'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'SAN NICOLAS'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'SAN PABLO'); c.region_id = 10; c.save
+  c = Comune.find_by(desc_comuna: 'SAN PEDRO'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'SAN PEDRO DE ATACAMA'); c.region_id = 2; c.save
+  c = Comune.find_by(desc_comuna: 'SAN PEDRO DE LA PAZ'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'SAN RAFAEL'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'SAN RAMON'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'SAN ROSENDO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'SAN VICENTE'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'SANTA BARBARA'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'SANTA CRUZ'); c.region_id = 6; c.save
+  c = Comune.find_by(desc_comuna: 'SANTA JUANA'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'SANTA MARIA'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'SANTIAGO'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'SANTO DOMINGO'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'SIERRA GORDA'); c.region_id = 2; c.save
+  c = Comune.find_by(desc_comuna: 'TALAGANTE'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'TALCA'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'TALCAHUANO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'TALTAL'); c.region_id = 2; c.save
+  c = Comune.find_by(desc_comuna: 'TEMUCO'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'TENO'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'TEODORO SCHMIDT'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'TIERRA AMARILLA'); c.region_id = 3; c.save
+  c = Comune.find_by(desc_comuna: 'TIL-TIL'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'TIMAUKEL'); c.region_id = 12; c.save
+  c = Comune.find_by(desc_comuna: 'TIRUA'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'TOCOPILLA'); c.region_id = 2; c.save
+  c = Comune.find_by(desc_comuna: 'TOLTEN'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'TOME'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'TORRES DEL PAINE'); c.region_id = 12; c.save
+  c = Comune.find_by(desc_comuna: 'TORTEL'); c.region_id = 11; c.save
+  c = Comune.find_by(desc_comuna: 'TRAIGUEN'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'TREHUACO'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'TUCAPEL'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'VALDIVIA'); c.region_id = 14; c.save
+  c = Comune.find_by(desc_comuna: 'VALLENAR'); c.region_id = 3; c.save
+  c = Comune.find_by(desc_comuna: 'VALPARAISO'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'VINA DEL MAR'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'VICHUQUEN'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'VICTORIA'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'VICUNA'); c.region_id = 4; c.save
+  c = Comune.find_by(desc_comuna: 'VILCUN'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'VILLA ALEGRE'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'VILLA ALEMANA'); c.region_id = 5; c.save
+  c = Comune.find_by(desc_comuna: 'VILLARRICA'); c.region_id = 9; c.save
+  c = Comune.find_by(desc_comuna: 'VITACURA'); c.region_id = 13; c.save
+  c = Comune.find_by(desc_comuna: 'YERBAS BUENAS'); c.region_id = 7; c.save
+  c = Comune.find_by(desc_comuna: 'YUMBEL'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'YUNGAY'); c.region_id = 8; c.save
+  c = Comune.find_by(desc_comuna: 'ZAPALLAR'); c.region_id = 5; c.save
 end
