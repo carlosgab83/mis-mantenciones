@@ -26,6 +26,10 @@ checkoutsControls.initilization = () ->
     success_function = ->
     generalControls.sendAjax(params, url, success_function, method)
 
+  $('.click-submitable-to-checkout').click ->
+    product_id = $(this).data('product_id')
+    $('#product-to-checkout-id-' + product_id).submit()
+
 #############################################################################
 
 checkoutsControls.process_order = (form_id) ->
