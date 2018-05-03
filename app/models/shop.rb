@@ -6,7 +6,7 @@ class Shop < ApplicationRecord
   friendly_id :name, use: :slugged
   has_many :branches
 
-  validates :click_n_collect_enabled, :delivery_enabled, inclusion: { in: [true, false] }, presence: true
+  validates :click_n_collect_enabled, :delivery_enabled, inclusion: { in: [true, false] }
   validates :installation_enabled, presence: true
 
   INSTALLATION_DISABLED = 0
