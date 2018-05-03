@@ -7,7 +7,6 @@
     |
       3. Sucursal de&nbsp;
     strong Retiro o instalación
-  p.small Selecciona la opción
   = render "click_n_collect_form", f: f, branches: branches
 
 - elsif delivery and not click_n_collect
@@ -15,7 +14,6 @@
     |
       3. Datos de&nbsp;
     strong Entrega
-  p.small Ingresa tu datos
   = render "delivery_form", f: f, branches: branches
 
 - elsif delivery and click_n_collect
@@ -23,7 +21,6 @@
     |
       3. Elige&nbsp;
     strong Retiro o Entrega
-  p.small Selecciona una opción
   = render "tabs_with_delivery_and_click_n_collect_forms", f: f, branches: branches
 
 - else # Default
@@ -31,5 +28,4 @@
     |
       3. Sucursal de&nbsp;
     strong Retiro o Instalación
-  p.small Selecciona la opción
   = render "click_n_collect_form", f: f, branches: branches
