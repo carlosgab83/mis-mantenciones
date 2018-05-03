@@ -14,8 +14,8 @@ RSpec.describe Shop, :type => :model do
     end
 
     it { is_expected.to validate_presence_of(:installation_enabled) }
-    it { is_expected.to validate_presence_of(:click_n_collect_enabled) }
-    it { is_expected.to validate_presence_of(:delivery_enabled) }
+    it { is_expected.to validate_inclusion_of(:click_n_collect_enabled).in_array([true, false]) }
+    it { is_expected.to validate_inclusion_of(:delivery_enabled).in_array([true, false]) }
   end
 
 end
