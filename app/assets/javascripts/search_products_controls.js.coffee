@@ -25,6 +25,15 @@ $(document).on('page:load', searchProductsControls.dynamicSelectors)
 
 #############################################################################
 
+searchProductsControls.dynamicHorizontalFilters = ->
+  $('.dynamic-horizontal-filters').change ->
+    searchProductsControls.submitForm()
+
+$(document).ready(searchProductsControls.dynamicHorizontalFilters)
+$(document).on('page:load', searchProductsControls.dynamicHorizontalFilters)
+
+#############################################################################
+
 searchProductsControls.activeForm = ->
   return $('.search-criteria.active form')[0]
 
