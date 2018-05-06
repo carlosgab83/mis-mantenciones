@@ -9,6 +9,10 @@ searchProductsControls.ready = ->
   if $(window).width() > 768
     $('#_price-filters').collapse("show")
 
+  if !generalControls.isMobileScreen()
+    $('a.vertical-filter').first().removeClass('collapsed')
+    $('.panel-collapse.vertical-filter').first().addClass('in')
+
 #############################################################################
 
 searchProductsControls.dynamicSelectors = ->
