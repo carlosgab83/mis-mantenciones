@@ -20,6 +20,8 @@ class Product < ApplicationRecord
   scope :not_deleted, -> {where(deleted: [false, nil])}
   scope :by_category, -> (category) {joins(:category).where("products.category_id = ?", category.id)}
 
+  after_save :clear_products_finder_cache
+
   def branches_products_with_prices
     non_price_value = 9999999999
     branches_products.sort{|a,b| (a.price || non_price_value) <=> (b.price || non_price_value) }
@@ -68,6 +70,11 @@ class Product < ApplicationRecord
 
   def description_attribute_id
     @description_attribute_id ||= product_attributes.where(name: DESCRIPTION_ATTRIBUTE).first.try(:id)
+  end
+
+  def clear_products_finder_cache
+    binding.pry
+    Rails.cache.delete_if {|k, v| k =~ 'products_finder/' }
   end
 end
 

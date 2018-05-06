@@ -4,11 +4,14 @@ class ProductsFinder < BaseService
 
   def call
     form = initialize_search
-    make_4_searches(form)
-    form.horizontal_filters = prepare_horizontal_filters(params[:category], form.client_search_input, form.results, form.results0, form.results1)
-    form.vertical_filters = prepare_vertical_filters(params[:category], form.client_search_input, form.results, form.results_horizontal)
-    form.results = form.results.paginate(page: form.client_search_input['page'])
-    form
+    key = form.as_json
+     Rails.cache.fetch("products_finder/#{key}", expires_in: 24.hours) do
+      make_4_searches(form)
+      form.horizontal_filters = prepare_horizontal_filters(params[:category], form.client_search_input, form.results, form.results0, form.results1)
+      form.vertical_filters = prepare_vertical_filters(params[:category], form.client_search_input, form.results, form.results_horizontal)
+      form.results = form.results.paginate(page: form.client_search_input['page'])
+      form
+     end
   end
 
   private
