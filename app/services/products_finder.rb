@@ -3,26 +3,34 @@ class ProductsFinder < BaseService
   SELECT_ALL_STR = '_select_all'
 
   def call
+    form = initialize_search
+    make_4_searches(form)
+    form.horizontal_filters = prepare_horizontal_filters(params[:category], form.client_search_input, form.results, form.results0, form.results1)
+    form.vertical_filters = prepare_vertical_filters(params[:category], form.client_search_input, form.results, form.results_horizontal)
+    form.results = form.results.paginate(page: form.client_search_input['page'])
+    form
+  end
+
+  private
+
+  def initialize_search
     form = SearchProductsForm.new({vehicle: params[:vehicle]})
     form.client_search_input = params[:client_search_input] || {}
     fix_price_range(form)
+    form.category = params[:category]
+    form
+  end
+
+  def make_4_searches(form)
     form.results = find_products(form.client_search_input).order(:price)
 
     # For show only required vertical filters
     form.results_horizontal = find_products(form.client_search_input, -1, only_horizontal = true).order(:price)
 
-    # For show only required horizontal filters valuesd
+    # For show only required horizontal filters values
     form.results0 = find_products(form.client_search_input, 0).order(:price)
     form.results1 = find_products(form.client_search_input, 1).order(:price)
-
-    form.horizontal_filters = prepare_horizontal_filters(params[:category], form.client_search_input, form.results, form.results0, form.results1)
-    form.vertical_filters = prepare_vertical_filters(params[:category], form.client_search_input, form.results, form.results_horizontal)
-    form.results = form.results.paginate(page: form.client_search_input['page'])
-    form.category = params[:category]
-    form
   end
-
-  private
 
   attr_accessor :attrs_values
 
@@ -43,8 +51,6 @@ class ProductsFinder < BaseService
         vertical_filters = [] if only_horizontal
         # Deprecation on Rails 5.1
         find_products_by_attributes(input['horizontal_filters']['by_attributes'].to_a[0..attributes_to_keep].to_h, vertical_filters, params[:category])
-      # when 'by_vehicle'
-      #   find_products_by_vehicle_with_vertical_filters(input['horizontal_filters']['by_vehicle'], input['vertical_filters']['attributes'], params[:category])
       else # When nothing passed
         Product.actives.not_deleted.by_category(params[:category])
     end
@@ -95,30 +101,6 @@ class ProductsFinder < BaseService
       queries << products
     end
     queries.any? ? Product.from("(#{queries.join(' intersect ')}) as products") : Product.actives.not_deleted.by_category(category)
-  end
-
-  def find_products_by_vehicle_with_vertical_filters(by_vehicle_attributes, vertical_filters, category)
-    queries = []
-    queries << find_products_by_attributes({}, vertical_filters || [], category).to_sql
-    queries << find_products_by_vehicle(by_vehicle_attributes, category).to_sql
-    Product.from("(#{queries.join(' intersect ')}) as products")
-  end
-
-  def find_products_by_vehicle(attributes, _category)
-    products = Product.actives.not_deleted.by_category(Category.last)
-    if attributes["brand_id"].present? or attributes["model_id"].present? or attributes["year"].present?
-      products = products.joins(:products_vmes).joins(products_vmes: {vme: {model: :brand}})
-    end
-    if attributes["brand_id"].present?
-      products = products.where("marca.id_marca = #{attributes["brand_id"]}")
-    end
-    if attributes["model_id"].present?
-      products = products.where("modelo.id_modelo = #{attributes["model_id"]}")
-    end
-    if attributes["year"].present?
-      products = products.where("? between coalesce(products_vmes.from_year, 0) and coalesce(products_vmes.to_year, 3000)", attributes["year"].to_i)
-    end
-    products
   end
 
   def fix_price_range(form)

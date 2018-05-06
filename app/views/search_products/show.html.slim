@@ -9,19 +9,11 @@
             strong #{@category.name.camelize}
         .col-sm-12
           ul.nav.nav-tabs
-            li.hidden class="#{vehicle_tab_active?(@search_products_form) ? 'active' : ''}"
-              a href="#car-search" role="tab" data-toggle="tab"
-                | Buscar por&nbsp;
-                strong Vehículo
-            /li class="#{vehicle_tab_active?(@search_products_form) ? 'active' : ''}"
             li class="#{vehicle_tab_active?(@search_products_form) ? 'active' : 'active'}"
               a href="#attributes-search" role="tab" data-toggle="tab"
                 | Buscar por&nbsp;
                 strong Medida
           .tab-content
-            /#car-search.search-criteria.tab-pane.fade role="tabpanel" class="#{vehicle_tab_active?(@search_products_form) ? 'active' : ''}"
-            #car-search.search-criteria.tab-pane.fade role="tabpanel" class="#{vehicle_tab_active?(@search_products_form) ? '' : ''}"
-              = render partial: 'search_by_vehicle'
             #attributes-search.search-criteria.tab-pane.fade role="tabpanel" class="#{vehicle_tab_active?(@search_products_form) ? 'in active' :  'in active'}"
               = render partial: 'search_by_attributes'
         - if @search_products_form.vertical_filters.attributes.any?
