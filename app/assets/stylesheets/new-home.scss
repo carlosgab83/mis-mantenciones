@@ -7,9 +7,11 @@
 
 .new-home {
   position: relative;
-  height: 100%;
-  @extend .cover-background;
-  background-image: image-url("guideline-background-blur.jpg");
+  height: calc(100% - 40px);
+  @media #{$oxs} {
+    height: calc(100% - 50px);
+  }
+  
 }
 .new-home_header {
   height: 50px;
@@ -35,122 +37,168 @@
   }
 }
 .new-home_body {
-  height: calc(100% - 90px);
-  @media #{$oxs} {
-    height: calc(100% - 130px);
-  }
-  .list-unstyled {
-    position: relative;
-    height: 100%;
+  position: relative;
+  @media #{$xs} {
+    height: calc(100% - 48px);
     display: flex;
     flex-direction: column;
-    margin: 0;
-    @media #{$oxs} {
-      flex-direction: row;
+    align-items: stretch;
+    background-color: $light-color;
+  }
+  @media #{$oxs} {
+    height: calc(100% - 50px);
+  }
+  .carousel {
+    margin: 0 -15px;
+    .carousel-inner {
+      > .item {
+        > img {
+          margin: 0 auto;
+          width: 100%;
+        }
+      }
     }
-    .single-item {
-      position: relative;
-      flex: 1 1;
-      text-align: center;
-      overflow: hidden;
-      cursor: pointer;
-      @include transition(background-color 0.3s ease-in-out);
+    .carousel-caption {
+      text-align: right;
+      top: 0;
+      padding-bottom: 20px;
       @media #{$oxs} {
-        max-height: none;
-        max-width: 25%;
+        top: 20px;
+      }
+      h1, h2, h3 {
+        font-weight: bold;
+      }
+    }
+    .carousel-indicators {
+      bottom: 0;
+      @media #{$oxs} {
+        bottom: 50px;
+      }
+      li {
+        margin: 1px 2px;
+      }
+    }
+    .carousel-control {
+      width: 10%;
+      .fa {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        top: 50%;
+        position: absolute;
+        margin-top: -15px;
+        left: 50%;
+        margin-left: -15px;
+        font-size: 125%;
+      }
+    }
+  }
+
+  // Tabs
+  #home-tabs {
+    position: relative;
+    @media #{$xs} {
+      height: calc(100% - 100px);
+      .col-sm-9 {
+        position: static;
+      }
+    }
+    @media #{$oxs} {
+      top: -49px;
+    }
+    .nav-stacked {
+      margin-right: -15px;
+      font-weight: bold;
+      background-color: $light-color;
+      @media #{$xs} {
+        margin-left: -15px;
         height: 100%;
       }
-      &:nth-child(even) {
-        background-color: rgba($back-color,0.9);
-        &:hover, &.active {
-          color: $back-color;
-          background-color: transparent;
-          //background-color: rgba(lighten($side-color,20%),0.92);
-        }
-      }
-      &:nth-child(odd) {
-        background-color: rgba($light-color,0.9);
-        &:hover, &.active {
-          color: $back-color;
-          background-color: transparent;
-          //background-color: rgba(lighten($main-color,40%),0.92);
-        }
-      }
-      &.active {
-        @media #{$xs} {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          flex: 0 0 100%;
-          max-height: 100%;
-          z-index: 1000;
-          .close-item {
-            display: block;
-          }
-          .single-item-link {
-            height: 30%;
+      > li {
+        border-bottom: 1px solid $back-color;
+        a {
+          padding-top: 15px;
+          padding-bottom: 15px;
+          &:hover, &:active, &:focus {
+            background-color: darken($light-color,8%);
           }
         }
-        @media #{$oxs} {
-          .single-item-link {
-            height: 40%;
-          }
-          .single-item-extra {
+        &.active a {
+          background-color: $main-color;
+          &:hover, &:active, &:focus {
+            background-color: $main-color;
           }
         }
       }
-      &.not-active {
-        @media #{$xs} {
-          opacity: 0;
-        }
-      }
-      .close-item {
+    }
+    .tab-content {
+      margin-left: -15px;
+      text-align: center;
+      padding: 25px 35px 15px;
+      background-color: $main-color;
+      color: $back-color;
+      @include transition(all 0.6s ease-in-out);
+      @media #{$xs} {
         position: absolute;
-        right: 15px;
-        top: 15px;
-        font-size: 1.5rem;
-        width: 40px;
-        height: 40px;
-        padding: 10px;
-        cursor: pointer;
-        z-index: 1;
-        display: none;
-      }
-      .single-item-link {
-        display: flex;
-        align-items: center;
         width: 100%;
         height: 100%;
-        padding: 15px;
-        @include transition(all 0.3s ease-in-out);
-        span {
-          flex: 0 0 100%;
-          min-width: 100%;
-          text-align: center;
-          font-family: 'Exo', sans-serif;
-          font-weight: 700;
-          font-style: italic;
-          font-size: 2rem;
+        top: 0;
+        left: 15px;
+        margin-right: -15px;
+        //
+        z-index: -1;
+        opacity: 0;
+        visibility: hidden;
+        &.visible {
+          z-index: 1;
+          opacity: 1;
+          visibility: visible;
         }
-        & + .single-item-extra {
-          margin: 0 auto;
-          max-width: 320px;
-          padding: 15px;
+      }
+      .close-tab {
+        display: none;
+        @media #{$xs} {
           display: block;
-          input.form-control {
-            background-color: $back-color;
-            margin-bottom: 4px
-          }
-          .single-promo {
-            float: none;
-            .promo-description h6 {
-              color: $back-color;
-            }
-          }
-          .btn-link {
-            text-align: center;
-            margin-top: 15px;
-            color: $side-color;
+          border: none;
+          border-radius: 50%;
+          color: $main-color;
+          background-color: $back-color;
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          z-index: 1;
+        }
+      }
+      .form-control {
+        margin-bottom: 10px;
+        background-color: $back-color;
+      }
+      .btn-group {
+        .btn {
+          border: none;
+          background-color: transparent;
+          box-shadow: none;
+          height: 34px;
+        }
+      }
+      .btn-cta {
+        margin-top: 15px;
+      }
+      .btn-link {
+        color: $back-color;
+        margin-top: 15px;
+      }
+      .single-promo {
+        max-width: 420px;
+        margin: 0 auto 10px;
+        float: none;
+        display: block;
+        .promo-description {
+          color: $back-color;
+          h2, h3, h4, h5, h6 {
+            font-weight: bold;
+            color: $back-color;
           }
         }
       }
@@ -158,6 +206,8 @@
   }
 }
 .new-home_footer {
+  position: relative;
+  z-index: 2;
   height: 40px;
   padding: 10px 15px;
   text-align: center;

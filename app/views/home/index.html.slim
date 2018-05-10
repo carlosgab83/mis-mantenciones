@@ -6,121 +6,140 @@
       = link_to :root do
         = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive hidden-xs")
         = image_tag("logo-mm-xs.png", :alt => "Mis Mantenciones", :class => "img-responsive visible-xs")
-  nav.new-home_body
-    ul.list-unstyled
-      li.single-item
-        span.close-item 
-          i.fa.fa-times
-        .single-item-link.
-          span Neumáticos
-        form.single-item-extra
-          .row
-            .col-sm-12
-              p 
-                | Compra online tus nuevos 
-                strong neumáticos 
-            .col-sm-12
-              select.selectpicker.form-control
-                option Ancho
-                option 2
-            .col-sm-12
-              select.selectpicker.form-control
-                option Perfil
-                option 2
-            .col-sm-12
-              select.selectpicker.form-control
-                option Aro
-                option 2
-            .col-sm-12
-              button.btn.btn-cta.btn-block type="submit" Busca Neumáticos
-            .col-sm-12
-              = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
+  .new-home_body
+    .container-fluid
+        .row
+          .col-sm-12
+            #carousel-example-generic.carousel.slide data-ride="carousel" 
+              // Indicators
+              ol.carousel-indicators
+                li.active data-slide-to="0" data-target="#carousel-example-generic" 
+                li data-slide-to="1" data-target="#carousel-example-generic" 
+              // Wrapper for slides
+              .carousel-inner role="listbox" 
+                .item.active
+                  = image_tag("home/vitrina_1.jpg", :alt => "...", :class => "img-responsive")
+                  .carousel-caption
+                    h3 Prueba de elemento en carrusel
+                    p.hidden-xs Esta es la bajada de una publicación
+                    a.btn.btn-cta.hidden-xs Ver más
+                .item
+                  = image_tag("home/vitrina_2.png", :alt => "...", :class => "img-responsive")
+                  .carousel-caption
+                    h3 Este es un ejemplo de título
+                    p.hidden-xs Esta es la bajada de una publicación
+                    a.btn.btn-cta.hidden-xs Ver más
 
-      li.single-item
-        span.close-item 
-          i.fa.fa-times
-        .single-item-link
-          span Promociones
-        .single-item-extra
-          .row
-            .col-sm-12
-              a class="single-promo" href="#" title="automotriz-leon-servicio-revision"
-                .promo-image
-                  = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/leon-logo.jpg", :alt => "", :class => "brand-logo")
-                  = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/automotriz-leon-servicios-revision.jpg", :alt => "Revisión lorem ipsum")
-                .promo-description
-                  h6 Revisión lorem ipsum
-            .col-sm-12
-              = link_to "Ver todas", "#", :class => "btn btn-link btn-block"
-
-      li.single-item
-        span.close-item 
-          i.fa.fa-times
-        .single-item-link.
-          span Servicios
-        form.single-item-extra
-          .row
-            .col-sm-12
-              p 
-                strong Promociones 
-                | y descuentos en servicios para tu auto
-            .col-sm-12
-              select.selectpicker.form-control
-                option Selecciona Servicio
-                option 2
-            .col-sm-12
-              input.form-control type="text" placeholder="Ciudad o Comuna"
-            .col-sm-12
-              button.btn.btn-cta.btn-block type="submit" Busca Servicios
-            .col-sm-12
-              = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
-
-      li.single-item
-        span.close-item 
-          i.fa.fa-times
-        .single-item-link
-          span Mi Pauta
-        form.single-item-extra
-          .row
-            .col-sm-12
-              p 
-                | Busca tu 
-                strong Pauta 
-                | de Mantenciones
-            .col-sm-12
-              input.form-control type="text" placeholder="Patente"
-            .col-sm-12
-              input.form-control type="text" placeholder="Kilometraje"
-            .col-sm-12
-              button.btn.btn-cta.btn-block type="submit" Busca tu Pauta
-            .col-sm-12
-              = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
-  footer.new-home_footer
-    .container
-      .row
-        .col-xs-12.text-center
-          .webpay
-            = image_tag("webpay.png", :alt => "Webpay")
+              /! Controls
+              a.left.carousel-control data-slide="prev" href="#carousel-example-generic" role="button" 
+                i.fa.fa-angle-left
+              a.right.carousel-control data-slide="next" href="#carousel-example-generic" role="button" 
+                i.fa.fa-angle-right
+    #home-tabs
+      .container
+        .row
+          .col-sm-3
+            /! Nav tabs
+            ul.nav.nav-pills.nav-stacked role="tablist" 
+              li.active role="presentation" 
+                a aria-controls="parts" data-toggle="tab" href="#parts" role="tab"  Neumáticos
+              li role="presentation" 
+                a aria-controls="promo" data-toggle="tab" href="#promo" role="tab"  Promociones
+              li role="presentation" 
+                a aria-controls="map" data-toggle="tab" href="#map" role="tab"  Mapa Servicios
+              li role="presentation" 
+                a aria-controls="guideline" data-toggle="tab" href="#guideline" role="tab"  Mi Pauta
+          .col-sm-9
+            /! Tab panes
+            .tab-content
+              button.close-tab type="button"
+                i.fa.fa-times
+              #parts.tab-pane.fade.active.in role="tabpanel"
+                form
+                  .row
+                    .col-sm-12
+                      p 
+                        | Compra online tus nuevos 
+                        strong neumáticos 
+                    .col-sm-12.col-md-4
+                      select.selectpicker.form-control
+                        option Ancho
+                        option 2
+                    .col-sm-12.col-md-4
+                      select.selectpicker.form-control
+                        option Perfil
+                        option 2
+                    .col-sm-12.col-md-4
+                      select.selectpicker.form-control
+                        option Aro
+                        option 2
+                    .col-sm-12.col-md-6.col-md-offset-3
+                      button.btn.btn-cta.btn-block type="submit" Busca Neumáticos
+                    .col-sm-12
+                      = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
+              #promo.tab-pane.fade role="tabpanel"
+                .row
+                  .col-sm-12
+                    a class="single-promo" href="#" title="automotriz-leon-servicio-revision"
+                      .promo-image
+                        = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/leon-logo.jpg", :alt => "", :class => "brand-logo")
+                        = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/automotriz-leon-servicios-revision.jpg", :alt => "Revisión lorem ipsum")
+                      .promo-description
+                        h6 Revisión lorem ipsum
+                  .col-sm-12
+                    = link_to "Ver todas", "#", :class => "btn btn-link btn-block"
+              #map.tab-pane.fade role="tabpanel"
+                form
+                  .row
+                    .col-sm-12
+                      p 
+                        strong Promociones 
+                        | y descuentos en servicios para tu auto
+                    .col-sm-12.col-md-6
+                      select.selectpicker.form-control
+                        option Selecciona Servicio
+                        option 2
+                    .col-sm-12.col-md-6
+                      input.form-control type="text" placeholder="Ciudad o Comuna"
+                    .col-sm-12.col-md-6.col-md-offset-3
+                      button.btn.btn-cta.btn-block type="submit" Busca Servicios
+                    .col-sm-12
+                      = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
+              #guideline.tab-pane.fade role="tabpanel"
+                form
+                  .row
+                    .col-sm-12
+                      p 
+                        | Busca tu 
+                        strong Pauta 
+                        | de Mantenciones
+                    .col-sm-12.col-md-6
+                      input.form-control type="text" placeholder="Patente"
+                    .col-sm-12.col-md-6
+                      input.form-control type="text" placeholder="Kilometraje"
+                    .col-sm-12.col-md-6.col-md-offset-3
+                      button.btn.btn-cta.btn-block type="submit" Busca tu Pauta
+                    .col-sm-12
+                      = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
+        
+footer.new-home_footer
+  .container
+    .row
+      .col-xs-12.text-center
+        .webpay
+          = image_tag("webpay.png", :alt => "Webpay")
 
 javascript:
 
-  $('.single-item .single-item-link').click(function() {
-    $('.single-item').removeClass('active').addClass('not-active');
-    $(this).parent().removeClass('not-active').addClass('active');
-  });
+  $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+    $('.tab-content').addClass('visible');
+  })
 
-  // 
-  $('.single-item .single-item-link').mouseenter(function() {
-    if ($("#logo .visible-xs").css('display') == 'none') {
-      $(this).click();
-    };
-  });
-  $('.new-home_body').mouseleave(function() {
-    if ($("#logo .visible-xs").css('display') == 'none') {
-      $('.single-item').removeClass('active not-active');
-    };
+  $('.close-tab').click(function() {
+    $('.tab-content').removeClass('visible');
+    $('.nav.nav-stacked > li').removeClass('active');
   });
   
-  $('.close-item').click(function() {
-    $('.single-item').removeClass('active not-active');
-  });
+  if ($(window).width() < 768) {
+    $('.nav.nav-stacked > li').removeClass('active');
+  }
