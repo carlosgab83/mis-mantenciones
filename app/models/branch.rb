@@ -24,6 +24,8 @@ class Branch < ApplicationRecord
   # Use friendly id based on name
   friendly_id :name, use: :slugged
 
+  after_save :update_products
+
   scope :for_pauta, -> (pauta) do
     actives.includes(:shop).where(id: ids_for_pauta(pauta))
   end
@@ -86,5 +88,11 @@ class Branch < ApplicationRecord
       ['Ir al checkout de Mismantenciones.com', MISMANTENCIONES_CHECKOUT],
       ['Delegar decisión a cada producto', DELEGATE_TO_PRODUCT]
     ]
+  end
+
+  private
+
+  def update_products
+    products.update_all(updated_at: Time.now)
   end
 end

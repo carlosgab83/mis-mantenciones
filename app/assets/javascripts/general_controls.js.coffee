@@ -86,3 +86,9 @@ generalControls.arraysEqual = (arr1, arr2) ->
 
 generalControls.isMobileScreen = () ->
   !$('button.navbar-toggle').is(':hidden')
+
+#############################################################################
+
+generalControls.refreshSelectPicker = (element) ->
+  $(element).val('default')
+  $(element).selectpicker("refresh")

@@ -9,6 +9,16 @@ searchProductsControls.ready = ->
   if $(window).width() > 768
     $('#_price-filters').collapse("show")
 
+  if !generalControls.isMobileScreen()
+    $('a.vertical-filter').first().removeClass('collapsed')
+    $('.panel-collapse.vertical-filter').first().addClass('in')
+
+  $('#search-products-clean-filters').click ->
+    for select_element in $(searchProductsControls.activeForm()).find('select')
+      do ->
+        generalControls.refreshSelectPicker(select_element)
+    searchProductsControls.submitForm()
+
 #############################################################################
 
 searchProductsControls.dynamicSelectors = ->
@@ -22,6 +32,15 @@ searchProductsControls.dynamicSelectors = ->
 
 $(document).ready(searchProductsControls.dynamicSelectors)
 $(document).on('page:load', searchProductsControls.dynamicSelectors)
+
+#############################################################################
+
+searchProductsControls.dynamicHorizontalFilters = ->
+  $('.dynamic-horizontal-filters').change ->
+    searchProductsControls.submitForm()
+
+$(document).ready(searchProductsControls.dynamicHorizontalFilters)
+$(document).on('page:load', searchProductsControls.dynamicHorizontalFilters)
 
 #############################################################################
 
