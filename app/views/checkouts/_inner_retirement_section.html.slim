@@ -1,22 +1,18 @@
-- shop = order_preparator.branch.shop
-- click_n_collect = shop.click_n_collect_enabled
-- delivery = shop.delivery_enabled
-
-- if click_n_collect and not delivery
+- if click_n_collect_enabled?(order_preparator) and not delivery_enabled?(order_preparator)
   h2.checkout-title
     |
       3. Sucursal de&nbsp;
     strong Retiro o instalación
   = render "click_n_collect_form", f: f, branches: branches
 
-- elsif delivery and not click_n_collect
+- elsif delivery_enabled?(order_preparator) and not click_n_collect_enabled?(order_preparator)
   h2.checkout-title
     |
       3. Datos de&nbsp;
     strong Entrega
   = render "delivery_form", f: f, branches: branches
 
-- elsif delivery and click_n_collect
+- elsif delivery_enabled?(order_preparator) and click_n_collect_enabled?(order_preparator)
   h2.checkout-title
     |
       3. Elige&nbsp;
