@@ -73,7 +73,6 @@ class Product < ApplicationRecord
   end
 
   def clear_products_finder_cache
-    binding.pry
     Rails.cache.delete_if {|k, v| k =~ 'products_finder/' }
   end
 end
