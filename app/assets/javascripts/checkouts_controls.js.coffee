@@ -18,13 +18,10 @@ checkoutsControls.initilization = () ->
     $('#product-to-checkout').submit()
 
   $('#buyable-quantity_selector').click ->
-    params = {}
-    params['quantity'] = document.getElementById('buyable-quantity_selector').value
-    params['price'] = $('#buyable-quantity_selector').data('price')
-    url = "/checkout/update_price_by_quantity"
-    method ="GET"
-    success_function = ->
-    generalControls.sendAjax(params, url, success_function, method)
+    checkoutsControls.update_price_by_quantity()
+
+  $('#buyable-quantity_selector').focusout ->
+    checkoutsControls.update_price_by_quantity()
 
   $('#order_commune_id.delivery-form').on 'change', ->
     $('#order_region.delivery-form').val regions[@value]
@@ -46,6 +43,17 @@ checkoutsControls.initilization = () ->
   $('#order_phone').on 'change', ->
     if checkoutsControls.contact_info_checked()
       $('#order_contact_phone.delivery-form').val $('#order_phone').val()
+
+#############################################################################
+
+checkoutsControls.update_price_by_quantity = () ->
+  params = {}
+  params['quantity'] = document.getElementById('buyable-quantity_selector').value
+  params['price'] = $('#buyable-quantity_selector').data('price')
+  url = "/checkout/update_price_by_quantity"
+  method ="GET"
+  success_function = ->
+  generalControls.sendAjax(params, url, success_function, method)
 
 #############################################################################
 
