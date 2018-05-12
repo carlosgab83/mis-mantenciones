@@ -1,3 +1,4 @@
 - @products.each do |product|
   li
-    = render 'product', product: product
+    - cache product do
+      = render 'product', product: product

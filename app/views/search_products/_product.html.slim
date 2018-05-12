@@ -1,20 +1,14 @@
-- if product.id == 211 and product.branches_products.count == 1
-  = link_to open_url_branches_product_path(product.branches_products.first), target: '_blank' do
-    .part-image
-      = image_tag(product.image_url || "part-image.jpg", :alt => product.product_brand.name + " " + product.name)
-    .part-description
-      h6 class="#{"brand #{product.product_brand.name.downcase.tr(" ","-")}"}"
-      p #{product.name}
-      strong desde
-      strong.price #{mismantenciones_number_to_currency(product.price)}
+- if show_buy_button?(product)
+  - bp = product.branches_products_with_prices.first
+  = form_tag checkouts_path, method: :post, id: "product-to-checkout-id-#{bp.product_id}"
+    = hidden_field :checkout, :branch_id, value: bp.branch_id
+    = hidden_field :checkout, :product_id, value: bp.product_id
+    button.btn.btn-cta type="submit" data-branch_id="" comprar
 
+- if product.branches_products.count == 1 and not product.branches_products.first.is_mismantenciones_checkout?
+  = link_to open_url_branches_product_path(product.branches_products.first), target: '_blank' do
+    = render "product_box", product: product
 
 - else
-  = link_to product_path(product)
-    .part-image
-      = image_tag(product.image_url || "part-image.jpg", :alt => product.product_brand.name + " " + product.name)
-    .part-description
-      h6 class="#{"brand #{product.product_brand.name.downcase.tr(" ","-")}"}"
-      p #{product.name}
-      strong desde
-      strong.price #{mismantenciones_number_to_currency(product.price)}
+  = link_to product_path(product) do
+    = render "product_box", product: product

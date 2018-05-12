@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   extend ProductsSerializer
   include MicrodataGenerator
 
-   self.per_page = 5
+   self.per_page = 10
 
   belongs_to :product_type
   belongs_to :category
@@ -19,6 +19,8 @@ class Product < ApplicationRecord
   scope :actives, -> {where("status is true")}
   scope :not_deleted, -> {where(deleted: [false, nil])}
   scope :by_category, -> (category) {joins(:category).where("products.category_id = ?", category.id)}
+
+  after_save :clear_products_finder_cache
 
   def branches_products_with_prices
     non_price_value = 9999999999
@@ -68,6 +70,10 @@ class Product < ApplicationRecord
 
   def description_attribute_id
     @description_attribute_id ||= product_attributes.where(name: DESCRIPTION_ATTRIBUTE).first.try(:id)
+  end
+
+  def clear_products_finder_cache
+    Rails.cache.delete_if {|k, v| k =~ 'products_finder/' }
   end
 end
 

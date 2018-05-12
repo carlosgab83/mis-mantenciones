@@ -2,9 +2,9 @@
   .panel
     .panel-heading
       - anchor_id = "#{attribute_hash.attribute.name.delete(' ')}-filters"
-      a role="button" data-toggle="collapse" href="##{anchor_id}"
+      a role="button" data-toggle="collapse" href="##{anchor_id}" class="collapsed vertical-filter"
         = attribute_hash.attribute.name.camelize
-    .panel-collapse.collapse.in role="tabpanel" id="#{anchor_id}"
+    .panel-collapse.collapse.vertical-filter role="tabpanel" id="#{anchor_id}"
       .panel-body
         - attribute_id = attribute_hash.attribute.id
         ul.list-unstyled data-attribute_id="#{attribute_id}"
@@ -24,23 +24,23 @@
 .panel
   .panel-heading
     - anchor_id = "_price-filters"
-    a role="button" data-toggle="collapse" href="##{anchor_id}"
+    a role="button" data-toggle="collapse" href="##{anchor_id}" class="collapsed"
       | Precio
-  .panel-collapse.collapse.in role="tabpanel" id="#{anchor_id}"
+  .panel-collapse.collapse role="tabpanel" id="#{anchor_id}"
     .panel-body
       - attribute_id = '_price_from'
       .row
-        .col-xs-5
+        .col-xs-12
           ul.list-unstyled data-attribute_id="#{attribute_id}"
             li.price-range
               span Desde&nbsp;
               = text_field_tag('', '_from_price', class: 'big-numeric form-control',value: @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], '_price_from'))
           - attribute_id = '_price_to'
-        .col-xs-5
+        .col-xs-12
           ul.list-unstyled data-attribute_id="#{attribute_id}"
             li.price-range
               span Hasta&nbsp;
               = text_field_tag('', '_to_price', class: 'big-numeric form-control', value: @search_products_form.client_search_input['vertical_filters'].try(:[], 'attributes').try(:[], '_price_to'))
-        .col-xs-2
-          span.btn.btn-cta &nbsp;ir
+        .col-xs-12
+          span.btn.btn-block.btn-cta &nbsp;ir
 

@@ -45,7 +45,7 @@
 	z-index: 1;
 	h1 {
 		font-weight: 300;
-		font-family: 'Exo 2', sans-serif;
+		font-family: 'Montserrat', sans-serif;
 		margin-bottom: 0;
 		.img-logo {
 			max-width: 100%;
@@ -68,7 +68,7 @@
 	&:after {@extend .bottom-triangle;}
 	h3 {
 		text-align: right;
-		font-family: 'Exo', sans-serif;
+		font-family: 'Montserrat', sans-serif;
 		font-style: italic;
 		margin-bottom: 0;
 		font-size: 22px;
@@ -124,7 +124,7 @@
 	color: rgba($dark-color,0.8);
 	h3 {
 		text-align: right;
-		font-family: 'Exo', sans-serif;
+		font-family: 'Montserrat', sans-serif;
 		font-style: italic;
 		@media #{$usm}{
 			text-align: center;
