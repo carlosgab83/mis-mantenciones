@@ -13,8 +13,8 @@ module OrderSerializer
       json.delivery_installation  delivery_installation
       json.street_address         street_address
       json.number_address         number_address
-      json.region                 comune.region.name
-      json.comune                 comune.desc_comuna
+      json.region                 comune.region.name if comune
+      json.comune                 comune.desc_comuna if comune
     end
   end
 end
