@@ -2,6 +2,10 @@ class Order < ApplicationRecord
   belongs_to :cart
   belongs_to :client
   belongs_to :branch
+  belongs_to :comune, foreign_key: :commune_id
+
+  BRANCH_RETIREMENT = 'click-n-collect-tab'
+  DELIVERY          = 'delivery-tab'
 
   include OrderSerializer
 
@@ -22,5 +26,25 @@ class Order < ApplicationRecord
         unit_price: cart_item.unit_price
       }
     end
+  end
+
+  def is_delivery?
+    retirement_type == DELIVERY
+  end
+
+  def full_address
+    "#{street_address}, #{number_address}, #{comune.desc_comuna}, región #{comune.region.name}"
+  end
+
+  def full_contact_info
+    "#{contact_seller}, teléfono: #{contact_phone}"
+  end
+
+  def delivey_installation_str
+    delivery_installation?  ? 'Si': 'No'
+  end
+
+  def branch_installation_str
+    branch_installation?  ? 'Si': 'No'
   end
 end

@@ -1,0 +1,11 @@
+- branch_installation = branches.first.shop.installation_enabled
+hr
+  .form-group
+    label class="sr-only" Retirement Branch
+    = f.select(:retirement_branch, branches.pluck(:name), {prompt: 'Sucursal'}, { class: 'form-control' })
+  - if branches.first.shop.branch_installation?
+    .form-group
+      label.checkbox
+        = f.check_box :branch_installation, checked: "checked"
+        span
+          | Quiero instalación
