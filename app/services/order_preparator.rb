@@ -15,6 +15,10 @@ class OrderPreparator < BaseService
     if promotion
       self.branches_promotions = promotion.branches_promotions
       self.branches_promotion = branches_promotions.first
+
+      if branch.nil?
+        self.branch = branches_promotion.branch
+      end
     end
 
     fill_order

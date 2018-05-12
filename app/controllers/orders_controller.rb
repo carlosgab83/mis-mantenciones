@@ -34,8 +34,9 @@ class OrdersController < ApplicationController
     .permit(
       :email, :rut, :name, :primary_last_name, :phone,
       :street_address, :number_address, :region, :commune_id,
-      :contact_seller, :full_name, :contact_phone, :accept_terms,
-      :payment_type
+      :contact_seller, :contact_phone, :accept_terms,
+      :payment_type, :retirement_type, :branch_installation,
+      :delivery_installation, :retirement_branch
     )
   end
 end

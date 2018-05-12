@@ -1,0 +1,16 @@
+ul.nav.nav-tabs
+  li class="active"
+    a href="#click-n-collect-tab" role="tab" data-toggle="tab"
+      | Retiro en &nbsp;
+      strong Tienda
+  li class=""
+    a href="#delivery-tab" role="tab" data-toggle="tab"
+      | Despacho a&nbsp;
+      strong Domicilio
+#section-3.tab-content
+  #click-n-collect-tab.tab-pane.fade role="tabpanel" class="in active"
+    = render "click_n_collect_form", f: f, branches: branches
+
+  #delivery-tab.tab-pane.fade role="tabpanel" class=""
+    = render "delivery_form", f: f, branches: branches
+

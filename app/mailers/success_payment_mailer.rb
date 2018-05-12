@@ -23,7 +23,11 @@ class SuccessPaymentMailer < ApplicationMailer
             {name: 'PICKUP_BRANCH_NAME', content: payment.order.region},
             {name: 'ORDER_NUMBER', content: payment.order.order_number},
             {name: 'PROMOS_SECTION', content: CarouselPromotionsCreatorForMailer.new(promotions_ids: promotions_ids, patent: patent, kms: kms).call},
-            {name: 'COPY_RIGHT_YEAR', content: Date.today.year}
+            {name: 'COPY_RIGHT_YEAR', content: Date.today.year},
+            {name: 'RETIREMENT_TYPE', content: (payment.order.is_delivery? ? 'Despacho a domicilio' : 'Retiro en Sucursal')},
+            {name: 'RETIREMENT_LOCATION_TEXT', content: (payment.order.is_delivery? ? 'Dirección de entrega' : 'Sucursal de retiro')},
+            {name: 'RETIREMENT_ADDRESS', content: (payment.order.is_delivery? ? "#{payment.order.full_address}, contactar a #{payment.order.full_contact_info}" : payment.order.retirement_branch)},
+            {name: 'INSTALLATION', content: (payment.order.is_delivery? ? "#{payment.order.delivey_installation_str}" : "#{payment.order.branch_installation_str}")}
           ]
         }
       ]
@@ -57,7 +61,11 @@ class SuccessPaymentMailer < ApplicationMailer
               {name: 'BRANCH_NAME', content: payment.order.branch.name},
               {name: 'PICKUP_BRANCH_NAME', content: payment.order.region},
               {name: 'ORDER_NUMBER', content: payment.order.order_number},
-              {name: 'COPY_RIGHT_YEAR', content: Date.today.year}
+              {name: 'COPY_RIGHT_YEAR', content: Date.today.year},
+              {name: 'RETIREMENT_TYPE', content: (payment.order.is_delivery? ? 'Despacho a domicilio' : 'Retiro en Sucursal')},
+              {name: 'RETIREMENT_LOCATION_TEXT', content: (payment.order.is_delivery? ? 'Dirección de entrega' : 'Sucursal de retiro')},
+              {name: 'RETIREMENT_ADDRESS', content: (payment.order.is_delivery? ? "#{payment.order.full_address}, contactar a #{payment.order.full_contact_info}" : payment.order.retirement_branch)},
+              {name: 'INSTALLATION', content: (payment.order.is_delivery? ? "#{payment.order.delivey_installation_str}" : "#{payment.order.branch_installation_str}")}
             ]
           }
         ]

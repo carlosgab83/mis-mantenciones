@@ -1,0 +1,27 @@
+- if click_n_collect_enabled?(order_preparator) and not delivery_enabled?(order_preparator)
+  h2.checkout-title
+    |
+      3. Sucursal de&nbsp;
+    strong Retiro o instalación
+  = render "click_n_collect_form", f: f, branches: branches
+
+- elsif delivery_enabled?(order_preparator) and not click_n_collect_enabled?(order_preparator)
+  h2.checkout-title
+    |
+      3. Datos de&nbsp;
+    strong Entrega
+  = render "delivery_form", f: f, branches: branches
+
+- elsif delivery_enabled?(order_preparator) and click_n_collect_enabled?(order_preparator)
+  h2.checkout-title
+    |
+      3. Elige&nbsp;
+    strong Retiro o Entrega
+  = render "tabs_with_delivery_and_click_n_collect_forms", f: f, branches: branches
+
+- else # Default
+  h2.checkout-title
+    |
+      3. Sucursal de&nbsp;
+    strong Retiro o Instalación
+  = render "click_n_collect_form", f: f, branches: branches
