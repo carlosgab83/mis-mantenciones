@@ -22,13 +22,13 @@
                   .carousel-caption
                     h3 Prueba de elemento en carrusel
                     p.hidden-xs Esta es la bajada de una publicación
-                    a.btn.btn-cta.hidden-xs Ver más
+                    a.btn.btn-cta Ver más
                 .item
                   = image_tag("home/vitrina_2.png", :alt => "...", :class => "img-responsive")
                   .carousel-caption
                     h3 Este es un ejemplo de título
                     p.hidden-xs Esta es la bajada de una publicación
-                    a.btn.btn-cta.hidden-xs Ver más
+                    a.btn.btn-cta Ver más
 
               /! Controls
               a.left.carousel-control data-slide="prev" href="#carousel-example-generic" role="button" 
@@ -80,12 +80,25 @@
               #promo.tab-pane.fade role="tabpanel"
                 .row
                   .col-sm-12
-                    a class="single-promo" href="#" title="automotriz-leon-servicio-revision"
-                      .promo-image
-                        = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/leon-logo.jpg", :alt => "", :class => "brand-logo")
-                        = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/automotriz-leon-servicios-revision.jpg", :alt => "Revisión lorem ipsum")
-                      .promo-description
-                        h6 Revisión lorem ipsum
+                    #promo-carousel
+                      a class="single-promo" href="#" title="automotriz-leon-servicio-revision"
+                        .promo-image
+                          = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/leon-logo.jpg", :alt => "", :class => "brand-logo")
+                          = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/automotriz-leon-servicios-revision.jpg", :alt => "Revisión lorem ipsum")
+                        .promo-description
+                          h6 Revisión lorem ipsum
+                      a class="single-promo" href="#" title="automotriz-leon-servicio-revision"
+                        .promo-image
+                          = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/leon-logo.jpg", :alt => "", :class => "brand-logo")
+                          = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/automotriz-leon-servicios-revision.jpg", :alt => "Revisión lorem ipsum")
+                        .promo-description
+                          h6 Revisión lorem ipsum
+                      a class="single-promo" href="#" title="automotriz-leon-servicio-revision"
+                        .promo-image
+                          = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/leon-logo.jpg", :alt => "", :class => "brand-logo")
+                          = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/automotriz-leon-servicios-revision.jpg", :alt => "Revisión lorem ipsum")
+                        .promo-description
+                          h6 Revisión lorem ipsum
                   .col-sm-12
                     = link_to "Ver todas", "#", :class => "btn btn-link btn-block"
               #map.tab-pane.fade role="tabpanel"
@@ -134,6 +147,9 @@ javascript:
   $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
     $('.tab-content').addClass('visible');
   })
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $('#promo-carousel').resize();
+  });
 
   $('.close-tab').click(function() {
     $('.tab-content').removeClass('visible');
@@ -142,4 +158,4 @@ javascript:
   
   if ($(window).width() < 768) {
     $('.nav.nav-stacked > li').removeClass('active');
-  }
+  };

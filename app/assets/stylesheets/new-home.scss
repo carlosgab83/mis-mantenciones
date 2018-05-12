@@ -49,7 +49,12 @@
     height: calc(100% - 50px);
   }
   .carousel {
+    background-color: $light-color;
     margin: 0 -15px;
+    border-bottom: 1px solid $back-color;
+    @media #{$xs} {
+      padding-bottom: 30px;
+    }
     .carousel-inner {
       > .item {
         > img {
@@ -61,24 +66,38 @@
     .carousel-caption {
       text-align: right;
       top: 0;
-      padding-bottom: 20px;
+      padding: 15px 0;
       @media #{$oxs} {
         top: 20px;
       }
       h1, h2, h3 {
         font-weight: bold;
+        @media #{$xs} {
+          font-size: 18px;
+        }
       }
     }
     .carousel-indicators {
-      bottom: 0;
-      @media #{$oxs} {
-        bottom: 50px;
+      li {
+        border-color: $main-color;
+        &.active {
+          background-color: $main-color;
+        }
       }
+      bottom: 0;
+      @media #{$xs} {margin-bottom: 5px;}
+      @media #{$oxs} {bottom: 50px;}
       li {
         margin: 1px 2px;
       }
     }
     .carousel-control {
+      @media #{$xs} {
+        height: calc(100% - 30px);
+      }
+      &.right, &.left {
+        background-image: none;
+      }
       width: 10%;
       .fa {
         width: 30px;
@@ -189,11 +208,18 @@
         color: $back-color;
         margin-top: 15px;
       }
+      #promo-carousel {
+        width: 100%;
+        max-width: 510px;
+        margin: 0 auto;
+        padding-left: 45px;
+        padding-right: 45px;
+        .slick-arrow {
+          color: $back-color;
+        }
+      }
       .single-promo {
-        max-width: 420px;
-        margin: 0 auto 10px;
-        float: none;
-        display: block;
+        margin: 0;
         .promo-description {
           color: $back-color;
           h2, h3, h4, h5, h6 {
