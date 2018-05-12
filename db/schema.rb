@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180502235358) do
+ActiveRecord::Schema.define(version: 20180512180931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -276,26 +276,29 @@ ActiveRecord::Schema.define(version: 20180502235358) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string   "order_number",      null: false
-    t.string   "email",             null: false
-    t.string   "rut",               null: false
-    t.string   "name",              null: false
-    t.string   "primary_last_name", null: false
+    t.string   "order_number",          null: false
+    t.string   "email",                 null: false
+    t.string   "rut",                   null: false
+    t.string   "name",                  null: false
+    t.string   "primary_last_name",     null: false
     t.string   "phone"
     t.string   "street_address"
     t.string   "number_address"
     t.string   "region"
     t.integer  "commune_id"
-    t.boolean  "contact_seller"
-    t.string   "full_name"
+    t.string   "contact_seller"
     t.string   "contact_phone"
     t.string   "accept_terms"
     t.string   "status"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "client_id",         null: false
-    t.integer  "cart_id",           null: false
-    t.integer  "branch_id",         null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "client_id",             null: false
+    t.integer  "cart_id",               null: false
+    t.integer  "branch_id",             null: false
+    t.string   "retirement_type"
+    t.boolean  "branch_installation"
+    t.boolean  "delivery_installation"
+    t.string   "retirement_branch"
     t.index ["branch_id"], name: "index_orders_on_branch_id", using: :btree
     t.index ["cart_id", "client_id", "created_at"], name: "orders_business_index", unique: true, using: :btree
     t.index ["cart_id"], name: "index_orders_on_cart_id", using: :btree
@@ -424,7 +427,7 @@ ActiveRecord::Schema.define(version: 20180502235358) do
     t.index ["promotion_id"], name: "index_promotions_vmes_on_promotion_id", using: :btree
   end
 
-  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, force: :cascade, comment: "Rut taller" do |t|
+  create_table "proveedor_taller", primary_key: "ide_rut", id: :integer, comment: "Rut taller", force: :cascade do |t|
     t.string  "ide_dv",        limit: 1,               null: false
     t.text    "ide_nombre_rz",                         null: false
     t.integer "ide_estado",              default: 1,   null: false
@@ -448,6 +451,7 @@ ActiveRecord::Schema.define(version: 20180502235358) do
     t.integer "v_pro_rut"
     t.text    "v_pro_dv"
     t.text    "v_pro_nombre"
+    t.index ["v_rvm"], name: "idx_v_rvm", unique: true, using: :btree
     t.index ["v_rvm"], name: "index_v_rvm", using: :btree
   end
 

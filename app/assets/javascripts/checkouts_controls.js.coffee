@@ -64,12 +64,28 @@ checkoutsControls.get_full_name = () ->
 
 #############################################################################
 
+# Called in onSubmit event
 checkoutsControls.process_order = (form_id) ->
   submit_button = $('#' + form_id).find(':submit')[0]
   submit_button.innerText = "PROCESANDO ORDEN..."
+  checkoutsControls.fill_retirement_type()
   generalControls.showLoadingEffect()
 
 #############################################################################
 
 checkoutsControls.contact_info_checked = () ->
   return $('#order_same_contact_info')[0].checked
+
+#############################################################################
+
+checkoutsControls.fill_retirement_type = () ->
+  tab = $("#section-3 div.active")[0]
+  if tab
+    $('#order_retirement_type').val(tab.id)
+  else
+    if $('#order_street_address')[0]
+      $('#order_retirement_type').val('delivery-tab')
+    else
+      $('#order_retirement_type').val('click-n-collect-tab')
+
+#############################################################################

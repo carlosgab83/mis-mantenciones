@@ -46,6 +46,7 @@
                   span
                     = image_tag("webpay.svg", :alt => "webpay", :class => "img-responsive webpay-logo")
           .col-sm-4
+            = f.hidden_field :retirement_type
             .well.checkout-installation
               = render 'retirement_section', order_preparator: @order_preparator, f: f
             - if not (delivery_enabled?(@order_preparator) and click_n_collect_enabled?(@order_preparator))
