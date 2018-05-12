@@ -57,12 +57,8 @@ leftPanelControls.getModelsByBrand = (selectedBrandId) ->
 
 leftPanelControls.resetBasicForm = () ->
   document.getElementById("basic-search-form").reset()
-  brandPiker = $("#search_brand_id")
-  $(brandPiker).val('default')
-  $(brandPiker).selectpicker("refresh")
-  modelPiker = $("#search_model_id")
-  $(modelPiker).val('default')
-  $(modelPiker).selectpicker("refresh")
+  generalControls.refreshSelectPicker($("#search_brand_id"))
+  generalControls.refreshSelectPicker($("#search_model_id"))
 
 #############################################################################
 

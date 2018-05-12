@@ -13,6 +13,12 @@ searchProductsControls.ready = ->
     $('a.vertical-filter').first().removeClass('collapsed')
     $('.panel-collapse.vertical-filter').first().addClass('in')
 
+  $('#search-products-clean-filters').click ->
+    for select_element in $(searchProductsControls.activeForm()).find('select')
+      do ->
+        generalControls.refreshSelectPicker(select_element)
+    searchProductsControls.submitForm()
+
 #############################################################################
 
 searchProductsControls.dynamicSelectors = ->
