@@ -2,9 +2,8 @@
 class ProductFilters
 
   def attributes_by_category(attributes_ids, category, _attrs_values)
-    struct = Struct.new(:attribute, :values)
     attributes_and_values_list(attributes_ids, category).collect do |attribute_hash|
-      struct.new(attribute_hash[:attribute], attribute_hash[:values].sort)
+      AttributeFilter.new(attribute_hash[:attribute], attribute_hash[:values].sort)
     end
   end
 

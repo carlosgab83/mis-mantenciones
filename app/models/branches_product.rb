@@ -1,6 +1,6 @@
 class BranchesProduct < ApplicationRecord
   belongs_to :branch
-  belongs_to :product
+  belongs_to :product, touch: true
 
   FOLLOW_PRODUCT_URL = 0
   MISMANTENCIONES_CHECKOUT = 1
