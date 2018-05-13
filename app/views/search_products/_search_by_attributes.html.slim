@@ -4,10 +4,7 @@
   .col-sm-12
     = form_tag search_product_path, method: :put, id: 'search-products-by-attributes-form'
       .row
-        - @search_products_form.horizontal_filters.by_attributes[0..2].each do |attribute_struct|
-          .col-xs-4.col-sm-6.col-md-3
-            - attr_selected = @search_products_form.client_search_input['horizontal_filters']['by_attributes'].try(:[], attribute_struct.attribute.id.to_s)
-            = select_tag("client_search_input[horizontal_filters[by_attributes[#{attribute_struct.attribute.id}]]", options_for_select(fill_horizontal_options_for_select(attribute_struct.values, attribute_struct.attribute.id, @search_products_form), attr_selected), class: 'selectpicker form-control dynamic-horizontal-filters', include_blank: "Todos", title: attribute_struct.attribute.name, 'data-live-search' => 'true', 'data-none-results-text'=>'No se encontraron resultados para {0}')
+        = render 'inner_horizontal_filters', search_products_form: @search_products_form
         .col-sm-6.col-md-3
           button.btn.btn-cta.btn-block#search-products-clean-filters type="button" Limpiar filtros
           button.hidden.btn.btn-cta.btn-block type="submit" Submit

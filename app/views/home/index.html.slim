@@ -10,13 +10,13 @@
     .container-fluid
         .row
           .col-sm-12
-            #carousel-example-generic.carousel.slide data-ride="carousel" 
+            #carousel-example-generic.carousel.slide data-ride="carousel"
               // Indicators
               ol.carousel-indicators
-                li.active data-slide-to="0" data-target="#carousel-example-generic" 
-                li data-slide-to="1" data-target="#carousel-example-generic" 
+                li.active data-slide-to="0" data-target="#carousel-example-generic"
+                li data-slide-to="1" data-target="#carousel-example-generic"
               // Wrapper for slides
-              .carousel-inner role="listbox" 
+              .carousel-inner role="listbox"
                 .item.active
                   = image_tag("home/vitrina_1.jpg", :alt => "...", :class => "img-responsive")
                   .carousel-caption
@@ -31,52 +31,43 @@
                     a.btn.btn-cta Ver más
 
               /! Controls
-              a.left.carousel-control data-slide="prev" href="#carousel-example-generic" role="button" 
+              a.left.carousel-control data-slide="prev" href="#carousel-example-generic" role="button"
                 i.fa.fa-angle-left
-              a.right.carousel-control data-slide="next" href="#carousel-example-generic" role="button" 
+              a.right.carousel-control data-slide="next" href="#carousel-example-generic" role="button"
                 i.fa.fa-angle-right
     #home-tabs
       .container
         .row
           .col-sm-3
             /! Nav tabs
-            ul.nav.nav-pills.nav-stacked role="tablist" 
-              li.active role="presentation" 
+            ul.nav.nav-pills.nav-stacked role="tablist"
+              li.active role="presentation"
                 a aria-controls="parts" data-toggle="tab" href="#parts" role="tab"  Neumáticos
-              li role="presentation" 
+              li role="presentation"
                 a aria-controls="promo" data-toggle="tab" href="#promo" role="tab"  Promociones
-              li role="presentation" 
+              li role="presentation"
                 a aria-controls="map" data-toggle="tab" href="#map" role="tab"  Mapa Servicios
-              li role="presentation" 
+              li role="presentation"
                 a aria-controls="guideline" data-toggle="tab" href="#guideline" role="tab"  Mi Pauta
           .col-sm-9
             /! Tab panes
             .tab-content
               button.close-tab type="button"
                 i.fa.fa-times
-              #parts.tab-pane.fade.active.in role="tabpanel"
-                form
-                  .row
+              #parts.tab-pane.fade.search-criteria.active.in role="tabpanel"
+                .row
+                  = form_tag remote_search_search_product_path(@category), method: :put, id: 'search-products-by-attributes-form', 'data-go-to' => search_product_path(@category), remote: true
                     .col-sm-12
-                      p 
-                        | Compra online tus nuevos 
-                        strong neumáticos 
-                    .col-sm-12.col-md-4
-                      select.selectpicker.form-control
-                        option Ancho
-                        option 2
-                    .col-sm-12.col-md-4
-                      select.selectpicker.form-control
-                        option Perfil
-                        option 2
-                    .col-sm-12.col-md-4
-                      select.selectpicker.form-control
-                        option Aro
-                        option 2
+                      p
+                        | Compra online tus nuevos&nbsp;
+                        strong neumáticos
+                      #remote-search-Neumaticos
+                        = render 'search_products/inner_horizontal_filters', search_products_form: @search_products_form
                     .col-sm-12.col-md-6.col-md-offset-3
-                      button.btn.btn-cta.btn-block type="submit" Busca Neumáticos
-                    .col-sm-12
-                      = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
+                      button.hidden.btn.btn-cta.btn-block type="submit" _submit_
+                      button.btn.btn-cta.btn-block.go-to-search-neumaticos Busca Neumáticos
+                  .col-sm-12
+                    = link_to "Ver todos", search_product_path(@category), :class => "btn btn-link btn-block"
               #promo.tab-pane.fade role="tabpanel"
                 .row
                   .col-sm-12
@@ -105,8 +96,8 @@
                 form
                   .row
                     .col-sm-12
-                      p 
-                        strong Promociones 
+                      p
+                        strong Promociones
                         | y descuentos en servicios para tu auto
                     .col-sm-12.col-md-6
                       select.selectpicker.form-control
@@ -122,9 +113,9 @@
                 form
                   .row
                     .col-sm-12
-                      p 
-                        | Busca tu 
-                        strong Pauta 
+                      p
+                        | Busca tu
+                        strong Pauta
                         | de Mantenciones
                     .col-sm-12.col-md-6
                       input.form-control type="text" placeholder="Patente"
@@ -134,7 +125,7 @@
                       button.btn.btn-cta.btn-block type="submit" Busca tu Pauta
                     .col-sm-12
                       = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
-        
+
 footer.new-home_footer
   .container
     .row
@@ -155,7 +146,7 @@ javascript:
     $('.tab-content').removeClass('visible');
     $('.nav.nav-stacked > li').removeClass('active');
   });
-  
+
   if ($(window).width() < 768) {
     $('.nav.nav-stacked > li').removeClass('active');
   };

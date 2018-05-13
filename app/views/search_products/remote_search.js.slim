@@ -1,0 +1,4 @@
+|
+  $('#remote-search-#{@category.slug}').html( "#{escape_javascript(render '/search_products/inner_horizontal_filters', search_products_form: @search_products_form)}" );
+  $('#remote-search-#{@category.slug} select').selectpicker('refresh');
+  searchProductsControls.dynamicHorizontalFilters()
