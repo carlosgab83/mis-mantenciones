@@ -93,24 +93,28 @@
                   .col-sm-12
                     = link_to "Ver todas", "#", :class => "btn btn-link btn-block"
               #map.tab-pane.fade role="tabpanel"
-                form
+                form action="/search-branches"
                   .row
                     .col-sm-12
                       p
-                        strong Promociones
+                        strong Promociones&nbsp;
                         | y descuentos en servicios para tu auto
                     .col-sm-12.col-md-6
-                      select.selectpicker.form-control
-                        option Selecciona Servicio
-                        option 2
+                      select.form-control#service-selection-select
+                        option value="" Selecciona Servicio
+                        option value="0" id="0" Ver todos
+                        - BranchType.actives.order(:name).all.each do |branch_type|
+                          option value="#{branch_type.id}" id="#{branch_type.id}" #{branch_type.name}
                     .col-sm-12.col-md-6
-                      input.form-control type="text" placeholder="Ciudad o Comuna"
+                      label.sr-only for="county-field" Ciudad o Comuna
+                      input#search-input-left-panel.form-control.search-input type="text" placeholder="Ciudad o Comuna"
                     .col-sm-12.col-md-6.col-md-offset-3
-                      button.btn.btn-cta.btn-block type="submit" Busca Servicios
+                      button#services-search.map-search.btn.btn-cta.btn-block type="submit"
+                        | Busca Servicios
                     .col-sm-12
-                      = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
+                      = link_to "Ver todos", "/search-branches", :class => "btn btn-link btn-block"
               #guideline.tab-pane.fade role="tabpanel"
-                form
+                = form_tag results_home_path, class: 'form-inline search-patent'
                   .row
                     .col-sm-12
                       p
@@ -118,13 +122,13 @@
                         strong Pauta
                         | de Mantenciones
                     .col-sm-12.col-md-6
-                      input.form-control type="text" placeholder="Patente"
+                      = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Tu Patente', maxlength: 6)
                     .col-sm-12.col-md-6
-                      input.form-control type="text" placeholder="Kilometraje"
+                      = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Tu Kilometraje', maxlength: 8)
                     .col-sm-12.col-md-6.col-md-offset-3
                       button.btn.btn-cta.btn-block type="submit" Busca tu Pauta
                     .col-sm-12
-                      = link_to "Ver todos", "#", :class => "btn btn-link btn-block"
+                      = link_to "Ver todos", my_pauta_home_path, :class => "btn btn-link btn-block"
 
 footer.new-home_footer
   .container
