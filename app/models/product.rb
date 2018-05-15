@@ -73,7 +73,7 @@ class Product < ApplicationRecord
   end
 
   def clear_products_finder_cache
-    Rails.cache.delete_if {|k, v| k =~ 'products_finder/' }
+    Rails.cache.delete_matched('products_finder/*')
   end
 end
 
