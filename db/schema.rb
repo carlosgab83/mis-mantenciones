@@ -195,6 +195,9 @@ ActiveRecord::Schema.define(version: 20180523224413) do
     t.string   "street_address"
     t.string   "number_address"
     t.string   "region"
+    t.string   "manteinance_type"
+    t.string   "brand"
+    t.text     "message"
     t.index ["email", "rvm_id"], name: "clients_business_index", unique: true, using: :btree
   end
 

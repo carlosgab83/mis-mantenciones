@@ -11,7 +11,10 @@
     rules: {
     "client[name]": {required: true},
     "client[email]": {required: true, email: true},
-    "client[phone]": {required: false, digits: true, minlength: 9, maxlength: 15},
+    "client[phone]": {required: true, digits: true, minlength: 9, maxlength: 15},
+    "client[comune_id]": {required: true},
+    "client[manteinance_type]": {required: true},
+    "client[brand]": {required: true,  maxlength: 200}
     }
   });
 

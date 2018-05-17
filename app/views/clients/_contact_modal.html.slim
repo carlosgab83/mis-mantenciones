@@ -22,8 +22,24 @@
           .col-sm-6.col.md-4
             .form-group
               label.sr-only for="phone" Teléfono
-              = f.input :phone, label: false, placeholder:'Celular opcional', error: ''
+              = f.text_field :phone, placeholder: "Teléfono: 569336699", class: "form-control phone"
           .col-sm-6.col.md-4
+            .form-group
+              label.sr-only for="comune_id" Comuna
+              = f.input :comune_id, collection: Comune.where(desc_comuna: ['LO BARNECHEA', 'LAS CONDES', 'VITACURA', 'PROVIDENCIA', 'LA REINA', 'NUNOA', 'PENALOLEN']).map{|c|[c.desc_comuna, c.id_comuna]}, label: false, prompt: 'Comuna', error:''
+          .col-sm-6.col.md-4
+            .form-group
+              label.sr-only for="manteinance_type" Tipo de mantencion
+              = f.input :manteinance_type, collection: [['10.000 kms']*2, ['20.000 kms']*2, ['30.000 kms']*2], label: false, prompt: 'Tipo de mantención', error:''
+          .col-sm-6.col.md-4
+            .form-group
+              label.sr-only for="brand" Marca
+              = f.input :brand, collection: [['Suzuki']*2, ['Mazda']*2], label: false, prompt: 'Marca de vihículo', error:''
+          .col-sm-12.col.md-8
+            .form-group
+              label.sr-only for="phone" Mensaje
+              = f.input :message, label: false, type: 'textarea', placeholder:'Mensaje...', error: ''
+          .col-sm-12.col.md-8
             = hidden_field_tag('success_partial', params[:success_partial])
             = hidden_field_tag('partial', params[:partial])
 
