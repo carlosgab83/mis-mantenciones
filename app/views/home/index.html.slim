@@ -29,7 +29,10 @@
                   span Mapa Servicios
               li role="presentation"
                 a aria-controls="guideline" data-toggle="tab" href="#guideline" role="tab"
-                  span Mi Pauta
+                  span Pauta de Mantención
+              li role="presentation"
+                a aria-controls="derco" data-toggle="tab" href="#derco" role="tab"
+                  span Mantención a Domicilio
           .col-sm-9
             /! Tab panes
             .tab-content
@@ -40,7 +43,7 @@
                   = form_tag remote_search_search_product_path(@category), method: :put, id: 'search-products-by-attributes-form', 'data-go-to' => search_product_path(@category), remote: true
                     .col-sm-12
                       p
-                        | Compra online tus nuevos 
+                        | Compra online tus nuevos&nbsp;
                         strong neumáticos
                       #remote-search-Neumaticos
                         = render 'search_products/inner_horizontal_filters', search_products_form: @search_products_form
@@ -65,7 +68,7 @@
                   .row
                     .col-sm-12
                       p
-                        strong Promociones 
+                        strong Promociones&nbsp;
                         | y descuentos en servicios para tu auto
                     .col-sm-12.col-md-6
                         = select_tag("search[branch_type_id]", options_for_select(BranchType.actives.order(:name).map{|x| [x.name, x.id]}), class: 'selectpicker form-control', include_blank: "Ver Todos", title: 'Selecciona Servicio', 'data-live-search' => 'true')
@@ -82,8 +85,8 @@
                   .row
                     .col-sm-12
                       p
-                        | Busca tu 
-                        strong Pauta 
+                        | Busca tu
+                        strong Pauta
                         | de Mantenciones
                     .col-sm-12.col-md-6
                       = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Tu Patente', maxlength: 6)
@@ -94,10 +97,38 @@
                     .col-sm-12
                       = link_to "Ver todos", results_home_path, :class => "btn btn-link btn-block"
 
+              #derco.tab-pane.fade role="tabpanel"
+                = simple_form_for DercoClient.new, method: :post, url: derco_coupons_path, class: 'form-inline search-patent' do |f|
+                  .row
+                    .col-sm-12
+                      p
+                        | Agenda tu Mantención con
+                        = image_tag("home/logo-horizontal.svg", :alt => "DercoCenter", :class => "derco")
+                    .col-sm-12.col-md-6
+                      = text_field('derco_client', 'name', class: 'form-control input-capital', placeholder:'Tu Nombre')
+                    .col-sm-12.col-md-6
+                      = text_field('derco_client', 'email', class: 'form-control input-capital', placeholder:'Tu Correo')
+                    .col-sm-12.col-md-6
+                      = text_field('derco_client', 'phone', class: 'form-control phone', placeholder:'Tu Número Telefónico', maxlength: 9)
+                    .col-sm-12.col-md-6
+                      = f.input :comune_id, collection: Comune.where(desc_comuna: ['LO BARNECHEA', 'LAS CONDES', 'VITACURA', 'PROVIDENCIA', 'LA REINA', 'NUNOA', 'PENALOLEN']).map{|c|[c.desc_comuna, c.id_comuna]}, label: false, prompt: 'Comuna', error:''
+                    .col-sm-12.col-md-6
+                      = f.input :manteinance_type, collection: [['10.000 kms']*2, ['20.000 kms']*2, ['30.000 kms']*2], label: false, prompt: 'Tipo de mantención', error:''
+                    .col-sm-12.col-md-6
+                      = f.input :brand, collection: [['Suzuki']*2, ['Mazda']*2], label: false, prompt: 'Marca de vihículo', error:''
+                    .col-sm-12
+                      = f.input :message, label: false, type: 'textarea', placeholder:'Mensaje...', error: ''
+                    .col-sm-12.col-md-6.col-md-offset-3
+                      = f.input :promotion_id, as: :hidden, input_html: {value: (Rails.env.development? ? '40' : '194')}
+                      button.btn.btn-cta.btn-block type="submit" Agendar
+
   footer.new-home_footer
     .container
       .row
-        .col-xs-12.text-center
+        .col-xs-12.col-sm-5.text-left
+          span Powered by
+          = image_tag("home/logo-horizontal.svg", :alt => "DercoCenter", :class => "derco")
+        .hidden-xs.col-sm-7.text-right
           .webpay
             = image_tag("webpay.png", :alt => "Webpay")
 
@@ -106,7 +137,7 @@ javascript:
   $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
     $('.tab-content').addClass('visible');
   })
-  $('a[href="#promo"]').on('shown.bs.tab', function (e) {
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     $('#promo-carousel').resize();
   });
 
