@@ -18,7 +18,11 @@ Rails.application.routes.draw do
 
   resources :promotions, only: [:index, :show]
 
-  resources :coupons, only: [:create]
+  resources :coupons, only: [:create] do
+    collection do
+      post :derco
+    end
+  end
 
   resources :products, only: [:index, :show]
 
