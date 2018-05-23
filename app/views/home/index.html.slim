@@ -72,24 +72,8 @@
                 .row
                   .col-sm-12
                     #promo-carousel
-                      a class="single-promo" href="#" title="automotriz-leon-servicio-revision"
-                        .promo-image
-                          = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/leon-logo.jpg", :alt => "", :class => "brand-logo")
-                          = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/automotriz-leon-servicios-revision.jpg", :alt => "Revisión lorem ipsum")
-                        .promo-description
-                          h6 Revisión lorem ipsum
-                      a class="single-promo" href="#" title="automotriz-leon-servicio-revision"
-                        .promo-image
-                          = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/leon-logo.jpg", :alt => "", :class => "brand-logo")
-                          = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/automotriz-leon-servicios-revision.jpg", :alt => "Revisión lorem ipsum")
-                        .promo-description
-                          h6 Revisión lorem ipsum
-                      a class="single-promo" href="#" title="automotriz-leon-servicio-revision"
-                        .promo-image
-                          = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/leon-logo.jpg", :alt => "", :class => "brand-logo")
-                          = image_tag("https://s3.amazonaws.com/mismantenciones-files/shop/leon-automotriz/automotriz-leon-servicios-revision.jpg", :alt => "Revisión lorem ipsum")
-                        .promo-description
-                          h6 Revisión lorem ipsum
+                      - @promotions.each do |promotion|
+                        = render 'carousel_promotion', promotion: promotion
                   .col-sm-12
                     = link_to "Ver todas", "#", :class => "btn btn-link btn-block"
               #map.tab-pane.fade role="tabpanel"
