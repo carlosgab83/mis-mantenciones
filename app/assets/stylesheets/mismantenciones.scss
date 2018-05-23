@@ -237,6 +237,9 @@ body {
 		.container {
 			padding-top: 15px;
 			padding-bottom: 15px;
+			@media #{$xs}{
+				padding-top: 5px;
+			}
 		}
 	}
 }
@@ -256,7 +259,7 @@ body {
 	@media #{$xs}{
 		padding-bottom: 0;
 	}
-	&:after {@extend .bottom-triangle;}
+	//&:after {@extend .bottom-triangle;}
 	div.text-right[class*='col-'] {
 		@media #{$xs}{
 			text-align: center;
@@ -437,7 +440,7 @@ body {
 		}
 	}
 	position: relative;
-	&:before {@extend .upper-triangle;}
+	//&:before {@extend .upper-triangle;}
 	h6 {
 		font-weight: 700;
 		@media #{$xs}{margin: 15px 0 5px;}
