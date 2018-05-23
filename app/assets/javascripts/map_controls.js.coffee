@@ -4,7 +4,7 @@ window.mapControls ?= {}
 # Event listener:
 mapControls.ready = ->
   # Insert initilization code here
-  if typeof google != 'undefined'
+  if typeof google != 'undefined' && document.getElementById('section-map')
     document.getElementById('search-input').focus()
     mapControls.branches = []
     mapControls.markerClustererImagePath = ''
@@ -13,10 +13,7 @@ mapControls.ready = ->
 #############################################################################
 
 mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom, alwaysUseDefaultZoom) ->
-  if defaultLatitude == 1000.0 && defaultLongitude == 1000.0
-    mapControls.setMobileLocation()
-  else
-    mapControls.defaultLocation = {lat: defaultLatitude, lng: defaultLongitude}
+  mapControls.defaultLocation = {lat: defaultLatitude, lng: defaultLongitude}
 
   mapControls.defaultZoom = defaultZoom
   mapControls.map = new (google.maps.Map)(document.getElementById('map'),
@@ -52,11 +49,6 @@ mapControls.initMap = (defaultLatitude, defaultLongitude, defaultZoom, alwaysUse
   mapControls.infowindow = new google.maps.InfoWindow()
 
   mapControls.afterLoadMapHook()
-
-  # For mobile and desktop
-  if navigator.geolocation
-    mapControls.presetInputAddress()
-
 
 #############################################################################
 
@@ -199,11 +191,6 @@ mapControls.setMobileLocation = () ->
 
 #############################################################################
 
-mapControls.presetInputAddress = () ->
-  navigator.geolocation.getCurrentPosition(mapControls.successObtainPosition, mapControls.errorObtainPosition)
-
-#############################################################################
-
 mapControls.successObtainPosition = (location) ->
   latitude = location.coords.latitude
   longitude = location.coords.longitude
@@ -262,9 +249,16 @@ mapControls.selectFirstOnEnter = (input) ->
 #############################################################################
 
 mapControls.centerMapToLastPosition = ->
-  console.log('center.to.last.position')
   lat = sessionStorage.getItem('map-state.last-map-lat')
   lng = sessionStorage.getItem('map-state.last-map-lng')
+  zoom = sessionStorage.getItem('map-state.last-map-zoom')
+  if lat && lng && zoom
+    mapControls.map.setCenter(new google.maps.LatLng(lat, lng))
+    mapControls.map.setZoom(parseInt(zoom))
+
+#############################################################################
+
+mapControls.centerMapToPosition = (lat, lng) ->
   zoom = sessionStorage.getItem('map-state.last-map-zoom')
   if lat && lng && zoom
     mapControls.map.setCenter(new google.maps.LatLng(lat, lng))

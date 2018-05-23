@@ -4,7 +4,7 @@ window.branchesControls ?= {}
 # Event listener:
 branchesControls.ready = ->
   # Insert initilization code here
-  if typeof google != 'undefined'
+  if typeof google != 'undefined' && document.getElementById('section-map')
     branchesControls.initilization()
     branchesControls.afterLoadHook()
 

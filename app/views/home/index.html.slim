@@ -77,21 +77,20 @@
                   .col-sm-12
                     = link_to "Ver todas", "#", :class => "btn btn-link btn-block"
               #map.tab-pane.fade role="tabpanel"
-                form action="/search-branches"
+                = form_tag search_branches_path, id: 'basic-search-form'
+                  = hidden_field "search", "location_text", id: 'basic-search-form_location_text'
+                  = hidden_field "search", "latitude", id: 'basic-search-form_latitude'
+                  = hidden_field "search", "longitude", id: 'basic-search-form_longitude'
                   .row
                     .col-sm-12
                       p
                         strong Promociones&nbsp;
                         | y descuentos en servicios para tu auto
                     .col-sm-12.col-md-6
-                      select.form-control#service-selection-select
-                        option value="" Selecciona Servicio
-                        option value="0" id="0" Ver todos
-                        - BranchType.actives.order(:name).all.each do |branch_type|
-                          option value="#{branch_type.id}" id="#{branch_type.id}" #{branch_type.name}
+                        = select_tag("search[branch_type_id]", options_for_select(BranchType.actives.order(:name).map{|x| [x.name, x.id]}), class: 'selectpicker form-control', include_blank: "Ver Todos", title: 'Selecciona Servicio', 'data-live-search' => 'true')
                     .col-sm-12.col-md-6
                       label.sr-only for="county-field" Ciudad o Comuna
-                      input#search-input-left-panel.form-control.search-input type="text" placeholder="Ciudad o Comuna"
+                      input#search-input-locations.form-control.search-input type="text" placeholder="Ciudad o Comuna"
                     .col-sm-12.col-md-6.col-md-offset-3
                       button#services-search.map-search.btn.btn-cta.btn-block type="submit"
                         | Busca Servicios
@@ -138,3 +137,5 @@ javascript:
   if ($(window).width() < 768) {
     $('.nav.nav-stacked > li').removeClass('active');
   };
+
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgCfExuv-T3zGG0mkSuNx0z0tLhRPlHzw&libraries=places&v=3.31"
