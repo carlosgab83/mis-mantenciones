@@ -11,7 +11,7 @@
   @media #{$oxs} {
     height: calc(100% - 50px);
   }
-  
+
 }
 .new-home_header {
   height: 50px;
@@ -24,7 +24,7 @@
   img {
     display: inline-block;
     vertical-align: top;
-    &.visible-xs {    
+    &.visible-xs {
       height: 30px;
       @media #{$xs} {
         display: inline-block!important;
@@ -57,7 +57,7 @@
     }
     .carousel-inner {
       > .item {
-        > img {
+        > a,img {
           margin: 0 auto;
           width: 100%;
         }
