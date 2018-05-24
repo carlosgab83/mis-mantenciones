@@ -19,13 +19,17 @@
             /! Nav tabs
             ul.nav.nav-pills.nav-stacked role="tablist"
               li.active role="presentation"
-                a aria-controls="parts" data-toggle="tab" href="#parts" role="tab"  Neumáticos
+                a aria-controls="parts" data-toggle="tab" href="#parts" role="tab"
+                  span Neumáticos
               li role="presentation"
-                a aria-controls="promo" data-toggle="tab" href="#promo" role="tab"  Promociones
+                a aria-controls="promo" data-toggle="tab" href="#promo" role="tab"
+                  span Promociones
               li role="presentation"
-                a aria-controls="map" data-toggle="tab" href="#map" role="tab"  Mapa Servicios
+                a aria-controls="map" data-toggle="tab" href="#map" role="tab"
+                  span Mapa Servicios
               li role="presentation"
-                a aria-controls="guideline" data-toggle="tab" href="#guideline" role="tab"  Mi Pauta
+                a aria-controls="guideline" data-toggle="tab" href="#guideline" role="tab"
+                  span Mi Pauta
           .col-sm-9
             /! Tab panes
             .tab-content
@@ -36,7 +40,7 @@
                   = form_tag remote_search_search_product_path(@category), method: :put, id: 'search-products-by-attributes-form', 'data-go-to' => search_product_path(@category), remote: true
                     .col-sm-12
                       p
-                        | Compra online tus nuevos&nbsp;
+                        | Compra online tus nuevos 
                         strong neumáticos
                       #remote-search-Neumaticos
                         = render 'search_products/inner_horizontal_filters', search_products_form: @search_products_form
@@ -61,7 +65,7 @@
                   .row
                     .col-sm-12
                       p
-                        strong Promociones&nbsp;
+                        strong Promociones 
                         | y descuentos en servicios para tu auto
                     .col-sm-12.col-md-6
                         = select_tag("search[branch_type_id]", options_for_select(BranchType.actives.order(:name).map{|x| [x.name, x.id]}), class: 'selectpicker form-control', include_blank: "Ver Todos", title: 'Selecciona Servicio', 'data-live-search' => 'true')
@@ -78,8 +82,8 @@
                   .row
                     .col-sm-12
                       p
-                        | Busca tu
-                        strong Pauta
+                        | Busca tu 
+                        strong Pauta 
                         | de Mantenciones
                     .col-sm-12.col-md-6
                       = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Tu Patente', maxlength: 6)
@@ -90,19 +94,19 @@
                     .col-sm-12
                       = link_to "Ver todos", results_home_path, :class => "btn btn-link btn-block"
 
-footer.new-home_footer
-  .container
-    .row
-      .col-xs-12.text-center
-        .webpay
-          = image_tag("webpay.png", :alt => "Webpay")
+  footer.new-home_footer
+    .container
+      .row
+        .col-xs-12.text-center
+          .webpay
+            = image_tag("webpay.png", :alt => "Webpay")
 
 javascript:
 
   $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
     $('.tab-content').addClass('visible');
   })
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  $('a[href="#promo"]').on('shown.bs.tab', function (e) {
     $('#promo-carousel').resize();
   });
 
