@@ -11,30 +11,7 @@
         .row
           .col-sm-12
             #carousel-example-generic.carousel.slide data-ride="carousel"
-              // Indicators
-              ol.carousel-indicators
-                li.active data-slide-to="0" data-target="#carousel-example-generic"
-                li data-slide-to="1" data-target="#carousel-example-generic"
-              // Wrapper for slides
-              .carousel-inner role="listbox"
-                .item.active
-                  = image_tag("home/vitrina_1.jpg", :alt => "...", :class => "img-responsive")
-                  .carousel-caption
-                    h3 Prueba de elemento en carrusel
-                    p.hidden-xs Esta es la bajada de una publicación
-                    a.btn.btn-cta Ver más
-                .item
-                  = image_tag("home/vitrina_2.jpg", :alt => "...", :class => "img-responsive")
-                  .carousel-caption
-                    h3 Este es un ejemplo de título
-                    p.hidden-xs Esta es la bajada de una publicación
-                    a.btn.btn-cta Ver más
-
-              /! Controls
-              a.left.carousel-control data-slide="prev" href="#carousel-example-generic" role="button"
-                i.fa.fa-angle-left
-              a.right.carousel-control data-slide="next" href="#carousel-example-generic" role="button"
-                i.fa.fa-angle-right
+              = render 'home/home_banners'
     #home-tabs
       .container
         .row

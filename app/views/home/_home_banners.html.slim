@@ -1,0 +1,18 @@
+ol.carousel-indicators
+  - @home_banners.each_with_index do |home_banner, i|
+    li class="#{'active' if i == 0}" data-slide-to="#{i}" data-target="#carousel-example-generic"
+// Wrapper for slides
+.carousel-inner role="listbox"
+  - @home_banners.each_with_index do |home_banner, i|
+    div class="item #{'active' if i == 0}"
+      = link_to image_tag(home_banner.image_url, alt: home_banner.title, class: "img-responsive"), home_banner.image_click_url, target: (home_banner.image_click_new_page ? '_blank' : '')
+      .carousel-caption
+        h3 #{home_banner.title}
+        p.hidden-xs #{home_banner.subtitle}
+        = link_to home_banner.button_text, home_banner.button_click_url, class: 'btn btn-cta', target: (home_banner.image_click_new_page ? '_blank' : '')
+
+/! Controls
+a.left.carousel-control data-slide="prev" href="#carousel-example-generic" role="button"
+  i.fa.fa-angle-left
+a.right.carousel-control data-slide="next" href="#carousel-example-generic" role="button"
+  i.fa.fa-angle-right
