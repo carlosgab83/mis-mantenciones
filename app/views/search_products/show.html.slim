@@ -24,6 +24,16 @@
         .col-sm-8.col-md-9
           ul.part-list
             = render 'products'
-          = render 'pagination_links'
+          .row
+            .col-sm-12.visible-xs
+              button.btn.btn-cta.btn-block#search-products-clean-filters-fake type="button" Limpiar filtros
+            .col-sm-12
+              = render 'pagination_links'
 
 = render 'shared/footer'
+
+javascript:
+  $("#search-products-clean-filters-fake").click(function(event){
+    $("#search-products-clean-filters").click(); 
+    return false;
+  });
