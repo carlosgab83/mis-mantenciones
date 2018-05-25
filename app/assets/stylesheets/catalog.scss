@@ -829,7 +829,8 @@
 	&.aeolus,
 	&.windforce,
 	&.bfgoodrich,
-	&.aptany {
+	&.aptany,
+	&.durun {
 		display: block;
 		height: 25px;
 		width: 100%;
@@ -859,4 +860,5 @@
 	&.windforce {background-image: image-url("brands/windforce.png");}
 	&.bfgoodrich {background-image: image-url("brands/bfgoodrich.png");}
 	&.aptany {background-image: image-url("brands/aptany.png");}
+	&.durun {background-image: image-url("brands/durun.png");}
 }
