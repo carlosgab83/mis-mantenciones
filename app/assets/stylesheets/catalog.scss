@@ -595,7 +595,10 @@
 		> li {
 			float: right;
 			text-align: center;
-			@media #{$xs}{width: 50%;}
+			@media #{$xs}{
+				width: 50%;
+				font-size: 90%;
+			}
 			> a {
 				border: none;
 				font-style: italic;
@@ -610,8 +613,12 @@
 			}
 		}
 	}
+
 	.tab-content {
 		margin-bottom: 20px;
+		@media #{$xs}{
+			margin-bottom: 15px;
+		}
 		.tab-pane {
 			font-style: italic;
 			padding: 20px;
@@ -637,8 +644,19 @@
 				background-position: 15px bottom;
 			}
 			@media #{$xs}{
-				padding-bottom: 90px;
+				padding-bottom: 80px;
 				background-position: center bottom;
+				#search-products-clean-filters {
+					position: absolute;
+					visibility: hidden;
+					opacity: 0;
+				}
+			}
+			@media #{$xxs} {
+				padding-top: 10px;
+				font-size: 90%;
+				padding-bottom: 65px;
+				background-size: 140px auto;
 			}
 		}
 	}
