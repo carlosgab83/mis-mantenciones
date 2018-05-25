@@ -53,6 +53,42 @@
 					padding-left: 5px;
 				}
 			}
+			// Tabs
+			.nav.nav-tabs {
+				> li {
+					> a {
+						@include transition(width 0s);
+						strong {
+							display: inline-block;
+							width: 100%;
+						}
+						@media #{$md} {
+							font-size: 95%;
+							padding-left: 15px;
+							padding-right: 15px;
+						}
+						@media #{$sm} {
+							font-size: 80%;
+							padding-left: 5px;
+							padding-right: 5px;
+						}
+						@media #{$xxs} {
+							font-size: 90%;
+							padding-left: 15px;
+							padding-right: 15px;
+						}
+					}
+					&.active > a {
+						background-color: lighten($light-color,2%);
+					}
+				}
+			}
+			.tab-content {
+				.tab-pane {
+					background-color: lighten($light-color,2%);
+					padding-bottom: 0;
+				}
+			}
 			// Webpay
 			.checkbox {
 				position: relative;
@@ -211,5 +247,25 @@
 #change-modal {
 	p {
 		font-size: 85%;
+	}
+}
+
+//////////////////////////////////////////////////////////
+// Checkout Installation
+//////////////////////////////////////////////////////////
+
+.checkout-installation {
+	.nav.nav-tabs {
+		margin-top: 0;
+		> li {
+			max-width: 50%;
+		}
+	}
+	.tab-content {
+		margin-top: -1px;
+		margin-bottom: 0;
+		.form-control {
+			background-color: $back-color;
+		}
 	}
 }
