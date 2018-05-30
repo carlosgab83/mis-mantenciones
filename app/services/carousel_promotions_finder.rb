@@ -20,7 +20,7 @@ class CarouselPromotionsFinder < BaseService
   end
 
   def get_promotions_base
-    OtherPromotion.availables.actives.with_stock.not_deleted
+    OtherPromotion.availables.actives.with_stock.not_deleted.not_blog
     .includes(:branches, :category)
     .order("promotions.priority desc, promotions.promo_price asc, promotions.created_at desc")
     .limit(PROMOTIONS_TO_SHOW_IN_CAROUSEL)
