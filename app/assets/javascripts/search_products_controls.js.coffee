@@ -36,7 +36,7 @@ $(document).on('page:load', searchProductsControls.dynamicSelectors)
 #############################################################################
 
 searchProductsControls.dynamicHorizontalFilters = ->
-  $('.dynamic-horizontal-filters').change ->
+  $('select.dynamic-horizontal-filters').change ->
     searchProductsControls.submitForm()
 
 $(document).ready(searchProductsControls.dynamicHorizontalFilters)
