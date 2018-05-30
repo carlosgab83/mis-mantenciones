@@ -40,7 +40,7 @@
                   = form_tag remote_search_search_product_path(@category), method: :put, id: 'search-products-by-attributes-form', 'data-go-to' => search_product_path(@category), remote: true
                     .col-sm-12
                       p
-                        | Compra online tus nuevos 
+                        | Compra online tus nuevos&nbsp;
                         strong neumáticos
                       #remote-search-Neumaticos
                         = render 'search_products/inner_horizontal_filters', search_products_form: @search_products_form
@@ -56,7 +56,7 @@
                       - @promotions.each do |promotion|
                         = render 'carousel_promotion', promotion: promotion
                   .col-sm-12
-                    = link_to "Ver todas", "#", :class => "btn btn-link btn-block"
+                    = link_to "Ver todas", promotions_path, :class => "btn btn-link btn-block"
               #map.tab-pane.fade role="tabpanel"
                 = form_tag search_branches_path, id: 'basic-search-form'
                   = hidden_field "search", "location_text", id: 'basic-search-form_location_text'
@@ -65,7 +65,7 @@
                   .row
                     .col-sm-12
                       p
-                        strong Promociones 
+                        strong Promociones&nbsp;
                         | y descuentos en servicios para tu auto
                     .col-sm-12.col-md-6
                         = select_tag("search[branch_type_id]", options_for_select(BranchType.actives.order(:name).map{|x| [x.name, x.id]}), class: 'selectpicker form-control', include_blank: "Ver Todos", title: 'Selecciona Servicio', 'data-live-search' => 'true')
@@ -75,15 +75,13 @@
                     .col-sm-12.col-md-6.col-md-offset-3
                       button#services-search.map-search.btn.btn-cta.btn-block type="submit"
                         | Busca Servicios
-                    .col-sm-12
-                      = link_to "Ver todos", "/search-branches", :class => "btn btn-link btn-block"
               #guideline.tab-pane.fade role="tabpanel"
                 = form_tag results_home_path, class: 'form-inline search-patent'
                   .row
                     .col-sm-12
                       p
-                        | Busca tu 
-                        strong Pauta 
+                        | Busca tu&nbsp;
+                        strong Pauta&nbsp;
                         | de Mantenciones
                     .col-sm-12.col-md-6
                       = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Tu Patente', maxlength: 6)
@@ -91,8 +89,6 @@
                       = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Tu Kilometraje', maxlength: 8)
                     .col-sm-12.col-md-6.col-md-offset-3
                       button.btn.btn-cta.btn-block type="submit" Busca tu Pauta
-                    .col-sm-12
-                      = link_to "Ver todos", results_home_path, :class => "btn btn-link btn-block"
 
   footer.new-home_footer
     .container
