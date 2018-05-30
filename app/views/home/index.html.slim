@@ -48,7 +48,8 @@
                       button.hidden.btn.btn-cta.btn-block type="submit" _submit_
                       button.btn.btn-cta.btn-block.go-to-search-neumaticos Busca Neumáticos
                   .col-sm-12
-                    = link_to "Ver todos", search_product_path(@category), :class => "btn btn-link btn-block"
+                    = link_to search_product_path(@category), :class => "btn btn-link btn-block" do
+                      strong Ver todos
               #promo.tab-pane.fade role="tabpanel"
                 .row
                   .col-sm-12
@@ -56,7 +57,8 @@
                       - @promotions.each do |promotion|
                         = render 'carousel_promotion', promotion: promotion
                   .col-sm-12
-                    = link_to "Ver todas", promotions_path, :class => "btn btn-link btn-block"
+                    = link_to promotions_path, :class => "btn btn-link btn-block" do
+                      strong Ver todas
               #map.tab-pane.fade role="tabpanel"
                 = form_tag search_branches_path, id: 'basic-search-form'
                   = hidden_field "search", "location_text", id: 'basic-search-form_location_text'
