@@ -48,9 +48,9 @@ indexControls.userSearchAction = (autocomplete, formToSubmit) ->
     $('#basic-search-form_latitude').val(autocomplete.getPlace().geometry.location.lat())
     $('#basic-search-form_longitude').val(autocomplete.getPlace().geometry.location.lng())
 
-    InputServiceSelection = document.getElementById('search_branch_type_id')
-    sessionStorage.setItem('left_panel_branch_type_ids', JSON.stringify([parseInt(InputServiceSelection.value)]))
-    $('#'+formToSubmit).submit()
+  InputServiceSelection = document.getElementById('search_branch_type_id')
+  sessionStorage.setItem('left_panel_branch_type_ids', JSON.stringify([parseInt(InputServiceSelection.value)]))
+  $('#'+formToSubmit).submit()
 
 #############################################################################
 
