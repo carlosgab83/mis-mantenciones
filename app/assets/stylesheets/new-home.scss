@@ -55,18 +55,31 @@
     }
     .carousel-inner {
       > .item {
-        > a,img {
-        &:before {
-          content: "";
-          position: absolute;
+        > a {
+          display: inline-block;
+          vertical-align: top;
+          margin: 0 auto;
           width: 100%;
-          height: 100%;
-          z-index: 1;
-          background: -moz-linear-gradient(top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 60%); /* FF3.6-15 */
-          background: -webkit-linear-gradient(top, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0) 60%); /* Chrome10-25,Safari5.1-6 */
-          background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0) 60%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+          &:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: -moz-linear-gradient(top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 60%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0) 60%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0) 60%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+          }
+          &:hover, &:active {
+            h1, h2, h3, p {
+              cursor: pointer;
+            }
+          }
         }
+        img {
+          display: inline-block;
+          vertical-align: top;
           margin: 0 auto;
           width: 100%;
         }
@@ -90,6 +103,7 @@
     .carousel-indicators {
       li {
         border-color: $main-color;
+        margin: 1px 2px;
         &.active {
           background-color: $main-color;
         }
@@ -97,18 +111,16 @@
       bottom: 0;
       @media #{$xs} {margin-bottom: 5px;}
       @media #{$oxs} {bottom: 50px;}
-      li {
-        margin: 1px 2px;
-      }
     }
     .carousel-control {
+      width: 10%;
+      z-index: 1;
       @media #{$xs} {
         height: calc(100% - 30px);
       }
       &.right, &.left {
         background-image: none;
       }
-      width: 10%;
       .fa {
         width: 30px;
         height: 30px;
@@ -186,12 +198,22 @@
         }
       }
     }
+
+
     .tab-content {
       margin-left: -15px;
       text-align: center;
       background-color: $main-color;
       color: $back-color;
       @include transition(all 0.6s ease-in-out);
+      > .tab-pane {
+        display: block;
+        height: 0;
+        overflow: hidden;
+      }
+      > .active {
+        height: auto;
+      }
       .form-control {
         width: 100%;
         font-family: 'Montserrat', sans-serif;
@@ -240,7 +262,7 @@
       .close-tab {
         display: none;
         @media #{$xs} {
-          width: 23px;
+          width: 23px !important;
           height: 23px;
           display: block;
           border: none;
@@ -251,6 +273,7 @@
           top: 15px;
           right: 15px;
           z-index: 1;
+          padding: 0;
         }
       }
       .form-control {
@@ -334,6 +357,9 @@
     vertical-align: text-bottom;
     max-width: 100%;
     @media #{$oxs} {
+      height: 25px;
+    }
+    @media #{$xs} {
       height: 20px;
     }
     &.derco {
