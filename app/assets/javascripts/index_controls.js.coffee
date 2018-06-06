@@ -68,7 +68,7 @@ indexControls.successObtainPosition = (location) ->
     if status == 'OK'
       element = document.getElementById('search-input-locations')
       element.value = results[0].formatted_address
-      element.select()
+      #element.select()
       $('#basic-search-form_location_text').val(element.value)
       $('#basic-search-form_latitude').val(latitude)
       $('#basic-search-form_longitude').val(longitude)
