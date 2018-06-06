@@ -117,18 +117,25 @@ a {
 			background-color: lighten($main-color, 20%);
 		}
 	}
+	a {
+		&:hover, &:active {
+			color: $side-color;
+		}
+	}
 }
 #footer {
 	&:before {border-color: transparent transparent rgba($dark-color,1) transparent;}
+	a {
+		&:hover, &:active {
+			color: $main-color;
+		}
+	}
 }
 #footer, #header {
 	background-color: rgba($dark-color,1);
 	color: $light-color;
 	a {
 		color: $light-color;
-		&:hover, &:active {
-			color: $main-color;
-		}
 	}
 }
 body.home {

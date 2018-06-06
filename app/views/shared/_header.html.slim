@@ -3,7 +3,7 @@ header#header
     .row
       -if action_name == 'results'
         / Section MY PAUTA
-        .col-xs-10.col-sm-5.col-md-6.fixed-xs
+        .col-xs-10.col-sm-5.col-md-6.col-lg-5.fixed-xs
           = form_tag(:results_home, method: :post, class: 'form-inline search-patent') do
             .form-group
               label.sr-only for="exampleInputName2" Patente
@@ -22,7 +22,7 @@ header#header
                   i.fa.fa-search
       - else
         / Section Map
-        .col-xs-2.col-sm-5.col-md-6.fixed-xs
+        .col-xs-2.col-sm-5.col-md-6.col-lg-5.fixed-xs
           = link_to new_shop_inscription_path, class: 'btn btn-link btn-special pull-right hidden-xs', remote: true
             strong
               | TALLERES
@@ -31,7 +31,7 @@ header#header
               = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive hidden-xs")
               = image_tag("logo-mm-xs.png", :alt => "Mis Mantenciones", :class => "img-responsive visible-xs")
 
-      .col-xs-12.col-sm-7.col-md-6.text-right
+      .col-xs-12.col-sm-7.col-md-6.col-lg-7.text-right
         .navbar-header
           button.navbar-toggle type="button" data-toggle="collapse" data-target="#mm-navbar"
             i.fa.fa-bars
@@ -40,13 +40,13 @@ header#header
           ul.nav.navbar-nav
             - if (not current_page?(root_path) and not (controller_name == 'search_branches' and (action_name == 'index' || action_name == 'show' || action_name == 'create')))
               li.track-click
-                = link_to 'Volver al mapa', search_branches_path
+                = link_to 'Mapa de Servicios', search_branches_path
             - else
               li.track-click
                 = link_to 'Volver al inicio', root_path
             - if action_name != 'results'
               li.track-click
-                = link_to 'Mi Pauta', results_home_path
+                = link_to 'Pauta de Mantención', results_home_path
             -if current_page?(root_path)
               li.track-click
                 = link_to 'info', 'javascript:void(0);' , :data => { :toggle => "modal", :target => "#map-info" }
