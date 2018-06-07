@@ -1,0 +1,375 @@
+@import 'helpers';
+@import 'resets';
+
+//////////////////////////////////////////////////////////
+// New Home 2018
+//////////////////////////////////////////////////////////
+
+.new-home {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.new-home_header {
+  height: 50px;
+  padding: 10px 15px;
+  text-align: center;
+  background-color: rgba($dark-color,0.9);
+  @media #{$oxs} {
+    height: 80px;
+  }
+  img {
+    display: inline-block;
+    vertical-align: top;
+    &.visible-xs {
+      height: 30px;
+      @media #{$xs} {
+        display: inline-block!important;
+      }
+    }
+    &.hidden-xs {
+      margin-top: 15px;
+      max-width: 292px;
+    }
+  }
+}
+.new-home_body {
+  position: relative;
+  @media #{$xs} {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    //min-height: calc(100% - 90px); con header
+    min-height: calc(100% - 40px);
+  }
+  @media #{$oxs} {
+    height: auto;
+    display: table;
+    min-height: calc(100% - 130px);
+  }
+  .carousel {
+    margin: 0 -15px;
+    border-bottom: 1px solid $back-color;
+    @media #{$xs} {
+      padding-bottom: 30px;
+    }
+    .carousel-inner {
+      > .item {
+        > a {
+          display: inline-block;
+          vertical-align: top;
+          margin: 0 auto;
+          width: 100%;
+          &:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: -moz-linear-gradient(top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 60%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0) 60%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0) 60%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+          }
+          &:hover, &:active {
+            h1, h2, h3, p {
+              cursor: pointer;
+            }
+          }
+        }
+        img {
+          display: inline-block;
+          vertical-align: top;
+          margin: 0 auto;
+          width: 100%;
+        }
+      }
+    }
+    .carousel-caption {
+      text-align: right;
+      top: 0;
+      padding: 15px 0;
+      @media #{$oxs} {
+        top: 20px;
+      }
+      h1, h2, h3 {
+        font-weight: bold;
+        @media #{$xs} {
+          font-size: 18px;
+        }
+      }
+      p {font-weight: normal;}
+    }
+    .carousel-indicators {
+      li {
+        border-color: $main-color;
+        margin: 1px 2px;
+        &.active {
+          background-color: $main-color;
+        }
+      }
+      bottom: 0;
+      @media #{$xs} {margin-bottom: 5px;}
+      @media #{$oxs} {bottom: 50px;}
+    }
+    .carousel-control {
+      width: 10%;
+      z-index: 1;
+      @media #{$xs} {
+        height: calc(100% - 30px);
+      }
+      &.right, &.left {
+        background-image: none;
+      }
+      .fa {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        top: 50%;
+        position: absolute;
+        margin-top: -15px;
+        left: 50%;
+        margin-left: -15px;
+        font-size: 125%;
+      }
+    }
+  }
+
+  // Tabs
+  #home-tabs {
+    position: relative;
+    @media #{$xs} {
+      flex: 1 1;
+      display: flex;
+      .container {
+        width: 100%;
+        flex: 1 1;
+        .row {
+          height: 100%;
+          .col-sm-3 {
+            height: 100%;
+          }
+        }
+      }
+      .col-sm-9 {
+        position: static;
+      }
+    }
+    @media #{$oxs} {
+      top: -50px;
+    }
+    .nav-stacked {
+      margin-right: -15px;
+      font-weight: bold;
+      background-color: $light-color;
+      @media #{$xs} {
+        margin-left: -15px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      > li {
+        border-bottom: 1px solid $back-color;
+        @media #{$xs} {
+          flex: 1 1;
+        }
+        a {
+          padding-top: 15px;
+          padding-bottom: 15px;
+          @media #{$xs} {
+            width: 100%;
+            height: 100%;
+            display: table;
+            span {
+              display: table-cell;
+              vertical-align: middle;
+            }
+          }
+          &:hover, &:active, &:focus {
+            background-color: darken($light-color,8%);
+          }
+        }
+        &.active a {
+          background-color: $main-color;
+          &:hover, &:active, &:focus {
+            background-color: $main-color;
+          }
+        }
+      }
+    }
+
+    .tab-content {
+      margin-left: -15px;
+      text-align: center;
+      background-color: $main-color;
+      color: $back-color;
+      @include transition(all 0.6s ease-in-out);
+      > .tab-pane {
+        display: block;
+        height: 0;
+        &:not(.active) {
+          overflow: hidden;
+        }
+      }
+      > .active {
+        height: auto;
+      }
+      .form-control {
+        width: 100%;
+        font-family: 'Montserrat', sans-serif;
+      }
+      #remote-search-Neumaticos {
+        margin: 0 -5px;
+        .col-xs-4 {
+          padding: 0 5px;
+        }
+      }
+      @media #{$oxs} {
+        min-height: 206px;
+        //derco min-height: 257px;
+        padding: 25px 35px 15px;
+        .col-sm-6.col-md-3 {
+          width: 33.3333%;
+        }
+        .col-sm-12.col-md-6 {
+          width: 50%;
+        }
+      }
+      @media #{$sm} {
+        min-height: 224px;
+        //derco min-height: 295px;
+        .col-sm-6.col-md-3,
+        .col-sm-12.col-md-6 {
+          width: 100%;
+        }
+      }
+      @media #{$xs} {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 15px;
+        margin-right: -15px;
+        z-index: -1;
+        opacity: 0;
+        visibility: hidden;
+        padding: 35px 25px 15px;
+        &.visible {
+          z-index: 1;
+          opacity: 1;
+          visibility: visible;
+          overflow-y: auto;
+        }
+      }
+      .close-tab {
+        display: none;
+        @media #{$xs} {
+          width: 23px !important;
+          height: 23px;
+          display: block;
+          border: none;
+          border-radius: 50%;
+          color: $main-color;
+          background-color: $back-color;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          z-index: 1;
+          padding: 0;
+        }
+      }
+      .form-control {
+        margin-bottom: 10px;
+        background-color: $back-color;
+      }
+      .btn-group {
+        .btn {
+          border: none;
+          background-color: transparent;
+          box-shadow: none;
+          height: 34px;
+        }
+      }
+      .btn-cta {
+        margin-top: 15px;
+      }
+      .btn-link {
+        color: $back-color;
+        margin-top: 15px;
+      }
+      #promo-carousel {
+        width: 100%;
+        max-width: 510px;
+        margin: 0 auto;
+        .slick-arrow {
+          color: $back-color;
+        }
+        @media #{$oxs} {
+          padding-left: 45px;
+          padding-right: 45px;
+        }
+        @media #{$xs} {
+          padding-left: 35px;
+          padding-right: 35px;
+          .slick-arrow {
+            width: 35px;
+          }
+        }
+      }
+      .single-promo {
+        margin: 0;
+        .promo-description {
+          color: $back-color;
+          h2, h3, h4, h5, h6 {
+            font-weight: bold;
+            color: $back-color;
+          }
+        }
+      }
+      .derco {
+        display: inline-block;
+        vertical-align: text-bottom;
+        max-width: 100%;
+        height: 25px;
+        @media #{$xs} {
+          height: 20px;
+        }
+      }
+    }
+  }
+}
+.new-home_footer {
+  position: relative;
+  z-index: 2;
+  height: 40px;
+  padding: 10px 15px;
+  text-align: center;
+  background-color: rgba($dark-color,0.9);
+  color: $back-color;
+  @media #{$oxs} {
+    height: 50px;
+  }
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  img {
+    display: inline-block;
+    vertical-align: text-bottom;
+    max-width: 100%;
+    @media #{$oxs} {
+      height: 25px;
+    }
+    @media #{$xs} {
+      height: 20px;
+    }
+    &.derco {
+      @media #{$xs} {
+        height: 15px;
+      }
+    }
+  }
+}

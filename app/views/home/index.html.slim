@@ -1,1 +1,120 @@
-= render 'shared/search', hide_floating_form: false
+//= render 'shared/search', hide_floating_form: false
+
+.new-home
+  header.new-home_header.hidden-xs
+    figure#logo
+      = link_to :root do
+        = image_tag("logo-mm-h.png", :alt => "Mis Mantenciones", :class => "img-responsive hidden-xs")
+        = image_tag("logo-mm-xs.png", :alt => "Mis Mantenciones", :class => "img-responsive visible-xs")
+  .new-home_body
+    .container-fluid
+        .row
+          .col-sm-12
+            #carousel-example-generic.carousel.slide data-ride="carousel"
+              = render 'home/home_banners'
+    #home-tabs
+      .container
+        .row
+          .col-sm-3
+            /! Nav tabs
+            ul.nav.nav-pills.nav-stacked role="tablist"
+              li.active role="presentation"
+                a aria-controls="parts" data-toggle="tab" href="#parts" role="tab"
+                  span Neumáticos
+              li role="presentation"
+                a aria-controls="promo" data-toggle="tab" href="#promo" role="tab"
+                  span Promociones
+              li role="presentation"
+                a aria-controls="map" data-toggle="tab" href="#map" role="tab"
+                  span Mapa de Servicios
+              li role="presentation"
+                a aria-controls="guideline" data-toggle="tab" href="#guideline" role="tab"
+                  span Pauta de Mantención
+          .col-sm-9
+            /! Tab panes
+            .tab-content
+              button.close-tab type="button"
+                i.fa.fa-times
+              #parts.tab-pane.fade.search-criteria.active.in role="tabpanel"
+                .row
+                  = form_tag remote_search_search_product_path(@category), method: :put, id: 'search-products-by-attributes-form', 'data-go-to' => search_product_path(@category), remote: true
+                    .col-sm-12
+                      p
+                        | Compra online tus nuevos&nbsp;
+                        strong neumáticos
+                      #remote-search-Neumaticos
+                        = render 'search_products/inner_horizontal_filters', search_products_form: @search_products_form
+                    .col-sm-12.col-md-6.col-md-offset-3
+                      button.hidden.btn.btn-cta.btn-block type="submit" _submit_
+                      button.btn.btn-cta.btn-block.go-to-search-neumaticos Busca Neumáticos
+                  .col-sm-12
+                    = link_to search_product_path(@category), :class => "btn btn-link btn-block" do
+                      strong Ver todos
+              #promo.tab-pane.fade role="tabpanel"
+                .row
+                  .col-sm-12
+                    #promo-carousel
+                      - @promotions.each do |promotion|
+                        = render 'carousel_promotion', promotion: promotion
+                  .col-sm-12
+                    = link_to promotions_path, :class => "btn btn-link btn-block" do
+                      strong Ver todas
+              #map.tab-pane.fade role="tabpanel"
+                = form_tag search_branches_path, id: 'basic-search-form'
+                  = hidden_field "search", "location_text", id: 'basic-search-form_location_text'
+                  = hidden_field "search", "latitude", id: 'basic-search-form_latitude'
+                  = hidden_field "search", "longitude", id: 'basic-search-form_longitude'
+                  .row
+                    .col-sm-12
+                      p
+                        strong Promociones&nbsp;
+                        | y descuentos en servicios para tu auto
+                    .col-sm-12.col-md-6
+                        = select_tag("search[branch_type_id]", options_for_select(BranchType.actives.order(:name).map{|x| [x.name, x.id]}), class: 'selectpicker form-control', include_blank: "Ver Todos", title: 'Selecciona Servicio', 'data-live-search' => 'true')
+                    .col-sm-12.col-md-6
+                      label.sr-only for="county-field" Ciudad o Comuna
+                      input#search-input-locations.form-control.search-input type="text" placeholder="Ciudad o Comuna"
+                    .col-sm-12.col-md-6.col-md-offset-3
+                      button#services-search.map-search.btn.btn-cta.btn-block type="submit"
+                        | Busca Servicios
+              #guideline.tab-pane.fade role="tabpanel"
+                = form_tag results_home_path, class: 'form-inline search-patent'
+                  .row
+                    .col-sm-12
+                      p
+                        | Busca tu&nbsp;
+                        strong Pauta&nbsp;
+                        | de Mantenciones
+                    .col-sm-12.col-md-6
+                      = text_field('search', 'patent', class: 'form-control input-capital', placeholder:'Tu Patente', maxlength: 6)
+                    .col-sm-12.col-md-6
+                      = text_field('search', 'kms', class: 'form-control numeric', placeholder:'Tu Kilometraje', maxlength: 8)
+                    .col-sm-12.col-md-6.col-md-offset-3
+                      button.btn.btn-cta.btn-block type="submit" Busca tu Pauta
+
+  footer.new-home_footer
+    .container
+      .row
+        .col-xs-12.text-center
+          .webpay
+            = image_tag("webpay.png", :alt => "Webpay")
+
+javascript:
+
+  $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+    $('.tab-content').addClass('visible');
+  })
+  $('a[href="#promo"]').on('shown.bs.tab', function (e) {
+    $('#promo-carousel').resize();
+  });
+
+  $('.close-tab').click(function() {
+    $('.tab-content').removeClass('visible');
+    $('.nav.nav-stacked > li').removeClass('active');
+  });
+
+  if ($(window).width() < 768) {
+    $('.nav.nav-stacked > li').removeClass('active');
+  };
+
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgCfExuv-T3zGG0mkSuNx0z0tLhRPlHzw&libraries=places&v=3.31"

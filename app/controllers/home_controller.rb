@@ -6,6 +6,11 @@ class HomeController < ApplicationController
     session[:client] = nil
     session[:search_branches_params] = nil
     session[:last_branch_id_visited] = nil
+
+    @category = Category.friendly.find('Neumaticos') || Category.roots.first.slug # i.e: /search_products/neumaticos
+    @promotions = CarouselPromotionsFinder.new(vehicle: session[:vehicle]).call
+    @home_banners = HomeBannersFinder.new(vehicle: session[:vehicle]).call
+    @search_products_form = ProductsFinder.new(client_search_input: params[:client_search_input], category: @category, vehicle: session[:vehicle]).call
   end
 
   def my_pauta

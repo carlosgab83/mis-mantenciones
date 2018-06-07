@@ -23,4 +23,11 @@ class SearchProductsController < ApplicationController
     show
     render action: :show
   end
+
+  def remote_search
+    @category = Category.friendly.find(params[:id]) || Category.roots.first.slug # i.e: /search_products/neumaticos
+
+    @search_products_form = ProductsFinder.new(client_search_input: params[:client_search_input], category: @category, vehicle: session[:vehicle]).call
+    @products = @search_products_form.results
+  end
 end

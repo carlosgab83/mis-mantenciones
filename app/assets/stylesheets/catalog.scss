@@ -412,8 +412,8 @@
 					@include transition(all 0.3s ease-in-out);
 					position: relative;
 					opacity: 0.8;
-					@media #{$lg}{width: 160px;}
-					@media #{$md}{width: 130px;}
+					@media #{$lg}{width: 140px;}
+					@media #{$md}{width: 115px;}
 					@media #{$sm}{width: 100px;}
 					@media #{$xs}{width: 70px;}
 					@media #{$xxs}{width: 70px;}
@@ -829,7 +829,8 @@
 	&.aeolus,
 	&.windforce,
 	&.bfgoodrich,
-	&.aptany {
+	&.aptany,
+	&.durun {
 		display: block;
 		height: 25px;
 		width: 100%;
@@ -859,4 +860,5 @@
 	&.windforce {background-image: image-url("brands/windforce.png");}
 	&.bfgoodrich {background-image: image-url("brands/bfgoodrich.png");}
 	&.aptany {background-image: image-url("brands/aptany.png");}
+	&.durun {background-image: image-url("brands/durun.png");}
 }
