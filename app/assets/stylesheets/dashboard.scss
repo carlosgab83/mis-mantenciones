@@ -24,32 +24,43 @@
 	}
 }
 #mm-navbar {
+	@media #{$xs} {
+		padding-right: 0;
+		padding-left: 0;
+	}
 	.nav.navbar-nav {
-		display: block;
+		display: table;
+		width: 100%;
 		text-align: right;
 		float: none;
 		@media #{$xs} {
 			text-align: center;
 		}
 		> li {
-			display: inline-block;
+			display: table-cell;
+			vertical-align: middle;
 			float: none;
+			padding: 0 4px;
 			@media #{$xs} {
 				display: block;
 			}
 			> a {
-				padding: 8px 10px;
+				display: table;
+				width: 100%;
+				height: 100%;
+				vertical-align: middle;
+				text-align: center;
 				text-transform: uppercase;
-				font-size: 92%;
+				font-size: 80%;
+				line-height: 1.1em;
+				padding: 10px 0;
 				&:hover, &:active, &:focus {
 					background-color: transparent;
 				}
 				@media #{$md} {
-					padding: 8px 7px;
-					font-size: 80%;
+					font-size: 78%;
 				}
 				@media #{$sm} {
-					padding: 8px 5px;
 					font-size: 72%;
 				}
 			}
@@ -149,7 +160,7 @@ section#section-map {
 	position: relative;
 	min-height: 100vh;
 	width: 100%;
-	padding: 60px 0 50px;
+	padding: 54px 0 50px;
 	@media #{$xs} {
 		padding: 0;
 	}
@@ -178,7 +189,7 @@ section#section-map {
 		}
 	}
 	#map {
-		height: calc(100vh - 110px);
+		height: calc(100vh - 99px);
 		width: 100%;
 		position: relative;
 		z-index: 0;

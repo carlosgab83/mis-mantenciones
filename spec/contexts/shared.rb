@@ -42,6 +42,7 @@ def create_categories
   create(:category, name: 'Vehículos')
   create(:category, name: 'Servicios')
   create(:category, name: 'Productos')
+  create(:category, name: 'Neumáticos', slug: 'Neumaticos')
 end
 
 def create_search_patent_stub_proc

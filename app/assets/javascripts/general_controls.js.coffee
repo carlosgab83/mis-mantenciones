@@ -13,6 +13,7 @@ generalControls.ready = ->
     generalControls.hideLoadingEffect()
 
   # Serialization of initialization of other controls
+  indexControls.ready()
   mapControls.ready()
   searchProductsControls.ready()
   leftPanelControls.ready()
