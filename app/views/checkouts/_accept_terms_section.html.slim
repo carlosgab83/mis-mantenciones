@@ -1,0 +1,11 @@
+.well.checkout-conditions
+  h2.checkout-title
+    | 4. Condiciones del&nbsp;
+    strong Servicio
+  hr
+  .form-group
+    label.checkbox
+        = f.check_box :accept_terms
+        span
+          | He leído y acepto los&nbsp;
+          = link_to "Términos y Condiciones", "http://files.mismantenciones.com/pdf/Términos-y-Condiciones-MisMantenciones.pdf", target: :_blank

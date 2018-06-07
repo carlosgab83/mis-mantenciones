@@ -36,7 +36,7 @@ $(document).on('page:load', searchProductsControls.dynamicSelectors)
 #############################################################################
 
 searchProductsControls.dynamicHorizontalFilters = ->
-  $('.dynamic-horizontal-filters').change ->
+  $('select.dynamic-horizontal-filters').change ->
     searchProductsControls.submitForm()
 
 $(document).ready(searchProductsControls.dynamicHorizontalFilters)
@@ -50,7 +50,7 @@ searchProductsControls.activeForm = ->
 #############################################################################
 
 searchProductsControls.submitForm = ->
-  $(searchProductsControls.activeForm()).find('button:submit').click()
+  $(searchProductsControls.activeForm()).find('button[type="submit"]').click()
 
 #############################################################################
 
@@ -108,5 +108,18 @@ searchProductsControls.clickOnPaginationLinks = ->
 
 $(document).ready(searchProductsControls.clickOnPaginationLinks)
 $(document).on('page:load', searchProductsControls.clickOnPaginationLinks)
+
+#############################################################################
+
+searchProductsControls.goTosearchFromOtherPage = ->
+  $('.go-to-search-neumaticos').click ->
+    generalControls.showLoadingEffect()
+    form = searchProductsControls.activeForm()
+    $(form).removeAttr("data-remote");
+    $(form).removeData("remote");
+    $(form).attr("action", $(form).data('go-to'))
+
+$(document).ready(searchProductsControls.goTosearchFromOtherPage)
+$(document).on('page:load', searchProductsControls.goTosearchFromOtherPage)
 
 #############################################################################

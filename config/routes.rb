@@ -32,6 +32,11 @@ Rails.application.routes.draw do
     collection do
       get :model_collection
     end
+
+    member do
+      get :remote_search
+      put :remote_search
+    end
   end
 
   resources :search_branches, :path => '/search-branches', only: [:index, :create, :show] do
