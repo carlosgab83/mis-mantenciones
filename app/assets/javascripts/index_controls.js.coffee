@@ -7,12 +7,13 @@ indexControls.ready = ->
   if typeof google != 'undefined' && document.getElementById('search-input-locations')
     indexControls.initAutocomplete()
     indexControls.buttonListeners()
-
+    setTimeout (->
+      indexControls.presetInputAddress()
+      return
+    ), 3000
 #############################################################################
 
 indexControls.initAutocomplete = () ->
-  indexControls.presetInputAddress()
-
   options = {
     componentRestrictions: {country: "cl"}
   }
@@ -76,7 +77,7 @@ indexControls.successObtainPosition = (location) ->
 #############################################################################
 
 indexControls.errorObtainPosition = (error) ->
-  alert('No pudimos obtener tu ubicación. Recuerda que debes activar la geolocalización en tu dispositivo')
+  console.log('No pudimos obtener tu ubicación. Recuerda que debes activar la geolocalización en tu dispositivo')
 
 #############################################################################
 
