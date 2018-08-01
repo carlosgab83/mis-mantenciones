@@ -47,7 +47,7 @@
 		text-decoration: line-through;
 	}
 	.promo-price {
-		font-size: 170%;
+		font-size: 150%;
 		font-weight: bold;
 		@media #{$xs}{
 			font-size: 130%;
@@ -164,7 +164,8 @@
 				//table-layout: fixed;
 				width: 100%;
 				padding-left: 0;
-				@media #{$oxs} {height: 180px;}
+				@media #{$oxs} {height: 200px;}
+				@media #{$md} {height: 240px;}
 				@media #{$xs} {height: 160px;}
 				> h4, h5, h6, p {cursor: pointer;}
 				p {margin-bottom: 0;}
@@ -208,8 +209,11 @@
 					> h6 {
 						font-family: 'Montserrat', sans-serif;
 						font-weight: bold;
-						font-size: 135%;
+						font-size: 120%;
 						opacity: 0.6;
+						@media #{$md}{
+							font-size: 110%;
+						}
 					}
 					.promo-price, .full-price {
 						width: 100%;
