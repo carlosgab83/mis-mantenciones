@@ -209,8 +209,6 @@ section#section-promos {
 	position: relative;
 	z-index: 1;
 	@media #{$xxs} {padding: 25px 0 20px;}
-	&:before {@extend .upper-triangle;}
-	&:after {@extend .bottom-triangle;}
 	h2 {
 		text-align: center;
 		font-weight: 700;

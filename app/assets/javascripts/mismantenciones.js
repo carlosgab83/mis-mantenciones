@@ -67,7 +67,7 @@ $(document).ready(function(){
   $('#marker-detail.panel-group').perfectScrollbar();
   
   // Sliders
-  $('#promo-carousel, #parts-carousel').slick({
+  $('#promo-carousel, #parts-carousel, #home-carousel').slick({
     dots: false,
     infinite: true,
     speed: 1000,
