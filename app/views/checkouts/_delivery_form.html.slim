@@ -16,7 +16,7 @@
   .form-group
     = f.text_field :contact_seller, placeholder: "Persona contacto", class: "form-control delivery-form", readonly: true
   .form-group
-    = f.text_field :contact_phone, placeholder: "Teléfono contacto", class: "form-control delivery-form", readonly: true
+    = f.text_field :contact_phone, placeholder: "Teléfono contacto", class: "form-control phone delivery-form", readonly: true
   - if branches.first.shop.delivery_installation?
     .form-group
       label.checkbox
