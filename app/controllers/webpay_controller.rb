@@ -26,7 +26,7 @@ class WebpayController < ApplicationController
     response = Net::HTTP.post_form(URI(@redirection_url), token_ws: params[:token_ws])
     if response.code.to_i == 200
       respond_to do |format|
-        format.html { render text: response.body.html_safe }
+        format.html
       end
       return
     end
