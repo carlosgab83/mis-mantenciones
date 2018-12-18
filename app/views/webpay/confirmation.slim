@@ -1,0 +1,8 @@
+/FINALIZING PAYMENT PROCESS
+body onload="document.accept_pay.submit()"
+	- if @webpay_data
+	  form action="#{@redirection_url}" method="post" id="accept_pay" name="accept_pay"
+	    .form-group
+	      = hidden_field_tag('token_ws', params[:token_ws])
+	    .form-group
+	      button.btn.btn-cta.btn-block type="submit" Finalizando...
