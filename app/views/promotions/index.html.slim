@@ -21,9 +21,9 @@
                 - @categories.each do |category|
                   li
                     - if @branch.present?
-                      = link_to category.name, shop_branch_promotions_path(@shop.slug, @branch.slug, category_id: category.id)
+                      = link_to category.name, shop_branch_promotions_path(@shop.slug, @branch.slug, category: category.slug)
                     - else
-                      = link_to category.name, promotions_path(category_id: category.id)
+                      = link_to category.name, promotions_path(category: category.slug)
 
         div class="#{action_name == 'blog' ? 'col-sm-12' : 'col-sm-9 col-md-10'}"
           ul.promo-list
