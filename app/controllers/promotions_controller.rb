@@ -18,7 +18,9 @@ class PromotionsController < ApplicationController
   private
 
   def promotions_params
-    params.permit(:category_id)
+    category_id = params[:category].present? ? Category.find_by_slug(params[:category]).try(:id) : nil
+    params[:category_id] = category_id || params[:category_id]
+    params
   end
 
   def common_render(promotions_params)
