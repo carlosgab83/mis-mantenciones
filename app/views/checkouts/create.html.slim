@@ -112,3 +112,7 @@ javascript:
       form.submit();
     }
   });
+
+script type='application/javascript'
+  |
+    var microdata = #{raw @order_preparator.buyable.jsonld_microdata(request).to_json}

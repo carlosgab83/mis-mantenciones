@@ -90,3 +90,7 @@
 script type='application/ld+json'
   |
     #{raw @promotion.jsonld_microdata(request).to_json}
+
+script type='application/javascript'
+  |
+    var microdata = #{raw @promotion.jsonld_microdata(request).to_json}
