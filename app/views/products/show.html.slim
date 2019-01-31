@@ -76,3 +76,7 @@
 script type='application/ld+json'
   |
     #{raw @product.jsonld_microdata(request).to_json}
+
+script type='application/javascript'
+  |
+    var microdata = #{raw @product.jsonld_microdata(request).to_json}

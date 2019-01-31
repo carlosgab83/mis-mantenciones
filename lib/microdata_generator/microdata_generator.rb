@@ -18,7 +18,8 @@ module MicrodataGenerator
       promotion.name,
       promotion.promo_price,
       (promotion.image_url || "promo-image.jpg"),
-      request.url
+      request.url,
+      promotion.id
     )
   end
 
@@ -30,7 +31,8 @@ module MicrodataGenerator
       "name" => product.name,
       "url" => request.url,
       "image" => product.image_url || "part-image.jpg",
-      "offers" => []
+      "offers" => [],
+      "id": id
     }
 
     product.branches_products_with_prices.each do |bp|
@@ -43,14 +45,15 @@ module MicrodataGenerator
                               product.name,
                               bp.price,
                               (product.image_url || "part-image.jpg"),
-                              request.url
+                              request.url,
+                              id
                             )
     end
 
     json_product
   end
 
-  def jsonld_microdata_for_offer(category, locality, street_address, place_name, type, description, price, image_url, url)
+  def jsonld_microdata_for_offer(category, locality, street_address, place_name, type, description, price, image_url, url, id)
     {
       "@context" => "http://schema.org/",
       "@type" => "Offer",
@@ -60,7 +63,9 @@ module MicrodataGenerator
       "price" => "#{ price.to_i > 0 ? price : "no especificado"}",
       "priceCurrency" => "CLP",
       "url" => url,
-      "image": image_url
+      "image": image_url,
+      "name": description,
+      "id": id
     }
   end
 
