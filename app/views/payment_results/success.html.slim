@@ -49,3 +49,7 @@
                         strong #{mismantenciones_number_to_currency(@payment.order.cart.price)}
 
 = render 'shared/footer_checkout'
+
+script type='application/javascript'
+  |
+    var microdata = #{raw @payment.order.cart.cart_items.first.buyable_item.jsonld_microdata(request).merge(quantity: @payment.order.cart.cart_items.first.quantity).to_json}
