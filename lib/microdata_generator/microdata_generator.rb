@@ -29,10 +29,13 @@ module MicrodataGenerator
       "@type" => "Product",
       "category" => product.category.try(:name),
       "name" => product.name,
+      "description" => product.name,
+      "brand" => product.product_brand.try(:name),
       "url" => request.url,
       "image" => product.image_url || "part-image.jpg",
       "offers" => [],
-      "id": id
+      "id" => id,
+      "productID" => id
     }
 
     product.branches_products_with_prices.each do |bp|
@@ -65,6 +68,8 @@ module MicrodataGenerator
       "url" => url,
       "image": image_url,
       "name": description,
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/InStock",
       "id": id
     }
   end
