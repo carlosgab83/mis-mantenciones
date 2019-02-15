@@ -1,5 +1,18 @@
 - title ||= "MisMantenciones"
 head
+  javascript:
+    function ready(fn) {
+      if (document.readyState != 'loading'){
+        fn();
+      } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', fn);
+      } else {
+        document.attachEvent('onreadystatechange', function() {
+          if (document.readyState != 'loading')
+            fn();
+        });
+      }
+    }
 
   / A/B Test for root_page
   - if not params.keys.include?('bienvenido') and controller_name == 'home' and action_name == 'index' # is Original root page
@@ -22,7 +35,6 @@ head
     / GTA code:
     javascript:
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-K9DZBR7');
-
 
   title
     = title
