@@ -19,7 +19,7 @@ module MicrodataGenerator
       promotion.promo_price,
       (promotion.image_url || "promo-image.jpg"),
       request.url,
-      promotion.id
+      "promo-#{promotion.id}"
     )
   end
 
@@ -34,8 +34,8 @@ module MicrodataGenerator
       "url" => request.url,
       "image" => product.image_url || "part-image.jpg",
       "offers" => [],
-      "id" => id,
-      "productID" => id
+      "id" => "prod-#{product.id}",
+      "productID" => "prod-#{product.id}"
     }
 
     product.branches_products_with_prices.each do |bp|
